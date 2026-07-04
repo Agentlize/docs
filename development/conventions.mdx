@@ -1,0 +1,295 @@
+---
+title: "Conventions"
+description: "Quy ước code và best practices cho Appota HRM"
+sidebarTitle: "Conventions"
+---
+
+# Conventions
+
+Quy ước code giúp team làm việc nhất quán và code dễ bảo trì.
+
+## File & Folder Naming
+
+<CodeGroup>
+
+```typescript Pages
+// PascalCase + suffix Page
+StaffListPage.tsx
+OnboardingFormPage.tsx
+HRReviewDetailPage.tsx
+```
+
+```typescript Components
+// PascalCase, không có suffix đặc biệt
+StatusBadge.tsx
+PageMeta.tsx
+RouteGuard.tsx
+CreateJDWizard.tsx
+```
+
+```typescript Hooks
+// camelCase, prefix 'use'
+useAIChat.ts
+useDebounce.ts
+useGoBack.ts
+useMobile.tsx
+useSupabaseUpload.ts
+```
+
+```typescript Utils
+// camelCase
+utils.ts        # cn() helper
+sse.ts          # SSE client
+```
+
+```typescript Contexts
+// PascalCase + Context suffix
+ThemeContext.tsx
+LanguageContext.tsx
+HRMContext.tsx
+AuthContext.tsx
+```
+
+```typescript Data
+// camelCase + suffix
+mockData.ts
+appotaOrgData.ts
+workforceData.ts
+jdPoolData.ts
+```
+
+```typescript Types
+// camelCase
+types.ts        # core domain types
+index.ts        # barrel
+chat.ts         # chat-specific types
+```
+
+</CodeGroup>
+
+## Import Alias
+
+Sử dụng `@/` làm alias cho `src/`:
+
+```typescript
+// Thay vì:
+import { Button } from '../../../components/ui/button';
+
+// Dùng:
+import { Button } from '@/components/ui/button';
+```
+
+Cấu hình trong `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+## Component Pattern
+
+### Functional Component \+ Arrow Function
+
+```typescript title="StatusBadge.tsx"
+import type { StaffStatus } from '@/types';
+
+interface StatusBadgeProps {
+  status: StaffStatus;
+}
+
+export const StatusBadge = ({ status }: StatusBadgeProps) => {
+  const config = {
+    Pending: { label: 'Chờ duyệt', variant: 'secondary' },
+    Approved: { label: 'Đã duyệt', variant: 'default' },
+    Rejected: { label: 'Từ chối', variant: 'destructive' },
+  };
+
+  return <Badge variant={config[status].variant}>{config[status].label}</Badge>;
+};
+```
+
+### Composition over Props Drilling
+
+```typescript
+// Thay vì:
+<Table renderHeader={...} renderRow={...} renderFooter={...} />
+
+// Dùng children:
+<Table>
+  <TableHeader>...</TableHeader>
+  <TableBody>...</TableBody>
+</Table>
+```
+
+## Styling
+
+### Semantic Tokens Only
+
+<Warning>
+  **KHÔNG dùng** màu Tailwind trực tiếp (`bg-blue-500`, `text-red-600`).
+</Warning>
+
+**Chỉ dùng** semantic tokens:
+
+```tsx
+// ĐÚNG
+<div className="bg-primary text-primary-foreground">...</div>
+<div className="bg-muted text-muted-foreground">...</div>
+<div className="bg-card border-border">...</div>
+
+// SAI
+<div className="bg-blue-500 text-white">...</div>
+```
+
+Tailwind config đã bật `darkMode: ['class']` — lớp `.dark` được `ThemeContext` gắn lên `<html>`.
+
+### cn() Helper
+
+```typescript title="src/lib/utils.ts"
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+export const cn = (...inputs: ClassValue[]) => {
+  return twMerge(clsx(inputs));
+};
+
+// Sử dụng:
+<button className={cn('px-4 py-2', isActive && 'bg-primary', isDisabled && 'opacity-50')} />
+```
+
+### Dialog Mobile Margin
+
+Mọi `DialogContent` phải có:
+
+```tsx
+<DialogContent className="max-w-[calc(100%-2rem)] md:max-w-lg">
+```
+
+Đảm bảo dialog không full-width trên mobile.
+
+## Toast
+
+Dùng **sonner** (`import { toast } from 'sonner'`), KHÔNG dùng shadcn toast.
+
+```typescript
+import { toast } from 'sonner';
+
+toast.success('Đã lưu thành công');
+toast.error('Có lỗi xảy ra');
+toast.warning('Cảnh báo');
+toast.info('Thông tin');
+```
+
+## Icons
+
+Dùng **lucide-react**, KHÔNG dùng emoji trong UI:
+
+```typescript
+import { Home, Users, Briefcase } from 'lucide-react';
+
+<Home className="h-4 w-4" />
+<Users className="h-5 w-5 text-primary" />
+```
+
+## Lint
+
+```bash
+npm run lint
+```
+
+Chạy TypeScript \+ Biome \+ custom checks. Đảm bảo pass trước khi commit.
+
+## Git Workflow
+
+<Steps>
+  <Step title="Tạo branch từ main">
+    ```bash
+    git checkout -b feat/<short-name>
+    ```
+  </Step>
+  <Step title="Commit với conventional commit">
+    ```bash
+    git commit -m "feat(staff): add 4-level drill-down navigation"
+    ```
+  </Step>
+  <Step title="Push và tạo PR">
+    ```bash
+    git push origin feat/<short-name>
+    ```
+  </Step>
+  <Step title="Review và merge">
+    PR cần ít nhất 1 approval trước khi merge vào main.
+  </Step>
+</Steps>
+
+### Conventional Commits
+
+| Prefix | Mô tả |
+| --- | --- |
+| `feat:` | Tính năng mới |
+| `fix:` | Sửa bug |
+| `docs:` | Thay đổi docs |
+| `style:` | Format code (không thay đổi logic) |
+| `refactor:` | Refactor code |
+| `test:` | Thêm/sửa test |
+| `chore:` | Cập nhật build, deps |
+
+## Type Safety
+
+### Tránh `any`
+
+```typescript
+// SAI
+const data: any = await fetch(...);
+
+// ĐÚNG
+const data: StaffProfile = await fetch(...);
+```
+
+### Dùng `unknown` thay thế khi cần
+
+```typescript
+const handleError = (error: unknown) => {
+  if (error instanceof Error) {
+    console.error(error.message);
+  }
+};
+```
+
+### Explicit return types
+
+```typescript
+// TỐT
+export const getStaff = async (id: string): Promise<StaffProfile | null> => {
+  return mockData.find(s => s.id === id) ?? null;
+};
+```
+
+## Testing (Future)
+
+Khi tích hợp test:
+
+- **Vitest** cho unit test
+- **React Testing Library** cho component test
+- **Playwright** cho E2E test
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Setup" icon="gear" href="/development/setup">
+    Cài đặt môi trường.
+  </Card>
+
+  <Card title="AI Agent Guide" icon="robot" href="/development/ai-agent-guide">
+    Hướng dẫn cho AI agent.
+  </Card>
+
+  <Card title="Architecture" icon="diagram-project" href="/architecture/overview">
+    Kiến trúc.
+  </Card>
+</CardGroup>

@@ -38,7 +38,11 @@
             "pages": [
               "business-rules/onboarding-flow",
               "business-rules/recruitment-order",
-              "business-rules/cv-status-transitions"
+              "business-rules/cv-status-transitions",
+              "business-rules/jd-status-rules",
+              "business-rules/approval-records",
+              "business-rules/permission-boundary",
+              "business-rules/ai-risk-assessment"
             ]
           },
           {
@@ -106,7 +110,16 @@
           },
           {
             "group": "Kiến trúc & Dev",
-            "pages": []
+            "pages": [
+              "architecture/overview",
+              "architecture/tech-stack",
+              "architecture/data-model",
+              "architecture/routing",
+              "architecture/state-management",
+              "development/setup",
+              "development/conventions",
+              "development/ai-agent-guide"
+            ]
           }
         ]
       },

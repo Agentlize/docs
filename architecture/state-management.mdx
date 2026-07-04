@@ -1,0 +1,271 @@
+---
+title: "State Management"
+description: "Context API và patterns quản lý state"
+sidebarTitle: "State Management"
+---
+
+# State Management
+
+Appota HRM sử dụng **React Context API** để quản lý global state. Có 4 context chính:
+
+## 4 Context Providers
+
+<CardGroup cols={2}>
+  <Card title="ThemeContext" icon="palette">
+    Dark/light mode
+  </Card>
+
+  <Card title="LanguageContext" icon="language">
+    VI/EN i18n
+  </Card>
+
+  <Card title="AuthContext" icon="user-shield">
+    User session, permissions
+  </Card>
+
+  <Card title="HRMContext" icon="database">
+    Staff profiles, approve/reject
+  </Card>
+</CardGroup>
+
+## ThemeContext
+
+```typescript title="src/contexts/ThemeContext.tsx"
+type Theme = 'light' | 'dark';
+
+interface ThemeContextValue {
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+  toggleTheme: () => void;
+}
+
+const ThemeContext = createContext<ThemeContextValue | null>(null);
+
+export const ThemeProvider = ({ children }) => {
+  const [theme, setThemeState] = useState<Theme>(() => {
+    const stored = localStorage.getItem('hrm-theme') as Theme | null;
+    if (stored) return stored;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+    localStorage.setItem('hrm-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => setThemeState(t => (t === 'light' ? 'dark' : 'light'));
+
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme: setThemeState, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+export const useTheme = () => {
+  const ctx = useContext(ThemeContext);
+  if (!ctx) throw new Error('useTheme must be used within ThemeProvider');
+  return ctx;
+};
+```
+
+## LanguageContext
+
+```typescript title="src/contexts/LanguageContext.tsx"
+type Lang = 'vi' | 'en';
+
+interface LanguageContextValue {
+  lang: Lang;
+  setLang: (lang: Lang) => void;
+  t: (module: string, key: string) => string;
+}
+
+const translations: Record<Lang, Record<string, Record<string, string>>> = {
+  vi: {
+    common: { save: 'Lưu', cancel: 'Huỷ' },
+    staff: { approve: 'Phê duyệt' },
+  },
+  en: {
+    common: { save: 'Save', cancel: 'Cancel' },
+    staff: { approve: 'Approve' },
+  },
+};
+
+export const LanguageProvider = ({ children }) => {
+  const [lang, setLang] = useState<Lang>('vi');
+
+  const t = (module: string, key: string): string => {
+    return translations[lang]?.[module]?.[key] ?? key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ lang, setLang, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
+```
+
+## AuthContext
+
+```typescript title="src/contexts/AuthContext.tsx"
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: Role;
+  permissions: Permission[];
+  departmentId?: string;
+}
+
+interface AuthContextValue {
+  currentUser: User | null;
+  login: (email: string, password: string) => Promise<void>;
+  logout: () => void;
+  hasPermission: (perm: Permission) => boolean;
+}
+
+export const AuthProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+  const login = async (email: string, password: string) => {
+    // TODO: Supabase Auth integration
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    setCurrentUser(data.user as User);
+  };
+
+  const logout = () => setCurrentUser(null);
+
+  const hasPermission = (perm: Permission) =>
+    currentUser?.permissions.includes(perm) ?? false;
+
+  return (
+    <AuthContext.Provider value={{ currentUser, login, logout, hasPermission }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+```
+
+## HRMContext
+
+```typescript title="src/contexts/HRMContext.tsx"
+interface HRMContextValue {
+  staffList: StaffProfile[];
+  activeStaffList: StaffProfile[];
+  pendingProfiles: StaffProfile[];
+
+  addPendingProfile: (profile: StaffProfile) => void;
+  approveProfile: (id: string, assignment: {
+    department: Department;
+    contractType: ContractType;
+    jobTitle: string;
+  }) => void;
+  rejectProfile: (id: string, reason: string) => void;
+  updateProfileStatus: (id: string, status: StaffStatus) => void;
+  addActivity: (staffId: string, activity: Activity) => void;
+  getProfileById: (id: string) => StaffProfile | undefined;
+}
+
+export const HRMProvider = ({ children }) => {
+  const [staffList, setStaffList] = useState<StaffProfile[]>(() =>
+    mockStaffData // from src/data/mockData.ts
+  );
+
+  const activeStaffList = useMemo(
+    () => staffList.filter(s => s.status === 'approved'),
+    [staffList]
+  );
+
+  const pendingProfiles = useMemo(
+    () => staffList.filter(s => s.status === 'pending' || s.status === 'under_review'),
+    [staffList]
+  );
+
+  const addPendingProfile = (profile: StaffProfile) => {
+    setStaffList(prev => [...prev, { ...profile, status: 'pending', submittedAt: new Date() }]);
+  };
+
+  const approveProfile = (id: string, assignment) => {
+    setStaffList(prev =>
+      prev.map(s =>
+        s.id === id
+          ? { ...s, ...assignment, status: 'approved', approvedAt: new Date() }
+          : s
+      )
+    );
+  };
+
+  const rejectProfile = (id: string, reason: string) => {
+    setStaffList(prev =>
+      prev.map(s =>
+        s.id === id ? { ...s, status: 'rejected', rejectionReason: reason } : s
+      )
+    );
+  };
+
+  // ... các methods khác
+
+  return (
+    <HRMContext.Provider value={{
+      staffList, activeStaffList, pendingProfiles,
+      addPendingProfile, approveProfile, rejectProfile,
+      updateProfileStatus, addActivity, getProfileById,
+    }}>
+      {children}
+    </HRMContext.Provider>
+  );
+};
+```
+
+## Best Practices
+
+<Steps>
+  <Step title="Dùng Context khi cần share state toàn cục">
+    Tránh dùng Context cho state local — chỉ dùng `useState`.
+  </Step>
+  <Step title="Memoize values">
+    Dùng `useMemo` cho derived values (như `activeStaffList`).
+  </Step>
+  <Step title="Tách write/read">
+    Methods như `approveProfile` nên được memoize với `useCallback`.
+  </Step>
+  <Step title="Throw error nếu dùng ngoài Provider">
+    Pattern `useContext + throw Error` giúp debug dễ hơn.
+  </Step>
+</Steps>
+
+## Khi nào KHÔNG nên dùng Context
+
+- **High-frequency updates** (\> 100 lần/giây) — gây re-render toàn bộ subtree
+- **State local** — chỉ cần `useState` trong component
+- **Form state** — dùng React Hook Form
+- **Server cache** — cân nhắc React Query / SWR
+
+## Future: TanStack Query
+
+Khi tích hợp backend thật, có thể kết hợp:
+
+```typescript
+import { useQuery } from '@tanstack/react-query';
+
+const useStaff = (id: string) =>
+  useQuery({
+    queryKey: ['staff', id],
+    queryFn: () => api.getStaff(id),
+    staleTime: 5 * 60 * 1000,
+  });
+```
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Architecture Overview" icon="diagram-project" href="/architecture/overview">
+    Tổng quan.
+  </Card>
+
+  <Card title="Data Model" icon="diagram-project" href="/architecture/data-model">
+    Domain types.
+  </Card>
+</CardGroup>

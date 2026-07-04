@@ -1,0 +1,179 @@
+---
+title: "AI Risk Assessment"
+description: "Logic đánh giá mức độ rủi ro cho audit entries"
+sidebarTitle: "AI Risk Assessment"
+---
+
+# AI Risk Assessment
+
+Mỗi audit entry được AI đánh giá mức độ rủi ro, giúp HR/Admin nhận diện các thao tác bất thường hoặc có tác động lớn.
+
+## 4 mức độ Risk
+
+| Level | Ý nghĩa | Ví dụ |
+| --- | --- | --- |
+| **Low** | Thao tác thông thường, không ảnh hưởng lớn | View Staff, View CV, View Course |
+| **Medium** | Thao tác có ảnh hưởng nhưng có thể rollback | Edit Staff, Edit CV, Edit Course |
+| **High** | Thao tác có ảnh hưởng lớn | Delete Staff, Reject Onboarding, Delete CV, Delete Course |
+| **Critical** | Thao tác có ảnh hưởng nghiêm trọng | Delete nhiều Staff, Thay đổi permission Super Admin, Delete nhiều CV |
+
+## Phân loại tự động
+
+```typescript title="src/lib/riskAssessment.ts"
+const assessRisk = (entry: AuditEntry): RiskAssessment => {
+  const { actionType, module, before, after } = entry;
+
+  // Critical: bulk delete
+  if (actionType === 'DELETE' && isBulkOperation(entry)) {
+    return {
+      level: 'Critical',
+      explanation: `Bulk delete ${module} detected. ${countAffectedEntities(entry)} entities removed.`,
+      recommendations: ['Review who triggered this', 'Check data recovery options'],
+    };
+  }
+
+  // Critical: thay đổi permission Super Admin
+  if (module === 'Permissions' && isSuperAdminPermissionChanged(before, after)) {
+    return {
+      level: 'Critical',
+      explanation: 'Super Admin permission modified. This affects system-wide access.',
+      recommendations: ['Verify with security team', 'Document the change reason'],
+    };
+  }
+
+  // High: delete single entity
+  if (actionType === 'DELETE') {
+    return {
+      level: 'High',
+      explanation: `${module} deleted.`,
+      recommendations: ['Check for dependent records', 'Notify the entity owner'],
+    };
+  }
+
+  // High: reject onboarding, send offer
+  if (module === 'HR Review' && actionType === 'REJECT') {
+    return {
+      level: 'High',
+      explanation: 'Onboarding rejection. Affects candidate experience.',
+      recommendations: ['Review rejection reason', 'Notify candidate with empathy'],
+    };
+  }
+
+  // Medium: edit
+  if (actionType === 'UPDATE' || actionType === 'STATUS_CHANGE') {
+    return {
+      level: 'Medium',
+      explanation: 'Standard modification. Can be rolled back if needed.',
+      recommendations: ['Document the reason for change'],
+    };
+  }
+
+  // Medium: approve
+  if (actionType === 'APPROVE') {
+    return {
+      level: 'Medium',
+      explanation: 'Approval action. Authorizes downstream operations.',
+      recommendations: ['Verify approval conditions'],
+    };
+  }
+
+  // Low: view, create non-sensitive
+  return {
+    level: 'Low',
+    explanation: 'Standard operation. No significant impact.',
+    recommendations: ['No action required'],
+  };
+};
+```
+
+## Ví dụ đánh giá
+
+### Low Risk
+
+```text
+[2026-05-20 10:30] Nguyễn Văn A: VIEW
+Module: Staff
+Entity: Staff #1234
+Risk Level: Low
+Explanation: "Read-only access. No data modification."
+Recommendation: ["No action required"]
+```
+
+### Medium Risk
+
+```text
+[2026-05-21 09:00] HR Trần Thị B: UPDATE
+Module: Staff
+Entity: Staff #5678
+Risk Level: Medium
+Explanation: "Modified staff profile fields. Change can be reversed if needed."
+Recommendation: ["Document the reason for change"]
+```
+
+### High Risk
+
+```text
+[2026-05-22 14:30] HR Lê Văn C: REJECT
+Module: HR Review
+Entity: Application #9012
+Risk Level: High
+Explanation: "Onboarding rejection for candidate Nguyễn Văn A. Reason: Missing required documents."
+Recommendation: [
+  "Notify candidate with empathy",
+  "Provide clear next steps or re-apply process"
+]
+```
+
+### Critical Risk
+
+```text
+[2026-05-23 11:00] Admin: DELETE (bulk)
+Module: Staff
+Affected: 15 staff records
+Risk Level: Critical
+Explanation: "Bulk delete of 15 staff records detected. Significant data loss."
+Recommendation: [
+  "URGENT: Verify this action was authorized",
+  "Contact data recovery team",
+  "Audit who triggered this delete"
+]
+```
+
+## Statistics
+
+Trong **Statistics Section** của Audit Trail:
+
+- **Total operations**: tổng số thao tác
+- **Top actors**: user có nhiều thao tác nhất
+- **Risk distribution chart**: biểu đồ phân bổ Low/Medium/High/Critical
+
+## Hiển thị trong UI
+
+Mỗi audit entry hiển thị badge màu theo risk level:
+
+| Risk | Badge color |
+| --- | --- |
+| Low | Gray |
+| Medium | Blue |
+| High | Orange |
+| Critical | Red |
+
+## Mock Data
+
+<Note>
+  - 150-200 audit entries
+  - Phân bổ risk: Low (60%), Medium (25%), High (12%), Critical (3%)
+  - AI explanation và recommendations cho mỗi entry
+</Note>
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Audit Trail" icon="clock-rotate-left" href="/modules/permissions/audit-trail">
+    Tài liệu Audit Trail.
+  </Card>
+
+  <Card title="Permissions" icon="key" href="/modules/permissions/overview">
+    Tổng quan phân quyền.
+  </Card>
+</CardGroup>
