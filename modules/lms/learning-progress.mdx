@@ -1,0 +1,137 @@
+---
+title: "LMS — Learning Progress"
+description: "Theo dõi tiến độ học của nhân viên và phòng ban"
+sidebarTitle: "Learning Progress"
+---
+
+# LMS — Learning Progress
+
+**Route:** `/lms/progress`
+
+Theo dõi tiến độ học tập theo cá nhân và phòng ban.
+
+## Progress Dashboard
+
+### KPI Cards
+
+<CardGroup cols={4}>
+  <Card title="Tổng khóa học active" icon="book">
+    Tổng số khóa học đang hoạt động
+  </Card>
+
+  <Card title="Tổng học viên" icon="users">
+    Tổng số nhân viên đang học
+  </Card>
+
+  <Card title="Tỷ lệ hoàn thành" icon="chart-line">
+    Tỷ lệ hoàn thành trung bình (%)
+  </Card>
+
+  <Card title="Số chứng chỉ" icon="certificate">
+    Số chứng chỉ đã cấp
+  </Card>
+</CardGroup>
+
+### Bảng tổng hợp theo phòng ban
+
+| Cột | Mô tả |
+| --- | --- |
+| Tên phòng ban | — |
+| Số học viên | Tổng nhân viên trong phòng |
+| Số khóa học được gán | Tổng khóa học được gán |
+| Tỷ lệ hoàn thành (%) | Trung bình phòng |
+| Điểm test trung bình | Trung bình phòng |
+
+### Biểu đồ
+
+<CardGroup cols={2}>
+  <Card title="Biểu đồ cột" icon="chart-column">
+    Tỷ lệ hoàn thành theo phòng ban.
+  </Card>
+
+  <Card title="Biểu đồ đường" icon="chart-line">
+    Xu hướng hoàn thành theo tháng.
+  </Card>
+</CardGroup>
+
+### Hành động
+
+Click vào phòng ban → **Employee Progress Detail**.
+
+## Employee Progress Detail
+
+### Header
+
+- Tên nhân viên
+- Phòng ban
+- Tổng số khóa học được gán
+- Số khóa học hoàn thành
+
+### Bảng danh sách khóa học
+
+| Cột | Mô tả |
+| --- | --- |
+| Tên khóa học | — |
+| Trạng thái | `Chưa bắt đầu` / `Đang học` / `Hoàn thành` |
+| Tiến độ (%) | (Số học liệu đã hoàn thành / Tổng học liệu) × 100% |
+| Điểm test | Điểm trung bình các bài test |
+| Ngày bắt đầu | — |
+| Ngày hoàn thành | — |
+
+### Hành động
+
+Click vào khóa học → xem chi tiết tiến độ từng học liệu và bài test.
+
+## Quy trình học của nhân viên
+
+<Steps>
+  <Step title="HR gán khóa học">
+    HR/Trainer vào Course Detail → **Assign to Employees** → chọn nhân viên hoặc phòng ban.
+  </Step>
+  <Step title="Nhân viên nhận thông báo">
+    Khóa học mới xuất hiện trong Progress Dashboard.
+  </Step>
+  <Step title="Nhân viên học">
+    Click vào khóa học → xem học liệu theo thứ tự.
+  </Step>
+  <Step title="Hoàn thành học liệu">
+    Hệ thống cập nhật tiến độ.
+  </Step>
+  <Step title="Làm bài test">
+    Đạt điểm đạt → Pass. Không đạt → làm lại.
+  </Step>
+  <Step title="Hoàn thành khóa học">
+    Tất cả học liệu \+ tất cả bài test pass → Hoàn thành → chứng chỉ tự động cấp.
+  </Step>
+</Steps>
+
+## Công thức
+
+```typescript
+const progress = (completedMaterials / totalMaterials) * 100;
+const completionRate = (completedStudents / enrolledStudents) * 100;
+```
+
+## Mock Data
+
+<Note>
+  - 100\+ nhân viên được gán khóa học
+  - Đa dạng trạng thái: Chưa bắt đầu / Đang học / Hoàn thành
+  - Tỷ lệ hoàn thành trung bình dao động 60-85%
+</Note>
+
+## Liên kết
+
+<CardGroup cols={3}>
+  <Card title="Courses" icon="book" href="/modules/lms/courses">
+    Tạo khóa học.
+  </Card>
+
+  <Card title="Training Plans" icon="calendar" href="/modules/lms/training-plans">
+    Kế hoạch đào tạo.
+  </Card>
+
+  <Card title="Training Reports" icon="chart-column" href="/modules/lms/training-reports">
+    Báo cáo tổng quan.
+  </Card>
+</CardGroup>

@@ -1,0 +1,133 @@
+---
+title: "LMS — Training Reports"
+description: "Báo cáo đào tạo tổng quan và chi tiết theo phòng ban"
+sidebarTitle: "Training Reports"
+---
+
+# LMS — Training Reports
+
+**Route:** `/lms/reports`
+
+Báo cáo tổng quan và chi tiết về hoạt động đào tạo trong hệ thống.
+
+## Overview Dashboard
+
+### KPI Cards
+
+<CardGroup cols={4}>
+  <Card title="Tổng khóa học hoàn thành" icon="book">
+    Tổng số lượt hoàn thành
+  </Card>
+
+  <Card title="Tổng giờ đào tạo" icon="clock">
+    Tổng thời gian đào tạo
+  </Card>
+
+  <Card title="Tỷ lệ hoàn thành" icon="chart-line">
+    Trung bình toàn hệ thống (%)
+  </Card>
+
+  <Card title="Điểm test trung bình" icon="star">
+    Điểm trung bình các bài test
+  </Card>
+</CardGroup>
+
+### Biểu đồ
+
+<CardGroup cols={3}>
+  <Card title="Số khóa học hoàn thành theo tháng" icon="chart-column">
+    Biểu đồ cột
+  </Card>
+
+  <Card title="Phân bổ khóa học theo danh mục" icon="chart-pie">
+    Biểu đồ tròn (Technical, Soft Skills, Compliance, Leadership, Product Knowledge)
+  </Card>
+
+  <Card title="Xu hướng điểm test theo tháng" icon="chart-line">
+    Biểu đồ đường
+  </Card>
+</CardGroup>
+
+### Bảng xếp hạng nhân viên
+
+Top 10 nhân viên có số khóa học hoàn thành nhiều nhất:
+
+| Cột | Mô tả |
+| --- | --- |
+| Tên | — |
+| Phòng ban | — |
+| Số khóa học hoàn thành | — |
+| Điểm test trung bình | — |
+
+### Hành động
+
+- **Export Report** → CSV. Toast "Export successful"
+
+## Detailed Reports
+
+### Bộ lọc
+
+<ParamField path="department" type="select">
+  Phòng ban
+</ParamField>
+
+<ParamField path="period" type="date-range">
+  Khoảng thời gian
+</ParamField>
+
+<ParamField path="category" type="select">
+  Danh mục khóa học
+</ParamField>
+
+### Báo cáo theo phòng ban
+
+| Cột | Mô tả |
+| --- | --- |
+| Tên phòng ban | — |
+| Số học viên | — |
+| Số khóa học được gán | — |
+| Tỷ lệ hoàn thành (%) | — |
+| Điểm test trung bình | — |
+| Tổng giờ đào tạo | — |
+
+### Báo cáo theo khóa học
+
+| Cột | Mô tả |
+| --- | --- |
+| Tên khóa học | — |
+| Số học viên đã gán | — |
+| Số học viên hoàn thành | — |
+| Tỷ lệ hoàn thành (%) | — |
+| Điểm test trung bình | — |
+
+### Hành động
+
+- **Export Report** → CSV. Toast "Export successful"
+
+## Mock Data
+
+<Note>
+  - 5-10 kế hoạch đào tạo với đầy đủ KPI
+  - 100\+ nhân viên đang học
+  - 15-20 khóa học active
+</Note>
+
+## Validation
+
+| Trường hợp | Xử lý |
+| --- | --- |
+| Không có dữ liệu | Hiển thị **"No data available"** |
+| Filter không có kết quả | Hiển thị **"No results found"** |
+| Export thành công | Toast **"Export successful"** |
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Learning Progress" icon="chart-line" href="/modules/lms/learning-progress">
+    Tiến độ chi tiết.
+  </Card>
+
+  <Card title="Training Plans" icon="calendar" href="/modules/lms/training-plans">
+    Kế hoạch đào tạo.
+  </Card>
+</CardGroup>

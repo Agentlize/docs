@@ -1,0 +1,131 @@
+---
+title: "Audit Trail"
+description: "Lịch sử thay đổi với AI risk assessment"
+sidebarTitle: "Audit Trail"
+---
+
+# Audit Trail
+
+**Route:** `/audit`
+
+Theo dõi tất cả các thao tác thay đổi trong hệ thống với **AI đánh giá rủi ro** cho từng entry.
+
+## Bộ lọc
+
+<ParamField path="user" type="select">
+  Actor (người thực hiện)
+</ParamField>
+
+<ParamField path="actionType" type="select">
+  CREATE, UPDATE, DELETE, APPROVE, REJECT, STATUS\_CHANGE
+</ParamField>
+
+<ParamField path="module" type="select">
+  Staff, Interview, HR Review, Onboarding, Workforce Planning, CV Pool, JD Pool, Permissions, Recruitment Orders, LMS
+</ParamField>
+
+<ParamField path="period" type="date-range">
+  Khoảng thời gian
+</ParamField>
+
+## View Mode
+
+<CardGroup cols={2}>
+  <Card title="Timeline view" icon="timeline">
+    Hiển thị theo dòng thời gian.
+  </Card>
+
+  <Card title="Table view" icon="table">
+    Hiển thị dạng bảng.
+  </Card>
+</CardGroup>
+
+## Audit Entry
+
+Mỗi entry chứa:
+
+| Trường | Mô tả |
+| --- | --- |
+| Timestamp | Thời điểm thực hiện |
+| Actor | User \+ avatar |
+| Action Type | CREATE / UPDATE / DELETE / APPROVE / REJECT / STATUS\_CHANGE |
+| Module | Staff, Interview, HR Review, v.v. |
+| Entity | Staff ID, Interview ID, CV ID, JD ID, Order ID, Course ID |
+| Before | Giá trị trước |
+| After | Giá trị sau |
+| Risk Level | Low / Medium / High / Critical |
+
+## AI Risk Assessment
+
+Mỗi entry được AI đánh giá:
+
+```typescript
+type RiskLevel = 'Low' | 'Medium' | 'High' | 'Critical';
+
+interface RiskAssessment {
+  level: RiskLevel;
+  explanation: string;
+  recommendations: string[];
+}
+```
+
+### Phân loại Risk
+
+| Risk Level | Ví dụ |
+| --- | --- |
+| **Low** | View Staff, View CV, View Course |
+| **Medium** | Edit Staff, Edit CV, Edit Course |
+| **High** | Delete Staff, Reject Onboarding, Delete CV, Delete Course |
+| **Critical** | Delete nhiều Staff, Thay đổi permission Super Admin, Delete nhiều CV |
+
+### Ví dụ assessment
+
+```text
+[2026-05-21 09:00] HR Trần Thị B
+Action: HR_REVIEW → APPROVED
+Module: Recruitment Orders
+Entity: Order #1234
+Risk Level: Low
+Explanation: "Normal status transition trong recruitment workflow."
+Recommendation: ["No action required"]
+```
+
+## Statistics Section
+
+- **Tổng số thao tác**
+- **Top actors** — user có nhiều thao tác nhất
+- **Risk distribution chart** — biểu đồ phân bổ Low/Medium/High/Critical
+
+## Hành động
+
+- **Export audit log** → CSV. Toast "Export successful"
+
+## Mock Data
+
+<Note>
+  - 150-200 audit entry
+  - Đa dạng action type: CREATE, UPDATE, DELETE, APPROVE, REJECT, STATUS\_CHANGE
+  - Đa dạng module: Staff, Interview, HR Review, Onboarding, Workforce Planning, CV Pool, JD Pool, Permissions, Recruitment Orders, LMS
+  - Đa dạng risk level: Low (60%), Medium (25%), High (12%), Critical (3%)
+  - AI risk assessment và explanation cho mỗi entry
+</Note>
+
+## Validation
+
+| Trường hợp | Xử lý |
+| --- | --- |
+| Không có audit entry | Hiển thị **"No audit entries found"** |
+| Filter không có kết quả | Hiển thị **"No results found"** |
+| Export thành công | Toast **"Export successful"** |
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Permissions" icon="key" href="/modules/permissions/overview">
+    Phân quyền hệ thống.
+  </Card>
+
+  <Card title="AI Risk Assessment" icon="brain" href="/business-rules/ai-risk-assessment">
+    Logic đánh giá risk.
+  </Card>
+</CardGroup>

@@ -1,0 +1,125 @@
+---
+title: "Permissions — Tổng quan"
+description: "Quản lý role, permission, policy và department boundary theo mô hình RBAC"
+sidebarTitle: "Permissions Tổng quan"
+---
+
+# Permissions
+
+**Route:** `/permissions`
+
+Hệ thống phân quyền theo mô hình **RBAC** (Role-Based Access Control) với 9 role, 24 permission và 25-30 policy.
+
+## 5 Tab chính
+
+<CardGroup cols={2}>
+  <Card title="Roles" icon="users" href="/modules/permissions/roles">
+    Quản lý 9 vai trò trong hệ thống.
+  </Card>
+
+  <Card title="Access Matrix" icon="table" href="/modules/permissions/access-matrix">
+    Ma trận role × resource × action.
+  </Card>
+
+  <Card title="Policies" icon="gavel">
+    Tạo và chỉnh sửa policy.
+  </Card>
+
+  <Card title="Department Boundaries" icon="building-lock">
+    Quản lý permission boundary theo phòng ban.
+  </Card>
+
+  <Card title="Permissions" icon="key">
+    Danh sách 24 permission.
+  </Card>
+</CardGroup>
+
+## Vai trò
+
+| Role | Phạm vi |
+| --- | --- |
+| **Super Admin** | Toàn hệ thống |
+| **HR Manager** | Toàn hệ thống |
+| **Department Head** | Phòng ban của mình |
+| **Interviewer** | Interview được phân công |
+| **Recruiter** | Toàn hệ thống (CV/JD Pool) |
+| **Leader** | Phòng ban của mình |
+| **Trainer** | Khóa học của mình |
+| **Employee** | Cá nhân |
+| **Guest** | Không truy cập |
+
+## Permission
+
+Hệ thống có **24 permission** thuộc các resource:
+
+- Staff (View, Edit, Delete, Approve Onboarding)
+- Interview (View, Edit Score)
+- Workforce Planning (View, Edit)
+- CV Pool (View, Edit)
+- JD Pool (View, Edit)
+- Audit Trail (View)
+- Permissions (Manage)
+- Recruitment Orders (Create, Approve)
+- Reports (View)
+- LMS (View, Manage Courses, Materials, Quizzes, View Progress, Manage Training Plans, View Training Reports)
+
+## Policy
+
+```typescript
+interface Policy {
+  id: string;
+  role: string;
+  resource: string;
+  action: string;
+  condition?: string;
+}
+```
+
+Ví dụ policy:
+
+| Role | Resource | Action | Condition |
+| --- | --- | --- | --- |
+| Leader | Recruitment Orders | Create | — |
+| Department Head | Staff | View | `departmentId = currentUser.departmentId` |
+| HR Manager | CV Pool | Edit | — |
+
+## Department Boundary
+
+User chỉ xem được dữ liệu của **phòng ban mình** (trừ Super Admin và HR Manager).
+
+## Permission Boundary
+
+<Warning>
+  - **Department Head** chỉ xem data của **department mình**.
+  - **Employee** chỉ xem profile của **mình**.
+  - **HR Manager** và **Super Admin** xem **toàn bộ data**.
+</Warning>
+
+Khi vi phạm boundary: hiển thị **"Access denied"** hoặc redirect về `/`.
+
+Xem chi tiết tại [Permission Boundary](/business-rules/permission-boundary).
+
+## Mock Data
+
+<Note>
+  - 9 role
+  - 24 permission
+  - 25-30 policy
+  - 8 department với boundary rule
+</Note>
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Roles" icon="users" href="/modules/permissions/roles">
+    Danh sách 9 role.
+  </Card>
+
+  <Card title="Access Matrix" icon="table" href="/modules/permissions/access-matrix">
+    Ma trận trực quan.
+  </Card>
+
+  <Card title="Audit Trail" icon="clock-rotate-left" href="/modules/permissions/audit-trail">
+    Lịch sử thay đổi.
+  </Card>
+</CardGroup>

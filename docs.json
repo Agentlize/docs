@@ -35,7 +35,11 @@
           },
           {
             "group": "Quy tắc nghiệp vụ",
-            "pages": []
+            "pages": [
+              "business-rules/onboarding-flow",
+              "business-rules/recruitment-order",
+              "business-rules/cv-status-transitions"
+            ]
           },
           {
             "group": "Modules",
@@ -64,7 +68,11 @@
                 "group": "LMS",
                 "pages": [
                   "modules/lms/courses",
-                  "modules/lms/materials"
+                  "modules/lms/materials",
+                  "modules/lms/quizzes",
+                  "modules/lms/learning-progress",
+                  "modules/lms/training-plans",
+                  "modules/lms/training-reports"
                 ]
               },
               {
@@ -77,11 +85,21 @@
               },
               {
                 "group": "Governance",
-                "pages": []
+                "pages": [
+                  "modules/permissions/overview",
+                  "modules/permissions/roles",
+                  "modules/permissions/access-matrix",
+                  "modules/permissions/audit-trail"
+                ]
               },
               {
                 "group": "Hệ thống",
-                "pages": []
+                "pages": [
+                  "modules/dashboard",
+                  "modules/departments",
+                  "modules/ai-assistant",
+                  "modules/settings"
+                ]
               },
               "modules/index"
             ]

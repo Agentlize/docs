@@ -1,0 +1,83 @@
+---
+title: "Departments"
+description: "Org chart phòng ban"
+sidebarTitle: "Departments"
+---
+
+# Departments
+
+**Route:** `/departments`
+
+Hiển thị danh sách các phòng ban trong hệ thống và số lượng nhân viên trong mỗi phòng.
+
+## Org Chart
+
+```text
+Appota Group
+├── Appota Game
+│   ├── Engineering (50)
+│   ├── Marketing (20)
+│   ├── Sales (25)
+│   ├── HR (10)
+│   ├── Finance (15)
+│   └── Operations (30)
+├── Appota Pay
+│   └── ...
+├── Appota Cloud
+│   └── ...
+├── Gamota
+├── Adsota
+├── Kdata
+├── OTA
+└── Appota Holding
+```
+
+## Thông tin mỗi phòng ban
+
+| Trường | Mô tả |
+| --- | --- |
+| Tên phòng ban | Engineering, Marketing, Sales, HR, Finance, Operations, Design, Product |
+| Department Head | Trưởng phòng |
+| Số nhân viên | — |
+| Số vị trí đang tuyển | — |
+
+## 8 phòng ban chính
+
+- **Engineering** — phát triển sản phẩm
+- **Marketing** — tiếp thị
+- **Sales** — bán hàng
+- **HR** — nhân sự
+- **Finance** — tài chính
+- **Operations** — vận hành
+- **Design** — thiết kế
+- **Product** — sản phẩm
+
+## Hành động
+
+- Click vào phòng ban → xem danh sách nhân viên trong [**Staff List**](/modules/staff/staff-list) với filter phòng ban
+- Xem Workforce Planning chi tiết → [**Department Workforce Detail**](/modules/workforce/department-detail)
+
+## Mock Data
+
+<Note>
+  - 5-8 công ty con
+  - Mỗi công ty: 3-8 phòng ban
+  - Tổng: 30-50 phòng ban toàn tập đoàn
+  - Mỗi phòng ban: 5-50 nhân viên
+</Note>
+
+## Liên kết
+
+<CardGroup cols={3}>
+  <Card title="Staff List" icon="users" href="/modules/staff/staff-list">
+    Drill-down 4 cấp.
+  </Card>
+
+  <Card title="Workforce Dashboard" icon="chart-pie" href="/modules/workforce/dashboard">
+    Kế hoạch nhân lực.
+  </Card>
+
+  <Card title="Permission Boundary" icon="building-lock" href="/business-rules/permission-boundary">
+    Quyền theo phòng ban.
+  </Card>
+</CardGroup>
