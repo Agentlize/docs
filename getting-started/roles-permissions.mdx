@@ -1,0 +1,132 @@
+---
+title: "User Roles and Permissions in Agentlize HRM"
+sidebarTitle: "Roles & Permissions"
+description: "Understand the built-in roles in Agentlize HRM and control what each team member can view and manage."
+---
+
+Agentlize HRM uses **role-based access control (RBAC)** to ensure every person on your team sees exactly what they need — and nothing they shouldn't. Each user is assigned one of four built-in roles when they're invited to the workspace. Roles determine which modules a person can access, what actions they can take, and which records they can view or edit.
+
+This page explains each role in detail, shows you how to assign or change roles, and describes the self-service capabilities available to employees and managers.
+
+---
+
+## Built-in roles
+
+The table below summarizes the four roles available in Agentlize HRM and their primary areas of responsibility.
+
+| Role | Description | Key Permissions |
+|---|---|---|
+| **Owner** | The workspace creator and ultimate administrator. There is exactly one Owner per workspace. | Full access to all modules, settings, and billing. Can delete the workspace and transfer ownership. |
+| **HR Admin** | HR professionals responsible for day-to-day people operations. | Manage all employee records, run payroll, configure leave policies, manage recruitment pipelines, create performance review cycles, and generate all reports. Cannot access billing. |
+| **Manager** | Department heads and team leads who oversee a group of employees. | View and approve leave for their assigned team, view team attendance records, run team-level reports, and participate in performance reviews as a reviewer. Cannot run payroll or access other departments' data. |
+| **Employee** | Individual contributors with self-service access only. | View own payslips and attendance records, apply for leave, update personal profile information, submit performance self-assessments, and view their own goals. |
+
+<Info>
+  There can only be **one Owner** per workspace. If you need to transfer ownership to another person — for example, when a key HR leader changes roles — please contact [support@agentlize.com](mailto:support@agentlize.com). Ownership cannot be transferred from within the app settings.
+</Info>
+
+---
+
+## Permissions by role
+
+Use the tabs below to see a detailed permission breakdown for each role across every module.
+
+<Tabs>
+  <Tab title="Owner">
+    The Owner has unrestricted access to every area of the platform.
+
+    | Module | Permissions |
+    |---|---|
+    | **Employee Management** | Create, edit, archive, and delete employee records. Access all employee documents and history. |
+    | **Attendance** | View and edit attendance records for all employees. Configure shift schedules and overtime rules. |
+    | **Payroll** | Create, edit, approve, and finalize payroll runs. Configure tax tables, deductions, and pay schedules. Access all payslips. |
+    | **Leave** | Configure leave policies and accrual rules. View, approve, reject, or override any leave request. |
+    | **Recruitment** | Create and publish job postings. Manage all applicants and pipelines. Send offer letters. |
+    | **Performance** | Create and manage review cycles. View all feedback and evaluation reports. |
+    | **Settings** | Full access, including billing, SSO configuration, integrations, and workspace deletion. |
+  </Tab>
+
+  <Tab title="HR Admin">
+    HR Admins have full operational HR access but cannot manage billing or workspace-level settings.
+
+    | Module | Permissions |
+    |---|---|
+    | **Employee Management** | Create, edit, and archive employee records. Upload and manage documents. Cannot permanently delete records. |
+    | **Attendance** | View and edit attendance records for all employees. Configure shifts. Cannot delete historical attendance data. |
+    | **Payroll** | Create and approve payroll runs. Configure deductions and allowances. View all payslips. Cannot modify tax tables (Owner only). |
+    | **Leave** | Create and edit leave policies. Approve or reject any leave request. View leave balances for all employees. |
+    | **Recruitment** | Full access to job postings, applicant pipelines, and offer letter generation. |
+    | **Performance** | Create review cycles, assign reviewers, and view all evaluation reports. |
+    | **Settings** | Can manage departments, custom fields, and notification settings. **Cannot** access billing or SSO. |
+  </Tab>
+
+  <Tab title="Manager">
+    Managers have visibility and approval rights scoped to the department(s) they are assigned to.
+
+    | Module | Permissions |
+    |---|---|
+    | **Employee Management** | View profiles of employees in their assigned department(s). Cannot create, edit, or archive records. |
+    | **Attendance** | View attendance records for their team. Cannot edit records or configure shift rules. |
+    | **Payroll** | No access. Managers cannot view salary information or payslips for their team. |
+    | **Leave** | Approve or reject leave requests from employees in their department. View team leave calendars and balances. |
+    | **Recruitment** | Can be added as a hiring collaborator on specific job postings. Can provide interview feedback. Cannot create postings. |
+    | **Performance** | Can conduct performance reviews for direct reports. View their own review results. Cannot create or configure review cycles. |
+    | **Settings** | No access. |
+  </Tab>
+
+  <Tab title="Employee">
+    Employees have self-service access limited to their own data.
+
+    | Module | Permissions |
+    |---|---|
+    | **Employee Management** | View and update their own personal profile (name, address, emergency contacts, bank details). Cannot edit employment terms or salary. |
+    | **Attendance** | View their own clock-in/clock-out history and attendance summary. Cannot edit records. |
+    | **Payroll** | View and download their own payslips. Cannot see salary information for any other employee. |
+    | **Leave** | Apply for leave, view their leave balance for each leave type, and track the status of their requests. |
+    | **Recruitment** | No access to the recruitment module. |
+    | **Performance** | Submit self-assessments, view their own review results, and update personal goals. |
+    | **Settings** | Can update their own notification preferences and password only. |
+  </Tab>
+</Tabs>
+
+---
+
+## Assigning and changing roles
+
+You can change a team member's role at any time from the Team Members settings page. Role changes take effect immediately — the user's session is updated on their next page load.
+
+1. Navigate to **Settings → Team Members**.
+2. Find the team member whose role you want to change and click the **Edit** button (pencil icon) on their row.
+3. In the **Edit Member** panel, open the **Role** dropdown and select the new role.
+4. Click **Save Changes**.
+
+The team member receives an email notification informing them that their role has been updated.
+
+<Warning>
+  Downgrading a user's role (for example, from HR Admin to Employee) immediately removes their access to restricted modules. If they have any in-progress tasks — such as a draft payroll run or an open recruitment pipeline — make sure those are handed off before changing the role.
+</Warning>
+
+---
+
+## What employees can self-service
+
+Employees can handle the following tasks entirely on their own through the **My Portal** section of the app, without needing to contact HR:
+
+- **View and download payslips** — Access the full history of monthly payslips, including gross pay, deductions, and net pay breakdowns.
+- **Apply for leave** — Submit leave requests for any configured leave type, attach supporting documents if required, and track approval status in real time.
+- **Update personal information** — Edit their home address, phone number, emergency contact details, and bank account information for payroll.
+- **View attendance records** — Review their own daily attendance log, including clock-in and clock-out times, total hours worked, and any flagged anomalies.
+- **Submit performance self-assessments** — Complete their section of a review cycle when invited by HR or their manager.
+- **Track goals** — Create personal goals, update progress, and align them to department objectives when the feature is enabled.
+
+---
+
+## What managers can do
+
+Managers are empowered to handle day-to-day team operations without HR involvement:
+
+- **Approve or reject leave requests** — Receive notifications when a direct report applies for leave. Review the team leave calendar for conflicts before making a decision, and add a comment to explain any rejection.
+- **View team attendance** — Monitor daily attendance for everyone in their department, spot patterns of lateness or absenteeism, and flag issues to HR.
+- **Run team reports** — Generate attendance and leave summary reports scoped to their department for any date range.
+- **Provide performance feedback** — Conduct structured reviews for direct reports during an active review cycle, including rating competencies and writing qualitative comments.
+- **Collaborate on hiring** — When added to a job posting as a hiring collaborator, review candidate profiles, submit interview scorecards, and recommend candidates for progression.

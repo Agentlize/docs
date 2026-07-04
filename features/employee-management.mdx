@@ -1,0 +1,224 @@
+---
+title: "Employee Management: Profiles, Directory & Records"
+sidebarTitle: "Employees"
+description: "Manage your entire workforce in Agentlize HRM — create employee profiles, organize by department, and maintain complete employment records."
+---
+
+Employee Management is the foundation of Agentlize HRM. It gives you a single, authoritative source of truth for every person in your organization — from the moment they join to the day they leave. Use it to create and maintain detailed employee profiles, organize your workforce by department or location, store employment documents securely, and keep accurate records that feed directly into payroll, attendance, and performance modules.
+
+## Employee Profiles
+
+Each employee in Agentlize HRM has a dedicated profile that captures all the information your HR team and managers need. Profiles are created once and automatically referenced across every other module — changes made here are reflected everywhere.
+
+The following fields are available on every employee profile:
+
+<ParamField path="full_name" type="string" required>
+  The employee's legal full name, as it appears on official documents. Used on payslips, contracts, and reports.
+</ParamField>
+
+<ParamField path="employee_id" type="string" required>
+  A unique identifier automatically assigned by Agentlize HRM. You can override this with your own internal ID format under **Settings → HR Configuration → Employee ID Format**.
+</ParamField>
+
+<ParamField path="email" type="string" required>
+  The employee's work email address. Used for system notifications, payslip delivery, and self-service portal login.
+</ParamField>
+
+<ParamField path="phone" type="string">
+  Primary contact phone number. Visible to HR admins and the employee's direct manager.
+</ParamField>
+
+<ParamField path="date_of_birth" type="date">
+  Used for age-related compliance checks and optional birthday notifications.
+</ParamField>
+
+<ParamField path="job_title" type="string" required>
+  The employee's official role title. Displayed in the directory, org chart, and on payslips.
+</ParamField>
+
+<ParamField path="department" type="string" required>
+  The department this employee belongs to. Determines which department-level reports and leave calendars the employee appears in.
+</ParamField>
+
+<ParamField path="manager" type="string">
+  The employee's direct reporting manager. Drives approval workflows for leave, expense, and performance reviews.
+</ParamField>
+
+<ParamField path="start_date" type="date" required>
+  The official employment start date. Used to calculate tenure, probation period end dates, and leave accrual.
+</ParamField>
+
+<ParamField path="employment_type" type="string" required>
+  One of **Full-Time**, **Part-Time**, **Contract**, or **Intern**. Affects payroll calculations, leave entitlements, and benefits eligibility.
+</ParamField>
+
+<ParamField path="salary" type="number">
+  The employee's base salary. Visible only to HR admins and payroll managers. Feeds directly into payroll processing.
+</ParamField>
+
+<ParamField path="location" type="string">
+  The office location or "Remote" if the employee works remotely. Used for attendance reporting and filtering.
+</ParamField>
+
+<ParamField path="documents" type="array">
+  A collection of uploaded files attached to this employee's record — see [Document Storage](#document-storage) below.
+</ParamField>
+
+---
+
+## Adding Employees
+
+You can add employees to Agentlize HRM individually through the UI or in bulk using a CSV import. Choose the method that suits your situation.
+
+<Tabs>
+  <Tab title="Manual (UI)">
+    Use the manual method when onboarding a single employee or making one-off additions.
+
+    <Steps>
+      <Step title="Open the Employees module">
+        Navigate to **Employees** in the left sidebar, then click the **Add Employee** button in the top-right corner.
+      </Step>
+      <Step title="Enter personal details">
+        Fill in the employee's **Full Name**, **Email Address**, **Phone Number**, and **Date of Birth**. All required fields are marked with an asterisk.
+      </Step>
+      <Step title="Set job information">
+        Select the **Department**, enter the **Job Title**, assign a **Manager**, set the **Employment Type**, and enter the **Start Date**.
+      </Step>
+      <Step title="Configure compensation">
+        Enter the **Base Salary** and select the **Pay Currency**. You can add additional salary components (allowances, bonuses) later from the Payroll module.
+      </Step>
+      <Step title="Upload documents (optional)">
+        Attach any onboarding documents such as the signed employment contract or ID copies at this stage. You can also upload these later from the employee's profile.
+      </Step>
+      <Step title="Save the profile">
+        Click **Save Employee**. The system creates the employee record, assigns an Employee ID, and sends the employee a welcome email with their self-service portal login credentials.
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="CSV Import">
+    Use CSV import when onboarding multiple employees at once — for example, during initial setup or after an acquisition.
+
+    <Steps>
+      <Step title="Download the import template">
+        Go to **Employees → Import**, then click **Download Template**. This gives you a pre-formatted `.csv` file with all required and optional column headers.
+      </Step>
+      <Step title="Fill in the data">
+        Open the template in Excel, Google Sheets, or any spreadsheet application. Each row represents one employee. Complete at minimum all required columns: `full_name`, `email`, `job_title`, `department`, `start_date`, and `employment_type`.
+
+        Follow these rules to avoid import errors:
+        - Dates must be in `YYYY-MM-DD` format (e.g., `2024-03-15`)
+        - Employment type must be exactly one of: `Full-Time`, `Part-Time`, `Contract`, `Intern`
+        - Department names must match existing departments in your account — create them first under **Settings → Departments** if needed
+        - Leave cells blank (not zero) for optional fields you don't have data for
+      </Step>
+      <Step title="Upload the file">
+        Return to **Employees → Import** and click **Upload CSV**. Select your completed file. Agentlize HRM validates each row and displays a preview with any detected errors highlighted in red.
+      </Step>
+      <Step title="Fix errors and confirm">
+        Review the validation summary. If errors exist, correct them in your file and re-upload. Once the preview shows no errors, click **Confirm Import** to create all employee records at once.
+      </Step>
+    </Steps>
+
+    <Note>
+      The CSV import creates employee records but does not send welcome emails by default. To send welcome emails after a bulk import, go to **Employees**, select all newly imported employees, and choose **Actions → Send Welcome Email**.
+    </Note>
+  </Tab>
+</Tabs>
+
+---
+
+## Employee Directory
+
+The Employee Directory gives everyone in your organization a searchable, filterable view of the workforce. By default, all employees with **Active** status are listed.
+
+**Searching** — Use the search bar at the top of the directory to find employees by name, job title, or email address. Results update in real time as you type.
+
+**Filtering** — Narrow the directory using the filter panel on the left:
+
+- **Department** — Show only employees belonging to one or more departments
+- **Employment Status** — Filter by Active, On Leave, or Terminated
+- **Employment Type** — Full-Time, Part-Time, Contract, or Intern
+- **Location** — Filter by office location or Remote
+- **Manager** — Show only the direct reports of a specific manager
+
+You can combine multiple filters at once. Active filters are shown as tags above the results — click the **×** on any tag to remove it.
+
+**Org Chart** — Switch from the list view to the **Org Chart** view using the toggle in the top-right corner. The org chart renders a live, hierarchical tree of your organization based on the Manager field on each profile. Click any employee card in the chart to open their profile. Use the zoom controls or pinch-to-zoom on touch devices to navigate large organizations.
+
+---
+
+## Employment Status
+
+Every employee record carries one of three statuses, which controls their visibility and activity across the platform:
+
+<CardGroup cols={3}>
+  <Card title="Active" icon="circle-check">
+    The employee is currently working. They appear in the directory, can clock in, submit leave requests, and access the self-service portal.
+  </Card>
+  <Card title="On Leave" icon="clock">
+    The employee is on an approved leave of absence. They remain visible in the directory with an "On Leave" badge and are excluded from attendance tracking during the leave period.
+  </Card>
+  <Card title="Terminated" icon="circle-xmark">
+    The employee is no longer with the organization. Their record is archived and they lose portal access, but all historical data is preserved.
+  </Card>
+</CardGroup>
+
+**Changing an employee's status:**
+
+<Steps>
+  <Step title="Open the employee profile">
+    Navigate to **Employees**, search for the employee, and click their name to open their profile.
+  </Step>
+  <Step title="Edit the status field">
+    Click the **Edit** button (pencil icon) in the top-right of the profile, then locate the **Employment Status** field in the Job Information section.
+  </Step>
+  <Step title="Select the new status">
+    Choose the appropriate status from the dropdown. If you select **Terminated**, you will be prompted to enter a **Termination Date** and **Reason for Termination** — both are required for compliance records.
+  </Step>
+  <Step title="Save changes">
+    Click **Save**. The status change is logged in the employee's activity history with a timestamp and the name of the HR user who made the change.
+  </Step>
+</Steps>
+
+<Note>
+  Terminated employees are **archived, not deleted**. Their complete employment history — attendance records, payslips, leave history, and performance reviews — is preserved indefinitely to meet legal and compliance requirements. You can view archived employee records at any time by filtering the directory by **Status → Terminated**.
+</Note>
+
+---
+
+## Document Storage
+
+Each employee profile has a dedicated **Documents** tab where you can upload, organize, and access employment-related files.
+
+**Supported file types:** PDF, DOCX, JPG, PNG
+
+**Maximum file size:** 10 MB per file
+
+**To upload a document:**
+
+<Steps>
+  <Step title="Open the employee's Documents tab">
+    Navigate to the employee profile and click the **Documents** tab.
+  </Step>
+  <Step title="Click Upload Document">
+    Click **Upload Document** and select a file from your device, or drag and drop a file directly onto the upload area.
+  </Step>
+  <Step title="Add a document label">
+    Enter a descriptive label for the file (for example, "Signed Employment Contract – March 2024") and select a **Document Category** from the dropdown: **Contract**, **Identity Document**, **Certification**, **Policy Acknowledgement**, or **Other**.
+  </Step>
+  <Step title="Set visibility (optional)">
+    Choose whether the document is visible to the employee via their self-service portal, or restricted to HR admins only. Sensitive documents such as background check results should be set to **HR Only**.
+  </Step>
+  <Step title="Save">
+    Click **Upload**. The file is encrypted at rest and stored securely. A record of the upload — including who uploaded it and when — is added to the document's audit trail.
+  </Step>
+</Steps>
+
+Documents can be downloaded or deleted at any time from the Documents tab. Deleting a document is permanent and cannot be undone — download a local copy first if you may need it later.
+
+---
+
+<Tip>
+  Use **Custom Fields** to track company-specific information that isn't covered by the default profile fields — for example, a "Fleet Vehicle Registration" field for logistics staff or a "Clearance Level" field for security-sensitive roles. Create custom fields under **Settings → HR Configuration → Custom Fields**, then assign them to specific departments or all employees.
+</Tip>

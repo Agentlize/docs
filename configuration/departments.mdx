@@ -1,0 +1,176 @@
+---
+title: "Departments and Organizational Hierarchy Setup"
+sidebarTitle: "Departments"
+description: "Create and manage departments in Agentlize HRM to organize your workforce, assign employees, and structure your reporting hierarchy."
+---
+
+Departments are the building blocks of your organizational structure in Agentlize HRM. By grouping employees into departments, you unlock department-level reporting, set up approval workflows, assign cost centers for payroll reporting, and give managers visibility into their own teams. You can create flat department structures for small organizations or build deeply nested hierarchies for large enterprises — the platform supports both.
+
+---
+
+## Creating a Department
+
+<Steps>
+  <Step title="Go to Department Settings">
+    In the left sidebar, click **Settings**, then select **Departments**.
+  </Step>
+  <Step title="Add a New Department">
+    Click the **+ Add Department** button in the top-right corner. A creation panel will slide open on the right side of the screen.
+  </Step>
+  <Step title="Fill in the Department Details">
+    Complete the fields described below, then click **Save Department**.
+  </Step>
+</Steps>
+
+### Department Fields
+
+<ParamField path="department_name" type="string" required>
+  The display name of the department as it will appear across the platform — in employee profiles, org charts, reports, and leave approval workflows. Use clear, consistent naming conventions (e.g., "Engineering", "People & Culture", "Finance").
+</ParamField>
+
+<ParamField path="department_code" type="string">
+  A short alphanumeric code used to identify the department in exports and reports (e.g., `ENG`, `HR`, `FIN`). Department codes are optional but recommended if you use external tools that reference departments by code. Codes must be unique across your workspace.
+</ParamField>
+
+<ParamField path="parent_department" type="string">
+  Select an existing department to make this one a sub-department of it. For example, you might make "Frontend Engineering" and "Backend Engineering" sub-departments of a parent "Engineering" department. Leave this blank to create a top-level department.
+</ParamField>
+
+<ParamField path="department_head" type="string">
+  Search for and select an employee to designate as the department head. The department head:
+  - Appears on the org chart with a distinguishing role label
+  - Is automatically assigned as the default approver for leave requests from employees in this department (unless a custom approval workflow is configured)
+  - Receives department-level notification alerts
+</ParamField>
+
+<ParamField path="cost_center_code" type="string">
+  An optional code that maps this department to a cost center in your accounting or payroll system (e.g., `CC-1001`). When you export payroll journal entries to QuickBooks or Xero, labor costs are tagged with this code for accurate cost allocation.
+</ParamField>
+
+<Tip>
+  For a clean organizational hierarchy and org chart, create a single top-level department named after your company (e.g., **"Acme Corp"**) and make all other departments sub-departments beneath it. This ensures every department has a parent and your org chart renders as a single connected tree.
+</Tip>
+
+---
+
+## Editing and Archiving Departments
+
+### Editing a Department
+
+You can update any department's details at any time without affecting historical records. To edit a department:
+
+1. Go to **Settings → Departments**.
+2. Click the department name or the **⋮ (more options)** menu beside it and select **Edit**.
+3. Update the department name, department head, cost center code, or parent department.
+4. Click **Save Changes**.
+
+<Note>
+  Changing a department's **name** or **code** updates it everywhere across the platform immediately, including historical reports. If you are renaming for branding purposes only, this is safe. If you are restructuring, consider creating a new department and reassigning employees instead.
+</Note>
+
+### Archiving a Department
+
+When a department is no longer active, you can archive it rather than deleting it. Archived departments:
+
+- Are **hidden** from active department lists and dropdown menus throughout the platform
+- **Remain attached** to all historical records (past payslips, leave history, attendance records) so your data stays accurate
+- **Cannot receive new employees** — you cannot assign an employee to an archived department
+
+To archive a department:
+
+1. Go to **Settings → Departments**.
+2. Click the **⋮ (more options)** menu beside the department and select **Archive**.
+3. Confirm the action in the dialog.
+
+<Warning>
+  Before archiving a department, you **must move all active employees** to another department. The system will not allow you to archive a department that still has active employees assigned to it. Go to **Employees**, filter by department, and reassign employees individually or in bulk (see [Assigning Employees to Departments](#assigning-employees-to-departments) below).
+</Warning>
+
+### Deleting a Department
+
+Permanent deletion is only available for departments that have **never had any employees assigned** (i.e., empty departments with no historical records). For all other departments, use archiving instead of deletion to preserve historical data integrity.
+
+<Warning>
+  You **cannot delete a department that has active employees**. You must first move all employees out of the department before deletion becomes available.
+</Warning>
+
+---
+
+## Organizational Hierarchy
+
+### How Parent and Child Departments Work
+
+When you assign a **parent department** to a department, you create a hierarchical relationship between them. This hierarchy is used in several ways:
+
+- **Org Chart**: Parent-child relationships are rendered as a tree structure in the org chart view.
+- **Reporting**: You can filter reports by a parent department to automatically include data from all sub-departments beneath it.
+- **Approval Workflows**: Leave requests can be configured to escalate up the department hierarchy if the direct department head is unavailable.
+- **Permission Scoping**: Managers with department-level access can see data for their department and, optionally, all sub-departments.
+
+You can create up to **5 levels** of hierarchy depth (e.g., Company → Division → Department → Team → Sub-Team).
+
+### Viewing the Org Chart
+
+To view your organization's hierarchy as a visual org chart:
+
+1. Navigate to **Dashboard → Org Chart** in the left sidebar.
+2. The chart renders your department hierarchy as a tree. Each node shows the department name, department head, and employee count.
+3. Click any department node to expand or collapse its sub-departments.
+4. Use the **search bar** at the top to jump to a specific department or employee.
+
+### Exporting the Org Chart
+
+You can export a snapshot of your org chart for presentations, audits, or documentation:
+
+1. Open the org chart at **Dashboard → Org Chart**.
+2. Click the **Export** button in the top-right corner.
+3. Choose your preferred format:
+   - **PNG** — a high-resolution image, ideal for presentations and documents
+   - **PDF** — a paginated document suitable for printing or sharing
+
+<Note>
+  Very large org charts with hundreds of departments may take a few seconds to render before the export is ready. The export captures the current expanded/collapsed state of the chart.
+</Note>
+
+---
+
+## Assigning Employees to Departments
+
+### During Employee Creation
+
+When adding a new employee (via **Employees → Add Employee**), the **Department** field appears in the employment details step. Select the appropriate department from the dropdown. The employee is immediately placed in that department's hierarchy once the profile is saved.
+
+### By Editing an Employee Profile
+
+To change the department of an existing employee:
+
+1. Go to **Employees** and open the employee's profile.
+2. Click **Edit** on the **Employment Details** section.
+3. Change the **Department** field to the new department.
+4. Click **Save**. The change takes effect immediately and is logged in the employee's activity history.
+
+### Bulk Reassignment
+
+If you need to move multiple employees to a new department at once — for example, during a reorganization — use the bulk reassignment tool:
+
+<Steps>
+  <Step title="Open the Employee Directory">
+    Navigate to **Employees** in the left sidebar.
+  </Step>
+  <Step title="Filter by Department">
+    Use the **Department** filter to display only the employees you want to reassign.
+  </Step>
+  <Step title="Select Employees">
+    Check the checkboxes next to the employees you want to move. To select all employees matching your filter, check the **Select All** checkbox at the top of the list.
+  </Step>
+  <Step title="Bulk Change Department">
+    Click the **Actions** dropdown that appears when employees are selected, then choose **Change Department**.
+  </Step>
+  <Step title="Choose the New Department">
+    Select the destination department from the dropdown and confirm. All selected employees are reassigned immediately.
+  </Step>
+</Steps>
+
+<Note>
+  Bulk reassignment logs a department change event in each affected employee's activity history, including the timestamp and the admin who performed the action. Historical records (payslips, leave history) remain attributed to the original department.
+</Note>

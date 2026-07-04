@@ -1,0 +1,139 @@
+---
+title: "How to Run Monthly Payroll in Agentlize HRM"
+sidebarTitle: "Run Payroll"
+description: "Process monthly payroll accurately in Agentlize HRM — review attendance, add adjustments, calculate, approve, and distribute payslips to employees."
+---
+
+Running payroll in Agentlize HRM walks you through every stage of monthly payroll processing in a single, structured flow — from verifying your employee list and pulling in attendance data to adding manual adjustments, calculating net pay, approving the run, and automatically delivering payslips. This guide covers each step in order so you can complete payroll accurately and on time, every month.
+
+<Warning>
+  **Finalize attendance records before starting payroll.**
+
+  Attendance data is **locked** once a payroll run begins. Any attendance records that are still pending approval at that point will not be included, which may result in incorrect pay calculations. Ensure all timesheets and leave records for the period are reviewed and approved before you proceed.
+</Warning>
+
+<Info>
+  **Prerequisites**
+
+  - You have an **HR Admin** role in Agentlize HRM.
+  - Attendance records for the payroll period are fully finalized and approved.
+  - Salary details are configured for all active employees (Employees > Profile > Compensation).
+</Info>
+
+## Steps
+
+<Steps>
+  <Step title="Navigate to Payroll">
+    In the main sidebar, click **Payroll**, then select **Run Payroll**.
+
+    On the Run Payroll screen, use the **Month** and **Year** dropdowns to select the payroll period you want to process, then click **Load Payroll**. The system retrieves all relevant employee and attendance data for that period.
+  </Step>
+
+  <Step title="Review the employee list">
+    Agentlize HRM automatically populates the payroll run with all employees whose status was **Active** at any point during the selected period.
+
+    Review the list carefully and check for:
+
+    - **New hires** — confirm their start date is correct so pay is prorated accurately if they joined mid-month.
+    - **Terminations** — confirm their last working day is recorded so their final pay is calculated correctly.
+    - **Employees on unpaid leave** — these will appear with adjusted hours; verify the leave type is set correctly.
+
+    If an employee is missing or incorrectly included, close the payroll run, correct the employee record, and reload.
+  </Step>
+
+  <Step title="Review attendance data">
+    The system automatically pulls in all **approved** attendance records and leave entries for the period. No manual import is required.
+
+    In the payroll table, the following columns are shown for each employee:
+
+    - **Working Days** — scheduled days for the period
+    - **Days Present** — days with approved attendance
+    - **Leave Taken** — approved paid leave days
+    - **Absences** — unexcused or unpaid absence days
+
+    Click any employee's row to open their **Attendance Breakdown** panel. This shows a day-by-day log of clock-ins, clock-outs, approved leave, and any flagged anomalies. Review and resolve any discrepancies before proceeding.
+  </Step>
+
+  <Step title="Add manual adjustments">
+    Manual adjustments let you add one-time payments or deductions that fall outside the standard salary calculation for this period.
+
+    To add an adjustment:
+
+    1. Find the employee in the payroll table.
+    2. Click **Add Adjustment** in their row.
+    3. Select the **Adjustment Type** (see the table below for common types).
+    4. Enter the **Amount**.
+    5. Add a brief **Description** for record-keeping purposes.
+    6. Click **Save Adjustment**.
+
+    You can add multiple adjustments per employee. All adjustments appear in the employee's payslip as separate line items.
+
+    #### Common adjustment types
+
+    | Adjustment Type | Description |
+    |---|---|
+    | **Bonus** | A one-time performance or discretionary bonus paid on top of base salary |
+    | **Reimbursement** | Repayment of an approved out-of-pocket expense (e.g., travel, equipment) — typically non-taxable |
+    | **Salary Advance Deduction** | Recovery of a salary advance that was previously paid to the employee |
+    | **Loan Repayment** | A scheduled deduction toward an employee loan issued by the company |
+    | **Penalty Deduction** | A deduction applied for an approved disciplinary or policy violation (must comply with local labor law) |
+  </Step>
+
+  <Step title="Calculate payroll">
+    Once you have reviewed the employee list, confirmed attendance data, and entered all manual adjustments, click the **Calculate** button at the top of the payroll screen.
+
+    Agentlize HRM processes each employee's gross pay, applies statutory deductions (tax, pension, social contributions) based on your configured payroll rules, adds manual adjustments, and produces the net pay for every employee.
+
+    The **Payroll Summary** table updates to show:
+
+    - Gross Pay
+    - Total Deductions
+    - Net Pay
+    - Employer Contributions (where applicable)
+
+    Review the summary carefully. Click any employee's net pay figure to see a full line-by-line breakdown of how it was calculated.
+  </Step>
+
+  <Step title="Review and approve">
+    Before approving, address any flagged items. The system automatically flags:
+
+    - Employees with **zero hours** recorded (possible missing attendance data)
+    - Employees whose net pay has **changed significantly** compared to the previous month
+    - Employees with **negative net pay** (deductions exceed gross pay)
+
+    Flagged employees are highlighted in amber. Click each flag to review the underlying data and either resolve the issue or mark it as reviewed if intentional.
+
+    When you are satisfied with the payroll run, click **Approve Payroll**. You will be prompted to confirm. Enter your password to authorize the approval.
+  </Step>
+
+  <Step title="Generate and distribute payslips">
+    After approval, click **Generate Payslips**. Agentlize HRM creates individual payslips for all employees in the run and:
+
+    - **Emails each employee** their payslip immediately as a PDF attachment.
+    - Makes the payslip available in each employee's **Self-Service Portal** under Payslips.
+
+    You can preview any payslip before distribution by clicking the eye icon next to an employee's name.
+  </Step>
+
+  <Step title="Export payroll reports">
+    Download payroll records for your accounts team and compliance files:
+
+    1. Click **Export** in the top-right corner of the approved payroll run.
+    2. Select your preferred format: **CSV** (for spreadsheet import) or **PDF** (for archiving).
+    3. Choose the report type:
+       - **Payroll Summary** — totals by department
+       - **Employee Detail** — full line-item breakdown per employee
+       - **Bank Transfer File** — formatted file for bulk bank payment uploads (format depends on your configured bank integration)
+    4. Click **Download**.
+
+    Store exported reports in your secure company records system in accordance with your local payroll record retention requirements.
+  </Step>
+</Steps>
+
+<Note>
+  Once a payroll run is **approved, it is locked** and cannot be edited. If you discover an error after approval, do not attempt to re-run payroll for the same period. Instead, refer to the **Payroll Corrections** guide to process an off-cycle correction or amendment for the affected employees.
+</Note>
+
+<Tip>
+  Save time every month by scheduling payroll to run automatically. Go to **Settings > Payroll > Auto-Run**, toggle on **Enable Auto-Run**, and set your preferred processing date each month (e.g., the 25th). You will still receive a notification to review and approve before payslips are sent — auto-run handles the calculation step, not the approval.
+</Tip>

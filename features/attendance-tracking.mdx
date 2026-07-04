@@ -1,0 +1,195 @@
+---
+title: "Attendance Tracking and Shift Management"
+sidebarTitle: "Attendance"
+description: "Track employee attendance, manage shifts, and monitor working hours with Agentlize HRM's automated attendance system."
+---
+
+Agentlize HRM's attendance module gives you complete visibility into when your employees are working, how long they work, and whether their hours align with their assigned shifts. Attendance data is collected automatically through multiple check-in methods, consolidated into daily records, and fed directly into payroll at the end of each pay period — eliminating the need for manual timesheet reconciliation. Whether you manage a single office, a distributed workforce, or shift-based operations, the attendance module adapts to how your business runs.
+
+---
+
+## How Attendance Is Recorded
+
+Agentlize HRM supports four methods for recording employee attendance. You can enable one or more methods simultaneously depending on your workforce and infrastructure.
+
+<CardGroup cols={2}>
+  <Card title="Dashboard Check-In" icon="desktop">
+    Employees log in to the Agentlize HRM web portal and click **Clock In** directly from their dashboard. Best suited for office-based employees who work at a computer.
+  </Card>
+  <Card title="Mobile App (GPS)" icon="mobile">
+    Employees use the Agentlize HRM mobile app to check in from their smartphone. The app captures a GPS location stamp at the time of check-in, allowing you to verify that employees are at an approved work location. Requires location permission to be granted in the app.
+  </Card>
+  <Card title="QR Code Scan" icon="qrcode">
+    A unique QR code is generated for each office location or worksite. Employees scan the code using the mobile app to record their attendance. Ideal for shared workspaces or sites where a dedicated kiosk is not available.
+  </Card>
+  <Card title="Biometric Integration" icon="fingerprint">
+    Agentlize HRM integrates with supported biometric devices (fingerprint scanners and facial recognition terminals). Clock-in and clock-out events are automatically synced from the device to the platform. Contact your implementation team to configure biometric integration.
+  </Card>
+</CardGroup>
+
+To enable or disable check-in methods, go to **Settings → Attendance → Check-In Methods** and toggle each method on or off.
+
+<Info>
+  GPS attendance tracking requires employees to have the Agentlize HRM mobile app installed and to grant location permissions when prompted. Employees who decline location permissions will be unable to use GPS check-in and should be assigned an alternative method.
+</Info>
+
+---
+
+## Clock In / Clock Out
+
+The clock-in process is the same regardless of which check-in method your organization uses. Here is the step-by-step flow from an employee's perspective:
+
+<Steps>
+  <Step title="Open Agentlize HRM">
+    Log in to the web portal at your organization's Agentlize HRM URL, or open the mobile app. You are taken directly to your personal dashboard.
+  </Step>
+  <Step title="Review your shift">
+    Your assigned shift for the day is displayed on the dashboard, showing the expected start time, end time, and break duration.
+  </Step>
+  <Step title="Clock in">
+    Click or tap **Clock In**. The system records your check-in time with a timestamp. If you are using GPS check-in, the app confirms your location before saving the record. If you are using a QR code, scan the code at your worksite — the app records the event automatically.
+  </Step>
+  <Step title="Record your break (if applicable)">
+    When you take a break, click **Start Break**. Click **End Break** when you return. Break duration is tracked separately from working hours and subtracted from your total hours for the day.
+  </Step>
+  <Step title="Clock out">
+    At the end of your shift, click **Clock Out**. Your total working hours for the day are calculated and saved to your attendance record. You can view a summary on your dashboard.
+  </Step>
+</Steps>
+
+<Note>
+  If you forget to clock in or out, your manager or an HR admin can make a manual correction. Go to **Attendance → Records**, find the relevant record, and click **Edit** to adjust the clock-in or clock-out time. All manual edits are logged with the name of the user who made the change.
+</Note>
+
+---
+
+## Shift Management
+
+Shifts define the expected working hours for employees. You can create as many shifts as your organization needs and assign them to individual employees or entire departments.
+
+### Creating a Shift
+
+<Steps>
+  <Step title="Navigate to Shift Management">
+    Go to **Attendance → Shifts** and click **Create Shift**.
+  </Step>
+  <Step title="Name the shift">
+    Enter a clear, recognizable name for the shift — for example, "Morning Shift", "Night Shift", or "Part-Time Friday".
+  </Step>
+  <Step title="Set hours and break">
+    Enter the **Start Time**, **End Time**, and **Break Duration** (in minutes). The system automatically calculates expected working hours per day.
+  </Step>
+  <Step title="Select working days">
+    Check the days of the week that this shift applies to. You can select any combination of days, including weekends.
+  </Step>
+  <Step title="Set grace period (optional)">
+    Define a **Late Arrival Grace Period** in minutes. Employees who clock in within this window after the shift start time are not marked as late. A common default is 10–15 minutes.
+  </Step>
+  <Step title="Save the shift">
+    Click **Save Shift**. The shift is now available to assign to employees.
+  </Step>
+</Steps>
+
+### Assigning Shifts
+
+You can assign shifts to employees or departments in two ways:
+
+- **Individual assignment** — Open an employee's profile, go to the **Work Schedule** tab, and select the shift from the **Assigned Shift** dropdown.
+- **Department assignment** — Go to **Attendance → Shifts**, open a shift, and click **Assign to Department**. All current and future employees in that department inherit the shift. Individual overrides still take precedence.
+
+To change an employee's shift, navigate to their Work Schedule tab and select the new shift. The change takes effect from the date you specify — historical records are not altered.
+
+---
+
+## Attendance Records
+
+The Attendance Records view gives HR admins and managers a complete log of employee check-in and check-out activity.
+
+**Viewing records:**
+
+Navigate to **Attendance → Records**. By default, the view shows today's attendance for all employees in your department or organization.
+
+Use the controls at the top of the page to switch between **Daily**, **Weekly**, and **Monthly** views. Each view summarizes:
+
+- **Clock In Time** — Actual time the employee checked in
+- **Clock Out Time** — Actual time the employee checked out
+- **Total Hours** — Net working hours after subtracting breaks
+- **Status** — On Time, Late, Early Departure, Absent, or Day Off
+
+**Filtering records:**
+
+Use the filter panel to narrow down records by:
+
+- **Employee** — Search for a specific individual
+- **Department** — View records for an entire department
+- **Date Range** — Specify a custom start and end date
+- **Status** — Filter to show only absences, late arrivals, or other specific statuses
+
+---
+
+## Overtime
+
+Overtime is automatically calculated for any hours worked beyond the standard shift end time.
+
+**How overtime is calculated:**
+
+When an employee's total working hours for a day exceed the number of hours defined in their assigned shift, the additional time is flagged as overtime. For example, if a shift runs from 09:00 to 17:00 (8 hours) and an employee clocks out at 19:00, 2 hours of overtime are recorded.
+
+**Overtime approval workflow:**
+
+<Steps>
+  <Step title="Overtime is flagged automatically">
+    At the end of each working day, the system identifies records where total hours exceed the shift duration and marks them as **Pending Overtime Approval**.
+  </Step>
+  <Step title="Manager receives a notification">
+    The employee's direct manager receives an in-app notification and email prompting them to review the overtime.
+  </Step>
+  <Step title="Manager approves or rejects">
+    The manager opens **Attendance → Overtime Requests**, reviews the records, and clicks **Approve** or **Reject**. If rejecting, they must enter a reason.
+  </Step>
+  <Step title="Approved overtime flows to payroll">
+    Approved overtime hours are included in the next payroll run. The payroll module uses the overtime rate configured in **Settings → Payroll → Overtime Rate** (typically 1.5× or 2× the standard hourly rate).
+  </Step>
+</Steps>
+
+<Note>
+  You can configure overtime rules — such as daily or weekly overtime thresholds — under **Settings → Attendance → Overtime Policy**. You can also set certain roles or departments to not require overtime approval.
+</Note>
+
+---
+
+## Attendance Reports
+
+Generate detailed reports to analyze attendance trends, identify patterns, and ensure compliance with labor regulations.
+
+**Available reports:**
+
+- **Daily Attendance Summary** — A snapshot of who was present, absent, or late on a given day
+- **Monthly Attendance Report** — A per-employee breakdown of attendance across a full month, including total hours worked, late arrivals, early departures, and absences
+- **Overtime Report** — A summary of approved overtime hours per employee and department
+- **Absence Report** — Highlights employees with high absence rates over a selected period
+
+**Exporting reports:**
+
+From any report view, click **Export** and choose either **CSV** or **PDF** format. CSV exports are ideal for further analysis in Excel or feeding data into external systems. PDF exports are formatted for printing or sharing with management.
+
+**Scheduling automated reports:**
+
+<Steps>
+  <Step title="Open Report Settings">
+    Go to **Attendance → Reports** and click the **Schedule** button on any report type.
+  </Step>
+  <Step title="Set the frequency">
+    Choose **Daily**, **Weekly**, or **Monthly** delivery. For weekly reports, select the day of the week you want the report sent.
+  </Step>
+  <Step title="Add recipients">
+    Enter the email addresses of the people who should receive the report. You can add multiple recipients.
+  </Step>
+  <Step title="Save the schedule">
+    Click **Save Schedule**. The report will be generated automatically and delivered by email at the configured frequency.
+  </Step>
+</Steps>
+
+<Warning>
+  Attendance data feeds directly into payroll calculations. If attendance records contain errors — such as missing clock-outs or uncorrected absences — those errors will carry over into the payroll run. Always review and finalize all attendance records before the payroll cutoff date for each period.
+</Warning>

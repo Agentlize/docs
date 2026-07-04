@@ -1,0 +1,115 @@
+---
+title: "Account and Workspace Setup Guide"
+sidebarTitle: "Account Setup"
+description: "Create your Agentlize HRM account, configure your organization profile, and invite your team to get started."
+---
+
+A properly configured workspace is the foundation for accurate payroll, compliant attendance records, and smooth HR workflows. This guide walks you through creating your Agentlize HRM account, verifying your email, completing your organization profile, and inviting the rest of your HR team — so everything is in place before you start adding employees.
+
+## Setting up your account
+
+<Steps>
+  <Step title="Create your account">
+    1. Go to [app.agentlize.com](https://app.agentlize.com) and click **Get Started Free**.
+    2. Enter your **work email address** and a strong password (minimum 8 characters, including at least one number and one special character).
+    3. Accept the Terms of Service and Privacy Policy, then click **Create Account**.
+
+    You are automatically assigned the **Owner** role for your new workspace. The Owner role has full access to all settings, including billing.
+  </Step>
+
+  <Step title="Verify your email address">
+    1. Check your inbox for an email from `no-reply@agentlize.com` with the subject **"Verify your Agentlize HRM account"**.
+    2. Click the **Verify Email Address** button inside the email. The link expires after **24 hours** — if it expires, you can request a new one from the login screen.
+    3. Once verified, you're redirected to the Organization Setup wizard inside the app.
+
+    <Tip>
+      If you don't see the verification email within a few minutes, check your spam or junk folder. Add `no-reply@agentlize.com` to your contacts or allowlist to ensure future notifications arrive in your inbox.
+    </Tip>
+  </Step>
+
+  <Step title="Complete your organization profile">
+    The Organization Setup wizard collects the core details Agentlize HRM needs to calculate payroll, display reports, and apply the correct compliance rules.
+
+    Fill in each field in the wizard (see the [Organization Profile Fields](#organization-profile-fields) section below for a full description of each field), then click **Save Organization**.
+
+    You can return to this form at any time from **Settings → Organization Profile**.
+  </Step>
+
+  <Step title="Invite HR admins and managers">
+    Before you begin adding employees, invite the colleagues who will share responsibility for managing the workspace — such as other HR administrators or department managers.
+
+    1. Navigate to **Settings → Team Members**.
+    2. Click **Invite Member**.
+    3. Enter the invitee's **work email address** and select their **role** (HR Admin, Manager, or Employee).
+    4. Click **Send Invitation**.
+
+    The invitee receives an email prompting them to accept the invitation and create their password. Until they accept, their status shows as **Pending** in the Team Members list.
+
+    See [Inviting Team Members](#inviting-team-members) below for more detail on roles and managing pending invitations.
+  </Step>
+</Steps>
+
+---
+
+## Organization profile fields
+
+These fields define your workspace's identity and drive calculations across payroll, attendance, and compliance. You can update them at any time under **Settings → Organization Profile**.
+
+<ParamField body="company_name" type="string" required>
+  The legal or trading name of your business. This name appears on all payslips, offer letters, and exported reports. Use the name exactly as it should appear on official documents.
+</ParamField>
+
+<ParamField body="logo_url" type="string">
+  A publicly accessible URL pointing to your company logo image (PNG or SVG recommended, minimum 200×200 px). The logo is displayed in the top-left corner of the app, on payslips, and in employee-facing emails. If left blank, Agentlize HRM uses a default placeholder with your company initials.
+</ParamField>
+
+<ParamField body="default_timezone" type="string" required>
+  The IANA timezone identifier for your organization's primary location (e.g., `America/New_York`, `Europe/London`, `Asia/Kolkata`). All attendance timestamps, shift schedules, and payroll cut-off dates are anchored to this timezone.
+
+  <Tip>
+    Set this to the timezone of your main office or headquarters — even if you have employees in other locations. Employees in different time zones can have individual timezone overrides set on their profiles.
+  </Tip>
+</ParamField>
+
+<ParamField body="currency" type="string" required>
+  The ISO 4217 currency code for your default payroll currency (e.g., `USD`, `EUR`, `GBP`, `INR`). All salary figures, payslips, and financial reports display in this currency by default. Additional currencies for multi-currency payroll can be added under **Settings → Payroll → Currencies**.
+</ParamField>
+
+<ParamField body="fiscal_year_start_month" type="integer" required>
+  The month number (1–12) on which your financial year begins. For example, enter `1` for a January–December cycle or `4` for an April–March cycle. This setting determines how annual leave accruals reset, how year-to-date payroll totals are calculated, and how financial reports are grouped.
+</ParamField>
+
+<ParamField body="country" type="string" required>
+  The two-letter ISO 3166-1 alpha-2 country code for your organization's registered country (e.g., `US`, `GB`, `IN`, `AU`). Agentlize HRM uses this to apply the correct statutory compliance rules — including tax tables, minimum wage thresholds, and mandatory leave entitlements — for your jurisdiction.
+</ParamField>
+
+---
+
+## Inviting team members
+
+Once your organization profile is saved, you can invite colleagues to join your workspace. Each person you invite is assigned a role that controls what they can see and do in the platform (see [Roles & Permissions](/getting-started/roles-permissions) for a full breakdown).
+
+### How to send an invitation
+
+1. Go to **Settings → Team Members** and click **Invite Member**.
+2. Enter the invitee's **work email address**.
+3. Select a **role** from the dropdown:
+   - **HR Admin** — Full HR access; can manage employees, payroll, and leave policies.
+   - **Manager** — Can approve leave and view attendance for their assigned team.
+   - **Employee** — Self-service access only; can view payslips, apply for leave, and update personal info.
+4. Optionally add a **personal message** that will be included in the invitation email.
+5. Click **Send Invitation**.
+
+### Managing pending invitations
+
+Invited members who have not yet accepted appear under the **Pending Invitations** tab on the Team Members page. From there you can:
+
+- **Resend** the invitation email if it has expired or was missed.
+- **Revoke** an invitation before it's accepted.
+- **Edit** the role assigned to a pending invite.
+
+Invitations expire after **7 days**. After expiry, the invited person must be re-invited.
+
+<Warning>
+  Only the workspace **Owner** can access and modify billing settings, upgrade or downgrade the subscription plan, or delete the workspace entirely. HR Admins have full HR management access but cannot view payment information or change the plan. Keep this in mind when deciding who to assign as Owner.
+</Warning>

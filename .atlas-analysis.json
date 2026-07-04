@@ -1,17 +1,11 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
+  "projectType": "saas",
+  "projectName": "Agentlize HRM",
+  "projectDescription": "An AI-powered Human Resource Management platform that automates employee management, attendance tracking, payroll processing, leave management, recruitment, and performance evaluation for modern businesses.",
   "theme": "luma",
-  "name": "Agentlize HRM",
-  "colors": {
-    "primary": "#848c8e",
-    "light": "#11161e",
-    "dark": "#cfd0d2"
-  },
-  "favicon": "https://media.brand.dev/2b01fe20-c04b-4a1d-a2f9-1d2789c50a7a.jpg",
-  "logo": {
-    "light": "https://media.brand.dev/5ffd6ce4-2434-4b4b-920a-f8cacac8b48b.svg",
-    "dark": "https://media.brand.dev/5ffd6ce4-2434-4b4b-920a-f8cacac8b48b.svg"
-  },
+  "primaryColor": "#848c8e",
+  "lightColor": "#11161e",
+  "darkColor": "#cfd0d2",
   "navigation": {
     "tabs": [
       {
@@ -66,22 +60,28 @@
       }
     ]
   },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:support@agentlize.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Sign In",
-      "href": "https://app.agentlize.com"
-    }
-  },
-  "footer": {
-    "socials": {
-      "github": "https://github.com/Agentlize"
-    }
-  }
+  "keyFeatures": [
+    "Employee profile & directory management",
+    "Attendance and shift tracking",
+    "Automated payroll processing and payslip generation",
+    "Leave request and approval workflows",
+    "Recruitment and job posting management",
+    "Performance evaluation and KPI tracking",
+    "Role-based access control",
+    "HR dashboard and analytics reports",
+    "Document storage and contract management",
+    "AI-assisted HR automation"
+  ],
+  "publicApiSurface": [
+    "Employee management (create, update, view profiles)",
+    "Attendance records (clock-in/out, shift assignment)",
+    "Leave management (apply, approve, balance tracking)",
+    "Payroll processing (salary calculation, payslip generation)",
+    "Recruitment pipeline (job postings, candidate tracking)",
+    "Performance reviews (KPIs, evaluations)",
+    "Department and organizational hierarchy management",
+    "Role and permission configuration",
+    "Notification and alert system",
+    "HR analytics and reporting dashboard"
+  ]
 }

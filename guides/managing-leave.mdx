@@ -1,0 +1,183 @@
+---
+title: "Managing Employee Leave Requests and Policies"
+sidebarTitle: "Manage Leave"
+description: "Set up leave policies, process employee leave requests, manage balances, and maintain a team calendar in Agentlize HRM."
+---
+
+Agentlize HRM gives HR Admins, Managers, and employees a unified workspace for everything leave-related — from defining accrual rules and entitlements to reviewing requests, adjusting balances, and keeping track of who is off when. This guide covers all four dimensions of leave management: configuring policies, processing requests, adjusting balances, and setting up public holidays.
+
+---
+
+## Setting up leave policies
+
+<Info>
+  This section requires an **HR Admin** role. Leave policies define how leave is earned, how much employees receive per year, and what happens to unused days at year end.
+</Info>
+
+<Steps>
+  <Step title="Create a new leave policy">
+    Go to **Settings > Leave Policies** and click **Create Policy** in the top-right corner.
+  </Step>
+
+  <Step title="Fill in the policy details">
+    Complete the following fields:
+
+    | Field | Description |
+    |---|---|
+    | **Policy Name** | A clear, descriptive name (e.g., "Full-Time Annual Leave", "Contractor Sick Leave") |
+    | **Leave Type** | The category this policy governs: Annual Leave, Sick Leave, Maternity/Paternity Leave, Unpaid Leave, etc. |
+    | **Accrual Method** | **Monthly** — employees earn a fraction of their entitlement each month; **Annual Lump Sum** — the full entitlement is granted at the start of the leave year |
+    | **Days Per Year** | The total number of leave days an employee earns annually under this policy |
+    | **Carryover Allowed** | Toggle **Yes** to allow unused days to roll over to the next leave year, or **No** to expire them |
+    | **Max Carryover Days** | If carryover is enabled, set the maximum number of days that can be carried forward |
+    | **Probation Period** | The number of days from the employee's start date during which this leave type cannot be used. Set to **0** for no restriction. |
+
+    Click **Save Policy** when complete.
+  </Step>
+
+  <Step title="Assign the policy to departments or employees">
+    Once saved, you can assign the policy in two ways:
+
+    **By department (recommended for standard policies):**
+    1. Open the policy and click the **Assignments** tab.
+    2. Click **Assign to Department**, select one or more departments, and click **Save**.
+    3. All current and future employees in those departments will automatically receive this policy.
+
+    **By individual employee (for exceptions or custom arrangements):**
+    1. Go to the employee's profile and open the **Leave** tab.
+    2. Click **Change Policy** next to the relevant leave type.
+    3. Select the policy from the dropdown and click **Apply**.
+
+    Individual assignments override the department-level default for that employee and leave type.
+  </Step>
+</Steps>
+
+---
+
+## Reviewing and approving leave requests
+
+<Info>
+  This section applies to **Managers** and **HR Admins**. Employees submit leave requests through their self-service portal; those requests land in your approval queue.
+</Info>
+
+<Steps>
+  <Step title="Open pending requests">
+    Go to **Leave > Pending Requests** in the main sidebar. You will see a list of all requests awaiting action, sorted by submission date.
+  </Step>
+
+  <Step title="Review the request details">
+    Click any request to open the detail panel. Review the following information before making a decision:
+
+    - **Employee name and department**
+    - **Leave type** (e.g., Annual Leave, Sick Leave)
+    - **Requested dates** and total number of working days
+    - **Reason** provided by the employee
+    - **Current leave balance** — shown alongside the requested days so you can see if sufficient balance exists
+  </Step>
+
+  <Step title="Check the team calendar for conflicts">
+    Click **View Team Calendar** within the request panel to see a coverage overview for the requested period. The calendar highlights:
+
+    - Other team members already on approved leave during those dates
+    - Public holidays within the range
+    - Any minimum staffing thresholds you have configured for the department
+
+    Use this view to identify potential coverage gaps before approving.
+  </Step>
+
+  <Step title="Approve or reject the request">
+    - To **approve**: click the **Approve** button. The employee's leave balance is immediately deducted and they receive a confirmation email.
+    - To **reject**: click **Reject**. A **Reason for Rejection** field appears — this is required. Enter a clear explanation (e.g., "Insufficient team coverage during this period — please resubmit for an alternative date"). Click **Confirm Rejection**. The employee is notified by email with your reason included.
+  </Step>
+</Steps>
+
+<Tip>
+  Enable email notifications for leave requests so approvals never get delayed. Go to **Settings > Notifications > Leave** and toggle on **New Leave Request Submitted**. You can also configure a daily digest if you prefer batched notifications over individual alerts.
+</Tip>
+
+---
+
+## Adjusting leave balances
+
+HR Admins can manually adjust an employee's leave balance at any time. Common reasons include prorating entitlement for mid-year joiners, correcting a data entry error, or granting a special one-time leave allowance.
+
+<Steps>
+  <Step title="Open the employee's leave balance">
+    Go to the employee's profile and click the **Leave** tab. You will see a summary of each leave type, including the current balance, days used this year, and days carried over.
+  </Step>
+
+  <Step title="Initiate a balance adjustment">
+    Click **Adjust Balance** next to the leave type you want to modify.
+  </Step>
+
+  <Step title="Enter adjustment details">
+    Complete the adjustment form:
+
+    - **Leave Type** — pre-selected based on which row you clicked; change if needed.
+    - **Amount** — enter a positive number to **grant** additional days, or a negative number to **deduct** days. For example, enter `5` to add five days, or `-2` to remove two days.
+    - **Reason** — add a note explaining the adjustment (e.g., "Prorated annual leave — joined 1 July", "Correction: duplicate entry removed"). This note is saved in the audit log.
+
+    Click **Save Adjustment**. The balance updates immediately and the change is recorded in the employee's leave history.
+  </Step>
+</Steps>
+
+---
+
+## Configuring public holidays
+
+Public holidays are managed centrally and applied across the entire organization. When a public holiday falls within an employee's approved leave period, it is automatically excluded from their leave balance deduction.
+
+<Steps>
+  <Step title="Open the public holidays settings">
+    Go to **Settings > Public Holidays**.
+  </Step>
+
+  <Step title="Add a holiday">
+    Click **Add Holiday**. Enter:
+
+    - **Holiday Name** (e.g., "New Year's Day", "Independence Day")
+    - **Date** — select the exact date from the calendar picker
+    - **Recurring** — toggle on if this holiday falls on the same date every year and should auto-populate in future years
+
+    Click **Save**.
+  </Step>
+
+  <Step title="Import a holiday calendar (optional)">
+    If your country's public holiday list is available as a standard calendar, click **Import Calendar**, select your country or region, and Agentlize HRM will populate the full year's public holidays automatically. You can edit or remove individual entries after import.
+  </Step>
+</Steps>
+
+<Note>
+  Public holidays are **automatically excluded** from leave day calculations across the platform. You do not need to adjust leave policies or employee balances manually when a holiday falls within an approved leave period — the system handles it.
+</Note>
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can an employee edit a submitted leave request?">
+    No. Once a leave request has been submitted, employees cannot edit it directly. If they need to change the dates or cancel the request, they must:
+
+    1. Go to **Leave > My Requests** in their self-service portal.
+    2. Click the submitted request.
+    3. Click **Cancel Request** and confirm.
+
+    They can then submit a new request with the corrected details. Approvers are notified automatically when a request is cancelled.
+  </Accordion>
+
+  <Accordion title="What happens to unused leave at the end of the year?">
+    This depends on the **carryover settings** in the employee's applied leave policy:
+
+    - If **Carryover Allowed** is set to **No**, any unused leave balance expires at the end of the leave year and is reset to zero.
+    - If **Carryover Allowed** is set to **Yes**, unused days (up to the **Max Carryover Days** limit) are automatically rolled over to the employee's balance for the following year.
+
+    Year-end rollovers are processed automatically by Agentlize HRM on the date configured in **Settings > Leave > Leave Year End Date**.
+  </Accordion>
+
+  <Accordion title="Can managers see each other's team leave on the calendar?">
+    No. Managers can only see the leave calendar for their **own direct reports**. They do not have visibility into other teams' leave unless they have been granted an HR Admin role or explicitly given cross-team calendar access by an HR Admin (Settings > Roles & Permissions > Leave Visibility).
+
+    HR Admins have a full organization-wide leave calendar view available under **Leave > Organization Calendar**.
+  </Accordion>
+</AccordionGroup>

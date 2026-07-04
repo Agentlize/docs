@@ -1,0 +1,285 @@
+---
+title: "Integrations and Third-Party Connections"
+sidebarTitle: "Integrations"
+description: "Connect Agentlize HRM with your existing tools — payroll providers, calendars, communication platforms, and identity providers."
+---
+
+Agentlize HRM integrates with the tools your organization already uses — keeping your calendars in sync, delivering HR alerts to your communication apps, exporting payroll data to your accounting system, and letting employees sign in with their existing company accounts. All integrations are managed from **Settings → Integrations**.
+
+---
+
+## Calendar Integrations
+
+### Google Calendar
+
+Sync approved leave requests and public holidays from Agentlize HRM directly into Google Calendar. When a leave request is approved, a calendar event is automatically created for the employee and their manager.
+
+<Steps>
+  <Step title="Open Integrations">
+    Go to **Settings → Integrations** and locate the **Google Calendar** card.
+  </Step>
+  <Step title="Connect Your Account">
+    Click **Connect**. You will be redirected to Google's OAuth authorization screen.
+  </Step>
+  <Step title="Authorize Access">
+    Sign in with the Google Workspace account you want to use for calendar sync (typically an HR or admin calendar) and grant the requested permissions. Agentlize HRM requests read/write access to create and update calendar events.
+  </Step>
+  <Step title="Configure Sync Preferences">
+    Once connected, choose which calendar to write events to and whether to sync public holidays, approved leave, or both.
+  </Step>
+</Steps>
+
+<Note>
+  The Google Calendar integration syncs on a per-user basis. Each employee can connect their own Google Calendar from **Profile → Integrations** to receive personal leave events. The admin-level connection syncs HR team and company-wide holiday calendars.
+</Note>
+
+### Microsoft Outlook / Teams
+
+Sync your approved leave calendar with Microsoft Outlook and receive leave-related notifications directly in Microsoft Teams channels.
+
+- **Outlook Calendar Sync**: Approved leave requests appear as calendar events in the connected Outlook calendar. This requires a Microsoft 365 account with calendar permissions.
+- **Teams Notifications**: Agentlize HRM can post leave notifications (new requests, approvals, rejections) to a designated Teams channel.
+
+To set up the Microsoft integration:
+
+<Steps>
+  <Step title="Open Integrations">
+    Go to **Settings → Integrations** and select the **Microsoft 365** card.
+  </Step>
+  <Step title="Sign in with Microsoft">
+    Click **Connect** and sign in with your Microsoft 365 organizational account. An Azure AD admin may need to grant tenant-wide consent for the integration.
+  </Step>
+  <Step title="Select Sync Options">
+    Choose whether to enable **Outlook Calendar Sync**, **Teams Notifications**, or both. For Teams notifications, select the channel where messages should be posted.
+  </Step>
+</Steps>
+
+---
+
+## Communication Integrations
+
+### Slack
+
+Receive Agentlize HRM notifications directly in your Slack workspace. Route different notification types to different channels — for example, post leave requests to `#hr-leave` and new employee announcements to `#general`.
+
+<Steps>
+  <Step title="Open Integrations">
+    Go to **Settings → Integrations** and click the **Slack** card.
+  </Step>
+  <Step title="Connect Your Slack Workspace">
+    Click **Connect to Slack**. You will be taken to Slack's OAuth authorization screen. Select the Slack workspace you want to connect and click **Allow**.
+  </Step>
+  <Step title="Map Notification Types to Channels">
+    For each notification event type (Leave Requests, Payroll Updates, New Employees, Attendance Alerts, etc.), select the Slack channel where those messages should be posted. You can send all notifications to one channel or distribute them across multiple channels.
+  </Step>
+  <Step title="Test the Integration">
+    Click **Send Test Message** to verify that messages are appearing in the selected channels.
+  </Step>
+</Steps>
+
+### Microsoft Teams
+
+The Microsoft Teams notification integration works the same way as Slack — post Agentlize HRM notifications to specific Teams channels. If you have already connected Microsoft 365 for calendar sync, Teams notifications can be configured in the same integration settings under **Settings → Integrations → Microsoft 365 → Teams Notifications**.
+
+---
+
+## Accounting & Payroll Export
+
+### QuickBooks
+
+Automatically export payroll journal entries to QuickBooks Online after each payroll run is approved. This eliminates manual data entry and keeps your accounting records in sync with your HR payroll data.
+
+<Steps>
+  <Step title="Connect QuickBooks">
+    Go to **Settings → Integrations → QuickBooks** and click **Connect**. Sign in with your QuickBooks Online credentials and authorize the connection.
+  </Step>
+  <Step title="Map Accounts">
+    Map your Agentlize HRM payroll components (base salary, bonuses, deductions, employer contributions) to the corresponding accounts in your QuickBooks chart of accounts.
+  </Step>
+  <Step title="Enable Auto-Export">
+    Toggle **Auto-Export on Payroll Approval** to on. From this point forward, each time a payroll run is approved, a journal entry is automatically pushed to QuickBooks.
+  </Step>
+</Steps>
+
+<Note>
+  You can also trigger a manual export at any time from **Payroll → Reports → Export to QuickBooks**.
+</Note>
+
+### Xero
+
+The Xero integration works identically to QuickBooks — connect your Xero account, map payroll components to your Xero chart of accounts, and enable auto-export so that journal entries are pushed to Xero automatically on payroll approval.
+
+To connect Xero, go to **Settings → Integrations → Xero** and follow the same steps described above for QuickBooks.
+
+### CSV / Excel Export
+
+A manual CSV or Excel export is always available, regardless of whether you use QuickBooks or Xero. No integration setup is required.
+
+To export payroll data:
+
+1. Go to **Payroll → Reports**.
+2. Select the pay period you want to export.
+3. Click **Export** and choose **CSV** or **Excel (.xlsx)**.
+
+This export includes a full breakdown of gross pay, deductions, net pay, employer contributions, and cost center allocations for every employee in the selected pay period.
+
+---
+
+## SSO / Identity Providers
+
+Single Sign-On (SSO) lets your employees log in to Agentlize HRM using their existing company accounts, removing the need for a separate password.
+
+<Warning>
+  SSO configuration must be performed by a user with the **Owner** role. Users with HR Admin or Manager roles cannot access SSO settings.
+</Warning>
+
+### Google SSO
+
+Allow employees to sign in using their Google Workspace accounts.
+
+<Steps>
+  <Step title="Open SSO Settings">
+    Go to **Settings → Integrations → Google SSO**.
+  </Step>
+  <Step title="Enable Google SSO">
+    Toggle **Enable Google SSO** to on.
+  </Step>
+  <Step title="Configure Domain Restriction">
+    Optionally, restrict login to specific Google Workspace domains (e.g., `@yourcompany.com`) to prevent sign-ins from personal Google accounts.
+  </Step>
+  <Step title="Notify Employees">
+    Once enabled, employees will see a **Sign in with Google** button on the login page. Existing employees are automatically matched by email address.
+  </Step>
+</Steps>
+
+### Microsoft Azure Active Directory (SAML 2.0)
+
+For enterprise organizations using Microsoft Azure AD, Agentlize HRM supports SAML 2.0 integration for federated SSO.
+
+<Steps>
+  <Step title="Open SAML SSO Settings">
+    Go to **Settings → Integrations → Microsoft Azure AD** and click **Configure SAML**.
+  </Step>
+  <Step title="Copy the Service Provider Details">
+    Note the **Entity ID** and **Assertion Consumer Service (ACS) URL** provided by Agentlize HRM — you will need these when configuring the enterprise app in Azure AD.
+  </Step>
+  <Step title="Register the App in Azure AD">
+    In the Azure portal, create a new Enterprise Application, select **Set up single sign-on**, and choose **SAML**. Enter the Entity ID and ACS URL from the previous step.
+  </Step>
+  <Step title="Copy Azure AD Details Back">
+    From Azure AD, copy the **Login URL**, **Azure AD Identifier**, and the **SAML Signing Certificate**, and paste them into the corresponding fields in Agentlize HRM's SAML configuration.
+  </Step>
+  <Step title="Test and Activate">
+    Click **Test Configuration** to verify the SAML handshake is working correctly, then click **Activate** to enable SSO for all users.
+  </Step>
+</Steps>
+
+---
+
+## Webhooks
+
+Webhooks let you send real-time Agentlize HRM event data to your own systems — your internal HRIS, Active Directory sync tool, custom dashboards, or any other endpoint that can receive HTTP POST requests.
+
+### Creating a Webhook
+
+<Steps>
+  <Step title="Open Webhook Settings">
+    Go to **Settings → Integrations → Webhooks** and click **+ Add Webhook**.
+  </Step>
+  <Step title="Enter Your Endpoint URL">
+    Provide the full HTTPS URL of your server endpoint that will receive webhook payloads (e.g., `https://api.yourcompany.com/webhooks/hrm`). The endpoint must be publicly accessible and respond with a `2xx` HTTP status code to acknowledge receipt.
+  </Step>
+  <Step title="Select Events to Subscribe To">
+    Choose which events should trigger this webhook. You can subscribe to one, several, or all available events.
+  </Step>
+  <Step title="Copy Your Secret Key">
+    Agentlize HRM generates a **secret key** for your webhook. Copy and store this securely — you will use it to verify that incoming webhook payloads are genuinely from Agentlize HRM (see [Signature Verification](#signature-verification) below).
+  </Step>
+  <Step title="Save and Test">
+    Click **Save Webhook**, then click **Send Test Payload** to verify your endpoint is receiving requests correctly.
+  </Step>
+</Steps>
+
+### Available Events
+
+| Event | Description |
+|---|---|
+| `employee.created` | A new employee profile has been created |
+| `employee.updated` | An existing employee profile has been updated |
+| `employee.terminated` | An employee's status has been set to Terminated |
+| `leave.approved` | A leave request has been approved |
+| `leave.rejected` | A leave request has been rejected |
+| `payroll.approved` | A payroll run has been approved |
+| `attendance.submitted` | Attendance records have been submitted for a period |
+
+### Example Webhook Payload
+
+Below is an example of the JSON payload sent to your endpoint when an `employee.created` event fires:
+
+```json
+{
+  "event": "employee.created",
+  "timestamp": "2025-01-15T09:00:00Z",
+  "data": {
+    "id": "emp_01HNKV3P8W",
+    "full_name": "Jane Doe",
+    "email": "jane.doe@company.com",
+    "department": "Engineering",
+    "start_date": "2025-01-15",
+    "status": "active"
+  }
+}
+```
+
+All payloads share the same top-level structure: an `event` name, a UTC `timestamp`, and a `data` object containing the relevant record fields.
+
+### Signature Verification
+
+Every webhook request from Agentlize HRM includes an `X-Agentlize-Signature` header. This is an **HMAC-SHA256** signature computed from the raw request body and your webhook's secret key. You should always verify this signature before processing the payload to ensure it hasn't been tampered with.
+
+Here is an example verification in Node.js:
+
+```javascript
+const crypto = require('crypto');
+
+function verifyWebhookSignature(rawBody, secretKey, signatureHeader) {
+  const expectedSignature = crypto
+    .createHmac('sha256', secretKey)
+    .update(rawBody, 'utf8')
+    .digest('hex');
+
+  const trusted = Buffer.from(`sha256=${expectedSignature}`, 'ascii');
+  const received = Buffer.from(signatureHeader, 'ascii');
+
+  // Use timingSafeEqual to prevent timing attacks
+  return crypto.timingSafeEqual(trusted, received);
+}
+```
+
+And the equivalent in Python:
+
+```python
+import hmac
+import hashlib
+
+def verify_webhook_signature(raw_body: bytes, secret_key: str, signature_header: str) -> bool:
+    expected = hmac.new(
+        secret_key.encode('utf-8'),
+        raw_body,
+        hashlib.sha256
+    ).hexdigest()
+    expected_header = f"sha256={expected}"
+    return hmac.compare_digest(expected_header, signature_header)
+```
+
+<Warning>
+  Always use a constant-time comparison function (such as `crypto.timingSafeEqual` in Node.js or `hmac.compare_digest` in Python) when comparing signatures. Using standard string equality (`==`) is vulnerable to timing attacks.
+</Warning>
+
+### Webhook Retries
+
+If your endpoint returns a non-`2xx` status code or does not respond within **10 seconds**, Agentlize HRM will retry the delivery up to **5 times** using exponential backoff (1 min, 5 min, 30 min, 2 hr, 8 hr). After 5 failed attempts, the event is marked as failed and will not be retried. You can view delivery history and manually retry failed events from **Settings → Integrations → Webhooks → [Webhook Name] → Delivery Log**.
+
+<Tip>
+  Use webhooks to automatically sync new employee data to your Active Directory or external HRIS when an `employee.created` event fires. This eliminates manual account provisioning and ensures new hires have access to all company systems from day one.
+</Tip>

@@ -1,0 +1,128 @@
+---
+title: "Notification Settings and Alert Preferences"
+sidebarTitle: "Notifications"
+description: "Configure which events trigger notifications, choose delivery channels, and manage email digest preferences in Agentlize HRM."
+---
+
+Agentlize HRM sends notifications to keep employees, managers, and HR Admins informed about important HR events — from leave approvals to payroll processing and contract expirations. You can control exactly which events trigger notifications, who receives them, and how they are delivered.
+
+To access notification settings, click the **Settings** icon in the left sidebar, then select **Notifications**. Organization-level defaults are configured here by HR Admins. Individual users can further customize their own preferences from their profile.
+
+---
+
+## Notification Events
+
+The table below lists all notification events in Agentlize HRM, who receives each notification by default, and whether the event can be toggled on or off.
+
+| Event | Default Recipients | Configurable |
+|---|---|---|
+| Leave Request Submitted | Manager, HR Admin | ✅ Yes |
+| Leave Request Approved | Employee | ✅ Yes |
+| Leave Request Rejected | Employee | ✅ Yes |
+| Payslip Generated | Employee | 🔒 Always On |
+| Payroll Approved | HR Admin | ✅ Yes |
+| New Employee Added | HR Admin | ✅ Yes |
+| Employee Birthday | Manager | ✅ Yes |
+| Attendance Anomaly Detected | Manager | ✅ Yes |
+| Contract Expiry (30 days before) | HR Admin | ✅ Yes |
+| Contract Expiry (7 days before) | HR Admin | ✅ Yes |
+| Document Expiry (30 days before) | HR Admin | ✅ Yes |
+| Document Expiry (7 days before) | HR Admin | ✅ Yes |
+| Performance Review Due | Employee, Manager | ✅ Yes |
+
+<Note>
+  The **Payslip Generated** notification is permanently enabled and cannot be turned off. Employees always receive a notification when their payslip is ready, ensuring they are aware that payroll has been processed.
+</Note>
+
+### About Configurable Events
+
+For all configurable events, HR Admins can:
+
+- **Enable or disable** the notification workspace-wide from **Settings → Notifications**
+- **Adjust recipients** for select events (e.g., add HR Admin as a CC recipient on leave requests)
+- **Set lead times** for expiry notifications — for example, you can add a 60-day advance notice for contract expiries in addition to the default 30-day and 7-day alerts
+
+---
+
+## Notification Channels
+
+Agentlize HRM supports three delivery channels. Each channel can be enabled or disabled independently per event type.
+
+### Email
+
+Email is the default and most comprehensive notification channel. All notification events can be delivered via email.
+
+- Notifications are sent from `notifications@agentlize.com` — ask your employees to add this address to their contact list or allowlist to avoid messages landing in spam.
+- You can configure the **email digest frequency** (see [Email Digests](#email-digests) below) to control whether notifications are sent individually in real time, or batched into a summary.
+- HTML-formatted emails include direct action links (e.g., "Approve Leave", "View Payslip") so recipients can act without logging into the platform.
+
+### In-App Notifications
+
+In-app notifications appear in the **bell icon (🔔)** in the top navigation bar. Clicking the bell opens the notifications panel, which shows a chronological list of all recent notifications.
+
+- Unread notifications are indicated by a count badge on the bell icon.
+- Notifications can be marked as read individually or all at once.
+- In-app notifications are always delivered for all enabled events, regardless of email digest settings.
+- Clicking a notification takes you directly to the relevant record (e.g., the leave request, payslip, or employee profile).
+
+### Mobile Push Notifications
+
+Push notifications deliver alerts directly to employees' and managers' mobile devices via the **Agentlize HRM mobile app**.
+
+- Available on **iOS** (App Store) and **Android** (Google Play).
+- Users must install the app and grant notification permissions to receive push alerts.
+- Push notifications are sent in real time, regardless of email digest settings.
+- Users can manage push notification preferences from within the mobile app under **Settings → Notifications**.
+
+<Note>
+  Mobile push notifications require the Agentlize HRM mobile app to be installed. If the app is not installed, users will still receive email and in-app notifications.
+</Note>
+
+---
+
+## Per-User Notification Preferences
+
+While organization-level settings define the defaults, individual users have the ability to customize their own notification preferences — without needing HR Admin access.
+
+**Users** can manage their own preferences at **Profile (top-right avatar) → Notifications**. From there they can:
+
+- Toggle individual notification events on or off for their account
+- Choose their preferred email digest frequency
+- Enable or disable mobile push notifications
+
+**HR Admins** can set organization-wide defaults that apply to all new users and serve as the baseline for users who have not customized their own preferences. To configure org-wide defaults, go to **Settings → Notifications → Default Preferences**.
+
+<Note>
+  If an HR Admin disables a configurable notification at the organization level, that event is suppressed for all users — individual users cannot re-enable it. Organization-level settings act as an upper bound on what users can receive.
+</Note>
+
+---
+
+## Email Digests
+
+Instead of receiving a separate email for every notification event, you can configure Agentlize HRM to batch notifications into a digest summary. This is especially useful for managers and HR Admins who may receive a high volume of notifications.
+
+### Digest Options
+
+<ParamField path="email_digest_frequency" type="string" default="Instant">
+  Choose how frequently notification emails are sent:
+
+  - **Instant** — Each notification is sent as a separate email the moment the event occurs. Best for time-sensitive roles like HR Admins managing approvals.
+  - **Daily Digest** — All notifications from the past 24 hours are bundled into a single summary email, delivered at **6:00 AM** in your workspace timezone. Best for managers who receive moderate notification volume.
+  - **Weekly Digest** — All notifications from the past week are bundled into a single summary email, delivered every **Monday at 8:00 AM** in your workspace timezone. Best for users who only need periodic awareness.
+</ParamField>
+
+<Note>
+  Digest settings apply to email only. In-app and mobile push notifications are always delivered in real time, regardless of your digest preference.
+</Note>
+
+### Setting Digest Preferences
+
+- **Organization default**: Go to **Settings → Notifications → Email Digest** and select the default frequency. This applies to all users who have not set their own preference.
+- **Per-user**: Users can override the organization default from **Profile → Notifications → Email Digest Frequency**.
+
+---
+
+<Tip>
+  Enable **Attendance Anomaly** notifications for managers to catch issues — like missed clock-ins or unusually long shifts — before they carry through to payroll. Catching these early prevents time-consuming payroll corrections later. Go to **Settings → Notifications**, find the *Attendance Anomaly Detected* row, and ensure it is toggled on for the Manager recipient.
+</Tip>

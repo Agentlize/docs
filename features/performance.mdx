@@ -1,0 +1,235 @@
+---
+title: "Performance Reviews and KPI Tracking"
+sidebarTitle: "Performance"
+description: "Set goals, track KPIs, run structured performance reviews, and identify top talent with Agentlize HRM's performance module."
+---
+
+Agentlize HRM's performance module gives your organization a structured, consistent way to evaluate employee performance, align individual effort to company objectives, and make evidence-based decisions about promotions, development, and compensation. You can create goal-setting frameworks, define KPIs with measurable targets, run annual or quarterly review cycles, collect self-assessments and manager evaluations, and optionally gather 360-degree feedback from peers. All of this is tied together in a reporting layer that makes it easy to identify your top performers and spot where additional support is needed.
+
+---
+
+## Performance Cycles
+
+A performance cycle defines the scope and timeline of a review round. Everything else in the performance module — goals, KPIs, self-assessments, and manager reviews — is organized within a cycle.
+
+<Steps>
+  <Step title="Create a new cycle">
+    Navigate to **Performance → Cycles** and click **New Cycle**.
+  </Step>
+  <Step title="Name and describe the cycle">
+    Enter a descriptive name — for example, "Q1 2025 Performance Review" or "Annual Review 2024". Add an optional description explaining the purpose or focus of this cycle.
+  </Step>
+  <Step title="Set the review period">
+    Define the **Period Start Date** and **Period End Date** — the span of time being evaluated. For an annual review, this is typically January 1 to December 31 of the year in question.
+  </Step>
+  <Step title="Select the review type">
+    Choose the review type:
+    - **Annual** — A comprehensive, once-a-year review covering the full performance period
+    - **Quarterly** — A lighter-touch check-in every three months
+    - **Mid-Year** — A structured check-in at the halfway point, usually paired with an annual review
+  </Step>
+  <Step title="Define participants">
+    Select which employees are included in this cycle. You can include **All Employees**, specific **Departments**, or a manually curated **Custom List**. Employees not included in the cycle will not receive self-assessment tasks or be subject to manager reviews in this round.
+  </Step>
+  <Step title="Set timeline milestones">
+    Configure the key dates for each phase of the cycle:
+    - **Goal Setting Deadline** — When goals must be finalized
+    - **Self-Assessment Window** — The dates during which employees can complete their self-evaluation
+    - **Manager Review Window** — The dates during which managers must complete their evaluations
+    - **Results Release Date** — When employees can view their finalized review scores and manager comments
+  </Step>
+  <Step title="Launch the cycle">
+    Click **Launch Cycle**. All included employees receive a notification that the performance cycle has started and can see their assigned tasks on their performance dashboard.
+  </Step>
+</Steps>
+
+---
+
+## Goal Setting
+
+Goals give employees a clear picture of what success looks like for them in a given cycle. Agentlize HRM supports the SMART goal framework — goals should be Specific, Measurable, Achievable, Relevant, and Time-bound.
+
+**Creating a goal:**
+
+<Steps>
+  <Step title="Navigate to Goals">
+    Go to **Performance → Goals** and click **Add Goal**.
+  </Step>
+  <Step title="Define the goal">
+    Enter the goal **Title** and a detailed **Description** explaining what needs to be achieved and how progress will be measured.
+  </Step>
+  <Step title="Assign the goal">
+    Assign the goal to an **Individual Employee** or to an entire **Department**. Department-level goals cascade to all employees in that department; each employee tracks their own progress toward the shared objective.
+  </Step>
+  <Step title="Set the target and measurement">
+    Define the goal's **Target Value** and **Unit of Measurement** (e.g., "Close 50 deals", "Achieve 95% customer satisfaction score", "Complete 3 training courses"). Set the **Due Date** within the current cycle's period.
+  </Step>
+  <Step title="Assign an owner">
+    Designate one employee as the **Goal Owner** — the person responsible for driving progress and keeping the goal updated.
+  </Step>
+  <Step title="Save and share">
+    Click **Save Goal**. The goal appears in the assigned employee's performance dashboard with a progress tracker showing 0–100% completion.
+  </Step>
+</Steps>
+
+Employees update goal progress by opening the goal from their dashboard and entering the current value. The system calculates completion percentage automatically. Managers can view all goals assigned to their direct reports and add comments or encouragement at any time.
+
+<Tip>
+  Share goals with employees at the very start of each cycle — not mid-way through — so everyone knows exactly what they are being evaluated on and has sufficient time to make meaningful progress. You can do this in bulk by publishing all goals at cycle launch under **Performance → Cycles → [Cycle Name] → Goals → Publish All**.
+</Tip>
+
+---
+
+## KPI Tracking
+
+Key Performance Indicators (KPIs) provide quantitative, ongoing measurement of performance beyond cycle-specific goals. Where goals are tied to a cycle, KPIs can be tracked continuously throughout the year.
+
+**Creating a KPI:**
+
+Navigate to **Performance → KPIs** and click **Add KPI**. Fill in the following:
+
+<ParamField path="kpi_name" type="string" required>
+  A short, descriptive name for the KPI — for example, "Monthly Sales Revenue" or "Support Ticket Resolution Time".
+</ParamField>
+
+<ParamField path="description" type="string">
+  An explanation of what the KPI measures and why it matters.
+</ParamField>
+
+<ParamField path="target_value" type="number" required>
+  The quantitative benchmark the employee or department is expected to reach — for example, `100000` for a revenue target or `24` for a resolution time in hours.
+</ParamField>
+
+<ParamField path="actual_value" type="number">
+  The current measured value. Updated manually by the employee or manager, or automatically via a connected data integration.
+</ParamField>
+
+<ParamField path="unit" type="string" required>
+  The unit of measurement — for example, USD, hours, percentage, or count.
+</ParamField>
+
+<ParamField path="measurement_frequency" type="string" required>
+  How often the KPI is updated. Options: **Daily**, **Weekly**, **Monthly**, **Quarterly**.
+</ParamField>
+
+<ParamField path="assigned_to" type="string" required>
+  The individual employee or department this KPI belongs to.
+</ParamField>
+
+**Dashboard view:**
+
+All active KPIs are visible on the **Performance → KPI Dashboard**, which displays each KPI as a card showing the target value, current actual value, completion percentage, and a trend sparkline. Red/amber/green color coding makes it immediately clear which KPIs are on track and which need attention.
+
+---
+
+## Self-Assessment
+
+Before a manager reviews an employee, the employee completes a self-assessment — their own evaluation of their performance during the cycle period.
+
+**Completing a self-assessment (employee perspective):**
+
+<Steps>
+  <Step title="Open your self-assessment">
+    From your performance dashboard, click **Complete Self-Assessment** next to the active cycle. The task is also linked from your notification center.
+  </Step>
+  <Step title="Rate your performance">
+    For each competency or goal in the review form, select a self-rating on the 1–5 scale: 1 (Below Expectations), 2 (Partially Meets Expectations), 3 (Meets Expectations), 4 (Exceeds Expectations), 5 (Outstanding).
+  </Step>
+  <Step title="Add qualitative comments">
+    Write a reflection for each area — what you achieved, how you approached it, and any challenges you encountered. These comments are visible to your manager during their review.
+  </Step>
+  <Step title="Highlight achievements">
+    Use the **Key Achievements** section to call out specific accomplishments you want to ensure are recognized.
+  </Step>
+  <Step title="Submit">
+    Click **Submit Self-Assessment**. You can edit your submission any time before the self-assessment window closes. Once submitted, your manager is notified that your self-assessment is ready for review.
+  </Step>
+</Steps>
+
+---
+
+## Manager Reviews
+
+Once an employee has submitted their self-assessment (or the self-assessment window has closed), their manager can complete the formal performance review.
+
+<Steps>
+  <Step title="Open the review queue">
+    Go to **Performance → Reviews → Pending**. All direct reports with open reviews are listed here.
+  </Step>
+  <Step title="Review the employee's self-assessment">
+    Open the employee's review form. The left panel shows the employee's self-ratings and comments side-by-side with your manager rating fields, making it easy to compare perspectives.
+  </Step>
+  <Step title="Rate performance">
+    For each competency or goal, assign a **Manager Rating** on the 1–5 scale. The ratings criteria are:
+    - **1 – Below Expectations** — Performance falls significantly short of requirements
+    - **2 – Partially Meets Expectations** — Some expectations met but meaningful gaps remain
+    - **3 – Meets Expectations** — Consistently meets the role's requirements
+    - **4 – Exceeds Expectations** — Regularly goes beyond what is required
+    - **5 – Outstanding** — Exceptional performance that sets a benchmark for the team
+  </Step>
+  <Step title="Add qualitative feedback">
+    Write specific, evidence-based comments for each area. Good feedback names concrete examples, acknowledges effort, and explains the reasoning behind the rating.
+  </Step>
+  <Step title="Add development suggestions">
+    Use the **Development & Growth** section to recommend training, stretch assignments, or focus areas for the next cycle. These suggestions are shared with the employee when results are released.
+  </Step>
+  <Step title="Submit the review">
+    Click **Submit Review**. The review is saved and marked complete. Employee-facing results are not visible until the **Results Release Date** configured in the cycle settings.
+  </Step>
+</Steps>
+
+<Info>
+  Performance review data is strictly private. Individual review scores and manager comments are **never shared between managers** — only the employee's direct manager and HR admins with the Performance Admin role can view an individual's review. Aggregated, anonymized team-level data is available in reports.
+</Info>
+
+---
+
+## 360-Degree Feedback
+
+360-degree feedback extends the review process by collecting input from peers — colleagues who work closely with the employee but don't manage them. It is optional and must be enabled per cycle.
+
+**Enabling 360 feedback:**
+
+Go to **Performance → Cycles → [Cycle Name] → Settings** and toggle **Enable 360-Degree Feedback** on. Set the number of peers each employee is required to nominate (typically 2–5).
+
+**How it works:**
+
+<Steps>
+  <Step title="Employees nominate peers">
+    During the self-assessment window, employees also submit their **Peer Nominations** — a list of colleagues they would like to provide feedback. Managers can review and adjust nominations before they are sent.
+  </Step>
+  <Step title="Peers complete feedback forms">
+    Nominated peers receive a notification and a short feedback form asking them to rate the employee on a set of behavioral competencies and add brief qualitative comments.
+  </Step>
+  <Step title="Results are aggregated and anonymized">
+    Peer ratings are averaged and displayed to the manager and employee as aggregated results — individual peer ratings are not attributed to specific people, protecting the honesty of the feedback.
+  </Step>
+  <Step title="Manager incorporates peer feedback">
+    The aggregated peer feedback is visible to the manager alongside the self-assessment when they complete the review form, providing a richer, multi-perspective view of the employee's performance.
+  </Step>
+</Steps>
+
+---
+
+## Performance Reports
+
+Use performance reports to analyze results across your organization, identify standout performers, and make data-driven decisions about talent.
+
+Navigate to **Performance → Reports** to access the following:
+
+<CardGroup cols={2}>
+  <Card title="Team Performance Summary" icon="chart-bar">
+    An overview of average ratings across all employees in a department or the full organization for a given cycle. Useful for calibration sessions and team-level trend analysis.
+  </Card>
+  <Card title="Individual Score History" icon="chart-line">
+    A timeline of an individual employee's performance ratings across multiple cycles. Shows whether performance is improving, stable, or declining over time.
+  </Card>
+  <Card title="Top Performers List" icon="trophy">
+    A ranked list of employees by overall performance score for a selected cycle. Filter by department to identify high performers within specific teams.
+  </Card>
+  <Card title="Goal Completion Report" icon="circle-check">
+    Tracks the percentage of goals completed (vs. incomplete or overdue) across employees and departments for a selected cycle. Highlights alignment between ambition and execution.
+  </Card>
+</CardGroup>
+
+All reports can be filtered by cycle, department, review type, and date range. Export any report to **CSV** or **PDF** from the report view. You can also schedule automated delivery of performance reports to HR leadership and department heads under **Performance → Reports → Schedule**.

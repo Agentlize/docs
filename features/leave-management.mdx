@@ -1,0 +1,175 @@
+---
+title: "Leave Management and Approval Workflows"
+sidebarTitle: "Leave"
+description: "Configure leave policies, manage employee leave requests, track balances, and automate approval workflows in Agentlize HRM."
+---
+
+Agentlize HRM's leave management module gives your HR team complete control over how leave is defined, accrued, requested, and approved. You can configure multiple leave types with their own rules, automate balance accrual, and route approval requests through the right managers — all while maintaining a shared team calendar so no one is caught off guard by unexpected absences. Employees interact with the module directly through the self-service portal or mobile app, reducing the administrative burden on your HR team.
+
+---
+
+## Leave Types
+
+Agentlize HRM comes with the following built-in leave types, each pre-configured with sensible defaults that you can customize to match your company policy:
+
+<CardGroup cols={2}>
+  <Card title="Annual Leave" icon="umbrella-beach">
+    Paid time off for vacation or personal use. Accrues over time based on your configured policy. Subject to manager approval.
+  </Card>
+  <Card title="Sick Leave" icon="kit-medical">
+    Paid or unpaid leave for illness or medical appointments. Can be configured to require a medical certificate for absences longer than a specified number of days.
+  </Card>
+  <Card title="Maternity / Paternity Leave" icon="baby">
+    Extended leave for new parents. Configure separate entitlements and durations for maternity and paternity leave in line with local labor laws.
+  </Card>
+  <Card title="Unpaid Leave" icon="circle-minus">
+    Leave taken without pay, typically for personal reasons not covered by other leave types. Automatically deducted from the employee's gross pay in payroll.
+  </Card>
+  <Card title="Compensatory Leave" icon="rotate-left">
+    Leave granted to employees in lieu of overtime worked. Compensatory leave balances are credited automatically when overtime is approved (if configured).
+  </Card>
+</CardGroup>
+
+### Configuring Custom Leave Types
+
+If your organization needs leave types not covered by the defaults — such as bereavement leave, study leave, or volunteer days — you can create them yourself.
+
+<Steps>
+  <Step title="Open Leave Settings">
+    Go to **Settings → Leave → Leave Types** and click **Add Leave Type**.
+  </Step>
+  <Step title="Name and describe the leave type">
+    Enter a name (for example, "Bereavement Leave") and an optional description for employees to see when selecting this type.
+  </Step>
+  <Step title="Set pay status">
+    Choose whether this leave type is **Paid**, **Unpaid**, or **Partial Pay** (specify the percentage of normal pay).
+  </Step>
+  <Step title="Define entitlement">
+    Enter the number of days employees are entitled to per year, or set it to **Unlimited** for types like bereavement where a fixed limit may not apply.
+  </Step>
+  <Step title="Configure approval and documentation">
+    Choose the approval workflow (manager only, HR only, or both) and specify whether supporting documentation is required.
+  </Step>
+  <Step title="Save">
+    Click **Save Leave Type**. The new type becomes available immediately on the leave request form for all eligible employees.
+  </Step>
+</Steps>
+
+---
+
+## Leave Policies
+
+Leave policies define the rules that govern how leave balances are earned and maintained. You can create multiple policies and assign them to different employee groups — for example, different policies for full-time employees, part-time employees, or employees in specific countries.
+
+Configure each policy with the following settings:
+
+- **Accrual Frequency** — Choose **Monthly** (employees earn a fraction of their annual entitlement each month) or **Annual** (the full entitlement is granted at the start of the leave year).
+- **Accrual Start** — Set whether accrual begins on the **Employment Start Date** or the **Start of the Leave Year** (e.g., January 1).
+- **Probation Period** — Define a waiting period (in months) before a newly hired employee becomes entitled to take leave. Accrual can still occur during probation, but the balance cannot be used until the period ends.
+- **Carryover Limit** — Set the maximum number of unused leave days that can be carried forward into the next leave year. Set to `0` to prevent any carryover, or leave blank to allow unlimited carryover.
+- **Maximum Balance Cap** — Optionally set a cap on the maximum balance an employee can accumulate. Once the cap is reached, accrual pauses until leave is taken.
+- **Negative Balance** — Allow or prevent employees from requesting leave when their balance is zero. Enabling this creates a negative balance that is deducted from future accruals.
+
+To assign a policy to employees, go to **Settings → Leave → Policies**, open a policy, and click **Assign Employees**. You can assign by individual, department, or employment type.
+
+<Tip>
+  Enable **automatic leave accrual** for all policies to avoid the need for manual balance adjustments at the start of each month. With auto-accrual on, Agentlize HRM credits each employee's balance on the first day of the month based on their entitlement — you never have to touch it manually.
+</Tip>
+
+---
+
+## Applying for Leave
+
+Employees submit leave requests directly from the self-service portal or the Agentlize HRM mobile app. The process is quick and straightforward.
+
+<Steps>
+  <Step title="Open the Leave module">
+    From your dashboard, click **Leave** in the left sidebar, then click **Request Leave**.
+  </Step>
+  <Step title="Select a leave type">
+    Choose the type of leave you are requesting from the dropdown. Your current available balance for that type is displayed alongside the option, so you can confirm you have enough days before proceeding.
+  </Step>
+  <Step title="Choose your dates">
+    Select the **Start Date** and **End Date** using the date picker. The system automatically calculates the number of working days in your selection, excluding weekends and public holidays. If you need only a half day, toggle the **Half Day** option and specify whether it is the morning or afternoon.
+  </Step>
+  <Step title="Add a reason">
+    Enter a brief reason for your leave request. This is visible to your manager when they review the request. For sick leave or other types requiring documentation, use the **Attach Document** button to upload a medical certificate or other supporting file.
+  </Step>
+  <Step title="Submit the request">
+    Review the summary — leave type, dates, number of days, and remaining balance after approval — then click **Submit Request**. Your manager receives an instant notification to review your request.
+  </Step>
+</Steps>
+
+You can track the status of your request (Pending, Approved, or Rejected) from **Leave → My Requests** at any time. You will also receive an email notification when the status changes.
+
+The leave request flow is identical on the mobile app — navigate to the **Leave** tab and tap **Request Leave** to begin.
+
+---
+
+## Approving Leave
+
+Managers and HR administrators review and act on leave requests from the **Leave → Approvals** view.
+
+<Steps>
+  <Step title="Open the Approvals queue">
+    Go to **Leave → Approvals**. All pending requests from your direct reports (or, for HR admins, all employees) are listed here, sorted by submission date.
+  </Step>
+  <Step title="Review the request">
+    Click on a request to see the full details: leave type, requested dates, number of days, reason, any attached documents, and the employee's remaining balance. A snapshot of the **Team Calendar** is displayed alongside the request, showing who else in the team is on leave during the same period so you can check for coverage conflicts.
+  </Step>
+  <Step title="Check the team calendar for conflicts">
+    If multiple team members have overlapping leave, a **Conflict Warning** banner appears. Use the team calendar to understand the impact before making a decision.
+  </Step>
+  <Step title="Approve or reject">
+    - To approve, click **Approve**. The employee is notified, their balance is updated, and the approved dates are added to the team calendar.
+    - To reject, click **Reject**. You are required to enter a reason for the rejection — this message is sent to the employee in their notification email.
+  </Step>
+</Steps>
+
+<Note>
+  HR admins can approve leave on behalf of a manager if the manager is unavailable. Go to **Leave → Approvals**, use the **Filter by Manager** option to find the relevant requests, and process them directly.
+</Note>
+
+<Warning>
+  Rejected leave requests **cannot be automatically re-submitted**. If an employee's request is rejected and they still need to take leave, they must create a brand new request. Remind employees to check their request status and resubmit with updated dates or additional context if needed.
+</Warning>
+
+---
+
+## Leave Balances
+
+Leave balances give employees and HR admins a real-time view of how much leave each person has accrued, used, and remaining.
+
+Employees can view their own balances from **Leave → My Balances**. The balance dashboard shows:
+
+- **Entitled Days** — The total annual entitlement for each leave type
+- **Accrued to Date** — How many days have been accrued so far in the current leave year (relevant for monthly accrual policies)
+- **Days Taken** — Leave days already used in the current year, including approved future leave
+- **Remaining Balance** — Days available to use (accrued minus taken)
+- **Carried Over** — Any days carried forward from the previous leave year
+
+HR admins can view balances for any employee or export a balance report for all staff by going to **Leave → Reports → Balance Report**.
+
+**Annual reset:**
+
+At the end of each leave year, Agentlize HRM automatically resets balances according to your policy configuration. Days up to the carryover limit are carried forward; any excess is forfeited. The reset runs overnight on the leave year end date you define in **Settings → Leave → Leave Year**. You receive a confirmation email once the reset completes.
+
+If you need to manually adjust a balance — for example, to correct an error or grant a one-time additional day — go to the employee's profile, open the **Leave** tab, and click **Adjust Balance**. All manual adjustments are logged with the reason and the name of the HR user who made the change.
+
+---
+
+## Leave Calendar
+
+The Leave Calendar provides a shared, visual overview of all scheduled leave across your organization.
+
+Navigate to **Leave → Calendar** to access it. The calendar displays:
+
+- **Approved leave** — Color-coded by department or leave type (toggle in the top-right)
+- **Pending leave** — Shown with a striped pattern so managers can anticipate upcoming requests before approving them
+- **Public holidays** — Displayed based on the country and regional holiday calendar configured in **Settings → HR Configuration → Public Holidays**
+
+Use the department and team filters on the left to focus on the groups most relevant to you. Managers automatically see a filtered view showing only their direct reports.
+
+Employees can view the calendar to see when their colleagues are away before submitting their own requests — helping them proactively avoid conflicts and plan accordingly.
+
+The calendar can be exported as an `.ics` file for integration with Google Calendar, Microsoft Outlook, or Apple Calendar. Click **Export Calendar** and select the relevant time range and filters.

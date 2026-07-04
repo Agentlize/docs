@@ -1,0 +1,219 @@
+---
+title: "Frequently Asked Questions — Agentlize HRM"
+sidebarTitle: "FAQ"
+description: "Find answers to the most common questions about using Agentlize HRM for employee management, payroll, leave, and more."
+---
+
+This FAQ covers the most common questions from HR Admins, managers, and employees using Agentlize HRM. Questions are organized by topic — use the sections below to find what you need quickly. If your question isn't answered here, visit our [Troubleshooting guide](/help/troubleshooting) or contact our support team at support@agentlize.com.
+
+---
+
+## Account & Access
+
+<AccordionGroup>
+  <Accordion title="How do I reset my password?">
+    If you have forgotten your password or are locked out of your account:
+
+    1. Go to the Agentlize HRM login page.
+    2. Click **Forgot Password?** below the sign-in form.
+    3. Enter the email address associated with your account and click **Send Reset Link**.
+    4. Check your inbox for a password reset email (also check your spam/junk folder). The link expires after **1 hour**.
+    5. Click the link, enter your new password, and confirm it.
+
+    If you do not receive the email within a few minutes, verify that you are using the correct email address, or contact your HR Admin to confirm your account is active.
+  </Accordion>
+
+  <Accordion title="Can I have multiple HR Admins?">
+    Yes — Agentlize HRM supports an **unlimited number of HR Admin users** on all plans. There is no cap on how many people can have the HR Admin role.
+
+    To grant HR Admin access to a user, go to **Settings → Team Members**, find the user, click **Edit Role**, and select **HR Admin**.
+  </Accordion>
+
+  <Accordion title="How do I transfer ownership of the workspace?">
+    Workspace ownership can only be transferred by the current **Owner** of the workspace. Because this is a sensitive operation that affects billing, SSO configuration, and data access, it must be completed with the assistance of the Agentlize HRM support team.
+
+    To initiate a transfer, the current Owner should email **support@agentlize.com** with the subject line "Workspace Ownership Transfer" and include:
+    - Your workspace name
+    - The email address of the current Owner
+    - The email address of the new Owner
+
+    Our support team will verify both parties and complete the transfer within one business day.
+  </Accordion>
+
+  <Accordion title="How many employees can I add?">
+    The number of employees you can add depends on your **subscription plan**:
+
+    - **Starter**: up to 25 employees
+    - **Growth**: up to 100 employees
+    - **Business**: up to 500 employees
+    - **Enterprise**: unlimited employees
+
+    To view your current plan and employee count, go to **Settings → Billing**. If you are approaching your limit or need to upgrade, click **Upgrade Plan** from the same page, or contact your account manager.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Employee Management
+
+<AccordionGroup>
+  <Accordion title="Can I import employees from a spreadsheet?">
+    Yes. You can bulk-import employees from a CSV file rather than adding them one by one.
+
+    1. Go to **Employees** in the left sidebar.
+    2. Click the **Import** button in the top-right corner.
+    3. Download the **CSV template** provided — this ensures your data is in the correct column format.
+    4. Fill in the template with your employee data and save it.
+    5. Upload the completed CSV file and click **Preview Import**.
+    6. Review the preview for any validation errors (e.g., missing required fields or duplicate email addresses).
+    7. Click **Confirm Import** to create all valid employee records.
+
+    The import supports up to **500 employees per file**. For larger imports, split the data into multiple files.
+  </Accordion>
+
+  <Accordion title="How do I archive an employee who leaves the company?">
+    When an employee leaves, you should set their status to **Terminated** rather than deleting their profile. This preserves all historical records — payslips, leave history, attendance, and documents — for compliance and audit purposes.
+
+    To terminate an employee:
+
+    1. Open the employee's profile from **Employees**.
+    2. Click **Actions → Terminate Employee**.
+    3. Enter the **Employment End Date** and select a **Termination Reason** (e.g., Resignation, Redundancy, End of Contract).
+    4. Click **Confirm Termination**.
+
+    The employee's profile is archived and removed from active employee counts and payroll. Their historical data remains fully accessible under **Employees → Archived**.
+  </Accordion>
+
+  <Accordion title="Can employees update their own information?">
+    Yes. Employees have access to a **self-service portal** where they can update certain information themselves, without needing to go through HR:
+
+    - **Personal contact details** — phone number, personal email address, home address
+    - **Bank account information** — for payroll direct deposit (subject to re-verification)
+    - **Emergency contacts** — name, relationship, phone number
+    - **Profile photo**
+
+    Sensitive fields such as job title, department, salary, and start date can only be updated by an HR Admin or Manager with the appropriate permissions.
+
+    Employees access the self-service portal by clicking their **avatar (top-right corner) → My Profile**.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Payroll
+
+<AccordionGroup>
+  <Accordion title="What happens if I run payroll and it has an error?">
+    Once a payroll run is **approved**, it cannot be undone or reversed. This is by design to maintain a complete and tamper-proof payroll audit trail.
+
+    If you discover an error after approval, you should run a **correction payroll**:
+
+    1. Go to **Payroll → New Payroll Run**.
+    2. Select **Correction Run** as the type.
+    3. Select the pay period you need to correct and the affected employees.
+    4. Adjust the salary components as needed to account for the over- or under-payment.
+    5. Approve the correction run — it will be recorded separately and labeled as a correction in your reports.
+
+    If the error is significant, contact support@agentlize.com for guidance on how to handle the correction in your accounting system.
+  </Accordion>
+
+  <Accordion title="Can I run payroll for a subset of employees?">
+    Yes. When creating a new payroll run, you can filter and include only the employees you want to process:
+
+    - **By department**: select one or more departments to include only those employees
+    - **By individual**: manually select specific employees from the employee list
+    - **By employment type**: filter for full-time, part-time, or contract employees
+
+    This is useful when you need to run an off-cycle payroll for a specific group — for example, when onboarding a new team member mid-month or processing a correction for a single department.
+  </Accordion>
+
+  <Accordion title="Is payroll data encrypted?">
+    Yes. Agentlize HRM encrypts all payroll and employee data:
+
+    - **At rest**: all data stored in our databases is encrypted using AES-256 encryption.
+    - **In transit**: all data transmitted between your browser (or our mobile app) and our servers is encrypted using TLS 1.2 or higher.
+    - **Payslips**: individually generated payslip PDFs are stored in encrypted object storage with access controls limiting who can download them.
+
+    Agentlize HRM is SOC 2 Type II certified and complies with GDPR data protection requirements.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Leave
+
+<AccordionGroup>
+  <Accordion title="Can employees take a negative leave balance?">
+    This is configurable per leave type. By default, employees cannot submit leave requests that exceed their available balance. However, you can enable **negative balance (advance leave)** for specific leave types.
+
+    To configure this setting:
+
+    1. Go to **Settings → Leave Policies**.
+    2. Select the leave type you want to modify (e.g., Annual Leave).
+    3. Toggle **Allow Negative Balance** on or off.
+
+    When enabled, employees can submit leave requests beyond their current balance, resulting in a negative balance that will be offset by future accruals. You can optionally set a **minimum balance cap** (e.g., maximum of -5 days) to limit how far negative the balance can go.
+  </Accordion>
+
+  <Accordion title="What happens to unused leave when an employee is terminated?">
+    The treatment of unused leave at termination is configurable per leave type and may also depend on your local employment law requirements:
+
+    - **Paid out**: the remaining balance is calculated at the employee's daily rate and added as an additional payment in the final payroll run.
+    - **Forfeited**: unused balance is zeroed out without payment.
+
+    To configure this, go to **Settings → Leave Policies**, select the leave type, and look for the **Termination Balance Treatment** setting.
+
+    We strongly recommend consulting with your HR or legal advisor to ensure your configuration complies with the employment legislation in your jurisdiction before finalizing this setting.
+  </Accordion>
+
+  <Accordion title="Can I set different leave policies for different departments?">
+    Yes. Agentlize HRM supports department-level leave policy assignment. This means you can create different leave policies (with different accrual rates, entitlements, or rules) and apply them to specific departments.
+
+    For example, you might offer a more generous annual leave entitlement to employees in your Sales department, or apply different rules for your remote team.
+
+    To assign a leave policy to a department:
+
+    1. Go to **Settings → Leave Policies** and create or select a policy.
+    2. Under **Policy Assignment**, select **Specific Departments**.
+    3. Choose the departments to which this policy should apply.
+
+    Employees inherit the leave policy of their assigned department. If an employee is moved to a different department, their leave policy will update to match the new department's policy at the start of the next leave period.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Attendance
+
+<AccordionGroup>
+  <Accordion title="What if an employee forgets to clock out?">
+    If an employee forgets to clock out at the end of their shift, their shift record will show an open check-in with no corresponding check-out. This prevents the attendance record from being automatically approved.
+
+    A manager or HR Admin can manually correct the record:
+
+    1. Go to **Attendance** in the left sidebar.
+    2. Use the filters to find the employee and the affected date.
+    3. Click the attendance record that shows the missing clock-out.
+    4. Click **Edit Record** and enter the correct clock-out time.
+    5. Add a note explaining the manual correction (e.g., "Employee forgot to clock out — clock-out time confirmed with employee").
+    6. Click **Save**. The correction is logged in the record's audit trail.
+
+    <Note>Employees can also submit a correction request from their own self-service portal, which a manager can then review and approve.</Note>
+  </Accordion>
+
+  <Accordion title="Does Agentlize HRM support biometric attendance?">
+    Yes. Agentlize HRM supports integration with biometric attendance hardware devices (fingerprint scanners, facial recognition terminals, and RFID card readers) via our hardware integration module.
+
+    Because hardware setup is specific to the device model and your network configuration, biometric integrations are set up with the assistance of our technical team. To get started, contact **support@agentlize.com** with details about the hardware you use and the number of locations you need to connect.
+  </Accordion>
+
+  <Accordion title="Can I view attendance from a mobile device?">
+    Yes. The **Agentlize HRM mobile app** provides full attendance functionality on both iOS and Android:
+
+    - **Employees** can clock in and clock out, view their own attendance history, and submit correction requests.
+    - **Managers** can view their team's attendance in real time, approve or reject correction requests, and receive attendance anomaly alerts.
+    - **GPS check-in** is supported — you can require employees to be within a defined geofence radius of the workplace to clock in.
+
+    Download the app from the **App Store** (iOS) or **Google Play** (Android) and sign in with your Agentlize HRM credentials.
+  </Accordion>
+</AccordionGroup>

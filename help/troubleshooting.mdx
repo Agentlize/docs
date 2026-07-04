@@ -1,0 +1,266 @@
+---
+title: "Troubleshooting Common Issues in Agentlize HRM"
+sidebarTitle: "Troubleshooting"
+description: "Diagnose and resolve common problems with login, payroll calculations, attendance sync, and notifications in Agentlize HRM."
+---
+
+This guide helps you diagnose and resolve the most frequently reported issues in Agentlize HRM. Each section covers a specific area of the platform, lists common problems with their likely causes, and walks you through the steps to fix them. If you work through the relevant steps and the issue persists, see [Contacting Support](#contacting-support) at the bottom of this page.
+
+---
+
+## Login & Access Issues
+
+<AccordionGroup>
+  <Accordion title="I can't log in to my account">
+    **Symptoms**: The login page shows an error such as "Invalid email or password", you are redirected back to the login page after entering credentials, or the page loads but your dashboard does not appear.
+
+    **Steps to resolve**:
+
+    1. **Check your email and password** — Ensure Caps Lock is off and you are using the email address associated with your Agentlize HRM account. Passwords are case-sensitive.
+
+    2. **Reset your password** — If you are unsure of your password, click **Forgot Password?** on the login page, enter your email, and follow the reset instructions sent to your inbox.
+
+    3. **Check for account deactivation** — If your account was recently deactivated by an HR Admin (for example, if you are a manager whose account was put on hold), you will see a message indicating your account is inactive. Contact your HR Admin to reactivate your account.
+
+    4. **Try a different browser or incognito mode** — Browser extensions, cached credentials, or corrupted cookies can interfere with the login process. Open a private/incognito browser window and try logging in fresh.
+
+    5. **Clear browser cache** — If incognito mode works but your regular browser does not, clear your browser's cache and cookies and try again.
+
+    <Note>
+      If your organization uses **SSO (Single Sign-On)**, do not use the standard email/password form — instead, click **Sign in with Google** or **Sign in with Microsoft** as configured by your admin. See [SSO Not Working](#sso-not-working) below if that is also failing.
+    </Note>
+  </Accordion>
+
+  <Accordion title="I didn't receive my invitation email">
+    **Symptoms**: An HR Admin says they sent you an invitation to join the workspace, but the email has not arrived.
+
+    **Steps to resolve**:
+
+    1. **Check your spam and junk folders** — Invitation emails come from `notifications@agentlize.com`. Some email providers route these to spam, especially for new senders. If you find it there, mark it as "not spam" and click the invitation link.
+
+    2. **Check the Promotions or Updates tab** — If you use Gmail, check the Promotions tab, as automated emails are sometimes filtered there.
+
+    3. **Verify the email address** — Ask your HR Admin to confirm the exact email address they entered when sending the invitation. A typo (e.g., `.con` instead of `.com`) means the email went to a different address.
+
+    4. **Have the admin resend the invitation** — HR Admins can resend an invitation by going to **Settings → Team Members**, finding the pending invitation, and clicking **Resend Invite**. Invitation links expire after **72 hours**, so if the original invite is old, a fresh one is needed.
+
+    5. **Check with your IT team** — Some organizations use email filtering rules that block external senders or automated messages. Your IT team may need to allowlist `agentlize.com` as a trusted domain.
+  </Accordion>
+
+  <Accordion title="SSO is not working">
+    **Symptoms**: Clicking "Sign in with Google" or "Sign in with Microsoft" results in an error, a redirect loop, or a message saying the account is not authorized.
+
+    **Steps to resolve**:
+
+    1. **Verify SSO is correctly configured** — Only users with the **Owner** role can configure SSO. The Owner should go to **Settings → Integrations → [Google SSO or Microsoft Azure AD]** and confirm the integration is active and all required fields are filled in correctly.
+
+    2. **Check domain restrictions** — If your SSO configuration restricts login to a specific domain (e.g., `@yourcompany.com`), make sure you are signing in with an email address on that domain. Personal accounts (e.g., Gmail or personal Microsoft accounts) will be rejected.
+
+    3. **Check identity provider settings** — For Azure AD / SAML integrations, verify that the Entity ID and ACS URL in your Azure Enterprise Application exactly match the values shown in Agentlize HRM's SAML settings. A mismatch in these values is a common cause of SAML failures.
+
+    4. **Check user provisioning** — The employee must have an existing Agentlize HRM account with the same email address as their SSO identity. If they have never been invited to the workspace, SSO cannot create the account automatically (auto-provisioning is available on the Enterprise plan).
+
+    5. **Contact your IT administrator** — Azure AD SSO in particular may require tenant-wide admin consent from your organization's Azure AD administrator. If consent was not granted during setup, SSO will fail for all users.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Payroll Issues
+
+<AccordionGroup>
+  <Accordion title="An employee is missing from payroll">
+    **Symptoms**: When you run a payroll, a specific employee does not appear in the list of employees to be paid, even though they are actively employed.
+
+    **Steps to resolve**:
+
+    1. **Check the employee's status** — Go to the employee's profile and confirm their status is **Active**. Employees with a status of Inactive, On Leave (unpaid), or Terminated are excluded from payroll automatically.
+
+    2. **Check the employment start date** — If the employee's start date falls **after** the pay period end date, they will not appear in that payroll cycle. Confirm the start date is within the pay period being processed.
+
+    3. **Check the pay group assignment** — If your organization uses pay groups (e.g., separate payrolls for full-time vs. contract staff), confirm the employee is assigned to the correct pay group. Go to the employee's profile → **Employment Details → Pay Group**.
+
+    4. **Check for a missing salary component** — Employees without a salary or pay rate assigned may be excluded from payroll. Open the employee's profile and check **Compensation** to ensure a base salary or hourly rate is configured.
+
+    5. **Refresh the payroll run** — If you believe the data is correct, try closing and reopening the payroll run. The employee list is fetched when the run is initiated, and a fresh load may resolve a temporary sync issue.
+  </Accordion>
+
+  <Accordion title="Payroll calculations seem incorrect">
+    **Symptoms**: An employee's gross pay, net pay, or deduction amounts do not match your expectations.
+
+    **Steps to resolve**:
+
+    1. **Verify salary components** — Open the employee's profile → **Compensation** and confirm all salary components (base salary, allowances, deductions) are configured correctly with the right amounts and frequencies.
+
+    2. **Check for mid-period salary changes** — If an employee received a salary change during the pay period, the system will prorate their pay based on the effective date of the change. Review the payroll breakdown for the affected employee to see how the proration was applied.
+
+    3. **Review attendance data** — For hourly or attendance-based employees, payroll calculations depend on attendance records. Go to **Attendance**, filter by the employee and pay period, and verify that all hours are correctly recorded and have been approved (not left in Draft status).
+
+    4. **Check tax and deduction configurations** — Verify that the correct tax brackets, pension deductions, and other statutory deductions are configured under **Settings → Payroll Settings**. If statutory rates have changed (e.g., a new tax year), you may need to update the rates manually.
+
+    5. **Review the payroll calculation breakdown** — Click on the employee's line item within the payroll run to see a full line-by-line breakdown of how their pay was calculated. This often reveals exactly where the discrepancy originates.
+  </Accordion>
+
+  <Accordion title="I can't approve the payroll run">
+    **Symptoms**: The **Approve Payroll** button is greyed out, you receive a permissions error when clicking it, or the system won't let you proceed past the review step.
+
+    **Steps to resolve**:
+
+    1. **Check your role** — Only users with the **HR Admin** or **Owner** role can approve payroll runs. If you are a Manager, you can review and pre-approve payroll for your department, but final approval requires an HR Admin.
+
+    2. **Resolve all flagged items** — The payroll approval step will be blocked if there are any unresolved flags or warnings. Look for a **flagged items** indicator in the payroll run — common flags include missing bank details for an employee, attendance in Draft status, or a salary that has not been confirmed. Resolve each flagged item before approving.
+
+    3. **Check the payroll run status** — If the payroll run is in a **Locked** state (because another admin is currently editing it), you will not be able to approve until the lock is released. Wait a few minutes and try again, or contact the other admin.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Attendance Issues
+
+<AccordionGroup>
+  <Accordion title="An employee's clock-in is not registering">
+    **Symptoms**: An employee attempts to clock in but the system does not record the check-in, or the clock-in button appears greyed out or unresponsive.
+
+    **Steps to resolve**:
+
+    1. **Check internet connectivity** — The clock-in function requires an active internet connection. Ask the employee to check their connection and try again. If on mobile, switching from Wi-Fi to mobile data (or vice versa) can help.
+
+    2. **Refresh the page or restart the app** — A stuck browser session or cached app state can prevent clock-in from working. Refresh the web page or fully close and restart the mobile app.
+
+    3. **Check if a shift is assigned** — If your organization uses **shift scheduling**, employees can only clock in during an assigned shift window. Check whether the employee has an active shift assigned for the current date under **Scheduling → Shifts**. If not, create or assign a shift, or use the **Flexible Attendance** setting to allow clock-ins outside of shift windows.
+
+    4. **Check for a previous open check-in** — If the employee has an open (unresolved) check-in from a previous session that was never closed with a clock-out, the system may prevent a new clock-in. A manager or HR Admin should manually close the open record from **Attendance → Edit Record** before the employee tries again.
+
+    5. **Check attendance settings** — Go to **Settings → Attendance** and confirm the attendance tracking mode is set to **Enabled** for this employee's department or work group.
+  </Accordion>
+
+  <Accordion title="GPS attendance is failing">
+    **Symptoms**: When an employee tries to clock in via GPS on the mobile app, they receive a "Location not valid" or "Outside geofence" error even though they appear to be at the correct location.
+
+    **Steps to resolve**:
+
+    1. **Ensure location permissions are enabled** — The employee's mobile device must grant Agentlize HRM **precise location** permissions. Go to **Device Settings → Apps → Agentlize HRM → Permissions → Location** and ensure it is set to **Allow While Using App** (or **Always**, if your policy requires background tracking).
+
+    2. **Check GPS accuracy** — GPS accuracy can vary based on the environment (indoors, basements, or dense urban areas can reduce accuracy). Ask the employee to move closer to a window or step outside briefly, wait for the GPS lock to stabilize, and try again.
+
+    3. **Verify the geofence configuration** — Go to **Settings → Attendance → Locations** and check the geofence radius configured for the employee's assigned location. If the radius is very tight (e.g., 50 meters), employees on the edge of the building may be excluded. Consider increasing the radius slightly (e.g., to 100–150 meters).
+
+    4. **Check if the location is correctly plotted** — Open the location settings and visually verify that the pin on the map is placed at the correct address. An incorrectly placed pin is a common cause of legitimate employees being rejected.
+
+    5. **Check the employee's assigned location** — In the employee's profile under **Employment Details**, confirm the correct workplace location is assigned. If no location is assigned, the geofence check cannot be applied.
+  </Accordion>
+
+  <Accordion title="Attendance data is not syncing to payroll">
+    **Symptoms**: After processing attendance, the hours do not appear in the payroll run, or the payroll shows different hours than what was recorded in attendance.
+
+    **Steps to resolve**:
+
+    1. **Check attendance record status** — Attendance records must be in **Approved** status to be picked up by payroll. Records in **Draft** or **Pending Review** status are not included. Go to **Attendance**, filter by the affected employee and pay period, and verify that all records are approved. If not, approve them before re-running payroll.
+
+    2. **Check the pay period dates** — Confirm that the attendance records you expect to see fall within the exact date range of the payroll period being processed. Records that fall outside the period dates will not be included.
+
+    3. **Re-sync attendance data** — If attendance records were approved after the payroll run was initiated, the run may need to be refreshed. Close the payroll run (without approving), re-open it, and allow it to reload the latest attendance data.
+
+    4. **Verify the payroll calculation method** — For hourly employees, confirm that the salary configuration is set to **Hourly** (not salaried) in the employee's **Compensation** settings. Salaried employees are paid a fixed amount regardless of hours worked, so their attendance hours do not affect the gross pay calculation.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Leave Issues
+
+<AccordionGroup>
+  <Accordion title="An employee's leave balance looks incorrect">
+    **Symptoms**: An employee's leave balance shows more or fewer days than expected — either immediately after onboarding, after a leave request was processed, or at the start of a new leave year.
+
+    **Steps to resolve**:
+
+    1. **Check the leave policy settings** — Go to **Settings → Leave Policies** and review the policy assigned to the employee's department. Verify the accrual rate, accrual frequency (monthly, annually, per-pay-period), and annual entitlement are configured correctly.
+
+    2. **Verify that accrual has run** — Leave balances only update when the scheduled accrual job runs (typically on the first day of each month or pay period). If the employee was added recently and the accrual hasn't run yet, their balance may show as zero or partial. You can trigger a manual accrual from **Settings → Leave Policies → [Policy Name] → Run Accrual Now**.
+
+    3. **Check for manual adjustments** — Go to the employee's profile → **Leave → Balance History** to see a full log of all accruals, adjustments, and deductions. If a manual adjustment was made in error, it will appear here and an HR Admin can reverse it.
+
+    4. **Check the leave year reset date** — If the leave year has recently reset (based on your fiscal year start date), balances will have been zeroed or rolled over according to your carry-over policy. Review **Settings → Leave Policies → Carry-Over Rules** to confirm the carry-over was applied as expected.
+  </Accordion>
+
+  <Accordion title="An employee can't submit a leave request">
+    **Symptoms**: An employee attempts to submit a leave request but sees an error message, the submit button is inactive, or the request fails validation.
+
+    **Steps to resolve**:
+
+    1. **Check for sufficient balance** — If the leave type does not allow negative balances, the request will be rejected if the employee does not have enough days available. The employee can check their current balance from **My Leave → Balances**.
+
+    2. **Check the advance notice requirement** — Some leave types require requests to be submitted a minimum number of days in advance (e.g., Annual Leave may require 7 days notice). If the requested start date is too soon, the request will be blocked. Review the **Minimum Notice Period** setting in **Settings → Leave Policies** for the relevant leave type.
+
+    3. **Check for blackout dates** — If the requested dates fall within a configured **blackout period** (a date range during which leave is restricted, such as end-of-year), the request will be rejected. Go to **Settings → Leave Policies → Blackout Dates** to review.
+
+    4. **Check that the leave type is available to this employee** — Some leave types are only available to specific employee groups (e.g., Maternity Leave is only available to eligible employees, or certain leave types are restricted by employment type). Verify that the employee is eligible for the selected leave type in the policy settings.
+  </Accordion>
+
+  <Accordion title="A manager is not receiving leave notification emails">
+    **Symptoms**: When an employee submits a leave request, the assigned manager does not receive an email notification.
+
+    **Steps to resolve**:
+
+    1. **Check notification settings** — Go to **Settings → Notifications** and confirm that the **Leave Request Submitted** notification is enabled for the Manager recipient. If it has been toggled off at the organization level, re-enable it.
+
+    2. **Verify the manager is assigned in the employee profile** — The notification is sent to the employee's assigned manager. Open the employee's profile → **Employment Details** and confirm a manager is listed in the **Reports To** field. If this field is empty, no manager notification can be sent.
+
+    3. **Check the manager's own notification preferences** — The manager may have turned off this notification type in their personal notification preferences. The manager can check this from **Profile → Notifications**. Note that organization-level settings override personal settings if the notification is disabled at the org level.
+
+    4. **Check the manager's spam folder** — Notification emails from `notifications@agentlize.com` can sometimes be filtered to spam. Ask the manager to check their spam/junk folder and allowlist the sender if needed.
+
+    5. **Verify the manager's email address** — Confirm that the manager's profile has a valid, active email address under **Profile → Personal Details**.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Notifications Not Working
+
+If you are not receiving notifications that you expect, work through the following checks:
+
+<Steps>
+  <Step title="Check Organization-Level Notification Settings">
+    Go to **Settings → Notifications** and confirm the relevant event is toggled **on** and that your role (Employee, Manager, or HR Admin) is listed as a recipient. If the event is disabled at the organization level, no notifications will be sent for it to anyone.
+  </Step>
+  <Step title="Check Your Personal Notification Preferences">
+    Go to **Profile (top-right avatar) → Notifications** and verify you have not disabled the specific notification type for your account.
+  </Step>
+  <Step title="Check Your Email Spam or Promotions Folder">
+    Notification emails come from `notifications@agentlize.com`. Check your spam, junk, or promotions folder. If you find them there, mark them as "not spam" and add the sender to your contacts or allowlist to ensure future delivery.
+  </Step>
+  <Step title="Check In-App Notifications">
+    Click the **bell icon (🔔)** in the top navigation bar. If the notification appears in-app but not via email, the issue is specific to email delivery. Contact your IT team to verify that `agentlize.com` is not blocked by your email filtering rules.
+  </Step>
+  <Step title="Check Mobile Push Notification Permissions">
+    If you are expecting mobile push notifications, open your device's **Settings → Notifications → Agentlize HRM** and confirm that notifications are **allowed**. On iOS, also ensure that **Allow Notifications** is toggled on and that the alert style is not set to None.
+  </Step>
+</Steps>
+
+---
+
+## Contacting Support
+
+If the steps in this guide do not resolve your issue, our support team is here to help.
+
+<Info>
+  **Email**: support@agentlize.com
+
+  **In-App Chat**: Click the **? (Help) icon** in the bottom-left corner of any page in Agentlize HRM to open the support chat.
+
+  **Response Time**: Our team responds to all support requests within **24 hours** on business days (Monday–Friday). Enterprise plan customers have access to priority support with a **4-hour response time SLA**.
+</Info>
+
+To help us resolve your issue as quickly as possible, please include the following information in your support request:
+
+- **Workspace name** (shown at the top of your Settings page)
+- **Affected employee names or IDs** (if the issue involves specific employees)
+- **A description of the issue**, including what you expected to happen and what actually happened
+- **Steps to reproduce** the problem, if possible
+- **Screenshots or screen recordings** showing the error or unexpected behavior
+- **Browser and operating system** (for web issues) or **app version** (for mobile issues)
+
+The more detail you provide, the faster we can diagnose and resolve the issue for you.

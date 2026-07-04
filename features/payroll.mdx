@@ -1,0 +1,185 @@
+---
+title: "Automated Payroll Processing and Payslip Generation"
+sidebarTitle: "Payroll"
+description: "Run accurate payroll, generate payslips, manage deductions and bonuses, and stay compliant with Agentlize HRM's payroll engine."
+---
+
+Agentlize HRM's payroll engine automates the most time-consuming parts of running payroll — pulling attendance data, applying salary components, calculating deductions and bonuses, and generating payslips — so your finance and HR teams can close payroll confidently and on time. The engine is designed to be flexible enough to handle diverse workforce structures, multi-currency operations, and complex deduction rules, while remaining straightforward enough for non-specialists to operate without making costly errors.
+
+---
+
+## Setting Up Payroll
+
+Before running your first payroll, configure the foundational settings that govern how the payroll engine behaves.
+
+<Steps>
+  <Step title="Open Payroll Settings">
+    Go to **Settings → Payroll → General Settings**.
+  </Step>
+  <Step title="Configure the pay period">
+    Choose how frequently you pay employees:
+    - **Monthly** — One payroll run per calendar month (most common)
+    - **Bi-weekly** — Every two weeks, resulting in 26 pay periods per year
+    - **Weekly** — Every week, resulting in 52 pay periods per year
+
+    Select your **Pay Period Start Date** — for monthly payroll, this is typically the 1st of each month.
+  </Step>
+  <Step title="Set the currency">
+    Select the primary **Payroll Currency**. If you employ staff in multiple countries with different currencies, you can configure per-employee currency overrides from each employee's payroll profile.
+  </Step>
+  <Step title="Choose the payment method">
+    Select the default **Payment Method**:
+    - **Bank Transfer** — Payroll amounts are calculated and you export a payment file for your bank. Supported formats include SEPA, ACH, and generic CSV.
+    - **Cash** — Payroll is calculated and payslips are generated, but disbursement is handled manually by your finance team.
+  </Step>
+  <Step title="Configure tax settings">
+    Enter your organization's tax jurisdiction and applicable tax tables. Go to **Settings → Payroll → Tax Configuration** to set up income tax brackets, social security contributions, and other statutory deductions specific to your country.
+  </Step>
+  <Step title="Save settings">
+    Click **Save**. Your payroll configuration is now active and will be applied to all future payroll runs.
+  </Step>
+</Steps>
+
+---
+
+## Salary Components
+
+Every employee's pay is built from individual salary components — the building blocks that together determine their total gross pay, deductions, and net pay.
+
+**Component types:**
+
+- **Base Salary** — The fixed monthly (or periodic) salary for the employee. Every employee must have a base salary component.
+- **Allowances** — Additional fixed or variable amounts added to gross pay. Common examples include housing allowance, transport allowance, and meal allowance.
+- **Deductions** — Amounts subtracted from gross pay before net pay is calculated. Includes statutory deductions like income tax and social security, as well as voluntary deductions like loan repayments or health insurance premiums.
+- **Bonuses** — One-time or recurring additional payments. Bonuses can be set as a fixed amount or as a percentage of base salary.
+
+**Adding components to an employee:**
+
+<Steps>
+  <Step title="Open the employee's payroll profile">
+    Navigate to **Employees**, open the employee's profile, and click the **Payroll** tab.
+  </Step>
+  <Step title="Add a salary component">
+    Click **Add Component** and select the component type from the dropdown.
+  </Step>
+  <Step title="Configure the component">
+    Enter the component name, amount (fixed value or percentage), and whether it is recurring (applied every pay period) or one-time (applied only in a specified pay period). For deductions, specify whether they are pre-tax or post-tax.
+  </Step>
+  <Step title="Set the effective date">
+    Enter the date from which this component should apply. Components can be backdated or scheduled to start in a future pay period.
+  </Step>
+  <Step title="Save">
+    Click **Save**. The component appears in the employee's salary breakdown and will be included in the next payroll run that covers its effective date.
+  </Step>
+</Steps>
+
+You can also create **global components** that apply to all employees in a department or across the entire organization. Manage these under **Settings → Payroll → Global Components**.
+
+---
+
+## Running Payroll
+
+Running payroll in Agentlize HRM follows a structured, step-by-step flow that guides you from selecting the period to distributing payslips. Each step includes a review stage so you can catch and correct issues before anything is finalized.
+
+<Steps>
+  <Step title="Select the pay period">
+    Navigate to **Payroll → Run Payroll** and select the pay period you want to process from the dropdown. The system lists all available periods that have not yet been run.
+  </Step>
+  <Step title="Review attendance data">
+    The system pulls attendance records for the selected period and flags any anomalies: missing clock-outs, unapproved overtime, or employees with no records for the period. Resolve outstanding issues in the **Attendance** module before proceeding.
+  </Step>
+  <Step title="Review adjustments">
+    Check for one-time adjustments for this period — such as bonuses, deductions for unpaid leave, or salary changes that took effect mid-period. Add or edit adjustments as needed by clicking **Add Adjustment** next to any employee.
+  </Step>
+  <Step title="Calculate payroll">
+    Click **Calculate**. The engine processes all salary components, attendance-based deductions (for unpaid leave or absent days), approved overtime, and tax calculations for every employee in scope. This typically completes within a few seconds.
+  </Step>
+  <Step title="Review the payroll summary">
+    Examine the summary table, which lists every employee's gross pay, total deductions, and net pay for the period. Use the search and filter tools to spot-check individual records. If you find an error, click the employee's row to edit their components or adjustments, then recalculate.
+  </Step>
+  <Step title="Approve payroll">
+    Once you are satisfied with the summary, click **Approve Payroll**. This locks the payroll run — no further edits can be made to this period. If payment method is set to Bank Transfer, you can download the payment file at this stage.
+  </Step>
+  <Step title="Generate and distribute payslips">
+    Click **Generate Payslips**. The system creates a PDF payslip for every employee, sends each payslip to the employee's registered email address, and makes it available in their self-service portal. You receive a confirmation once all payslips have been delivered.
+  </Step>
+</Steps>
+
+<Warning>
+  Payroll **cannot be undone once marked as paid**. If you realize there is an error after approving payroll, do not attempt to re-run the same period — use the **Corrections** feature described below to address the discrepancy in a controlled way.
+</Warning>
+
+<Note>
+  Payroll calculations use the attendance data from the same pay period. If attendance records for the period are incomplete or contain errors at the time payroll is calculated, those errors will be reflected in the payslips. Always finalize and review attendance data before beginning the payroll run for that period.
+</Note>
+
+---
+
+## Payslips
+
+Agentlize HRM automatically generates a formatted payslip for every employee at the end of each payroll run.
+
+**Each payslip includes:**
+
+- **Employee details** — Name, Employee ID, job title, and department
+- **Pay period** — The start and end dates of the period covered
+- **Gross Pay** — Base salary plus all applicable allowances and bonuses before deductions
+- **Deductions Breakdown** — Each deduction listed individually with its name and amount (income tax, social security, loan repayments, etc.)
+- **Net Pay** — Gross pay minus total deductions — the amount the employee actually receives
+- **Payment Date** — The date on which payment will be or was made
+- **Year-to-Date Totals** — Cumulative gross pay, deductions, and net pay from the start of the financial year
+
+Payslips are delivered to employees automatically via email and are always accessible from the **Payslips** section of the employee self-service portal. Employees can download their payslips as PDF at any time.
+
+HR admins can access any employee's payslip history from the employee profile under the **Payroll** tab.
+
+---
+
+## Payroll Reports
+
+Agentlize HRM provides a suite of payroll reports to give your finance and HR leadership clear visibility into labor costs.
+
+<CardGroup cols={2}>
+  <Card title="Payroll Summary Report" icon="file-lines">
+    A per-employee breakdown of gross pay, deductions, and net pay for a selected pay period. The standard report for internal payroll records and audits.
+  </Card>
+  <Card title="Cost Center Breakdown" icon="building">
+    Total payroll cost grouped by department or cost center. Helps finance allocate labor costs accurately across the business.
+  </Card>
+  <Card title="Year-to-Date Report" icon="calendar">
+    Cumulative payroll figures for each employee from the start of the financial year to the selected month. Essential for annual tax filings and compensation analysis.
+  </Card>
+  <Card title="Deductions Report" icon="circle-minus">
+    A detailed breakdown of all deductions applied in a pay period — tax, statutory contributions, voluntary deductions — grouped by type. Useful for remittance filings.
+  </Card>
+</CardGroup>
+
+All reports can be exported to **CSV** or **Excel (XLSX)** format. Go to **Payroll → Reports**, select the report type and period, apply any filters, and click **Export**.
+
+---
+
+## Corrections
+
+If you discover a payroll error after a period has been approved and marked as paid, use the corrections workflow to address it cleanly without disrupting other records.
+
+<Steps>
+  <Step title="Identify the error">
+    Go to **Payroll → History** and open the affected pay period. Identify the employee or employees with incorrect figures and note what needs to change.
+  </Step>
+  <Step title="Initiate a correction run">
+    Click **Create Correction** in the top-right corner of the pay period view. Enter a brief description of what is being corrected and why.
+  </Step>
+  <Step title="Adjust the affected records">
+    In the correction run, edit only the records that contain errors. Add, remove, or modify salary components as needed. The correction run displays the **difference** between the original approved amount and the corrected amount for each employee.
+  </Step>
+  <Step title="Calculate and review">
+    Click **Calculate Correction**. Review the delta — positive corrections represent additional payments owed to employees; negative corrections represent overpayments to be recovered.
+  </Step>
+  <Step title="Approve the correction">
+    Click **Approve Correction**. The system logs the correction against the original pay period, updates the employee's year-to-date totals, and generates corrected payslips. Corrected payslips are clearly marked as such and re-delivered to affected employees.
+  </Step>
+</Steps>
+
+<Note>
+  Correction payroll runs are linked to the original period in the audit log. All changes — including who initiated the correction, when it was approved, and what changed — are fully traceable for compliance purposes.
+</Note>

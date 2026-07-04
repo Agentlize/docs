@@ -1,0 +1,175 @@
+---
+title: "Recruitment Pipeline and Job Posting Management"
+sidebarTitle: "Recruitment"
+description: "Post jobs, manage candidates, track your hiring pipeline, and streamline the recruitment process with Agentlize HRM."
+---
+
+Agentlize HRM's recruitment module brings your entire hiring process into one place — from the moment you open a vacancy to the day a new hire walks through the door. Create and publish job postings, track every applicant through a visual pipeline, schedule and record interviews, and convert accepted offers directly into employee records without re-entering a single field. Whether you hire occasionally or run continuous high-volume recruitment, the module scales to fit your process.
+
+---
+
+## Creating a Job Posting
+
+A job posting defines the role you are hiring for and collects the information candidates need to apply. It also serves as the anchor for your recruitment pipeline — all applications for a role are organized under their respective posting.
+
+<Steps>
+  <Step title="Open Recruitment">
+    Navigate to **Recruitment** in the left sidebar, then click **Create Job Posting**.
+  </Step>
+  <Step title="Enter the job details">
+    Fill in the following fields:
+
+    - **Job Title** — The official title of the role (e.g., "Senior Product Designer")
+    - **Department** — The department the role belongs to
+    - **Location** — Select **On-Site** and choose the office location, **Remote**, or **Hybrid** and specify the expected in-office frequency
+    - **Employment Type** — Full-Time, Part-Time, Contract, or Intern
+    - **Salary Range** *(optional)* — Enter a minimum and maximum salary. You can choose to display this range to applicants or keep it internal only.
+    - **Application Deadline** — The last date you will accept applications. The posting closes automatically after this date.
+  </Step>
+  <Step title="Write the job description">
+    Use the rich-text editor to write the **Job Description**. Describe the role, team, and company context. Below the description, add the **Requirements** — a list of qualifications, skills, and experience the ideal candidate should have. Use the formatting toolbar to create bullet lists for readability.
+  </Step>
+  <Step title="Configure the application form">
+    Choose which fields appear on the application form. The defaults are: Name, Email, Phone, CV/Resume upload, and Cover Letter. Add custom questions (text, multiple choice, or yes/no) if you need specific information from applicants — for example, "Are you authorized to work in [country]?" or "What is your notice period?"
+  </Step>
+  <Step title="Set the hiring team">
+    Assign a **Hiring Manager** and any additional **Reviewers** who will have access to this posting's pipeline and candidate profiles.
+  </Step>
+  <Step title="Publish the posting">
+    Click **Publish**. The posting goes live on your public careers page (hosted at `yourcareers.agentlize.io` by default). You can also copy the job posting URL to share directly or embed on your company website.
+  </Step>
+</Steps>
+
+To edit or pause a live posting, go to **Recruitment → Job Postings**, find the role, and click **Edit** or **Pause**. Paused postings stop accepting new applications but remain visible in the directory for your reference.
+
+---
+
+## Application Stages
+
+Every candidate who applies moves through a defined set of pipeline stages. Agentlize HRM provides the following default stages out of the box:
+
+**Applied → Screening → Interview → Offer → Hired / Rejected**
+
+Each stage represents a milestone in your hiring decision. Candidates stay in a stage until you manually move them forward (or reject them).
+
+### Customizing Stages
+
+You can customize the pipeline stages for each job posting to match your actual hiring process.
+
+<Steps>
+  <Step title="Open the job posting">
+    Go to **Recruitment → Job Postings** and click the posting you want to configure.
+  </Step>
+  <Step title="Edit the pipeline">
+    Click **Pipeline Settings** (or the gear icon on the Kanban board). You see the current list of stages.
+  </Step>
+  <Step title="Add, rename, or remove stages">
+    - **Add a stage** — Click **Add Stage**, enter a name (e.g., "Technical Test" or "Second Interview"), and drag it into position.
+    - **Rename a stage** — Click the pencil icon next to any stage name and type the new name.
+    - **Remove a stage** — Click the trash icon next to a stage. Any candidates currently in that stage will be prompted to be moved to an adjacent stage before the deletion is confirmed.
+  </Step>
+  <Step title="Save">
+    Click **Save Pipeline**. The updated stages take effect immediately and apply to all candidates in this posting.
+  </Step>
+</Steps>
+
+<Note>
+  Pipeline stage configurations are per-posting. Changes to one job posting's pipeline do not affect other postings. If you want a standardized pipeline across all roles, set your preferred stages as the default under **Settings → Recruitment → Default Pipeline**.
+</Note>
+
+---
+
+## Managing Candidates
+
+The candidate pipeline view — accessible from **Recruitment → [Job Posting] → Pipeline** — displays all applicants for a role as a Kanban board, with one column per stage.
+
+**Viewing an application:**
+
+Click any candidate card to open their full application profile. You can view their submitted form responses, download their CV or portfolio attachments, and see a complete activity log for that candidate (emails sent, stage movements, notes added, interviews scheduled).
+
+**Moving candidates through stages:**
+
+Drag a candidate card from one column to the next, or open the candidate profile and use the **Move to Stage** dropdown. When you move a candidate, you can optionally trigger an automated email to notify them of their progression.
+
+**Adding notes:**
+
+Open a candidate profile and click **Add Note** in the activity timeline. Notes are visible to all members of the hiring team for that posting. Use notes to record phone screen impressions, recruiter observations, or any context that should inform the next stage.
+
+**Rejecting candidates:**
+
+Click **Reject** on a candidate card or from within their profile. Select a rejection reason from the list (or enter a custom one) and choose whether to send the candidate an automated rejection email. Rejected candidates are moved to the **Rejected** column and can be reviewed but not progressed further.
+
+<Tip>
+  Use the **Candidate Import** feature to add applicants sourced from external job boards (LinkedIn, Indeed, etc.) directly into your pipeline. Go to **Recruitment → [Job Posting] → Candidates → Import**, download the import template, fill in the applicant details, and upload the file. Imported candidates start in the **Applied** stage.
+</Tip>
+
+---
+
+## Interview Scheduling
+
+Agentlize HRM's interview scheduler eliminates the back-and-forth of coordinating meeting times across interviewers, candidates, and calendar systems.
+
+<Steps>
+  <Step title="Open the candidate profile">
+    Navigate to the candidate you want to interview and click **Schedule Interview**.
+  </Step>
+  <Step title="Select interviewers">
+    Choose one or more interviewers from your organization. Their calendar availability is checked in real time (requires calendar integration — connect your Google Workspace or Microsoft 365 calendar under **Settings → Integrations → Calendar**).
+  </Step>
+  <Step title="Choose a date and time">
+    Select a time slot from the availability grid. Slots where all selected interviewers are free are highlighted. Choose the duration of the interview (30, 45, 60, or 90 minutes).
+  </Step>
+  <Step title="Add interview details">
+    Select the interview format — **In Person** (enter the room or location), **Video Call** (a meeting link is auto-generated), or **Phone Call**. Add any preparation notes or instructions for the candidate.
+  </Step>
+  <Step title="Send calendar invites">
+    Click **Schedule**. Calendar invites are automatically sent to the candidate (at their application email address) and all selected interviewers. The interview appears in the candidate's activity timeline.
+  </Step>
+  <Step title="Record feedback after the interview">
+    After the interview is completed, each interviewer receives a notification to submit their feedback. Open the interview from the candidate's timeline, click **Add Feedback**, complete the structured feedback form (scoring criteria, strengths, concerns, recommendation), and submit. Feedback from all interviewers is aggregated on the candidate's profile for the hiring manager to review.
+  </Step>
+</Steps>
+
+---
+
+## Hiring a Candidate
+
+When you're ready to make an offer and the candidate accepts, convert them directly to an employee record with a single action — no double data entry required.
+
+<Steps>
+  <Step title="Move the candidate to the Offer stage">
+    Drag the candidate card to the **Offer** column, or use the Move to Stage dropdown. Optionally, use the **Send Offer Letter** feature to generate and deliver a formatted offer letter to the candidate directly from Agentlize HRM.
+  </Step>
+  <Step title="Mark the offer as accepted">
+    Once the candidate accepts, open their profile and click **Mark Offer Accepted**.
+  </Step>
+  <Step title="Convert to employee">
+    Click **Convert to Employee**. A new employee profile creation form opens, pre-filled with all the information from the candidate's application: name, email, phone, job title, and department. Review the pre-filled data, add any missing information (such as start date, employment type, and salary), and click **Create Employee**.
+  </Step>
+  <Step title="Complete onboarding">
+    The new employee record is live and the candidate's pipeline entry is automatically moved to the **Hired** stage. You can immediately proceed with uploading documents, assigning a shift, and configuring their payroll components from their new employee profile.
+  </Step>
+</Steps>
+
+---
+
+## Recruitment Reports
+
+Track the effectiveness of your hiring process with Agentlize HRM's built-in recruitment analytics. Navigate to **Recruitment → Reports** to access the following:
+
+<CardGroup cols={2}>
+  <Card title="Time-to-Hire" icon="clock">
+    The average number of days from a job posting's creation date to a candidate being marked as Hired. Broken down by department and role level.
+  </Card>
+  <Card title="Applications per Job" icon="users">
+    The total number of applications received per posting, with a trend line over time. Helps evaluate the reach and attractiveness of your job descriptions.
+  </Card>
+  <Card title="Stage Conversion Rates" icon="chart-bar">
+    The percentage of candidates who advance from each stage to the next. Identify where candidates are dropping off or being rejected most frequently.
+  </Card>
+  <Card title="Hiring Funnel" icon="filter">
+    An end-to-end funnel visualization showing how many candidates entered at the Applied stage and how many progressed through to Hired. Available per posting or across all roles in a selected date range.
+  </Card>
+</CardGroup>
+
+All reports can be exported as **CSV** or **PDF**. You can also schedule automated report delivery to hiring managers or leadership by clicking **Schedule Report** on any report page.
