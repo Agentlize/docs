@@ -1,0 +1,197 @@
+---
+title: "Tổng quan HRM"
+sidebarTitle: "Tổng quan"
+description: "Giới thiệu tổng quan về hệ thống HRM — Phiên bản 1.0, 5 vai trò và hành trình của một yêu cầu tuyển dụng."
+---
+
+> **Phiên bản 1.0**
+>
+> Ngày cập nhật: 07/2026 · Đối tượng: Mọi người trong công ty · Ngôn ngữ: 100% tiếng Việt
+
+Chào mừng bạn đến với tài liệu hướng dẫn sử dụng **HRM — Phiên bản 1.0**. Tài liệu này được thiết kế để mỗi người trong công ty — từ BOD đến Hiring Manager — đều có thể hiểu nhanh vai trò của mình và sử dụng hệ thống hiệu quả trong vòng 30 giây đầu tiên.
+
+<CardGroup cols={2}>
+  <Card title="Tổng quan nhanh" icon="bolt" href="#tong-quan-nhanh">
+    5 vai trò · 6 quy trình · 30-45 ngày tuyển 1 người
+  </Card>
+
+  <Card title="Bạn là ai?" icon="user" href="#ban-la-ai">
+    Chọn vai trò của bạn để đọc phần phù hợp
+  </Card>
+
+  <Card title="Hành trình yêu cầu" icon="route" href="#hanh-trinh">
+    Câu chuyện của chị Minh — Leader Marketing — từ lúc tạo yêu cầu đến khi tuyển xong
+  </Card>
+
+  <Card title="5 vai trò" icon="users" href="#cac-vai-tro">
+    TA · HRD · Leader · BOD · HM — mỗi vai trò một câu chuyện
+  </Card>
+</CardGroup>
+
+---
+
+## Tổng quan nhanh (30 giây đầu tiên)
+
+HRM là hệ thống quản lý nhân sự toàn diện — nơi tập trung mọi hoạt động từ tuyển dụng, đánh giá, đến ra quyết định nhân sự.
+
+| Con số ấn tượng |  |
+| --- | --- |
+| 🎯 **5 vai trò** | Mỗi vai trò có quyền hạn và công việc riêng |
+| 📋 **6 quy trình chính** | Tuyển dụng, duyệt đơn, đánh giá, ngân sách, chi phí, audit |
+| ⚡ **30-45 ngày** | Thời gian trung bình từ yêu cầu đến tuyển xong 1 người |
+| 🔄 **Theo thời gian thực** | Mọi người đều thấy tiến trình cập nhật ngay lập tức |
+| 🤖 **AI hỗ trợ** | Gợi ý nội dung yêu cầu, phân tích hồ sơ ứng viên |
+
+---
+
+## Bạn là ai? {#ban-la-ai}
+
+Mỗi vai trò có một câu chuyện riêng. Bấm vào vai trò của bạn để xem chi tiết:
+
+<CardGroup cols={2}>
+  <Card title="TA — Chuyên viên Tuyển dụng" icon="magnifying-glass" href="/hrm/role-ta">
+    Tìm hồ sơ, lên lịch PV, theo dõi ứng viên
+  </Card>
+
+  <Card title="HRD — Giám đốc Nhân sự" icon="building" href="/hrm/role-hrd-bod">
+    Duyệt đơn, phân công TA, quản lý ngân sách
+  </Card>
+
+  <Card title="Leader — Trưởng phòng" icon="briefcase" href="/hrm/role-leader">
+    Tạo yêu cầu tuyển, theo dõi tiến trình
+  </Card>
+
+  <Card title="BOD — Ban Giám đốc" icon="crown" href="/hrm/role-hrd-bod">
+    Phê duyệt chiến lược, xem báo cáo tổng quan
+  </Card>
+
+  <Card title="HM — Quản lý phòng ban" icon="user-tie" href="/hrm/role-hm">
+    Đánh giá chuyên môn ứng viên
+  </Card>
+</CardGroup>
+
+---
+
+## Hành trình của một yêu cầu tuyển dụng {#hanh-trinh}
+
+Đây là câu chuyện của **chị Minh**, Trưởng phòng Marketing, khi chị muốn tuyển thêm 1 nhân viên.
+
+### Sơ đồ quy trình
+
+```mermaid
+flowchart LR
+    A["Chị Minh<br/>tạo yêu cầu"] --> B{Duyệt}
+    B -->|Sếp trực tiếp| C["CEO công ty con"]
+    C -->|Đồng ý| D["HRD<br/>phân công"]
+    D --> E["TA<br/>xử lý"]
+    E --> F[Tìm ứng viên]
+    F --> G[Phỏng vấn]
+    G --> H{Gửi offer}
+    H -->|Ứng viên đồng ý| I["Tuyển thành công"]
+    H -->|Từ chối| F
+    B -->|Yêu cầu sửa| A
+    B -->|Từ chối| J["Kết thúc"]
+
+    style A fill:#dbeafe,stroke:#2563eb
+    style I fill:#d1fae5,stroke:#059669
+    style J fill:#fee2e2,stroke:#dc2626
+```
+
+### 4 giai đoạn chính
+
+```mermaid
+graph TB
+    subgraph "Giai đoạn 1: Tạo yêu cầu (Ngày 1)"
+        G1A[Leader điền form] --> G1B[AI gợi ý nội dung]
+        G1B --> G1C[Gửi phê duyệt]
+    end
+
+    subgraph "Giai đoạn 2: Duyệt (Ngày 2-3)"
+        G2A[Sếp trực tiếp duyệt] --> G2B[HRD duyệt cuối]
+        G2B --> G2C{Quyết định}
+    end
+
+    subgraph "Giai đoạn 3: Phân công (Ngày 3-4)"
+        G3A[HRD chọn TA phù hợp] --> G3B[TA nhận thông báo]
+    end
+
+    subgraph "Giai đoạn 4: Xử lý (Ngày 5+)"
+        G4A[Tạo mô tả vị trí] --> G4B[Tìm ứng viên]
+        G4B --> G4C[Phỏng vấn]
+        G4C --> G4D[Gửi offer]
+        G4D --> G4E[Tuyển thành công]
+    end
+
+    G1C --> G2A
+    G2C -->|Đồng ý| G3A
+    G3B --> G4A
+    G2C -->|Từ chối| END1[Kết thúc]
+    G2C -->|Yêu cầu sửa| G1A
+
+    style END1 fill:#fee2e2,stroke:#dc2626
+    style G4E fill:#d1fae5,stroke:#059669
+```
+
+### Tóm tắt timeline
+
+<Note>
+  💡 **Chị Minh không cần biết chi tiết kỹ thuật.** Chị chỉ cần biết:
+
+  - Ngày 1: Chị tạo yêu cầu, gửi đi
+  - Ngày 2-3: Sếp chị và HRD duyệt (chị sẽ nhận thông báo)
+  - Ngày 3-4: HRD phân công cho TA (chị sẽ thấy trong bảng điều khiển)
+  - Từ ngày 5: TA xử lý tuyển dụng (chị theo dõi tiến trình)
+  - Khi có ứng viên cần đánh giá: chị nhận thông báo
+</Note>
+
+---
+
+## 5 vai trò — Ai làm gì? {#cac-vai-tro}
+
+```mermaid
+graph TB
+    subgraph "Tầng chiến lược"
+        BOD["Ban Giám đốc<br/>Phê duyệt chiến lược"]
+    end
+
+    subgraph "Tầng vận hành"
+        HRD["Giám đốc Nhân sự<br/>Duyệt, Phân công, Ngân sách"]
+    end
+
+    subgraph "Tầng thực thi"
+        Leader["Trưởng phòng<br/>Tạo yêu cầu, Theo dõi"]
+        TA["Chuyên viên Tuyển dụng<br/>Xử lý ứng viên"]
+    end
+
+    subgraph "Tầng hỗ trợ"
+        HM["Hiring Manager<br/>Đánh giá chuyên môn"]
+    end
+
+    BOD -->|Phê duyệt| HRD
+    HRD -->|Phân công| TA
+    Leader -->|Tạo yêu cầu| HRD
+    HRD -->|Duyệt| Leader
+    TA -->|Cần đánh giá| HM
+    HM -->|Gửi đánh giá| TA
+
+    style BOD fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style HRD fill:#ede9fe,stroke:#7c3aed,stroke-width:2px
+    style Leader fill:#d1fae5,stroke:#059669,stroke-width:2px
+    style TA fill:#dbeafe,stroke:#2563eb,stroke-width:2px
+    style HM fill:#ccfbf1,stroke:#0d9488,stroke-width:2px
+```
+
+---
+
+## Kết luận
+
+HRM giúp công ty:
+
+- ⏱️ **Tiết kiệm thời gian** — Không cần hỏi qua lại, mọi thông tin đều có sẵn
+- 📊 **Ra quyết định dựa trên dữ liệu** — Báo cáo trực quan, cập nhật real-time
+- 🔄 **Quy trình nhất quán** — Mọi người đều đi theo cùng một quy trình
+- 👁️ **Minh bạch** — Mọi người đều biết chuyện gì đang diễn ra
+
+<Tip>
+  🎉 **Cảm ơn bạn đã sử dụng HRM.** Nếu có câu hỏi, liên hệ bộ phận Hỗ trợ Nhân sự.
+</Tip>

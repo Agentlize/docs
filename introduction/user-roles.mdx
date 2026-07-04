@@ -1,0 +1,95 @@
+---
+title: "Vai trò người dùng"
+description: "9 vai trò chính trong hệ thống và kịch bản sử dụng điển hình"
+sidebarTitle: "Vai trò người dùng"
+---
+
+# Vai trò người dùng
+
+Hệ thống Appota HRM hỗ trợ **9 vai trò người dùng** theo mô hình RBAC. Mỗi vai trò có tập quyền riêng và được giới hạn bởi **department boundary** (xem chi tiết trong [Phân quyền](/modules/permissions/overview)).
+
+## Bảng tổng quan
+
+| Vai trò | Phạm vi | Quyền chính |
+| --- | --- | --- |
+| **Super Admin** | Toàn hệ thống | Quản lý phân quyền, xem audit trail toàn cục, quản lý LMS |
+| **HR Manager** | Toàn hệ thống | Approve hồ sơ, cập nhật trạng thái vị trí, quản lý CV/JD Pool, training plan |
+| **Department Head** | Phòng ban của mình | Xem staff/workforce, báo cáo đào tạo phòng ban, audit trail phòng ban |
+| **Leader** | Phòng ban của mình | Tạo recruitment order, phê duyệt thao tác nhạy cảm |
+| **Recruiter** | Toàn hệ thống | Quản lý CV/JD Pool, AI matching, import batch CV |
+| **Interviewer** | Interview được phân công | Xem chi tiết buổi phỏng vấn, chấm điểm tiêu chí |
+| **Trainer** | Khóa học của mình | Tạo/quản lý khóa học, bài test |
+| **Employee** | Cá nhân | Xem profile, khóa học được gán, làm bài test |
+| **Guest** | Không truy cập | Không có quyền |
+
+## Kịch bản sử dụng điển hình
+
+<AccordionGroup>
+  <Accordion title="HR Staff — Duyệt hồ sơ onboarding" icon="user-check">
+    1. Vào `/hr-review` để xem danh sách hồ sơ chờ duyệt.\
+    2. Click vào một hồ sơ → xem chi tiết → phân công **Department**, **Contract Type**, **Job Title**.\
+    3. Click **Approve** để chuyển trạng thái `Pending → Approved`.\
+    4. Nhân viên xuất hiện trong Staff List và được tính vào `activeStaffList`.
+  </Accordion>
+
+  <Accordion title="Leader — Tạo yêu cầu tuyển dụng" icon="clipboard-list">
+    1. Vào `/recruitment/orders` → **Tạo yêu cầu mới**.\
+    2. Điền form: vị trí, phòng ban, số lượng, mô tả, kỹ năng, ngân sách, deadline.\
+    3. **Save as Draft** (status `DRAFT`) hoặc **Submit** (status `SUBMITTED`).\
+    4. HR review → approve → JD Status chuyển sang **Được phép tuyển**.
+  </Accordion>
+
+  <Accordion title="Recruiter — Tìm CV phù hợp với JD" icon="magnifying-glass">
+    1. Vào `/jd-pool` → mở JD cần tuyển → **Tìm CV phù hợp từ pool cũ**.\
+    2. AI matching quét toàn bộ pool và trả về top 10 CV với điểm % và badge lý do.\
+    3. Click **Thêm vào shortlist** trên CV phù hợp → trigger approval flow.\
+    4. Sau khi Leader/HR Manager approve, CV chuyển trạng thái `Screening → Shortlisted`.
+  </Accordion>
+
+  <Accordion title="Interviewer — Chấm điểm phỏng vấn" icon="star">
+    1. Vào `/interviews` → chọn buổi phỏng vấn Completed.\
+    2. Tab **Video Recording** xem lại video, transcript và AI evaluation.\
+    3. Tab **Tiêu chí đánh giá** chấm điểm 1-5 sao cho từng tiêu chí (Kỹ thuật, Giao tiếp, v.v.).\
+    4. Hệ thống tính **tổng điểm có trọng số** và AI tóm tắt đề xuất Hire/Consider/Reject.
+  </Accordion>
+
+  <Accordion title="HR/Trainer — Tạo khoá học và gán cho nhân viên" icon="graduation-cap">
+    1. Vào `/lms/courses` → **Tạo khóa học mới**.\
+    2. Chọn danh mục (Technical, Soft Skills, Compliance, Leadership, Product Knowledge).\
+    3. Kéo thả học liệu từ Material List và bài test từ Quiz List theo thứ tự.\
+    4. **Assign to Employees** → chọn cá nhân hoặc cả phòng ban.\
+    5. Hệ thống tự động gán và thông báo cho nhân viên.
+  </Accordion>
+
+  <Accordion title="Employee — Học khoá học và nhận chứng chỉ" icon="book-open">
+    1. Vào `/lms/progress` → xem danh sách khóa học được gán.\
+    2. Click vào khóa học → xem học liệu theo thứ tự.\
+    3. Hoàn thành tất cả học liệu → làm bài test.\
+    4. Đạt điểm đạt → trạng thái chuyển **Hoàn thành** → chứng chỉ tự động cấp.\
+    5. Chứng chỉ hiển thị trong **Staff Detail → Tab Learning History**.
+  </Accordion>
+</AccordionGroup>
+
+## Permission Boundary
+
+<Warning>
+  **Department Head** chỉ xem được dữ liệu của **phòng ban mình**. **Employee** chỉ xem được **profile của mình**. **HR Manager** và **Super Admin** xem được **toàn bộ hệ thống**.
+</Warning>
+
+Khi vi phạm boundary, hệ thống sẽ hiển thị thông báo **"Access denied"** hoặc redirect về Dashboard.
+
+## Liên kết nhanh
+
+<CardGroup cols={3}>
+  <Card title="Danh sách Role" icon="users" href="/modules/permissions/roles">
+    9 vai trò với mô tả chi tiết.
+  </Card>
+
+  <Card title="Access Matrix" icon="table" href="/modules/permissions/access-matrix">
+    Ma trận role × resource × action.
+  </Card>
+
+  <Card title="Permission Boundary" icon="building-lock" href="/business-rules/permission-boundary">
+    Quy tắc giới hạn quyền theo phòng ban.
+  </Card>
+</CardGroup>

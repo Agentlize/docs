@@ -1,0 +1,143 @@
+---
+title: "Recruitment Reports"
+description: "Báo cáo funnel tuyển dụng, conversion, bottleneck và cohort (Module E)"
+sidebarTitle: "Recruitment Reports"
+---
+
+# Recruitment Reports
+
+**Route:** `/reports`
+
+Báo cáo tuyển dụng chuẩn (P1) và nâng cao (P3) theo nhiều chiều phân tích.
+
+## Hai loại báo cáo
+
+<CardGroup cols={2}>
+  <Card title="Recruitment Funnel" icon="filter" href="#recruitment-funnel">
+    Module E1 — P1. Báo cáo funnel theo order/department/period.
+  </Card>
+
+  <Card title="Advanced Reports" icon="chart-mixed" href="#advanced-reports">
+    Module E2 — P3. Conversion, bottleneck detection, cohort analysis.
+  </Card>
+</CardGroup>
+
+## Recruitment Funnel (E1 — P1)
+
+### Bộ lọc
+
+<ParamField path="orderId" type="string">
+  Order cụ thể
+</ParamField>
+
+<ParamField path="department" type="select">
+  Engineering, Marketing, Sales, HR, Finance, Operations, Design, Product
+</ParamField>
+
+<ParamField path="period" type="date-range">
+  Khoảng thời gian (từ ngày - đến ngày)
+</ParamField>
+
+### Funnel Chart
+
+Hiển thị số lượng ứng viên ở từng stage:
+
+```text
+Applied                → 100
+   ↓
+Screening             → 80
+   ↓
+Shortlisted           → 50
+   ↓
+Interview Scheduled   → 40
+   ↓
+Interview Completed   → 35
+   ↓
+Offer Sent            → 20
+   ↓
+Offer Accepted        → 15
+   ↓
+Hired                 → 15
+```
+
+### Metrics
+
+| Metric | Công thức | Ý nghĩa |
+| --- | --- | --- |
+| **Time-to-Fill** | Ngày tuyển được người − Ngày mở JD | Thời gian tuyển từ khi mở JD |
+| **Time-to-Hire** | Ngày tuyển được người − Ngày ứng viên apply | Thời gian tuyển từ khi ứng viên apply |
+| **Conversion rate** | (Hired / Applied) × 100% | Tỷ lệ chuyển đổi tổng thể |
+
+### Hành động
+
+- **Export CSV** → Toast "Export successful"
+
+## Advanced Reports (E2 — P3)
+
+### Conversion Report
+
+Tỷ lệ chuyển đổi theo **từng stage**:
+
+```text
+Applied → Screening:           80%
+Screening → Shortlisted:       62.5%
+Shortlisted → Interview:       80%
+Interview → Offer:             57%
+Offer → Hired:                 75%
+```
+
+So sánh theo **department** hoặc **period**.
+
+### Bottleneck Detection
+
+Phát hiện **stage có tỷ lệ drop-off cao**:
+
+```text
+⚠ Interview Completed → Offer Sent: drop-off 43%
+   💡 Đề xuất: rà soát tiêu chí đánh giá, điều chỉnh offer phù hợp
+```
+
+### Cohort Analysis
+
+Phân tích cohort theo **nguồn CV**:
+
+| Nguồn | Tỷ lệ apply | Conversion | Cost-per-Hire |
+| --- | --- | --- | --- |
+| LinkedIn | 40% | 12% | 8M VND |
+| Referral | 30% | 25% | 2M VND |
+| Job Board | 20% | 8% | 5M VND |
+| Headhunt | 10% | 18% | 25M VND |
+
+### Hành động
+
+- **Export CSV** → Toast "Export successful"
+
+## Mock Data
+
+<Note>
+  - Mock funnel report với số liệu từng stage
+  - Mock time-to-fill, time-to-hire theo department
+  - Mock conversion report, bottleneck detection, cohort analysis
+  - 30\+ CV mẫu để tính conversion
+</Note>
+
+## Validation
+
+| Trường hợp | Xử lý |
+| --- | --- |
+| Không có dữ liệu | Hiển thị **"No data available"** |
+| Filter không có kết quả | Hiển thị **"No results found"** |
+| Export thành công | Toast **"Export successful"** |
+| Period rỗng | Sử dụng 6 tháng gần nhất làm mặc định |
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Workforce Reports" icon="chart-pie" href="/modules/workforce/dashboard">
+    Báo cáo nhân lực tổng quan.
+  </Card>
+
+  <Card title="Training Reports" icon="graduation-cap" href="/modules/lms/training-reports">
+    Báo cáo đào tạo.
+  </Card>
+</CardGroup>

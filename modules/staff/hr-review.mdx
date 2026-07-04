@@ -1,0 +1,123 @@
+---
+title: "HR Review"
+description: "HR duyệt / từ chối hồ sơ nhân viên mới"
+sidebarTitle: "HR Review"
+---
+
+# HR Review
+
+Sau khi ứng viên submit form onboarding, hồ sơ xuất hiện trong **Pending Table** để HR xét duyệt.
+
+## Pending Table
+
+**Route:** `/hr-review`
+
+Hiển thị danh sách hồ sơ chờ duyệt với:
+
+| Cột | Mô tả |
+| --- | --- |
+| Họ tên | Tên đầy đủ |
+| Email | Email liên hệ |
+| Ngày submit | Thời điểm submit |
+| Status | `Pending` / `Under Review` / `Approved` / `Rejected` |
+
+## Review Detail
+
+**Route:** `/hr-review/:id`
+
+Click vào một hồ sơ để xem chi tiết và thực hiện phê duyệt.
+
+### Thông tin hiển thị
+
+Toàn bộ thông tin ứng viên đã submit:
+
+- Thông tin cá nhân (họ tên, ngày sinh, giới tính, quốc tịch, avatar)
+- Địa chỉ & liên hệ
+- Kinh nghiệm làm việc
+- Preferences (job titles, work location, curriculum)
+
+### Phân công
+
+HR cần phân công trước khi approve:
+
+<ParamField path="department" type="select" required>
+  Phòng ban: `Engineering`, `Marketing`, `Sales`, `HR`, `Finance`, `Operations`, `Design`, `Product`
+</ParamField>
+
+<ParamField path="contractType" type="select" required>
+  Loại hợp đồng: `Full-time`, `Part-time`, `Contractor`, `Intern`
+</ParamField>
+
+<ParamField path="jobTitle" type="string" required>
+  Vị trí / Job title (ví dụ: Software Engineer, Marketing Specialist)
+</ParamField>
+
+## Hành động
+
+<CardGroup cols={2}>
+  <Card title="Approve" color="#16a34a" icon="check">
+    Phê duyệt nhân viên. Trạng thái chuyển `Pending → Approved`. Nhân viên xuất hiện trong **Staff List** với đầy đủ thông tin.
+  </Card>
+
+  <Card title="Reject" color="#dc2626" icon="xmark">
+    Từ chối với **ghi chú lý do** bắt buộc. Trạng thái chuyển sang `Rejected` và không xuất hiện trong Staff List.
+  </Card>
+</CardGroup>
+
+## Quy trình
+
+<Steps>
+  <Step title="Ứng viên submit form">
+    Onboarding form submit → `addPendingProfile()` được gọi trong `HRMContext`.
+  </Step>
+  <Step title="HR xem Pending Table">
+    Xuất hiện trong `/hr-review` với status `Pending`.
+  </Step>
+  <Step title="HR chuyển sang Under Review (tuỳ chọn)">
+    Có thể click vào hồ sơ để chuyển status thành `Under Review` khi đang xem xét.
+  </Step>
+  <Step title="HR phân công & Approve/Reject">
+    - Phân công **Department**, **Contract Type**, **Job Title**
+    - Click **Approve** → status `Approved`
+    - Click **Reject** \+ nhập **lý do** → status `Rejected`
+  </Step>
+  <Step title="Nhân viên xuất hiện trong Staff List">
+    Nếu approved → `activeStaffList` được cập nhật → hiển thị trong Staff List 4 cấp.
+  </Step>
+</Steps>
+
+## API HRMContext
+
+```typescript title="HRMContext.tsx"
+interface HRMContextValue {
+  activeStaffList: StaffProfile[];        // status === 'approved'
+  pendingProfiles: StaffProfile[];        // status !== 'approved'
+
+  addPendingProfile: (profile: StaffProfile) => void;
+  approveProfile: (id: string, assignment: {
+    department: string;
+    contractType: string;
+    jobTitle: string;
+  }) => void;
+  rejectProfile: (id: string, reason: string) => void;
+  updateProfileStatus: (id: string, status: StaffStatus) => void;
+  addActivity: (staffId: string, activity: Activity) => void;
+  getProfileById: (id: string) => StaffProfile | undefined;
+}
+```
+
+<Warning>
+  Khi HR **Reject**, lý do từ chối là **bắt buộc**. Hệ thống sẽ hiển thị confirm dialog và lưu lý do vào audit log.
+</Warning>
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Onboarding Form" icon="file-pen" href="/modules/staff/onboarding">
+    Bước trước — ứng viên điền form.
+  </Card>
+
+  <Card title="Staff List" icon="users" href="/modules/staff/staff-list">
+    Bước sau — nhân viên approved xuất hiện ở đây.
+  </Card>
+</CardGroup>

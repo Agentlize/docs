@@ -1,0 +1,224 @@
+---
+title: "Bạn là HRD / BOD"
+sidebarTitle: "HRD & BOD"
+description: "Hướng dẫn chi tiết cho Giám đốc Nhân sự (HRD) và Ban Giám đốc (BOD) — duyệt đơn, phân công TA, quản lý ngân sách, xem báo cáo tổng quan."
+---
+
+Hai vai trò **HRD (Giám đốc Nhân sự)** và **BOD (Ban Giám đốc)** chia sẻ nhiều quyền hạn trong V1.0: cùng duyệt đơn, cùng xem báo cáo, cùng quản lý chi phí. Trang này gộp hướng dẫn cho cả hai.
+
+<CardGroup cols={2}>
+  <Card title="HRD — Anh Hùng" icon="building" href="#hrd">
+    Giám đốc Nhân sự — vận hành hệ thống
+  </Card>
+
+  <Card title="BOD — Bà Hoa" icon="crown" href="#bod">
+    Phó Tổng Giám đốc — quyết định chiến lược
+  </Card>
+
+  <Card title="Quy trình duyệt" icon="circle-check" href="#duyet">
+    Duyệt yêu cầu cấp 2/cấp 3
+  </Card>
+
+  <Card title="Báo cáo & Ngân sách" icon="chart-pie" href="#bao-cao">
+    Phễu tuyển dụng, SLA, ngân sách
+  </Card>
+</CardGroup>
+
+---
+
+## HRD — Giám đốc Nhân sự {#hrd}
+
+**👤 Anh Hùng** — Giám đốc Nhân sự
+
+> _"Mình đảm bảo mọi quy trình nhân sự chạy đúng và mọi người đều có thông tin cần thiết."_
+
+### Bạn cần biết (3 điểm chính)
+
+1. **Bạn duyệt tất cả yêu cầu tuyển dụng** — Là người duyệt cuối cùng trước khi phân công TA
+2. **Bạn phân công TA** — Chọn chuyên viên phù hợp cho từng yêu cầu
+3. **Bạn quản lý ngân sách** — Theo dõi chi phí tuyển dụng, cảnh báo khi sắp vượt
+
+### Bạn KHÔNG cần biết
+
+- ❌ Chi tiết pipeline ứng viên (TA xử lý)
+- ❌ Cách AI đánh giá hồ sơ
+- ❌ Cấu hình database
+
+### Một ngày của bạn
+
+```mermaid
+timeline
+    title Một ngày của Anh Hùng (HRD)
+    section Sáng (8h - 11h)
+        Xem hàng chờ duyệt : 5 yêu cầu, 3 chi phí
+        Duyệt yêu cầu tuyển dụng : xem chi tiết, quyết định
+        Phân công TA : cho các yêu cầu đã duyệt
+        Kiểm tra ngân sách : tuyển dụng
+    section Chiều (14h - 17h)
+        Cấu hình quy trình duyệt : cho phòng ban mới
+        Xem báo cáo : hiệu suất tuyển dụng
+        Cập nhật từ điển năng lực
+```
+
+### Quy trình duyệt (visual)
+
+```mermaid
+flowchart TD
+    A["Yêu cầu mới<br/>từ phòng ban"] --> B{Xem chi tiết}
+    B --> C[Yêu cầu hợp lý?]
+    C -->|Có| D{"Ngân sách<br/>còn đủ?"}
+    C -->|Không| E["Từ chối<br/>với lý do"]
+    D -->|Có| F["Duyệt"]
+    D -->|Không| G["Yêu cầu<br/>chỉnh sửa"]
+    F --> H[Phân công TA]
+    H --> I[TA xử lý]
+    G --> J["Trả về<br/>Leader sửa"]
+
+    style F fill:#d1fae5,stroke:#059669
+    style E fill:#fee2e2,stroke:#dc2626
+    style H fill:#dbeafe,stroke:#2563eb
+```
+
+---
+
+## BOD — Ban Giám đốc {#bod}
+
+**👤 Bà Hoa** — Phó Tổng Giám đốc
+
+> _"Mình cần nhìn tổng quan và ra quyết định chiến lược — không cần biết chi tiết từng ứng viên."_
+
+### Bạn cần biết (3 điểm chính)
+
+1. **Bạn phê duyệt yêu cầu chiến lược** — Các yêu cầu lớn, vị trí cấp cao, mức lương cao
+2. **Bạn xem báo cáo tổng quan** — Phễu tuyển dụng, ngân sách, hiệu suất toàn công ty
+3. **Bạn phê duyệt chi phí lớn** — Headhunter, sự kiện tuyển dụng lớn
+
+### Bạn KHÔNG cần biết
+
+- ❌ Chi tiết từng ứng viên (TA và HRD xử lý)
+- ❌ Cách hệ thống vận hành
+- ❌ Cấu hình chi tiết
+
+### Hoạt động của bạn
+
+```mermaid
+timeline
+    title Hoạt động của Bà Hoa (BOD)
+    Hàng sáng : Xem bàn làm việc, có yêu cầu nào chờ duyệt không
+    Hàng tuần : Xem báo cáo tổng quan (phễu, SLA, hiệu suất)
+    Hàng tháng : Theo dõi ngân sách và áp lực chi phí
+    Khi cần : Phê duyệt yêu cầu chiến lược, chi phí lớn
+```
+
+### Báo cáo tổng quan bạn thấy
+
+```mermaid
+graph TB
+    subgraph "Báo cáo BOD"
+        A["Tổng yêu cầu<br/>đang xử lý"]
+        B["Số ứng viên<br/>trong pipeline"]
+        C["Tỷ lệ hoàn thành<br/>kế hoạch nhân sự"]
+        D["Phễu tuyển dụng<br/>theo giai đoạn"]
+        E["SLA<br/>Có yêu cầu nào chậm?"]
+        F["So sánh<br/>phòng ban"]
+    end
+
+    A --> G["Quyết định:<br/>Cần đẩy nhanh?"]
+    B --> G
+    C --> G
+    D --> G
+    E --> G
+    F --> G
+
+    G --> H{"Phê duyệt<br/>yêu cầu mới?"}
+    G --> I{"Cần điều chỉnh<br/>ngân sách?"}
+    G --> J{"Cần hỗ trợ<br/>phòng ban nào?"}
+
+    style A fill:#dbeafe,stroke:#2563eb
+    style B fill:#dbeafe,stroke:#2563eb
+    style C fill:#d1fae5,stroke:#059669
+    style D fill:#fef3c7,stroke:#f59e0b
+```
+
+---
+
+## 6 việc HRD làm thường xuyên
+
+| Việc | Bạn làm gì | Tần suất |
+| --- | --- | --- |
+| ✅ **Duyệt yêu cầu** | Xem chi tiết, quyết định Duyệt/Sửa/Từ chối | Hàng ngày |
+| 👥 **Phân công TA** | Chọn TA phù hợp dựa trên phòng ban, workload | Hàng ngày |
+| 💰 **Quản lý ngân sách** | Theo dõi chi tiêu, cảnh báo vượt ngân sách | Hàng tuần |
+| ⚙️ **Cấu hình quy trình** | Thiết lập luồng duyệt cho phòng ban mới | Khi cần |
+| 📊 **Xem báo cáo** | Phễu tuyển dụng, SLA, hiệu suất TA | Hàng tuần |
+| 📚 **Quản lý từ điển năng lực** | Cập nhật danh sách năng lực công ty | Hàng tháng |
+
+## 4 việc BOD làm thường xuyên
+
+| Việc | Bạn làm gì | Tần suất |
+| --- | --- | --- |
+| ✅ **Phê duyệt chiến lược** | Xem chi tiết yêu cầu lớn, quyết định | Khi có thông báo |
+| 📊 **Xem báo cáo tổng quan** | Phễu, SLA, hiệu suất | Hàng tuần |
+| 💰 **Theo dõi ngân sách** | Áp lực chi tiêu, cảnh báo | Hàng tháng |
+| 💼 **Phê duyệt chi phí lớn** | Headhunter, sự kiện tuyển dụng | Khi cần |
+
+---
+
+## Quy trình duyệt chi tiết {#duyet}
+
+<Steps>
+  <Step title="Mở hàng chờ duyệt">
+    Bàn làm việc → **Hàng chờ duyệt**. Hoặc vào thẳng menu **"Duyệt yêu cầu"**.
+  </Step>
+  <Step title="Xem chi tiết yêu cầu">
+    Bấm vào yêu cầu để xem thông tin đầy đủ. Kiểm tra: Phòng ban, vị trí, mức lương, lý do cần tuyển, người đề xuất.
+  </Step>
+  <Step title="Quyết định">
+    - **Duyệt** — yêu cầu tiếp tục, chuyển sang giai đoạn tiếp
+    - **Yêu cầu chỉnh sửa** — gửi lại Leader để sửa
+    - **Từ chối** — kết thúc yêu cầu (kèm lý do)
+  </Step>
+  <Step title="Phân công TA (sau khi duyệt)">
+    Bấm **"Phân công TA"** → Chọn TA phù hợp từ danh sách → TA nhận thông báo.
+  </Step>
+  <Step title="Theo dõi tiến trình">
+    Xem báo cáo tổng quan. Kiểm tra hiệu suất các TA. Cảnh báo nếu yêu cầu bị chậm.
+  </Step>
+  <Step title="Quản lý ngân sách và chi phí">
+    Vào **"Ngân sách"** → xem tổng quan ngân sách năm/quý. Vào **"Chi phí"** → duyệt các khoản chi phí tuyển dụng.
+  </Step>
+</Steps>
+
+---
+
+## Báo cáo & Ngân sách {#bao-cao}
+
+### Phễu tuyển dụng (Funnel)
+
+Cho thấy số ứng viên giảm dần qua các giai đoạn: **Ứng tuyển → Sàng lọc → Phỏng vấn → Offer → Tuyển thành công**. Cảnh báo giai đoạn nào có tỷ lệ rớt cao bất thường.
+
+### SLA — Thời gian xử lý
+
+| Giai đoạn | SLA mặc định |
+| --- | --- |
+| Duyệt cấp 1 (sếp trực tiếp) | 1 ngày làm việc |
+| Duyệt cấp 2 (HRD) | 1 ngày làm việc |
+| Phân công TA sau duyệt | 1 ngày làm việc |
+| Tìm ứng viên (TA) | 7-10 ngày |
+| Phỏng vấn | 5-7 ngày |
+| Gửi offer | 2-3 ngày |
+
+### Ngân sách
+
+- **Tổng ngân sách năm**: do BOD phê duyệt
+- **Phân bổ theo phòng ban**: HRD thiết lập
+- **Theo dõi chi tiêu thực tế**: cập nhật real-time
+- **Cảnh báo**: 80%, 90%, 100% ngân sách
+
+<Note>
+  🏢 **HRD tóm tắt 30 giây:** Bạn là người "vận hành hệ thống". Bạn duyệt đơn, phân công người, quản lý tiền, cấu hình quy trình. Mục tiêu của bạn là đảm bảo mọi thứ chạy trơn tru và đúng quy trình.
+</Note>
+
+<Note>
+  🎩 **BOD tóm tắt 30 giây:** Bạn là người "nhìn tổng quan và ra quyết định lớn". Bạn không cần biết chi tiết từng ứng viên, nhưng bạn cần biết công ty đang tuyển được bao nhiêu, chi tiêu bao nhiêu, có vấn đề gì cần can thiệp không.
+</Note>
