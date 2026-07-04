@@ -1,0 +1,146 @@
+---
+title: "Tech Stack"
+description: "Chi tiết các công nghệ sử dụng trong Appota HRM"
+sidebarTitle: "Tech Stack"
+---
+
+# Tech Stack
+
+Appota HRM sử dụng các công nghệ hiện đại, tối ưu cho **DX** (Developer Experience) và **performance**.
+
+## Frontend
+
+| Layer | Công nghệ | Lý do |
+| --- | --- | --- |
+| Framework | React 18 | Stable, ecosystem rộng |
+| Language | TypeScript | Type safety, IDE support |
+| Build | Vite (rolldown-vite) | Build nhanh, HMR tức thì |
+| Styling | Tailwind CSS v3 | Utility-first, tree-shakeable |
+| Components | shadcn/ui (Radix UI) | Accessible, customizable |
+| Routing | React Router v7 | Data router, type-safe |
+| Forms | React Hook Form \+ Zod | Performance \+ validation |
+| Charts | Recharts | Composable, declarative |
+| Icons | lucide-react | Tree-shakeable, đẹp |
+| Linter | Biome | Nhanh hơn ESLint |
+
+## Backend (Optional)
+
+| Service | Mục đích |
+| --- | --- |
+| Supabase | Postgres database, Auth, Storage, Realtime |
+
+<Note>
+  Hệ thống **chưa kết nối** Supabase trong phiên bản hiện tại. Tất cả logic được test với mock data và sẵn sàng tích hợp.
+</Note>
+
+## Tại sao không dùng Redux / Zustand?
+
+Hệ thống chọn **Context API** vì:
+
+- Bundle size nhỏ hơn
+- Logic state đơn giản (HRMContext chỉ quản lý StaffProfile\[\])
+- Tránh over-engineering
+- Dễ onboard developer mới
+
+Khi nào nên cân nhắc Zustand/Redux:
+
+- State updates \> 100/giây
+- Nhiều components subscribe vào state phức tạp
+- Cần time-travel debugging
+
+## Tại sao không dùng Next.js?
+
+- Hệ thống là **internal tool** — không cần SEO
+- Toàn bộ logic ở phía client (mock data)
+- Bundle SPA đơn giản, không cần SSR/ISR
+- Vite \+ React Router cho trải nghiệm dev tốt hơn
+
+## Các package quan trọng
+
+```json title="package.json"
+{
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-router": "^7.9.5",
+    "@supabase/supabase-js": "2.103.1",
+    "@hookform/resolvers": "^5.2.2",
+    "react-hook-form": "^7.66.0",
+    "zod": "^3.25.76",
+    "recharts": "2.15.4",
+    "sonner": "^2.0.7",
+    "lucide-react": "^0.576.0",
+    "tailwind-merge": "^3.3.1",
+    "date-fns": "^3.6.0",
+    "eventsource-parser": "^3.0.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.5",
+    "tailwindcss": "^3.4.11",
+    "typescript": "~5.9.3",
+    "vite": "npm:rolldown-vite@latest",
+    "@vitejs/plugin-react": "^5.1.4"
+  }
+}
+```
+
+## Linter
+
+Biome thay thế ESLint \+ Prettier:
+
+```json title="biome.json"
+{
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "correctness": { "noUnusedVariables": "error" },
+      "style": { "noNonNullAssertion": "warn" }
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "lineWidth": 100
+  }
+}
+```
+
+## Build Configuration
+
+```typescript title="vite.config.ts"
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import svgr from 'vite-plugin-svgr';
+
+export default defineConfig({
+  plugins: [react(), svgr()],
+  build: {
+    target: 'es2020',
+    sourcemap: true,
+  },
+});
+```
+
+## Performance Optimizations
+
+- **Code splitting** tự động theo route
+- **Tree-shaking** Tailwind CSS chỉ giữ classes sử dụng
+- **Image optimization** qua Vite asset pipeline
+- **Lazy loading** components nặng (Recharts, video-react)
+- **CSS variables** thay vì inline colors → giảm class trùng lặp
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Architecture Overview" icon="diagram-project" href="/architecture/overview">
+    Tổng quan kiến trúc.
+  </Card>
+
+  <Card title="Conventions" icon="code" href="/development/conventions">
+    Quy ước code.
+  </Card>
+
+  <Card title="Setup" icon="gear" href="/development/setup">
+    Cài đặt môi trường.
+  </Card>
+</CardGroup>

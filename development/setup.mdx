@@ -1,0 +1,223 @@
+---
+title: "Development Setup"
+description: "Cài đặt môi trường phát triển Appota HRM"
+sidebarTitle: "Development Setup"
+---
+
+# Development Setup
+
+Hướng dẫn cài đặt môi trường để phát triển Appota HRM.
+
+## Yêu cầu
+
+## Cài đặt ban đầu
+
+<Steps>
+  <Step title="Clone repository">
+    ```bash
+    git clone https://github.com/Agentlize/HRM.git
+    cd HRM/hrm-appota
+    ```
+  </Step>
+  <Step title="Cài đặt dependencies">
+    ```bash
+    pnpm install
+    ```
+
+    Hoặc dùng npm:
+
+    ```bash
+    npm install
+    ```
+  </Step>
+  <Step title="Tạo file .env">
+    Tạo file `.env` ở root `hrm-appota/`:
+
+    ```env
+    VITE_SUPABASE_URL=https://your-project.supabase.co
+    VITE_SUPABASE_ANON_KEY=your-anon-key
+    ```
+
+    <Note>
+      Hệ thống chạy được với mock data mà không cần Supabase. Biến môi trường chỉ bắt buộc khi muốn kết nối database thật.
+    </Note>
+  </Step>
+  <Step title="Chạy kiểm tra">
+    ```bash
+    npm run lint
+    ```
+
+    Lệnh này chạy:
+
+    - **TypeScript check** (`tsgo -p tsconfig.check.json`)
+    - **Biome lint** (`npx biome lint`)
+    - **Custom checks** (`.rules/check.sh`)
+    - **Tailwind validation**
+    - **Test build** (`.rules/testBuild.sh`)
+  </Step>
+</Steps>
+
+## Cấu trúc thư mục
+
+```text
+hrm-appota/
+├── src/
+│   ├── App.tsx              # Root, wires Providers + Router
+│   ├── main.tsx             # Entry
+│   ├── routes.tsx           # RouteConfig[]
+│   │
+│   ├── components/
+│   │   ├── layouts/
+│   │   │   ├── AppLayout.tsx
+│   │   │   └── AppSidebar.tsx
+│   │   ├── common/
+│   │   │   ├── StatusBadge.tsx
+│   │   │   ├── PageMeta.tsx
+│   │   │   └── RouteGuard.tsx
+│   │   ├── jd/
+│   │   │   ├── CreateJDWizard.tsx
+│   │   │   └── JDRequestDetail.tsx
+│   │   └── ui/              # shadcn/ui primitives
+│   │
+│   ├── contexts/
+│   │   ├── ThemeContext.tsx
+│   │   ├── LanguageContext.tsx
+│   │   ├── HRMContext.tsx
+│   │   └── AuthContext.tsx
+│   │
+│   ├── pages/               # 1 file = 1 route
+│   │
+│   ├── data/                # Mock data
+│   │   ├── mockData.ts
+│   │   ├── appotaOrgData.ts
+│   │   ├── workforceData.ts
+│   │   ├── jdData.ts
+│   │   ├── cvPoolData.ts
+│   │   ├── interviewData.ts
+│   │   ├── recruitmentOrderData.ts
+│   │   ├── permissionsData.ts
+│   │   └── auditData.ts
+│   │
+│   ├── hooks/
+│   │   ├── useAIChat.ts
+│   │   ├── use-debounce.ts
+│   │   ├── use-go-back.ts
+│   │   ├── use-mobile.tsx
+│   │   └── use-supabase-upload.ts
+│   │
+│   ├── lib/
+│   │   ├── utils.ts         # cn() helper
+│   │   └── sse.ts
+│   │
+│   ├── types/
+│   │   ├── types.ts
+│   │   ├── index.ts
+│   │   └── chat.ts
+│   │
+│   ├── db/
+│   │   └── supabase.ts
+│   │
+│   ├── index.css            # CSS variables
+│   └── vite-env.d.ts
+│
+├── public/
+├── package.json
+├── biome.json
+├── tailwind.config.js
+├── postcss.config.js
+├── tsconfig.json
+└── vite.config.ts
+```
+
+## Scripts
+
+| Script | Mô tả |
+| --- | --- |
+| `npm run dev` | Vite dev server (bị disable trong sandbox) |
+| `npm run build` | Production build |
+| `npm run start` | Preview production build |
+| `npm run lint` | TypeScript \+ Biome \+ custom checks |
+
+## IDE Setup
+
+### VSCode
+
+Khuyến nghị extensions:
+
+- **Biome** (`biomejs.biome`)
+- **Tailwind CSS IntelliSense** (`bradlc.vscode-tailwindcss`)
+- **ESLint** (legacy, dùng để xem rule từ Biome)
+- **TypeScript Vue Plugin** (Volar) (`vue.volar`)
+- **Error Lens** (`usernamehw.errorlens`)
+- **Auto Rename Tag** (`formulahendry.auto-rename-tag`)
+
+### Settings.json
+
+```json title=".vscode/settings.json"
+{
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "quickfix.biome": "explicit",
+    "source.organizeImports.biome": "explicit"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ]
+}
+```
+
+## Debug
+
+### Browser DevTools
+
+- **React DevTools** — xem component tree, props, state
+- **Redux DevTools** — không cần vì dùng Context
+- **Network tab** — kiểm tra fetch requests (khi có backend)
+
+### Common Issues
+
+| Vấn đề | Giải pháp |
+| --- | --- |
+| `npm run dev` không chạy | Trong môi trường sandbox, dùng `npm run lint` thay thế |
+| TypeScript error | Chạy `npx tsc --noEmit` để xem chi tiết |
+| Tailwind class không hoạt động | Kiểm tra `content` paths trong `tailwind.config.js` |
+| Dark mode không gắn vào `<html>` | Kiểm tra `ThemeContext` có toggle `dark` class |
+
+## Tích hợp Supabase
+
+<Steps>
+  <Step title="Tạo project trên Supabase">
+    Truy cập [supabase.com](https://supabase.com) → New project.
+  </Step>
+  <Step title="Copy URL và Anon Key">
+    Settings → API → Copy `URL` và `anon public key`.
+  </Step>
+  <Step title="Paste vào .env">
+    ```env
+    VITE_SUPABASE_URL=https://xxx.supabase.co
+    VITE_SUPABASE_ANON_KEY=eyJ...
+    ```
+  </Step>
+  <Step title="Khởi tạo schema">
+    Sử dụng schema từ `src/db/supabase.ts` hoặc tạo migration mới.
+  </Step>
+</Steps>
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Conventions" icon="code" href="/development/conventions">
+    Quy ước code.
+  </Card>
+
+  <Card title="AI Agent Guide" icon="robot" href="/development/ai-agent-guide">
+    Hướng dẫn cho AI agent.
+  </Card>
+
+  <Card title="Architecture" icon="diagram-project" href="/architecture/overview">
+    Kiến trúc.
+  </Card>
+</CardGroup>

@@ -1,0 +1,141 @@
+---
+title: "Settings"
+description: "Capability Dictionary, Jobsite Templates và các tuỳ chỉnh hệ thống"
+sidebarTitle: "Settings"
+---
+
+# Settings
+
+**Route:** `/settings`
+
+Cài đặt và cấu hình hệ thống. Bao gồm 2 module con quan trọng: **Capability Dictionary** và **Jobsite Templates**.
+
+## Capability Dictionary (Module B7 — P3)
+
+Quản lý **từ điển kỹ năng chuẩn hoá** dùng để mapping skill text trong CV.
+
+### Danh sách Capability
+
+| Trường | Mô tả | Ví dụ |
+| --- | --- | --- |
+| Group | Nhóm kỹ năng | Programming, Design, Marketing |
+| Skill | Tên kỹ năng chuẩn | JavaScript, Photoshop, SEO |
+| Alias | Tên gọi khác | JS, Adobe Photoshop, Search Engine Optimization |
+| Level | Cấp độ | Beginner / Intermediate / Advanced / Expert |
+
+### Hành động
+
+- Thêm capability mới
+- Chỉnh sửa capability
+- Xóa capability
+
+### Mapping Logic
+
+```typescript title="CapabilityMapping.ts"
+const mapSkill = (rawSkill: string): StandardSkill | null => {
+  const normalized = rawSkill.toLowerCase().trim();
+
+  // Tìm trong dictionary theo skill hoặc alias
+  for (const capability of dictionary) {
+    if (
+      capability.skill.toLowerCase() === normalized ||
+      capability.aliases.some(a => a.toLowerCase() === normalized)
+    ) {
+      return capability;
+    }
+  }
+
+  return null;
+};
+```
+
+Khi import CV, hệ thống mapping skill text → skill chuẩn trong dictionary (dựa trên alias).
+
+### Mock Data
+
+<Note>
+  50\+ capability với group, skill, alias, level. Ví dụ:
+
+  - **Programming \> JavaScript** — alias: JS, ES6, ECMAScript
+  - **Design \> Photoshop** — alias: PS, Adobe Photoshop
+  - **Marketing \> SEO** — alias: Search Engine Optimization, Search Marketing
+</Note>
+
+## Jobsite Templates (Module B6 — P2)
+
+Quản lý **template import CV** theo jobsite (LinkedIn, Indeed, VietnamWorks, v.v.).
+
+### Danh sách Template
+
+| Trường | Mô tả |
+| --- | --- |
+| Tên jobsite | LinkedIn, Indeed, VietnamWorks |
+| Version | Phiên bản template |
+| Mapping field | Nội bộ ↔ Jobsite |
+| Ngày tạo | — |
+| Ngày cập nhật | — |
+
+### Mapping Field
+
+Bảng mapping giữa field nội bộ và field jobsite:
+
+| Internal Field | Jobsite Field |
+| --- | --- |
+| `full_name` | Full Name |
+| `email` | Email Address |
+| `phone` | Phone Number |
+| `current_position` | Current Job Title |
+| ... | ... |
+
+### Hành động
+
+- Tạo template mới
+- Chỉnh sửa template
+- Xóa template
+- **Versioning** — lưu lịch sử các version
+
+### Quy trình
+
+<Steps>
+  <Step title="HR tạo template">
+    Mapping field nội bộ ↔ jobsite.
+  </Step>
+  <Step title="Lưu template với version">
+    Version tự động tăng.
+  </Step>
+  <Step title="Khi import CV">
+    Chọn template tương ứng.
+  </Step>
+  <Step title="Hệ thống tự động mapping">
+    Theo template đã chọn.
+  </Step>
+  <Step title="Nếu cần cập nhật">
+    Tạo version mới (không sửa trực tiếp).
+  </Step>
+</Steps>
+
+### Mock Data
+
+<Note>
+  3-5 template cho các jobsite phổ biến: LinkedIn, Indeed, VietnamWorks, JobHopin, TopCV.
+</Note>
+
+## Validation
+
+| Trường hợp | Xử lý |
+| --- | --- |
+| Không có capability | Hiển thị **"No capabilities found"** |
+| Không có template | Hiển thị **"No templates found"** |
+| Tạo template thiếu thông tin | Hiển thị lỗi, yêu cầu điền đầy đủ |
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="CV Pool" icon="address-book" href="/modules/recruitment/cv-pool">
+    Sử dụng Capability Dictionary khi import.
+  </Card>
+
+  <Card title="Import CV" icon="file-import" href="/modules/recruitment/cv-pool#import-cv">
+    Quy trình import batch.
+  </Card>
+</CardGroup>

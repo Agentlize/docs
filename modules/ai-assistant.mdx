@@ -1,0 +1,80 @@
+---
+title: "AI Assistant"
+description: "Chat AI hỗ trợ HR với SSE streaming"
+sidebarTitle: "AI Assistant"
+---
+
+# AI Assistant
+
+**Route:** `/ai-chat`
+
+Trợ lý AI hỗ trợ HR trong công việc hàng ngày. Sử dụng **SSE streaming** để trả lời theo thời gian thực.
+
+## Hook useAIChat
+
+```typescript title="src/hooks/useAIChat.ts"
+import { useAIChat } from '@/hooks/useAIChat';
+
+function HRChatPage() {
+  const { messages, isStreaming, send, stop } = useAIChat({
+    endpoint: '/api/ai/chat',
+    onFinish: (msg) => console.log('done:', msg),
+  });
+
+  return (
+    <div>
+      {messages.map(m => (
+        <Message key={m.id} role={m.role} content={m.content} />
+      ))}
+      <ChatInput onSubmit={send} onStop={stop} disabled={isStreaming} />
+    </div>
+  );
+}
+```
+
+## SSE Client
+
+```typescript title="src/lib/sse.ts"
+const stream = new SSE('/api/ai/chat', {
+  method: 'POST',
+  body: JSON.stringify({ message }),
+});
+
+stream.addEventListener('message', (event) => {
+  // Append token to current message
+});
+```
+
+## Tính năng
+
+- **Streaming response** — token xuất hiện theo thời gian thực
+- **Stop button** — dừng stream giữa chừng
+- **Message history** — lưu lịch sử chat
+- **Markdown rendering** — hỗ trợ format câu trả lời
+
+## Use cases
+
+- Hỏi về quy trình HR
+- Tra cứu chính sách công ty
+- Hỗ trợ viết JD
+- Phân tích dữ liệu nhân sự
+
+<Note>
+  Phiên bản hiện tại là **mock UI**. Tích hợp AI backend thực tế sẽ được thực hiện trong phiên bản tiếp theo.
+</Note>
+
+## Liên kết
+
+<CardGroup cols={3}>
+  <Card title="AI Risk Assessment" icon="brain" href="/business-rules/ai-risk-assessment">
+    Logic AI trong audit trail.
+  </Card>
+
+  <Card title="AI Matching" icon="magnifying-glass" href="/modules/recruitment/cv-pool">
+    Matching CV-JD.
+  </Card>
+
+  <Card title="Architecture" icon="diagram-project" href="/architecture/overview">
+    Kiến trúc tổng quan.
+  </Card>
+</CardGroup>

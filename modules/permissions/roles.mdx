@@ -1,0 +1,145 @@
+---
+title: "Roles"
+description: "9 vai trò trong hệ thống và quyền hạn tương ứng"
+sidebarTitle: "Roles"
+---
+
+# Roles
+
+**Route:** `/permissions` → Tab **Roles**
+
+Quản lý 9 vai trò chính trong hệ thống.
+
+## Danh sách Role
+
+<AccordionGroup>
+  <Accordion title="Super Admin" icon="crown">
+    **Phạm vi:** Toàn hệ thống.
+
+    **Quyền:**
+
+    - Truy cập tất cả trang
+    - Quản lý phân quyền
+    - Xem audit trail toàn hệ thống
+    - Quản lý LMS (courses, materials, quizzes, training plans)
+  </Accordion>
+
+  <Accordion title="HR Manager" icon="user-tie">
+    **Phạm vi:** Toàn hệ thống.
+
+    **Quyền:**
+
+    - Truy cập tất cả trang
+    - Quản lý phân quyền
+    - Xem audit trail toàn hệ thống
+    - **Approve/Reject** hồ sơ, recruitment orders
+    - Cập nhật trạng thái vị trí tuyển dụng
+    - Quản lý CV Pool, JD Pool
+    - Quản lý khóa học và kế hoạch đào tạo
+  </Accordion>
+
+  <Accordion title="Department Head" icon="user-tie-hair-long">
+    **Phạm vi:** Phòng ban của mình.
+
+    **Quyền:**
+
+    - Xem Staff List, Staff Detail (phòng ban mình)
+    - Xem Workforce Planning Dashboard, Department Workforce Detail
+    - Xem Reports & Analytics
+    - Xem Audit Trail (chỉ phòng ban mình)
+    - Xem báo cáo đào tạo phòng ban
+    - Xem tiến độ học nhân viên phòng ban
+  </Accordion>
+
+  <Accordion title="Interviewer" icon="microphone">
+    **Phạm vi:** Interview được phân công.
+
+    **Quyền:**
+
+    - Xem Interview List, Interview Detail
+    - Chấm điểm tiêu chí đánh giá
+  </Accordion>
+
+  <Accordion title="Recruiter" icon="user-plus">
+    **Phạm vi:** Toàn hệ thống (CV/JD Pool).
+
+    **Quyền:**
+
+    - Xem và quản lý CV Pool, JD Pool
+    - Thêm nhận xét đánh giá CV
+    - Sử dụng AI matching
+    - Import batch CV
+    - Quản lý template jobsite
+  </Accordion>
+
+  <Accordion title="Leader" icon="user-shield">
+    **Phạm vi:** Phòng ban của mình.
+
+    **Quyền:**
+
+    - Tạo recruitment order
+    - Xem recruitment order
+    - **Approve** thao tác nhạy cảm (shortlist, chuyển vòng, offer, reject)
+    - Xem tiến độ đào tạo nhân viên
+  </Accordion>
+
+  <Accordion title="Trainer" icon="chalkboard-user">
+    **Phạm vi:** Khóa học của mình.
+
+    **Quyền:**
+
+    - Tạo và quản lý nội dung khóa học
+    - Tạo bài test
+    - Xem kết quả học viên
+  </Accordion>
+
+  <Accordion title="Employee" icon="user">
+    **Phạm vi:** Cá nhân.
+
+    **Quyền:**
+
+    - Xem Staff List
+    - Xem Staff Detail (chỉ profile mình)
+    - Xem khóa học được gán
+    - Học tài liệu, làm bài test
+    - Xem tiến độ học của mình
+  </Accordion>
+
+  <Accordion title="Guest" icon="user-lock">
+    **Phạm vi:** Không có quyền.
+
+    **Quyền:** Không có quyền truy cập.
+  </Accordion>
+</AccordionGroup>
+
+## Thông tin mỗi Role
+
+| Trường | Mô tả |
+| --- | --- |
+| Tên role | Tên định danh |
+| Mô tả | Mô tả chi tiết |
+| Số lượng user | Số user đang có role này |
+| Danh sách permission | Permission được gán |
+
+## Hành động
+
+- Xem chi tiết role
+- **Chỉnh sửa permission** của role (Super Admin / HR Manager)
+
+## Mock Data
+
+<Note>
+  Tất cả 9 role được mock với đầy đủ thông tin và permission mapping trong `src/data/permissionsData.ts`.
+</Note>
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Permissions" icon="key" href="/modules/permissions/overview">
+    Danh sách 24 permission.
+  </Card>
+
+  <Card title="Access Matrix" icon="table" href="/modules/permissions/access-matrix">
+    Ma trận trực quan.
+  </Card>
+</CardGroup>

@@ -1,0 +1,116 @@
+---
+title: "Theme & Ngôn ngữ"
+description: "Quản lý dark mode và đa ngôn ngữ (VI/EN)"
+sidebarTitle: "Theme & Ngôn ngữ"
+---
+
+# Theme & Ngôn ngữ
+
+Appota HRM hỗ trợ **dark/light mode** tự động và **đa ngôn ngữ VI/EN** thông qua Context API.
+
+## Theme
+
+`ThemeContext` quản lý dark/light mode và lưu vào `localStorage`.
+
+### Cách dùng
+
+```tsx title="Trong component"
+import { useTheme } from '@/contexts/ThemeContext';
+
+function MyButton() {
+  const { theme, toggleTheme } = useTheme();
+  return (
+    <button onClick={toggleTheme}>
+      Hiện tại: {theme === 'dark' ? '🌙' : '☀️'}
+    </button>
+  );
+}
+```
+
+### Cách hoạt động
+
+<Steps>
+  <Step title="Khởi tạo">
+    Đọc từ `localStorage` key `hrm-theme`. Nếu chưa có, tự detect `prefers-color-scheme` của hệ điều hành.
+  </Step>
+  <Step title="Toggle">
+    Click nút → đảo `theme` → gắn/xoá class `dark` trên `<html>`.
+  </Step>
+  <Step title="Persist">
+    Lưu giá trị mới vào `localStorage` để giữ qua các lần reload.
+  </Step>
+</Steps>
+
+### CSS Variables
+
+Toàn bộ màu sắc được định nghĩa qua **CSS variables** trong `src/index.css`:
+
+```css title="src/index.css"
+:root {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --primary: 158 84% 32%;
+  /* ... */
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --primary: 158 70% 45%;
+  /* ... */
+}
+```
+
+<Warning>
+  **Quy tắc:** chỉ dùng **semantic tokens** (`bg-primary`, `text-muted-foreground`), **không** dùng màu Tailwind trực tiếp (`bg-blue-500`).
+</Warning>
+
+## Ngôn ngữ (i18n)
+
+`LanguageContext` hỗ trợ `vi` (mặc định) và `en`.
+
+### Cách dùng
+
+```tsx title="Trong component"
+import { useLanguage } from '@/contexts/LanguageContext';
+
+function SaveButton() {
+  const { t } = useLanguage();
+  return <button>{t('common', 'save')}</button>;
+  // → "Lưu" khi lang='vi'
+  // → "Save" khi lang='en'
+}
+```
+
+### Cú pháp
+
+```typescript
+t(module: string, key: string): string
+```
+
+Ví dụ:
+
+- `t('common', 'save')` → "Lưu" / "Save"
+- `t('staff', 'approve')` → "Phê duyệt" / "Approve"
+- `t('recruitment', 'jdStatus.allowed')` → "Được phép tuyển" / "Allowed to hire"
+
+### Thêm ngôn ngữ mới
+
+Mở `src/contexts/LanguageContext.tsx` và thêm vào object `translations`:
+
+```typescript title="src/contexts/LanguageContext.tsx"
+const translations = {
+  vi: {
+    common: { save: 'Lưu', cancel: 'Huỷ' },
+    staff: { approve: 'Phê duyệt' },
+  },
+  en: {
+    common: { save: 'Save', cancel: 'Cancel' },
+    staff: { approve: 'Approve' },
+  },
+};
+```
+
+<Tip>
+  Hệ thống KHÔNG dùng thư viện i18n bên ngoài. Tất cả translation được quản lý tập trung trong `translations` object — dễ debug, dễ review khi pull request.
+</Tip>

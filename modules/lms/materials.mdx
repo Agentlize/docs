@@ -1,0 +1,93 @@
+---
+title: "LMS — Materials"
+description: "Upload và quản lý học liệu (Video, PDF, Slide, Article)"
+sidebarTitle: "Materials"
+---
+
+# LMS — Materials
+
+**Route:** `/lms/materials`
+
+Quản lý học liệu dùng trong các khóa học LMS. Hỗ trợ 4 loại học liệu: Video, PDF, Slide, Article.
+
+## Material List
+
+Mỗi material card hiển thị:
+
+- Thumbnail
+- Tên học liệu
+- **Loại**: Video, PDF, Slide, Article
+- Thời lượng / Số trang
+- Ngày upload
+
+### Bộ lọc
+
+- Loại học liệu
+- Tìm kiếm theo tên
+
+### Hành động
+
+- **Upload Material**
+- Click vào material → xem chi tiết
+
+## Upload Material
+
+### Form
+
+<ParamField path="name" type="string" required>
+  Tên học liệu
+</ParamField>
+
+<ParamField path="description" type="textarea">
+  Mô tả
+</ParamField>
+
+<ParamField path="type" type="select" required>
+  Video, PDF, Slide, Article
+</ParamField>
+
+<ParamField path="file" type="file" required>
+  Upload file:
+
+  - **Video**: mp4
+  - **PDF**: pdf
+  - **Slide**: pptx
+  - **Article**: docx
+</ParamField>
+
+<ParamField path="thumbnail" type="file">
+  Upload thumbnail (ảnh)
+</ParamField>
+
+### Hành động
+
+- **Upload** → Upload học liệu
+- **Cancel** → Hủy
+
+## Validation
+
+| Trường hợp | Xử lý |
+| --- | --- |
+| Không có học liệu | Hiển thị **"No materials found"** |
+| Upload sai định dạng | Hiển thị lỗi **"Invalid file format"** |
+| Upload vượt dung lượng | Hiển thị lỗi **"File too large"** |
+
+## Mock Data
+
+<Note>
+  - 50\+ học liệu với đa dạng loại
+  - Mỗi khóa học sử dụng 3-8 học liệu
+  - Video là loại phổ biến nhất
+</Note>
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Courses" icon="book" href="/modules/lms/courses">
+    Khóa học sử dụng học liệu.
+  </Card>
+
+  <Card title="Quizzes" icon="circle-question" href="/modules/lms/quizzes">
+    Bài test đi kèm học liệu.
+  </Card>
+</CardGroup>

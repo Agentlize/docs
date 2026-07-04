@@ -1,0 +1,157 @@
+---
+title: "LMS — Courses"
+description: "Quản lý khóa học với học liệu và bài test"
+sidebarTitle: "Courses"
+---
+
+# LMS — Courses
+
+**Route:** `/lms/courses`
+
+Quản lý khóa học trong hệ thống LMS. Mỗi khóa học gồm danh sách học liệu và bài test theo thứ tự.
+
+## Course List
+
+Mỗi course card hiển thị:
+
+- Thumbnail
+- Tên khóa học
+- **Danh mục**: Technical, Soft Skills, Compliance, Leadership, Product Knowledge
+- Số học viên đã gán
+- Số học viên hoàn thành
+- **Trạng thái**: Active, Draft, Archived
+- Ngày tạo
+
+### Bộ lọc
+
+- Danh mục khóa học
+- Trạng thái
+- Tìm kiếm theo tên
+
+### Hành động
+
+- **Tạo khóa học mới**
+- Click vào khóa học → Course Detail
+
+## Create / Edit Course
+
+### Form
+
+<ParamField path="name" type="string" required>
+  Tên khóa học
+</ParamField>
+
+<ParamField path="description" type="textarea">
+  Mô tả khóa học
+</ParamField>
+
+<ParamField path="category" type="select" required>
+  Technical, Soft Skills, Compliance, Leadership, Product Knowledge
+</ParamField>
+
+<ParamField path="thumbnail" type="file">
+  Upload thumbnail (ảnh)
+</ParamField>
+
+<ParamField path="status" type="select" required>
+  Active, Draft, Archived
+</ParamField>
+
+<ParamField path="materials" type="string[]">
+  Danh sách học liệu (chọn từ Material List)
+</ParamField>
+
+<ParamField path="quizzes" type="string[]">
+  Danh sách bài test (chọn từ Quiz List)
+</ParamField>
+
+<ParamField path="order" type="string[]">
+  Thứ tự học liệu và bài test
+</ParamField>
+
+### Hành động
+
+- **Save** → Lưu khóa học
+- **Cancel** → Hủy
+
+## Course Detail
+
+### Header
+
+- Tên khóa học
+- Danh mục
+- Trạng thái
+- Số học viên đã gán
+- Số học viên hoàn thành
+
+### Tabs
+
+<Tabs>
+  <Tab title="Overview">
+    - Mô tả khóa học
+    - Thống kê: Tổng học liệu, Tổng bài test, Thời lượng ước tính
+  </Tab>
+  <Tab title="Materials">
+    Danh sách học liệu trong khóa học theo thứ tự. Mỗi material:
+
+    - Tên
+    - Loại (Video/PDF/Slide/Article)
+    - Thời lượng / Số trang
+  </Tab>
+  <Tab title="Quizzes">
+    Danh sách bài test theo thứ tự. Mỗi quiz:
+
+    - Tên
+    - Số câu hỏi
+    - Thời gian làm bài
+    - Điểm đạt
+  </Tab>
+  <Tab title="Enrolled Students">
+    Bảng học viên đã gán:
+
+    - Tên, Phòng ban
+    - Trạng thái (Chưa bắt đầu / Đang học / Hoàn thành)
+    - Tiến độ (%)
+    - Điểm test
+    - Ngày bắt đầu / Hoàn thành
+  </Tab>
+</Tabs>
+
+### Hành động
+
+- **Edit Course** → Chỉnh sửa khóa học
+- **Assign to Employees** → Mở dialog chọn nhân viên / phòng ban
+
+## Mock Data
+
+<Note>
+  - 15-20 khóa học với đa dạng danh mục
+  - Mỗi khóa học: 3-8 học liệu \+ 1-3 bài test
+  - 100\+ nhân viên được gán khóa học với đa dạng trạng thái
+</Note>
+
+## Validation
+
+| Trường hợp | Xử lý |
+| --- | --- |
+| Không có khóa học | Hiển thị **"No courses found"** |
+| Filter không có kết quả | Hiển thị **"No results found"** |
+| Thiếu thông tin bắt buộc | Hiển thị lỗi, yêu cầu điền đầy đủ |
+| Gán khóa học cho nhân viên đã có | Hiển thị **"Employee already enrolled in this course"** |
+| Xóa khóa học đang có học viên | Confirm dialog \+ cảnh báo |
+
+## Liên kết
+
+<CardGroup cols={3}>
+  <Card title="Materials" icon="file-video" href="/modules/lms/materials">
+    Quản lý học liệu.
+  </Card>
+
+  <Card title="Quizzes" icon="circle-question" href="/modules/lms/quizzes">
+    Quản lý bài test.
+  </Card>
+
+  <Card title="Learning Progress" icon="chart-line" href="/modules/lms/learning-progress">
+    Tiến độ học.
+  </Card>
+</CardGroup>

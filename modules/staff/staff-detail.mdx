@@ -1,0 +1,150 @@
+---
+title: "Staff Detail"
+description: "Hồ sơ chi tiết nhân viên với 11 tab chức năng"
+sidebarTitle: "Staff Detail"
+---
+
+# Staff Detail
+
+**Route:** `/staff/:id`
+
+Trang chi tiết nhân viên hiển thị **đầy đủ thông tin cá nhân**, activity timeline và **11 tab chức năng** phục vụ quản lý nhân sự, đào tạo và phát triển.
+
+## Layout
+
+```text
+┌─────────────────────────────────────────────────┐
+│  Header: Avatar | Họ tên | Staff ID | Send Msg  │
+├──────────────────────┬──────────────────────────┤
+│                      │                           │
+│  Left Panel          │  Right Panel              │
+│  - Personal Info     │  Tabs:                    │
+│  - Address & Contact │  - CV                     │
+│  - Preferences       │  - Activity               │
+│  - Activity Input    │  - Time Off               │
+│                      │  - Task                   │
+│                      │  - Compliance             │
+│                      │  - Document               │
+│                      │  - Recruitment            │
+│                      │  - Internal Experience    │
+│                      │  - Capability Map         │
+│                      │  - Learning Path          │
+│                      │  - Learning History       │
+└──────────────────────┴──────────────────────────┘
+```
+
+## Header
+
+- Avatar
+- Họ tên
+- Staff ID
+- Giới tính
+- Nút **Send Message**
+- Nút **Send Email**
+
+## Left Panel
+
+<AccordionGroup>
+  <Accordion title="Personal Information" icon="user">
+    - Birth date
+    - Nationality
+    - Dependants
+    - Experience
+  </Accordion>
+
+  <Accordion title="Address & Contact" icon="location-dot">
+    - Location
+    - Email
+    - Phone
+  </Accordion>
+
+  <Accordion title="Preferences" icon="sliders">
+    - Curriculums
+    - Job Titles
+    - Work Location
+  </Accordion>
+
+  <Accordion title="Activity Input Box" icon="pen-to-square">
+    Ô nhập để thêm activity mới vào timeline.
+  </Accordion>
+</AccordionGroup>
+
+## Right Panel — Tabs
+
+<Tabs>
+  <Tab title="CV">
+    Hiển thị CV đính kèm và AI summary.
+  </Tab>
+  <Tab title="Activity">
+    Timeline các hoạt động của nhân viên với search box và date filter.
+  </Tab>
+  <Tab title="Time Off">
+    Lịch sử và đơn xin nghỉ phép (P3).
+  </Tab>
+  <Tab title="Task">
+    Danh sách task được giao (P3).
+  </Tab>
+  <Tab title="Compliance">
+    Tài liệu tuân thủ và chứng chỉ bắt buộc (P3).
+  </Tab>
+  <Tab title="Document">
+    Tài liệu cá nhân, hợp đồng (P3).
+  </Tab>
+  <Tab title="Recruitment">
+    Lịch sử ứng tuyển nếu là ứng viên cũ (P3).
+  </Tab>
+  <Tab title="Internal Experience">
+    Timeline kinh nghiệm làm việc nội bộ — vị trí, phòng ban, thời gian, mô tả (P3).
+  </Tab>
+  <Tab title="Capability Map">
+    Capability map cá nhân, so sánh với yêu cầu vị trí hiện tại, highlight gap (P3).
+  </Tab>
+  <Tab title="Learning Path">
+    Danh sách learning path được gán — HR/Leader có thể chỉnh sửa (P3).
+  </Tab>
+  <Tab title="Learning History">
+    Danh sách khóa học đã học với trạng thái (Chưa bắt đầu / Đang học / Hoàn thành), tiến độ %, điểm test, chứng chỉ (nếu có), ngày bắt đầu/hoàn thành.
+  </Tab>
+</Tabs>
+
+## Activity Input
+
+Khi nhập activity mới vào input box cuối Left Panel:
+
+```typescript title="HRMContext.tsx"
+addActivity(staffId, {
+  type: 'note',
+  title: 'Tham gia meeting',
+  description: 'Họp team Q2',
+  timestamp: new Date(),
+});
+```
+
+Activity mới xuất hiện ngay đầu timeline trong tab **Activity**.
+
+## Quyền truy cập
+
+<Warning>
+  - **Employee** chỉ xem được profile của **chính mình** (permission boundary).
+  - **Department Head** xem được profile trong **phòng ban mình**.
+  - **HR Manager / Super Admin** xem được **toàn bộ**.
+</Warning>
+
+## API
+
+```typescript title="HRMContext.tsx"
+const profile = getProfileById(id);
+// → StaffProfile | undefined
+```
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Staff List" icon="users" href="/modules/staff/staff-list">
+    Quay lại danh sách nhân viên.
+  </Card>
+
+  <Card title="Capability Map" icon="brain" href="/modules/lms/courses">
+    Capability được đào tạo qua các khoá học trong LMS.
+  </Card>
+</CardGroup>

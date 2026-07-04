@@ -1,0 +1,182 @@
+---
+title: "Interviews"
+description: "Quản lý buổi phỏng vấn với video recording, transcript và AI evaluation (Module C)"
+sidebarTitle: "Interviews"
+---
+
+# Interviews
+
+**Route:** `/interviews`
+
+Quản lý lịch phỏng vấn, video recording, transcript, AI evaluation và chấm điểm theo tiêu chí.
+
+## Interview List
+
+| Cột | Mô tả |
+| --- | --- |
+| Tên ứng viên | Tên đầy đủ |
+| Thời gian | Ngày giờ phỏng vấn |
+| Duration | Thời lượng (phút) |
+| Vị trí apply | JD đang apply |
+| Trạng thái | `Scheduled`, `Completed`, `Overdue`, `Second Interview` |
+| Company Responsible | Gamota, Adsota, Kdata, OTA, Appota Holding |
+| Quickview | Icon Pass/Fail/Consider |
+
+### Bộ lọc
+
+- Filter theo **trạng thái**
+- Filter theo **Company Responsible**
+- Search theo **tên ứng viên**
+
+### Quickview đánh giá (Module C1 — P2)
+
+Mỗi buổi phỏng vấn có icon/badge **Pass / Fail / Consider**. Hover/click mở popup:
+
+- **Overall Score**
+- **AI Summary**
+- **Recruiter/Interviewer/Leader đánh giá**
+
+## Interview Detail
+
+**Route:** `/interviews/:id`
+
+### Header
+
+- Ngày giờ phỏng vấn (ví dụ: `Wed 19, 9:00 AM - 10:00 AM`)
+- Trạng thái
+- Interview ID
+- Company Responsible
+- GMT timezone
+- Duration
+- Nút **Send Offer**
+- Nút **More options** (…)
+- Navigation prev/next (ví dụ: `01 of 100`)
+
+### Tabs
+
+<Tabs>
+  <Tab title="Detail Information">
+    Thông tin cơ bản: ứng viên, vị trí apply, Company Responsible.
+  </Tab>
+  <Tab title="Video Recording">
+    **Video Player** — 2 luồng side-by-side (Interviewer \+ Candidate):
+
+    - Play/Pause
+    - Timestamp (00:00)
+    - Progress bar
+    - Speed (1x, 1.25x, 1.5x, 2x)
+    - Volume
+    - Fullscreen
+
+    **Audio Upload** (Module C3 — P1):
+
+    - Chấp nhận: mp3, m4a, wav
+    - Validate: file type, dung lượng, thời lượng
+    - Reject non-audio file
+    - Log upload/thay thế/xóa
+
+    **Transcript**:
+
+    - Search box
+    - Download button
+    - Timeline với tên người nói \+ nội dung theo timestamp
+
+    **AI Evaluation**:
+
+    - **Overall Score** (0-100)
+    - Điểm theo 5 tiêu chí:
+      - Communication Skills
+      - Technical Knowledge
+      - Problem Solving
+      - Cultural Fit
+      - Leadership Potential
+    - Mỗi tiêu chí có điểm số \+ progress bar
+    - **AI Summary** — đoạn tóm tắt buổi phỏng vấn
+    - **Strengths** — danh sách điểm mạnh
+    - **Areas for Improvement** — điểm cần cải thiện
+    - **Recommendation**: Strongly Recommend / Recommend / Neutral / Not Recommend
+  </Tab>
+  <Tab title="Interviewer Note">
+    Khu vực ghi chú của interviewer.
+  </Tab>
+  <Tab title="Question">
+    Danh sách câu hỏi đã hỏi, đánh dấu đã trả lời.
+  </Tab>
+  <Tab title="Tiêu chí đánh giá">
+    **Mục đích**: Interviewer chấm điểm theo tiêu chí, hệ thống tính **tổng điểm có trọng số**.
+
+    Mỗi tiêu chí:
+
+    - Tên (Kỹ năng kỹ thuật, Giao tiếp, Tư duy giải quyết vấn đề, Văn hóa công ty, Kinh nghiệm làm việc)
+    - Mô tả
+    - Thang điểm (1-5 sao hoặc 0-10)
+    - **Trọng số (%)**
+    - Ghi chú của interviewer
+
+    **Công thức**:
+
+    ```text
+    Tổng điểm = Σ (Điểm tiêu chí × Trọng số)
+    ```
+
+    **AI Summary**: Tự động tóm tắt đánh giá dựa trên điểm số, đề xuất **Hire / Consider / Reject**.
+  </Tab>
+</Tabs>
+
+## Quy trình phỏng vấn
+
+<Steps>
+  <Step title="Tạo buổi phỏng vấn">
+    Status `Scheduled`. Bắt buộc có **company\_responsible**.
+  </Step>
+  <Step title="Phỏng vấn diễn ra">
+    Sau khi hoàn thành → status `Completed`.
+  </Step>
+  <Step title="Upload audio">
+    File mp3/m4a/wav → validate → log upload.
+  </Step>
+  <Step title="AI evaluation">
+    Hệ thống tự động tạo evaluation report.
+  </Step>
+  <Step title="Review video + transcript">
+    Interviewer xem lại video và transcript đồng bộ theo timestamp.
+  </Step>
+  <Step title="Chấm điểm tiêu chí">
+    Hệ thống tính tổng điểm có trọng số \+ AI tóm tắt đề xuất.
+  </Step>
+  <Step title="Ghi chú + quyết định">
+    HR/Interviewer quyết định gửi offer hoặc từ chối.
+  </Step>
+</Steps>
+
+## Mock Data
+
+<Note>
+  - 5-6 buổi phỏng vấn mẫu với transcript và AI scores
+  - 5-6 tiêu chí đánh giá mẫu với điểm số và trọng số
+  - Company\_responsible cho mỗi interview
+  - Đa dạng trạng thái: Scheduled, Completed, Overdue, Second Interview
+</Note>
+
+## Validation Rules
+
+| Trường hợp | Xử lý |
+| --- | --- |
+| Video không load | Hiển thị thông báo lỗi |
+| Transcript trống | Hiển thị **"No transcript available"** |
+| Interviewer chưa chấm hết tiêu chí | Hiển thị **"Please score all criteria"** |
+| Tổng trọng số ≠ 100% | Cảnh báo **"Total weight must be 100%"** |
+| Upload file không phải audio | Reject \+ **"Invalid file type"** |
+| Upload file vượt dung lượng/thời lượng | **"File too large/long"** |
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="CV Pool" icon="address-book" href="/modules/recruitment/cv-pool">
+    CV được chuyển sang Interview Scheduled từ đây.
+  </Card>
+
+  <Card title="JD Pool" icon="file-contract" href="/modules/recruitment/jd-pool">
+    JD phải có status "Được phép tuyển" để tạo interview.
+  </Card>
+</CardGroup>

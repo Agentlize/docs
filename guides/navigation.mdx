@@ -1,0 +1,140 @@
+---
+title: "Điều hướng & Layout"
+description: "Cách AppLayout, AppSidebar và breadcrumb hoạt động"
+sidebarTitle: "Điều hướng & Layout"
+---
+
+# Điều hướng & Layout
+
+Appota HRM sử dụng **AppLayout** làm shell chính, gồm header, sidebar và `<Outlet />` render nội dung route. Breadcrumb được tự động render cho các trang drill-down (Staff 4 cấp, Workforce Department).
+
+## Cấu trúc AppLayout
+
+```text
+┌─────────────────────────────────────────────┐
+│  Header (logo, search, theme, user menu)    │
+├──────┬──────────────────────────────────────┤
+│      │                                       │
+│ Side │        <Outlet />                     │
+│ bar  │        (Page content)                 │
+│      │                                       │
+└──────┴──────────────────────────────────────┘
+```
+
+## Sidebar chính
+
+<CardGroup cols={2}>
+  <Card title="Dashboard" icon="chart-line">
+    `/` — Tổng quan KPI toàn tập đoàn.
+  </Card>
+
+  <Card title="Staff" icon="users">
+    `/staff` — Quản lý nhân viên phân cấp 4 cấp.
+  </Card>
+
+  <Card title="Onboarding" icon="user-plus">
+    `/onboarding` (HR view), `/onboarding/form` (Candidate view).
+  </Card>
+
+  <Card title="HR Review" icon="user-check">
+    `/hr-review` — Duyệt hồ sơ chờ.
+  </Card>
+
+  <Card title="Recruitment Orders" icon="clipboard-list">
+    `/recruitment/orders` — Yêu cầu tuyển dụng.
+  </Card>
+
+  <Card title="Interviews" icon="video">
+    `/interviews` — Lịch phỏng vấn.
+  </Card>
+
+  <Card title="Workforce Planning" icon="chart-pie">
+    `/workforce` — Hoạch định nhân lực.
+  </Card>
+
+  <Card title="CV Pool" icon="address-book">
+    `/cv-pool` — Kho CV ứng viên.
+  </Card>
+
+  <Card title="JD Pool" icon="file-contract">
+    `/jd-pool` — Kho JD.
+  </Card>
+
+  <Card title="Departments" icon="building">
+    `/departments` — Org chart phòng ban.
+  </Card>
+
+  <Card title="AI Assistant" icon="robot">
+    `/ai-chat` — Chat AI hỗ trợ HR.
+  </Card>
+
+  <Card title="LMS" icon="graduation-cap">
+    `/lms` — Learning Management System.
+  </Card>
+
+  <Card title="Permissions" icon="key">
+    `/permissions` — Phân quyền RBAC.
+  </Card>
+
+  <Card title="Audit Trail" icon="clock-rotate-left">
+    `/audit` — Lịch sử thay đổi.
+  </Card>
+
+  <Card title="Reports" icon="chart-column">
+    `/reports` — Báo cáo tuyển dụng.
+  </Card>
+
+  <Card title="Settings" icon="gear">
+    `/settings` — Cài đặt hệ thống.
+  </Card>
+</CardGroup>
+
+## Breadcrumb cho Staff 4 cấp
+
+Khi duyệt nhân viên, breadcrumb cập nhật theo từng cấp:
+
+```text
+Appota Group
+   └── Danh sách Công ty
+          └── Appota Game
+                 └── Engineering
+                        └── Danh sách Nhân viên
+                               └── Nguyen Van A (Staff Detail)
+```
+
+Click vào bất kỳ cấp nào trên breadcrumb để quay lại cấp đó với transition mượt.
+
+## Routing
+
+Tất cả route được khai báo trong `src/routes.tsx` theo kiểu `RouteConfig`:
+
+```typescript title="src/routes.tsx"
+import type { RouteConfig } from './types';
+
+export const routes: RouteConfig[] = [
+  { path: '/', element: <DashboardPage /> },
+  { path: '/staff', element: <StaffListPage /> },
+  { path: '/staff/:id', element: <StaffDetailPage /> },
+  { path: '/onboarding', element: <OnboardingPage /> },
+  { path: '/onboarding/form', element: <OnboardingFormPage /> },
+  { path: '/hr-review', element: <HRPendingPage /> },
+  { path: '/hr-review/:id', element: <HRReviewDetailPage /> },
+  // ...
+];
+```
+
+<Tip>
+  Để thêm route mới: tạo page trong `src/pages/`, import vào `routes.tsx`. Route tự động render trong `AppLayout`.
+</Tip>
+
+## Route Guard
+
+Hệ thống sử dụng `<RouteGuard>` để chặn truy cập khi user không có quyền:
+
+```tsx
+<RouteGuard requires={['view-staff']}>
+  <StaffListPage />
+</RouteGuard>
+```
+
+Khi vi phạm, hệ thống hiển thị **"Access denied"** hoặc redirect về `/`.

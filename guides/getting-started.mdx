@@ -1,0 +1,108 @@
+---
+title: "Bắt đầu nhanh"
+description: "Cài đặt và chạy Appota HRM trong 5 phút"
+sidebarTitle: "Bắt đầu nhanh"
+---
+
+# Bắt đầu nhanh
+
+Hướng dẫn này giúp bạn chạy Appota HRM trên máy local trong vòng 5 phút.
+
+## Yêu cầu hệ thống
+
+## Cài đặt
+
+<Steps>
+  <Step title="Clone repository">
+    ```bash
+    git clone https://github.com/Agentlize/HRM.git
+    cd HRM/hrm-appota
+    ```
+  </Step>
+  <Step title="Cài dependencies">
+    ```bash
+    pnpm install
+    ```
+
+    <Tip>
+      Bạn có thể dùng `npm install` hoặc `bun install` thay thế.
+    </Tip>
+  </Step>
+  <Step title="Tạo file môi trường">
+    Tạo file `.env` ở root `hrm-appota/`:
+
+    ```env
+    VITE_SUPABASE_URL=https://xxx.supabase.co
+    VITE_SUPABASE_ANON_KEY=eyJ...
+    ```
+
+    <Note>
+      Hệ thống chạy được với **mock data** mà không cần Supabase. Biến môi trường chỉ bắt buộc khi bạn muốn kết nối database thật.
+    </Note>
+  </Step>
+  <Step title="Chạy kiểm tra">
+    ```bash
+    npm run lint
+    ```
+
+    Lệnh này chạy Biome \+ TypeScript check \+ Tailwind validation. Đảm bảo mọi thứ pass trước khi build.
+  </Step>
+</Steps>
+
+## Cấu trúc thư mục
+
+```text
+hrm-appota/
+├── src/
+│   ├── pages/              # 1 file = 1 route
+│   ├── components/
+│   │   ├── layouts/        # AppLayout, AppSidebar
+│   │   ├── ui/             # shadcn/ui primitives
+│   │   └── common/         # Shared utility components
+│   ├── contexts/           # Theme, Language, HRM, Auth
+│   ├── data/               # Mock data (mockData.ts, jdData.ts, ...)
+│   ├── hooks/              # useAIChat, useDebounce, use-mobile, ...
+│   ├── lib/                # utils.ts (cn helper), sse.ts
+│   ├── types/              # Domain types
+│   ├── db/                 # Supabase client init
+│   ├── routes.tsx          # RouteConfig declaration
+│   └── App.tsx             # Root app
+├── public/                 # Static assets
+└── package.json
+```
+
+## Chạy dev server
+
+<Warning>
+  Trong môi trường sandbox, lệnh `npm run dev` và `npm run build` bị **disable**. Dùng `npm run lint` để validate code.
+</Warning>
+
+Trên máy local, bạn có thể chạy:
+
+```bash
+npm run dev     # Vite dev server với rolldown-vite
+npm run build   # Production build
+npm run start   # Preview production build
+```
+
+Mặc định dev server chạy ở `http://localhost:5173`.
+
+## Bước tiếp theo
+
+<CardGroup cols={2}>
+  <Card title="Khám phá Modules" icon="cubes" href="/modules/index">
+    Tìm hiểu từng module chi tiết.
+  </Card>
+
+  <Card title="Conventions" icon="code" href="/development/conventions">
+    Quy ước code cho team.
+  </Card>
+
+  <Card title="Architecture" icon="diagram-project" href="/architecture/overview">
+    Kiến trúc tổng quan.
+  </Card>
+
+  <Card title="AI Agent Guide" icon="robot" href="/development/ai-agent-guide">
+    Hướng dẫn cho AI agent làm việc với codebase.
+  </Card>
+</CardGroup>

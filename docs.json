@@ -1,16 +1,16 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "luma",
-  "name": "Agentlize HRM",
+  "theme": "mint",
+  "name": "Appota HRM",
   "colors": {
-    "primary": "#848c8e",
-    "light": "#11161e",
-    "dark": "#cfd0d2"
+    "primary": "#0F9377",
+    "light": "#36C7A0",
+    "dark": "#0A6E5C"
   },
-  "favicon": "https://media.brand.dev/2b01fe20-c04b-4a1d-a2f9-1d2789c50a7a.jpg",
+  "favicon": "/favicon.svg",
   "logo": {
-    "light": "https://media.brand.dev/5ffd6ce4-2434-4b4b-920a-f8cacac8b48b.svg",
-    "dark": "https://media.brand.dev/5ffd6ce4-2434-4b4b-920a-f8cacac8b48b.svg"
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
   },
   "navigation": {
     "tabs": [
@@ -18,48 +18,126 @@
         "tab": "Documentation",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Hướng dẫn nhanh",
             "pages": [
-              "introduction",
-              "quickstart",
-              "getting-started/account-setup",
-              "getting-started/roles-permissions"
+              "guides/getting-started",
+              "guides/navigation",
+              "guides/theme-and-language"
             ]
           },
           {
-            "group": "Core Features",
+            "group": "Bắt đầu",
             "pages": [
-              "features/employee-management",
-              "features/attendance-tracking",
-              "features/leave-management",
-              "features/payroll",
-              "features/recruitment",
-              "features/performance"
+              "introduction/welcome",
+              "introduction/overview",
+              "introduction/user-roles"
             ]
           },
           {
-            "group": "Guides",
+            "group": "Quy tắc nghiệp vụ",
             "pages": [
-              "guides/onboarding-employee",
-              "guides/running-payroll",
-              "guides/managing-leave",
-              "guides/performance-review"
+              "business-rules/onboarding-flow",
+              "business-rules/recruitment-order",
+              "business-rules/cv-status-transitions",
+              "business-rules/jd-status-rules",
+              "business-rules/approval-records",
+              "business-rules/permission-boundary",
+              "business-rules/ai-risk-assessment"
             ]
           },
           {
-            "group": "Configuration",
+            "group": "Modules",
             "pages": [
-              "configuration/organization-settings",
-              "configuration/departments",
-              "configuration/notifications",
-              "configuration/integrations"
+              {
+                "group": "Recruitment",
+                "pages": [
+                  "modules/recruitment/recruitment-orders",
+                  "modules/recruitment/cv-pool",
+                  "modules/recruitment/jd-pool",
+                  "modules/recruitment/interviews",
+                  "modules/recruitment/reports"
+                ]
+              },
+              {
+                "group": "Staff & Onboarding",
+                "pages": [
+                  "modules/staff/overview",
+                  "modules/staff/onboarding",
+                  "modules/staff/hr-review",
+                  "modules/staff/staff-list",
+                  "modules/staff/staff-detail"
+                ]
+              },
+              {
+                "group": "LMS",
+                "pages": [
+                  "modules/lms/courses",
+                  "modules/lms/materials",
+                  "modules/lms/quizzes",
+                  "modules/lms/learning-progress",
+                  "modules/lms/training-plans",
+                  "modules/lms/training-reports"
+                ]
+              },
+              {
+                "group": "Workforce Planning",
+                "pages": [
+                  "modules/workforce/dashboard",
+                  "modules/workforce/department-detail",
+                  "modules/workforce/jd-management"
+                ]
+              },
+              {
+                "group": "Governance",
+                "pages": [
+                  "modules/permissions/overview",
+                  "modules/permissions/roles",
+                  "modules/permissions/access-matrix",
+                  "modules/permissions/audit-trail"
+                ]
+              },
+              {
+                "group": "Hệ thống",
+                "pages": [
+                  "modules/dashboard",
+                  "modules/departments",
+                  "modules/ai-assistant",
+                  "modules/settings"
+                ]
+              },
+              "modules/index"
             ]
           },
           {
-            "group": "Help",
+            "group": "Kiến trúc & Dev",
             "pages": [
-              "help/faq",
-              "help/troubleshooting"
+              "architecture/overview",
+              "architecture/tech-stack",
+              "architecture/data-model",
+              "architecture/routing",
+              "architecture/state-management",
+              "development/setup",
+              "development/conventions",
+              "development/ai-agent-guide"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "HRM User Guide",
+        "groups": [
+          {
+            "group": "Hướng dẫn sử dụng",
+            "icon": "book",
+            "pages": [
+              "hrm/tong-quan",
+              "hrm/tuyen-dung-v1",
+              "hrm/role-leader",
+              "hrm/role-ta",
+              "hrm/role-hrd-bod",
+              "hrm/role-hm",
+              "hrm/faq",
+              "hrm/glossary"
             ]
           }
         ]
@@ -83,5 +161,6 @@
     "socials": {
       "github": "https://github.com/Agentlize"
     }
-  }
+  },
+  "description": "Tài liệu hệ thống quản lý nhân sự Appota HRM — onboarding, tuyển dụng, workforce planning, LMS, phân quyền và audit trail."
 }

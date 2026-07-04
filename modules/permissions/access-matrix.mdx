@@ -1,0 +1,51 @@
+---
+title: "Access Matrix"
+description: "Ma trận role × resource × action"
+sidebarTitle: "Access Matrix"
+---
+
+# Access Matrix
+
+**Route:** `/permissions` → Tab **Access Matrix**
+
+Ma trận trực quan hiển thị permission của từng role theo resource và action.
+
+## Cấu trúc
+
+- **Hàng:** 9 role (Super Admin, HR Manager, Department Head, Interviewer, Recruiter, Employee, Guest, Leader, Trainer)
+- **Cột:** 24 permission
+- **Ô:** ✓ nếu role có permission, trống nếu không
+
+## Ma trận mẫu
+
+| Role / Permission | View Staff | Edit Staff | Delete Staff | Approve Onboarding | View Interview | Edit Interview Score | View Workforce | Edit Workforce | View CV Pool | Edit CV Pool | View JD Pool | Edit JD Pool | View Audit Trail | Manage Permissions | Create Order | Approve Order | View Reports | View LMS | Manage Courses | Manage Materials | Manage Quizzes | View Progress | Manage Plans | View Reports LMS | |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---| | **Super Admin** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | | **HR Manager** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | | **Department Head** | ✓¹ | — | — | — | — | — | ✓¹ | — | — | — | — | — | ✓¹ | — | — | — | ✓ | ✓ | — | — | — | ✓¹ | — | ✓ | | **Interviewer** | — | — | — | — | ✓¹ | ✓¹ | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | | **Recruiter** | — | — | — | — | — | — | — | — | ✓ | ✓ | ✓ | ✓ | — | — | — | — | — | — | — | — | — | — | — | — | | **Leader** | — | — | — | — | — | — | — | — | — | — | — | — | — | — | ✓¹ | ✓¹ | — | — | — | — | — | — | — | — | | **Trainer** | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | | **Employee** | ✓² | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | ✓² | — | — | — | ✓² | — | — | | **Guest** | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — |
+
+¹ **Có điều kiện (boundary)**: chỉ áp dụng cho phòng ban / interview / order của user. ² **Cá nhân**: chỉ áp dụng cho profile / khóa học của chính user.
+
+## Boundary Conditions
+
+<Warning>
+  Khi role có **boundary condition**, hệ thống tự động áp dụng filter:
+
+  - Department Head → chỉ data phòng ban mình
+  - Interviewer → chỉ interview được phân công
+  - Employee → chỉ data cá nhân
+</Warning>
+
+## Sử dụng Access Matrix
+
+1. Xem tổng quan permission landscape của hệ thống
+2. Audit compliance — kiểm tra role nào có quyền gì
+3. Hỗ trợ tạo policy mới — copy pattern đã có
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Roles" icon="users" href="/modules/permissions/roles">
+    Mô tả chi tiết từng role.
+  </Card>
+
+  <Card title="Permission Boundary" icon="building-lock" href="/business-rules/permission-boundary">
+    Quy tắc boundary chi tiết.
+  </Card>
+</CardGroup>

@@ -1,0 +1,169 @@
+---
+title: "LMS — Quizzes"
+description: "Quản lý bài test trắc nghiệm với chấm điểm tự động"
+sidebarTitle: "Quizzes"
+---
+
+# LMS — Quizzes
+
+**Route:** `/lms/quizzes`
+
+Quản lý bài test trắc nghiệm trong hệ thống LMS. Hệ thống **tự động chấm điểm** dựa trên đáp án đúng.
+
+## Quiz List
+
+| Cột | Mô tả |
+| --- | --- |
+| Tên bài test | Tên quiz |
+| Số câu hỏi | Tổng số câu |
+| Thời gian làm bài | Phút |
+| Điểm đạt | Điểm tối thiểu để pass |
+| Ngày tạo | Thời điểm tạo |
+
+### Bộ lọc
+
+- Tìm kiếm theo tên
+
+### Hành động
+
+- **Tạo bài test mới**
+- Click vào bài test → Quiz Detail
+
+## Create / Edit Quiz
+
+### Form
+
+<ParamField path="name" type="string" required>
+  Tên bài test
+</ParamField>
+
+<ParamField path="description" type="textarea">
+  Mô tả
+</ParamField>
+
+<ParamField path="duration" type="number" required>
+  Thời gian làm bài (phút)
+</ParamField>
+
+<ParamField path="passingScore" type="number" required>
+  Điểm đạt (0-100)
+</ParamField>
+
+<ParamField path="questions" type="Question[]" required>
+  Danh sách câu hỏi (xem bên dưới)
+</ParamField>
+
+### Cấu trúc câu hỏi
+
+```typescript
+interface Question {
+  id: string;
+  content: string;
+  type: 'single' | 'multiple';  // Single Choice / Multiple Choice
+  options: AnswerOption[];
+  correctOptionIds: string[];
+  points: number;
+}
+
+interface AnswerOption {
+  id: string;
+  content: string;
+}
+```
+
+### Mỗi câu hỏi
+
+- **Nội dung câu hỏi**
+- **Loại câu hỏi**:
+  - `single` — Single Choice (chỉ chọn 1 đáp án đúng)
+  - `multiple` — Multiple Choice (chọn nhiều đáp án đúng)
+- **Danh sách đáp án** (tối thiểu 2, tối đa 6)
+- **Đánh dấu đáp án đúng**
+- **Điểm cho câu hỏi**
+
+### Hành động
+
+- **Thêm câu hỏi mới**
+- **Xóa câu hỏi**
+- **Save** → Lưu bài test
+- **Cancel** → Hủy
+
+## Quiz Detail
+
+### Header
+
+- Tên bài test
+- Số câu hỏi
+- Thời gian làm bài
+- Điểm đạt
+
+### Danh sách câu hỏi
+
+Hiển thị tất cả câu hỏi và đáp án (read-only).
+
+### Hành động
+
+- **Edit Quiz** → Chỉnh sửa
+
+## Tự động chấm điểm
+
+```typescript
+const totalScore = questions.reduce((sum, q) => {
+  const correct = isAnswerCorrect(userAnswer, q.correctOptionIds);
+  return sum + (correct ? q.points : 0);
+}, 0);
+
+const passed = totalScore >= quiz.passingScore;
+```
+
+### Công thức
+
+```text
+Tổng điểm = Σ (Điểm câu hỏi đúng)
+```
+
+- **Nếu tổng điểm ≥ Điểm đạt** → **Pass**
+- **Nếu tổng điểm \< Điểm đạt** → **Fail** (cho phép làm lại)
+
+## Cấp chứng chỉ
+
+Khi nhân viên **hoàn thành tất cả** học liệu **và pass tất cả** bài test:
+
+```typescript
+const courseCompleted = allMaterialsViewed && allQuizzesPassed;
+if (courseCompleted) {
+  issueCertificate(staffId, courseId);
+}
+```
+
+Chứng chỉ hiển thị trong **Staff Detail → Tab Learning History**.
+
+## Validation
+
+| Trường hợp | Xử lý |
+| --- | --- |
+| Không có bài test | Hiển thị **"No quizzes found"** |
+| Thiếu thông tin bắt buộc | Hiển thị lỗi, yêu cầu điền đầy đủ |
+| Không có câu hỏi | Hiển thị lỗi **"Quiz must have at least one question"** |
+| Không có đáp án đúng | Hiển thị lỗi **"Question must have at least one correct answer"** |
+| Nhân viên không đạt điểm | Cho phép làm lại |
+| Chưa hoàn thành học liệu | Không cho phép làm bài test |
+
+## Mock Data
+
+<Note>
+  - 20\+ bài test với 5-15 câu hỏi mỗi bài
+  - Phổ biến nhất: Single Choice (70%), Multiple Choice (30%)
+</Note>
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Courses" icon="book" href="/modules/lms/courses">
+    Khóa học chứa bài test.
+  </Card>
+
+  <Card title="Learning Progress" icon="chart-line" href="/modules/lms/learning-progress">
+    Theo dõi điểm số.
+  </Card>
+</CardGroup>

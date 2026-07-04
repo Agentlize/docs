@@ -1,0 +1,72 @@
+---
+title: "Chào mừng đến với Appota HRM"
+description: "Tài liệu chính thức cho hệ thống quản lý nhân sự Appota HRM"
+sidebarTitle: "Chào mừng"
+---
+
+# Chào mừng đến với Appota HRM
+
+Appota HRM là hệ thống **quản lý nhân sự toàn diện** được xây dựng cho Tập đoàn Appota và các công ty thành viên (Appota Game, Appota Pay, Appota Cloud, Gamota, Adsota, Kdata, OTA, Appota Holding). Hệ thống hợp nhất quy trình onboarding, tuyển dụng, hoạch định nhân lực, đào tạo nội bộ (LMS) và quản trị phân quyền trong một giao diện duy nhất.
+
+<CardGroup cols={2}>
+  <Card title="Bắt đầu nhanh" icon="rocket" href="/introduction/overview">
+    Tìm hiểu kiến trúc, stack công nghệ và các module chính trong 5 phút.
+  </Card>
+
+  <Card title="Hướng dẫn người dùng" icon="user" href="/introduction/user-roles">
+    Khám phá quyền hạn và kịch bản sử dụng theo từng vai trò.
+  </Card>
+
+  <Card title="Modules" icon="cubes" href="/modules/index">
+    Tài liệu chi tiết cho từng module: Staff, Recruitment, Workforce, LMS, v.v.
+  </Card>
+
+  <Card title="Kiến trúc" icon="diagram-project" href="/architecture/overview">
+    Sơ đồ kiến trúc, mô hình dữ liệu và routing cho đội ngũ phát triển.
+  </Card>
+</CardGroup>
+
+## Tính năng nổi bật
+
+<AccordionGroup>
+  <Accordion title="Onboarding 3 bước có token bảo mật" icon="user-plus">
+    Ứng viên nhận liên kết invite với `crypto.randomUUID()` token, điền form 3 bước và gửi về HR. HR xét duyệt, phân công phòng ban và hợp đồng, sau đó nhân viên chính thức xuất hiện trong Staff List.
+  </Accordion>
+
+  <Accordion title="Quản lý nhân viên phân cấp 4 cấp" icon="sitemap">
+    Drill-down mượt mà từ **Tập đoàn → Công ty con → Phòng ban → Nhân viên**, với breadcrumb, KPI cards, mini bar chart và progress bar theo từng cấp.
+  </Accordion>
+
+  <Accordion title="Pipeline tuyển dụng chuẩn hoá" icon="briefcase">
+    5 module A-E: Recruitment Order, CV Pool, Interview, Profile, Reports với AI matching, kanban drag-drop và transition map được kiểm soát.
+  </Accordion>
+
+  <Accordion title="Workforce Planning với cảnh báo" icon="chart-line">
+    Theo dõi headcount, ngân sách, time-to-fill và cost-per-hire theo phòng ban. Badge đỏ/vàng tự động highlight phòng chậm tiến độ hoặc sắp vượt ngân sách.
+  </Accordion>
+
+  <Accordion title="LMS — Learning Management System" icon="graduation-cap">
+    Khóa học, học liệu, bài test tự động chấm điểm, training plan theo phòng ban và báo cáo đào tạo đầy đủ.
+  </Accordion>
+
+  <Accordion title="Phân quyền RBAC + Audit Trail" icon="shield-halved">
+    9 role, 24 permission, 25-30 policy với access matrix và department boundary. Mọi thao tác được ghi log với AI đánh giá mức độ rủi ro.
+  </Accordion>
+</AccordionGroup>
+
+## Tech stack
+
+| Layer | Công nghệ |
+| --- | --- |
+| Framework | React 18 \+ TypeScript |
+| Build tool | Vite (rolldown-vite) |
+| Styling | Tailwind CSS v3 \+ shadcn/ui (Radix UI) |
+| Routing | React Router v7 |
+| Forms | React Hook Form \+ Zod |
+| Charts | Recharts |
+| Linter | Biome |
+| Backend (optional) | Supabase |
+
+<Note>
+  Hệ thống hiện đang chạy với **mock data** — chưa kết nối live database. Mọi flow nghiệp vụ đều đã được thiết kế để dễ dàng chuyển sang backend thật (Supabase hoặc REST API).
+</Note>

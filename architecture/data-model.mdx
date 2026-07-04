@@ -1,0 +1,412 @@
+---
+title: "Data Model"
+description: "Domain types và cấu trúc dữ liệu"
+sidebarTitle: "Data Model"
+---
+
+# Data Model
+
+Domain types được định nghĩa trong `src/types/types.ts` và `src/types/chat.ts`.
+
+## Core Types
+
+### StaffProfile
+
+```typescript
+interface StaffProfile {
+  id: string;
+  staffId: string;
+  fullName: string;
+  avatar?: string;
+  birthDate: Date;
+  gender: 'Male' | 'Female' | 'Other';
+  nationality: string;
+  address: string;
+  email: string;
+  phone: string;
+  dependants: Dependant[];
+  experience: Experience[];
+  preferences: {
+    jobTitles: string[];
+    workLocations: string[];
+    curriculums: string[];
+  };
+
+  // Assignment
+  status: StaffStatus;
+  department?: Department;
+  contractType?: ContractType;
+  jobTitle?: string;
+  company?: Company;
+
+  // Metadata
+  activities: Activity[];
+  certificates: Certificate[];
+  submittedAt?: Date;
+  approvedAt?: Date;
+}
+
+type StaffStatus = 'Pending' | 'Under Review' | 'Approved' | 'Rejected';
+type ContractType = 'Full-time' | 'Part-time' | 'Contractor' | 'Intern';
+```
+
+### Department & Company
+
+```typescript
+interface Company {
+  id: string;
+  name: string;
+  logo?: string;
+  totalStaff: number;
+  totalDepartments: number;
+  growth: number; // % so với tháng trước
+  status: 'Active' | 'Expanding' | 'Stable';
+}
+
+interface Department {
+  id: string;
+  name: string;
+  companyId: string;
+  headUserId?: string;
+  totalStaff: number;
+}
+```
+
+## Recruitment Types
+
+### RecruitmentOrder
+
+```typescript
+interface RecruitmentOrder {
+  id: string;
+  position: string;
+  department: string;
+  quantity: number;
+  description: string;
+  skills: string[];
+  budget?: number;
+  deadline?: Date;
+  reason: string;
+
+  status: OrderStatus;
+  jdStatus: JDStatus;
+
+  createdBy: string;
+  createdAt: Date;
+  submittedAt?: Date;
+  approvedAt?: Date;
+  closedAt?: Date;
+
+  auditLog: OrderAuditEntry[];
+}
+
+type OrderStatus = 'DRAFT' | 'SUBMITTED' | 'HR_REVIEW' | 'APPROVED' | 'REJECTED' | 'CLOSED';
+type JDStatus = 'Được phép tuyển' | 'Không được phép tuyển';
+
+interface OrderAuditEntry {
+  id: string;
+  actor: string;
+  timestamp: Date;
+  fromStatus: OrderStatus;
+  toStatus: OrderStatus;
+  reason?: string;
+}
+```
+
+### CV
+
+```typescript
+interface CV {
+  id: string;
+  candidateName: string;
+  email: string;
+  phone: string;
+  avatar?: string;
+  address: string;
+  birthDate: Date;
+
+  // Application
+  appliedJDs: string[];
+  currentStatus: CVStatus;
+  appliedDate: Date;
+  company: string;
+  position: string;
+  matchScore?: number;       // 0-100, từ AI matching
+
+  // CV content
+  summary: string;           // AI summary
+  skills: string[];
+  experience: CVExperience[];
+  education: CVEducation[];
+  previousPositions: string[];
+
+  // Tracking
+  reviews: CVReview[];
+  changelog: CVChangeLog[];
+  approvalRecords: ApprovalRecord[];
+
+  // Source
+  source: 'LinkedIn' | 'Indeed' | 'VietnamWorks' | 'Referral' | 'JobHopin' | 'TopCV' | 'Other';
+  tags: string[];
+}
+
+type CVStatus =
+  | 'New'
+  | 'Screening'
+  | 'Shortlisted'
+  | 'Interview Scheduled'
+  | 'Interview Completed'
+  | 'Offer Sent'
+  | 'Offer Accepted'
+  | 'Offer Rejected'
+  | 'Hired'
+  | 'Rejected'
+  | 'On Hold';
+
+interface CVReview {
+  id: string;
+  reviewerName: string;
+  reviewerId: string;
+  reviewedAt: Date;
+  rating: number;          // 1-5
+  comment: string;
+  decision: 'Pass' | 'Reject' | 'Hold';
+}
+
+interface CVChangeLog {
+  id: string;
+  actor: string;
+  timestamp: Date;
+  action: 'Created' | 'Edited' | 'Status Changed' | 'Note Added' | 'Interview Created' | 'Approval';
+  from?: CVStatus;
+  to?: CVStatus;
+  reason?: string;
+}
+```
+
+### JD
+
+```typescript
+interface JD {
+  id: string;
+  title: string;
+  description: string;
+  department: string;
+  company: string;
+  contractType: ContractType;
+  skills: string[];
+  minExperience?: number;
+  preferredEducation?: string;
+  budget?: number;
+  quantity: number;
+  filledCount: number;
+
+  status: 'Open' | 'Closed' | 'Draft' | 'Archived';
+  jdStatus: JDStatus;
+
+  createdAt: Date;
+  closedAt?: Date;
+  appliedCVs: string[];   // CV IDs
+  pipelineCount: number;  // CV đang ở các stage
+}
+```
+
+## Interview Types
+
+```typescript
+interface Interview {
+  id: string;
+  candidateName: string;
+  cvId: string;
+  jdId: string;
+
+  scheduledAt: Date;
+  duration: number;       // phút
+  timezone: string;
+
+  status: 'Scheduled' | 'Completed' | 'Overdue' | 'Second Interview';
+  companyResponsible: string;
+
+  // Recordings
+  videoUrl?: string;      // Mock URL
+  audioUrl?: string;
+  transcript?: TranscriptEntry[];
+
+  // AI Evaluation
+  aiEvaluation?: AIEvaluation;
+  interviewerNotes?: string;
+
+  // Scoring
+  criteriaScores: CriteriaScore[];
+
+  overallScore?: number;  // 0-100
+  recommendation?: 'Strongly Recommend' | 'Recommend' | 'Neutral' | 'Not Recommend';
+}
+
+interface AIEvaluation {
+  overallScore: number;
+  communicationSkills: number;
+  technicalKnowledge: number;
+  problemSolving: number;
+  culturalFit: number;
+  leadershipPotential: number;
+  summary: string;
+  strengths: string[];
+  areasForImprovement: string[];
+  recommendation: string;
+}
+
+interface CriteriaScore {
+  criteriaId: string;
+  criteriaName: string;
+  score: number;          // 1-5 hoặc 0-10
+  weight: number;         // %
+  note?: string;
+}
+```
+
+## Workforce Planning Types
+
+```typescript
+interface WorkforcePlan {
+  id: string;
+  departmentId: string;
+  period: 'monthly' | 'quarterly' | 'yearly';
+  year: number;
+  month?: number;
+  quarter?: number;
+
+  approvedHeadcount: number;
+  onboardedCount: number;
+  inProgressCount: number;
+
+  totalBudget: number;    // VND
+  spentBudget: number;
+
+  positions: JobPosition[];
+}
+
+interface JobPosition {
+  id: string;
+  title: string;
+  quantity: number;
+  status: 'Open' | 'Interviewing' | 'Offered' | 'Onboarded' | 'Closed';
+
+  applied: number;
+  interview: number;
+  offer: number;
+
+  averageBudget: number;
+  actualCost: number;
+
+  timeToFill: number;      // ngày
+  targetTimeToFill: number;
+  costPerHire: number;
+  bestSource: string;
+}
+```
+
+## LMS Types
+
+```typescript
+interface Course {
+  id: string;
+  name: string;
+  description: string;
+  category: 'Technical' | 'Soft Skills' | 'Compliance' | 'Leadership' | 'Product Knowledge';
+  thumbnail?: string;
+  status: 'Active' | 'Draft' | 'Archived';
+  createdAt: Date;
+
+  materials: string[];     // Material IDs theo thứ tự
+  quizzes: string[];       // Quiz IDs theo thứ tự
+  estimatedHours: number;
+
+  enrolledStudents: string[];   // StaffProfile IDs
+}
+
+interface Quiz {
+  id: string;
+  name: string;
+  description: string;
+  duration: number;        // phút
+  passingScore: number;    // 0-100
+  questions: Question[];
+  createdAt: Date;
+}
+
+interface Question {
+  id: string;
+  content: string;
+  type: 'single' | 'multiple';
+  options: { id: string; content: string }[];
+  correctOptionIds: string[];
+  points: number;
+}
+
+interface TrainingPlan {
+  id: string;
+  name: string;
+  description: string;
+  departments: string[];
+  period: 'monthly' | 'quarterly' | 'yearly';
+  startDate: Date;
+  endDate: Date;
+  courses: string[];        // Course IDs theo thứ tự
+  status: 'Active' | 'Completed' | 'Cancelled';
+}
+```
+
+## Permissions & Audit Types
+
+```typescript
+interface Role {
+  id: string;
+  name: string;
+  description: string;
+  permissions: string[];     // Permission IDs
+  userCount: number;
+}
+
+interface Permission {
+  id: string;
+  name: string;
+  resource: string;
+  action: 'View' | 'Edit' | 'Delete' | 'Approve' | 'Manage' | 'Create';
+  description: string;
+}
+
+interface Policy {
+  id: string;
+  roleId: string;
+  resource: string;
+  action: string;
+  condition?: string;
+}
+
+interface AuditEntry {
+  id: string;
+  timestamp: Date;
+  actor: string;
+  actorId: string;
+  actionType: 'CREATE' | 'UPDATE' | 'DELETE' | 'APPROVE' | 'REJECT' | 'STATUS_CHANGE';
+  module: string;
+  entity: string;
+  before?: any;
+  after?: any;
+  riskLevel: 'Low' | 'Medium' | 'High' | 'Critical';
+  aiAssessment?: RiskAssessment;
+}
+```
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Architecture Overview" icon="diagram-project" href="/architecture/overview">
+    Tổng quan.
+  </Card>
+
+  <Card title="State Management" icon="database" href="/architecture/state-management">
+    Cách dùng types trong context.
+  </Card>
+</CardGroup>

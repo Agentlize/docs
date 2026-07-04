@@ -1,0 +1,305 @@
+---
+title: "AI Agent Guide"
+description: "Hướng dẫn cho AI agent làm việc với codebase Appota HRM"
+sidebarTitle: "AI Agent Guide"
+---
+
+# AI Agent Guide
+
+Hướng dẫn dành cho **AI agents** (Cursor, GitHub Copilot, Claude Code, v.v.) khi làm việc với codebase Appota HRM.
+
+## Nguyên tắc chung
+
+<Steps>
+  <Step title="Hiểu trước khi sửa">
+    Đọc `README.md`, kiểm tra cấu trúc thư mục, đọc types liên quan trước khi thay đổi code.
+  </Step>
+  <Step title="Tuân thủ conventions">
+    Mimic code style, dùng existing libraries, follow patterns đã có.
+  </Step>
+  <Step title="Không thay đổi primitives">
+    KHÔNG sửa file trong `src/components/ui/` (shadcn primitives).
+  </Step>
+  <Step title="Tái sử dụng context">
+    Dùng `HRMContext`, `ThemeContext`, `LanguageContext`, `AuthContext` thay vì tạo state mới.
+  </Step>
+  <Step title="Mock data thay vì fake">
+    Sửa files trong `src/data/` khi cần thêm data, không hardcode trong component.
+  </Step>
+  <Step title="Validate sau khi thay đổi">
+    Chạy `npm run lint` để kiểm tra TypeScript \+ Biome.
+  </Step>
+</Steps>
+
+## Quy tắc theo tác vụ
+
+### Thêm tính năng mới
+
+<Steps>
+  <Step title="Tạo page trong src/pages/">
+    ```typescript title="src/pages/MyFeaturePage.tsx"
+    export const MyFeaturePage = () => {
+      return <div>...</div>;
+    };
+    ```
+  </Step>
+  <Step title="Thêm route vào src/routes.tsx">
+    ```typescript title="src/routes.tsx"
+    import { MyFeaturePage } from './pages/MyFeaturePage';
+    
+    export const routes: RouteConfig[] = [
+      // ...
+      { path: '/my-feature', element: <MyFeaturePage /> },
+    ];
+    ```
+  </Step>
+  <Step title="Cập nhật sidebar">
+    Thêm vào `navItems` trong `src/components/layouts/AppSidebar.tsx`.
+  </Step>
+</Steps>
+
+### Thêm UI component
+
+Dùng shadcn/ui từ `src/components/ui/`. **KHÔNG sửa** các file đó.
+
+Nếu cần variant mới, tạo wrapper component trong `src/components/common/`:
+
+```typescript
+// src/components/common/MyCustomButton.tsx
+import { Button } from '@/components/ui/button';
+
+export const MyCustomButton = ({ children, ...props }) => (
+  <Button variant="default" size="lg" {...props}>
+    {children}
+  </Button>
+);
+```
+
+### Thêm i18n key
+
+Chỉnh sửa `translations` trong `src/contexts/LanguageContext.tsx`:
+
+```typescript
+const translations = {
+  vi: {
+    common: { save: 'Lưu', newKey: 'Giá trị tiếng Việt' },
+    staff: { approve: 'Phê duyệt' },
+  },
+  en: {
+    common: { save: 'Save', newKey: 'English value' },
+    staff: { approve: 'Approve' },
+  },
+};
+```
+
+Sử dụng:
+
+```tsx
+const { t } = useLanguage();
+<button>{t('common', 'newKey')}</button>
+```
+
+### Thêm state toàn cục
+
+Dùng `HRMContext` hoặc tạo context mới, wrap trong `App.tsx`:
+
+```typescript title="src/contexts/MyContext.tsx"
+const MyContext = createContext<MyContextValue | null>(null);
+
+export const MyProvider = ({ children }) => {
+  const [state, setState] = useState();
+  // ...
+  return <MyContext.Provider value={...}>{children}</MyContext.Provider>;
+};
+```
+
+```typescript title="src/App.tsx"
+<MyProvider>
+  <HRMProvider>
+    <RouterProvider router={router} />
+  </HRMProvider>
+</MyProvider>
+```
+
+### Sử dụng màu sắc
+
+**CHỈ** dùng CSS variables đã định nghĩa trong `src/index.css`:
+
+```tsx
+// ĐÚNG
+<div className="bg-primary text-primary-foreground" />
+<div className="border-border bg-card" />
+
+// SAI
+<div className="bg-blue-500 text-white" />
+```
+
+### Sửa mock data
+
+Sửa files trong `src/data/`, type tương ứng trong `src/types/types.ts`:
+
+```typescript title="src/data/mockData.ts"
+export const mockStaffData: StaffProfile[] = [
+  {
+    id: 'staff-001',
+    fullName: 'Nguyễn Văn A',
+    // ...
+  },
+];
+```
+
+### Multi-level Approval
+
+Xem pattern trong `WorkforceDeptDetailPage.tsx`:
+
+```typescript
+interface ApprovalLevel {
+  level: number;
+  approverRole: string;
+  approverName: string;
+  status: 'Pending' | 'Approved' | 'Rejected';
+  timestamp?: Date;
+  reason?: string;
+}
+```
+
+## Patterns phổ biến
+
+### Form với React Hook Form \+ Zod
+
+```typescript
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+
+const schema = z.object({
+  name: z.string().min(1, 'Tên không được trống'),
+  email: z.string().email('Email không hợp lệ'),
+});
+
+type FormData = z.infer<typeof schema>;
+
+const MyForm = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit = (data: FormData) => {
+    console.log(data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register('name')} />
+      {errors.name && <span>{errors.name.message}</span>}
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+```
+
+### Data fetching với mock
+
+```typescript
+import { mockStaffData } from '@/data/mockData';
+
+const useStaffList = () => {
+  return useMemo(() => mockStaffData, []);
+};
+```
+
+Khi tích hợp API thật:
+
+```typescript
+const useStaffList = () => {
+  const [data, setData] = useState<StaffProfile[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    supabase.from('staff').select('*').then(({ data, error }) => {
+      if (!error && data) setData(data);
+      setLoading(false);
+    });
+  }, []);
+
+  return { data, loading };
+};
+```
+
+### Charts với Recharts
+
+```typescript
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+
+<ResponsiveContainer width="100%" height={300}>
+  <BarChart data={data}>
+    <XAxis dataKey="name" />
+    <YAxis />
+    <Tooltip />
+    <Bar dataKey="value" fill="hsl(var(--primary))" />
+  </BarChart>
+</ResponsiveContainer>
+```
+
+### Drag-drop Kanban
+
+Dùng `@dnd-kit/core` hoặc `react-beautiful-dnd` (cần cài thêm).
+
+Validation theo [CV Transitions](/business-rules/cv-status-transitions).
+
+## Validation trước khi commit
+
+<Steps>
+  <Step title="Chạy lint">
+    ```bash
+    npm run lint
+    ```
+
+    Phải pass tất cả checks.
+  </Step>
+  <Step title="Kiểm tra TypeScript">
+    ```bash
+    npx tsc --noEmit
+    ```
+  </Step>
+  <Step title="Xem file đã thay đổi">
+    ```bash
+    git diff
+    ```
+
+    Review trước khi commit.
+  </Step>
+  <Step title="Commit với message rõ ràng">
+    ```bash
+    git commit -m "feat(module): description"
+    ```
+  </Step>
+</Steps>
+
+## Đừng làm
+
+<Warning>
+  - ❌ Sửa files trong `src/components/ui/` (shadcn primitives)
+  - ❌ Dùng emoji trong UI (chỉ icon từ `lucide-react`)
+  - ❌ Hardcode data trong component (dùng `src/data/`)
+  - ❌ Dùng màu Tailwind trực tiếp (chỉ semantic tokens)
+  - ❌ Tạo state mới khi có thể dùng Context
+  - ❌ Bỏ qua `npm run lint` trước khi commit
+  - ❌ Commit trực tiếp vào main
+</Warning>
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Setup" icon="gear" href="/development/setup">
+    Cài đặt môi trường.
+  </Card>
+
+  <Card title="Conventions" icon="code" href="/development/conventions">
+    Quy ước code.
+  </Card>
+
+  <Card title="Architecture" icon="diagram-project" href="/architecture/overview">
+    Kiến trúc.
+  </Card>
+</CardGroup>

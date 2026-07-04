@@ -1,0 +1,123 @@
+---
+title: "Workforce Planning — Dashboard"
+description: "Tổng quan kế hoạch nhân lực, headcount, ngân sách và cảnh báo"
+sidebarTitle: "Dashboard"
+---
+
+# Workforce Planning Dashboard
+
+**Route:** `/workforce`
+
+Theo dõi kế hoạch tuyển dụng theo phòng ban: headcount, ngân sách, time-to-fill và cảnh báo tự động.
+
+## Bộ lọc
+
+<ParamField path="period" type="select">
+  Tháng / Quý / Năm
+</ParamField>
+
+<ParamField path="department" type="select">
+  Engineering, Marketing, Sales, HR, Finance, Operations, Design, Product
+</ParamField>
+
+## KPI Cards (tổng công ty)
+
+<CardGroup cols={4}>
+  <Card title="Tổng Headcount" icon="users">
+    Tổng số nhân viên cần tuyển
+  </Card>
+
+  <Card title="Tổng đã tuyển" icon="user-check">
+    Số nhân viên đã onboard thành công
+  </Card>
+
+  <Card title="Tổng ngân sách" icon="wallet">
+    Ngân sách được phê duyệt (VND)
+  </Card>
+
+  <Card title="Chi phí đã dùng" icon="money-bill-trend-up">
+    Chi phí tuyển dụng đã sử dụng (VND)
+  </Card>
+</CardGroup>
+
+## Bảng tổng hợp phòng ban
+
+| Cột | Công thức |
+| --- | --- |
+| Tên phòng ban | — |
+| Headcount được phê duyệt | Tổng chỉ tiêu |
+| Headcount đã onboard | Đã tuyển thành công |
+| Headcount đang trong quy trình | Đã offer / đang phỏng vấn |
+| Headcount còn trống | Tổng − (Đã onboard \+ Đang trong quy trình) |
+| Ngân sách tổng được phê duyệt | VND |
+| Chi phí đã sử dụng | VND |
+| Ngân sách còn dư | Ngân sách tổng − Chi phí đã sử dụng |
+| % hoàn thành chỉ tiêu | (Đã onboard / Headcount được phê duyệt) × 100% |
+
+### Cảnh báo tự động
+
+<Warning>
+  - **Badge đỏ**: Phòng ban sử dụng **\> 80% ngân sách** hoặc **Time-to-Fill vượt mục tiêu**.
+  - **Badge vàng**: Phòng ban hoàn thành **\< 50% headcount** gần deadline.
+</Warning>
+
+## Biểu đồ
+
+<CardGroup cols={2}>
+  <Card title="Biểu đồ cột" icon="chart-column">
+    So sánh headcount kế hoạch vs thực tế theo từng phòng ban.
+  </Card>
+
+  <Card title="Biểu đồ tròn" icon="chart-pie">
+    Phân bổ ngân sách theo phòng ban.
+  </Card>
+</CardGroup>
+
+Biểu đồ sử dụng **Recharts**.
+
+## Công thức tính toán
+
+```typescript title="utils.ts"
+const headcountRemaining = totalHeadcount - (onboardedCount + inProgressCount);
+const budgetRemaining = totalBudget - spentBudget;
+const completionRate = (onboardedCount / approvedHeadcount) * 100;
+const budgetUtilization = (spentBudget / totalBudget) * 100;
+```
+
+## Hành động
+
+Click vào phòng ban → mở [**Department Workforce Detail**](/modules/workforce/department-detail).
+
+## Mock Data
+
+<Note>
+  - 8 phòng ban: Engineering, Marketing, Sales, HR, Finance, Operations, Design, Product
+  - Mỗi phòng ban: headcount kế hoạch 3-10, đã tuyển, đang process, ngân sách 100-800 triệu VND
+  - Mỗi phòng ban có 2-4 vị trí tuyển dụng với đầy đủ chỉ số
+  - Đa dạng: phòng đạt mục tiêu, phòng chậm tiến độ, phòng sắp vượt ngân sách
+  - Số tiền VND format: `500.000.000 ₫` hoặc `500M ₫`
+</Note>
+
+## Validation
+
+| Trường hợp | Xử lý |
+| --- | --- |
+| Không có dữ liệu | Hiển thị **"No data available"** |
+| Filter không có kết quả | Hiển thị **"No results found"** |
+| Loading | Skeleton screen cho cards \+ table |
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Department Detail" icon="building" href="/modules/workforce/department-detail">
+    Chi tiết từng phòng ban.
+  </Card>
+
+  <Card title="JD Management" icon="file-lines" href="/modules/workforce/jd-management">
+    Quản lý vị trí tuyển dụng.
+  </Card>
+
+  <Card title="Recruitment Orders" icon="clipboard-list" href="/modules/recruitment/recruitment-orders">
+    Order đồng bộ với workforce planning.
+  </Card>
+</CardGroup>

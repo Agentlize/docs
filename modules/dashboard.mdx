@@ -1,0 +1,85 @@
+---
+title: "Dashboard"
+description: "Tổng quan KPI toàn hệ thống Appota HRM"
+sidebarTitle: "Dashboard"
+---
+
+# Dashboard
+
+**Route:** `/`
+
+Trang tổng quan hiển thị thông tin tổng hợp của toàn bộ hệ thống HRM.
+
+## KPI Cards
+
+<CardGroup cols={4}>
+  <Card title="Tổng nhân viên" icon="users">
+    Tổng nhân viên đã được phê duyệt toàn tập đoàn
+  </Card>
+
+  <Card title="Onboarding đang chờ" icon="user-clock">
+    Số hồ sơ đang chờ HR duyệt
+  </Card>
+
+  <Card title="Phòng ban" icon="building">
+    Tổng số phòng ban (cross-company)
+  </Card>
+
+  <Card title="Yêu cầu tuyển dụng" icon="clipboard-list">
+    Số recruitment order đang mở
+  </Card>
+</CardGroup>
+
+## Biểu đồ
+
+- **Headcount by company**: phân bổ nhân viên theo công ty con
+- **Onboarding status**: số hồ sơ theo trạng thái Pending / Under Review / Approved / Rejected
+- **Recruitment funnel**: pipeline tuyển dụng tổng quan
+
+## Quick Actions
+
+<CardGroup cols={3}>
+  <Card title="Duyệt hồ sơ" icon="user-check" href="/modules/staff/hr-review">
+    Mở HR Review
+  </Card>
+
+  <Card title="Tạo recruitment order" icon="clipboard-list" href="/modules/recruitment/recruitment-orders">
+    Mở Recruitment Orders
+  </Card>
+
+  <Card title="Xem CV Pool" icon="address-book" href="/modules/recruitment/cv-pool">
+    Mở CV Pool
+  </Card>
+</CardGroup>
+
+## Recent Activity
+
+Hiển thị 10 hoạt động gần nhất trong hệ thống (từ audit log).
+
+## Liên kết nhanh
+
+<CardGroup cols={3}>
+  <Card title="Staff" icon="users" href="/modules/staff/overview">
+    Quản lý nhân viên
+  </Card>
+
+  <Card title="Recruitment" icon="briefcase" href="/modules/recruitment/recruitment-orders">
+    Tuyển dụng
+  </Card>
+
+  <Card title="LMS" icon="graduation-cap" href="/modules/lms/courses">
+    Đào tạo
+  </Card>
+
+  <Card title="Permissions" icon="key" href="/modules/permissions/overview">
+    Phân quyền
+  </Card>
+
+  <Card title="Audit Trail" icon="clock-rotate-left" href="/modules/permissions/audit-trail">
+    Audit log
+  </Card>
+
+  <Card title="Reports" icon="chart-column" href="/modules/recruitment/reports">
+    Báo cáo
+  </Card>
+</CardGroup>

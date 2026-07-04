@@ -1,0 +1,94 @@
+---
+title: "Department Workforce Detail"
+description: "Chi tiết headcount, ngân sách và hiệu suất tuyển dụng của từng phòng ban"
+sidebarTitle: "Department Detail"
+---
+
+# Department Workforce Detail
+
+**Route:** `/workforce/:deptId`
+
+Hiển thị chi tiết kế hoạch tuyển dụng của một phòng ban cụ thể.
+
+## Header
+
+- Tên phòng ban
+- Head of Department
+- Tổng headcount
+- Ngân sách tổng
+
+## Progress bar
+
+```typescript
+const headcountProgress = (onboardedCount / approvedHeadcount) * 100;
+const budgetProgress = (spentBudget / totalBudget) * 100;
+```
+
+Hiển thị 2 progress bar:
+
+- **% hoàn thành headcount**
+- **% sử dụng ngân sách**
+
+## Bảng vị trí tuyển dụng
+
+| Cột | Mô tả |
+| --- | --- |
+| Tên vị trí | Job title |
+| Số lượng cần tuyển | Tổng chỉ tiêu |
+| Trạng thái | `Đang mở` / `Đang phỏng vấn` / `Đã Offer` / `Đã Onboard` / `Đóng` |
+| Applied | Số ứng viên apply |
+| Interview | Số ứng viên đang phỏng vấn |
+| Offer | Số ứng viên đã offer |
+| Ngân sách bình quân/vị trí | VND |
+| Chi phí thực tế | VND |
+| Time-to-Fill | Số ngày |
+| Mục tiêu Time-to-Fill | Số ngày (highlight đỏ nếu vượt) |
+| Cost-per-Hire | VND |
+| Nguồn hiệu quả nhất | LinkedIn / Referral / Job Board / Headhunt |
+
+### Hành động
+
+- **Nút cập nhật trạng thái vị trí** — HR chuyển trạng thái vị trí (Đang mở → Đang phỏng vấn → Đã Offer → Đã Onboard → Đóng)
+
+### Tab Activity log
+
+Lịch sử thay đổi trạng thái của từng vị trí.
+
+## Multi-level Approval
+
+Khi HR cập nhật trạng thái nhạy cảm (ví dụ: tăng ngân sách hoặc thay đổi số lượng), hệ thống yêu cầu **phê duyệt nhiều cấp**:
+
+```typescript
+type ApprovalLevel = {
+  level: number;
+  approverRole: string;
+  approverName: string;
+  status: 'Pending' | 'Approved' | 'Rejected';
+  timestamp?: Date;
+  reason?: string;
+};
+```
+
+Xem pattern chi tiết tại `WorkforceDeptDetailPage.tsx`.
+
+## Mock Data
+
+<Note>
+  - 8 phòng ban: Engineering, Marketing, Sales, HR, Finance, Operations, Design, Product
+  - Mỗi phòng ban: 2-4 vị trí tuyển dụng
+  - Headcount kế hoạch: 3-10 mỗi phòng
+  - Ngân sách: 100-800 triệu VND mỗi phòng
+  - Đa dạng trạng thái: Đang mở / Đang phỏng vấn / Đã Offer / Đã Onboard / Đóng
+</Note>
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Workforce Dashboard" icon="chart-pie" href="/modules/workforce/dashboard">
+    Quay lại tổng quan.
+  </Card>
+
+  <Card title="JD Management" icon="file-lines" href="/modules/workforce/jd-management">
+    Quản lý vị trí.
+  </Card>
+</CardGroup>

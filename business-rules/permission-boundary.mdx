@@ -1,0 +1,143 @@
+---
+title: "Permission Boundary"
+description: "Quy tắc giới hạn quyền theo phòng ban"
+sidebarTitle: "Permission Boundary"
+---
+
+# Permission Boundary
+
+Quy tắc giới hạn quyền truy cập dữ liệu theo phòng ban, đảm bảo user chỉ thấy data thuộc phạm vi được phân công.
+
+## Tổng quan
+
+<Warning>
+  - **Department Head** chỉ xem data của **department mình**.
+  - **Employee** chỉ xem profile của **mình**.
+  - **HR Manager** và **Super Admin** xem **toàn bộ data**.
+</Warning>
+
+## Boundary theo Role
+
+| Role | Phạm vi truy cập |
+| --- | --- |
+| **Super Admin** | Toàn bộ hệ thống, không giới hạn |
+| **HR Manager** | Toàn bộ hệ thống |
+| **Department Head** | Chỉ phòng ban của mình |
+| **Interviewer** | Chỉ interview được phân công |
+| **Recruiter** | Toàn hệ thống (CV/JD Pool, không giới hạn phòng ban) |
+| **Leader** | Chỉ phòng ban của mình |
+| **Trainer** | Chỉ khóa học của mình |
+| **Employee** | Chỉ profile và khóa học của mình |
+| **Guest** | Không có quyền truy cập |
+
+## Implementation
+
+### 1. Route Guard
+
+```tsx title="src/components/common/RouteGuard.tsx"
+interface RouteGuardProps {
+  requires: Permission[];
+  fallback?: React.ReactNode;
+}
+
+const RouteGuard = ({ requires, children, fallback }: RouteGuardProps) => {
+  const { currentUser } = useAuth();
+
+  const hasPermission = requires.every(p =>
+    currentUser.permissions.includes(p)
+  );
+
+  if (!hasPermission) {
+    return fallback ?? <Navigate to="/" />;
+  }
+
+  return <>{children}</>;
+};
+```
+
+### 2. Data Filter
+
+```typescript title="src/lib/dataScope.ts"
+const filterByBoundary = <T extends { departmentId?: string; ownerId?: string }>(
+  data: T[],
+  user: User
+): T[] => {
+  // Super Admin / HR Manager — thấy tất cả
+  if (user.role === 'Super Admin' || user.role === 'HR Manager') {
+    return data;
+  }
+
+  // Department Head / Leader — chỉ phòng ban mình
+  if (user.role === 'Department Head' || user.role === 'Leader') {
+    return data.filter(d => d.departmentId === user.departmentId);
+  }
+
+  // Employee — chỉ data của mình
+  if (user.role === 'Employee') {
+    return data.filter(d => d.ownerId === user.id);
+  }
+
+  // Recruiter — toàn hệ thống cho CV/JD
+  if (user.role === 'Recruiter') {
+    return data;
+  }
+
+  return [];
+};
+```
+
+### 3. Department Boundary
+
+```typescript title="src/types/permissions.ts"
+interface DepartmentBoundary {
+  departmentId: string;
+  departmentName: string;
+  headUserId: string;
+  allowedRoles: Role[];
+  boundary: {
+    canViewOtherDepartments: boolean;   // Default false
+    canEditOtherDepartments: boolean;   // Default false
+    canManageUsers: boolean;            // Default false
+  };
+}
+```
+
+## Mock Departments
+
+| Department | Head | Boundary |
+| --- | --- | --- |
+| Engineering | user-id-1 | Chỉ Engineering |
+| Marketing | user-id-2 | Chỉ Marketing |
+| Sales | user-id-3 | Chỉ Sales |
+| HR | user-id-4 | Chỉ HR |
+| Finance | user-id-5 | Chỉ Finance |
+| Operations | user-id-6 | Chỉ Operations |
+| Design | user-id-7 | Chỉ Design |
+| Product | user-id-8 | Chỉ Product |
+
+## Validation
+
+| Tình huống | Xử lý |
+| --- | --- |
+| User truy cập trang không có quyền | Hiển thị **"Access denied"** hoặc redirect về `/` |
+| Department Head cố xem data phòng ban khác | API lỗi 403 \+ UI ẩn |
+| Employee cố xem profile người khác | API lỗi 403 \+ UI ẩn |
+| User không có role | Hiển thị **"Access denied"** |
+
+## Code Reference
+
+- Route Guard: `src/components/common/RouteGuard.tsx`
+- Data Filter: `src/lib/dataScope.ts`
+- Boundary: `src/data/permissionsData.ts`
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Permissions" icon="key" href="/modules/permissions/overview">
+    Tổng quan phân quyền.
+  </Card>
+
+  <Card title="Roles" icon="users" href="/modules/permissions/roles">
+    Danh sách 9 role.
+  </Card>
+</CardGroup>

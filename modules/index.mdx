@@ -1,0 +1,141 @@
+---
+title: "Modules"
+description: "Danh sách tất cả modules trong Appota HRM"
+sidebarTitle: "Tổng quan Modules"
+---
+
+# Modules
+
+Appota HRM gồm **18 modules chính**, được nhóm thành 5 nhóm nghiệp vụ. Mỗi module có một route riêng và được khai báo trong `src/routes.tsx`.
+
+## Nhóm 1 — Staff & Onboarding
+
+<CardGroup cols={2}>
+  <Card title="Staff Overview" icon="users" href="/modules/staff/overview">
+    Quản lý nhân viên phân cấp 4 cấp với drill-down mượt.
+  </Card>
+
+  <Card title="Onboarding" icon="user-plus" href="/modules/staff/onboarding">
+    Form 3 bước cho ứng viên mới.
+  </Card>
+
+  <Card title="HR Review" icon="user-check" href="/modules/staff/hr-review">
+    HR duyệt hồ sơ, phân công phòng ban và hợp đồng.
+  </Card>
+
+  <Card title="Staff Detail" icon="id-card" href="/modules/staff/staff-detail">
+    Hồ sơ cá nhân \+ 11 tab (CV, Activity, Capability Map, v.v.).
+  </Card>
+</CardGroup>
+
+## Nhóm 2 — Recruitment
+
+<CardGroup cols={2}>
+  <Card title="Recruitment Orders" icon="clipboard-list" href="/modules/recruitment/recruitment-orders">
+    Leader tạo yêu cầu, HR duyệt, JD chuyển trạng thái.
+  </Card>
+
+  <Card title="CV Pool" icon="address-book" href="/modules/recruitment/cv-pool">
+    Quản lý CV với table, kanban, import batch và AI matching.
+  </Card>
+
+  <Card title="JD Pool" icon="file-contract" href="/modules/recruitment/jd-pool">
+    Quản lý JD với JD Status và danh sách CV đã apply.
+  </Card>
+
+  <Card title="Interviews" icon="video" href="/modules/recruitment/interviews">
+    Lịch phỏng vấn, video, transcript, AI evaluation.
+  </Card>
+
+  <Card title="Recruitment Reports" icon="chart-column" href="/modules/recruitment/reports">
+    Funnel tuyển dụng, conversion, bottleneck, cohort analysis.
+  </Card>
+</CardGroup>
+
+## Nhóm 3 — Workforce Planning
+
+<CardGroup cols={3}>
+  <Card title="Dashboard" icon="chart-pie" href="/modules/workforce/dashboard">
+    KPI \+ bảng tổng hợp \+ biểu đồ.
+  </Card>
+
+  <Card title="Department Detail" icon="building" href="/modules/workforce/department-detail">
+    Chi tiết headcount, ngân sách, time-to-fill.
+  </Card>
+
+  <Card title="JD Management" icon="file-lines" href="/modules/workforce/jd-management">
+    Quản lý vị trí tuyển dụng trong phòng ban.
+  </Card>
+</CardGroup>
+
+## Nhóm 4 — LMS
+
+<CardGroup cols={3}>
+  <Card title="Courses" icon="book" href="/modules/lms/courses">
+    Tạo khóa học với học liệu \+ bài test.
+  </Card>
+
+  <Card title="Materials" icon="file-video" href="/modules/lms/materials">
+    Upload và quản lý học liệu.
+  </Card>
+
+  <Card title="Quizzes" icon="circle-question" href="/modules/lms/quizzes">
+    Bài test trắc nghiệm tự chấm điểm.
+  </Card>
+
+  <Card title="Learning Progress" icon="chart-line" href="/modules/lms/learning-progress">
+    Tiến độ học theo cá nhân và phòng ban.
+  </Card>
+
+  <Card title="Training Plans" icon="calendar" href="/modules/lms/training-plans">
+    Kế hoạch đào tạo theo chu kỳ.
+  </Card>
+
+  <Card title="Training Reports" icon="chart-column" href="/modules/lms/training-reports">
+    Báo cáo đào tạo tổng quan và chi tiết.
+  </Card>
+</CardGroup>
+
+## Nhóm 5 — Governance & Hệ thống
+
+<CardGroup cols={2}>
+  <Card title="Permissions" icon="key" href="/modules/permissions/overview">
+    Roles, permissions, policies, access matrix.
+  </Card>
+
+  <Card title="Audit Trail" icon="clock-rotate-left" href="/modules/permissions/audit-trail">
+    Lịch sử thay đổi với AI risk assessment.
+  </Card>
+
+  <Card title="Dashboard" icon="gauge" href="/modules/dashboard">
+    Tổng quan KPI toàn hệ thống.
+  </Card>
+
+  <Card title="Departments" icon="building" href="/modules/departments">
+    Org chart phòng ban.
+  </Card>
+
+  <Card title="AI Assistant" icon="robot" href="/modules/ai-assistant">
+    Chat AI hỗ trợ HR (SSE streaming).
+  </Card>
+
+  <Card title="Settings" icon="gear" href="/modules/settings">
+    Capability Dictionary, Jobsite Templates.
+  </Card>
+</CardGroup>
+
+## Mock Data
+
+Hệ thống hiện chạy với **mock data** được lưu trong `src/data/`:
+
+| File | Nội dung | Quy mô |
+| --- | --- | --- |
+| `mockData.ts` | StaffProfile\[\] | 800-1500 nhân viên |
+| `appotaOrgData.ts` | Org chart, phòng ban | 5-8 công ty, 30-50 phòng ban |
+| `workforceData.ts` | Workforce planning | 8 phòng ban, 2-4 vị trí/phòng |
+| `jdData.ts` / `jdPoolData.ts` / `jdRequestData.ts` | JD | 15\+ JD |
+| `cvPipelineData.ts` / `cvPoolData.ts` | CV | 30\+ CV |
+| `interviewData.ts` | Interviews | 5-6 buổi phỏng vấn |
+| `recruitmentOrderData.ts` | Recruitment Orders | 10\+ orders |
+| `permissionsData.ts` | Roles, permissions, policies | 9 roles, 24 permissions |
+| `auditData.ts` | Audit log | 150-200 entries |

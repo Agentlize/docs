@@ -1,0 +1,97 @@
+---
+title: "Staff List"
+description: "Danh sách nhân viên đã duyệt với filter và search"
+sidebarTitle: "Staff List"
+---
+
+# Staff List
+
+**Route:** `/staff`
+
+Hiển thị tất cả nhân viên đã được phê duyệt (`status === 'approved'`) với khả năng drill-down theo cấu trúc phân cấp Tập đoàn.
+
+## Cấu trúc 4 cấp
+
+Xem chi tiết tại [**Staff Overview**](/modules/staff/overview). Trang này tập trung vào **Cấp 4 — Staff List** chi tiết.
+
+## Breadcrumb
+
+```text
+Appota Group
+   └── Danh sách Công ty
+          └── Appota Game
+                 └── Engineering
+                        └── Danh sách Nhân viên ← bạn đang ở đây
+```
+
+Click bất kỳ cấp nào trên breadcrumb để quay lại.
+
+## Bảng nhân viên
+
+| Cột | Mô tả | Filter |
+| --- | --- | --- |
+| Avatar | Ảnh đại diện | — |
+| Họ tên | Tên đầy đủ | Search box |
+| Staff ID | Mã nhân viên | — |
+| Department | Phòng ban | Dropdown |
+| Contract Type | Loại hợp đồng | Dropdown |
+| Job Title | Vị trí | — |
+| Status | Trạng thái | Dropdown |
+
+## Bộ lọc
+
+<ParamField path="department" type="select">
+  Engineering, Marketing, Sales, HR, Finance, Operations, Design, Product
+</ParamField>
+
+<ParamField path="contractType" type="select">
+  Full-time, Part-time, Contractor, Intern
+</ParamField>
+
+<ParamField path="status" type="select">
+  Approved, Pending, Under Review, Rejected
+</ParamField>
+
+<ParamField path="search" type="string">
+  Tìm theo tên (case-insensitive, fuzzy match)
+</ParamField>
+
+## Hành động
+
+Click vào một nhân viên → mở [**Staff Detail**](/modules/staff/staff-detail) với đầy đủ thông tin cá nhân và 11 tab.
+
+## Mock Data
+
+<Note>
+  - Tổng nhân viên toàn tập đoàn: **800-1500**
+  - Số công ty con: **5-8**
+  - Số phòng ban: **30-50**
+  - Mỗi công ty có **3-8 phòng ban**
+  - Mỗi phòng ban có **5-50 nhân viên**
+</Note>
+
+## Computed Values
+
+```typescript title="utils.ts"
+const companyEmployeeRatio = (companyStaff / totalGroupStaff) * 100;
+const deptEmployeeRatio = (deptStaff / totalCompanyStaff) * 100;
+```
+
+Hệ thống tự động tính:
+
+- **Tỉ lệ nhân viên công ty / tổng tập đoàn**
+- **Tỉ lệ nhân viên phòng ban / tổng công ty**
+
+Hiển thị dưới dạng progress bar trên các cấp drill-down.
+
+## Liên kết
+
+<CardGroup cols={2}>
+  <Card title="Staff Detail" icon="id-card" href="/modules/staff/staff-detail">
+    Click vào nhân viên để xem chi tiết.
+  </Card>
+
+  <Card title="Onboarding" icon="user-plus" href="/modules/staff/onboarding">
+    Thêm nhân viên mới.
+  </Card>
+</CardGroup>
