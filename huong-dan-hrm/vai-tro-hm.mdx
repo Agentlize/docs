@@ -1,0 +1,40 @@
+---
+title: "Bạn là Hiring Manager (HM)"
+sidebarTitle: "HM — Hiring Manager"
+description: "Hướng dẫn dành cho Hiring Manager: tham gia đánh giá chuyên môn ứng viên và theo dõi yêu cầu của phòng ban."
+---
+
+<Card>
+  **👤 Chị Mai** — Trưởng phòng Kinh doanh
+
+  _"Mình không tạo yêu cầu tuyển, nhưng mình tham gia đánh giá ứng viên khi được yêu cầu."_
+</Card>
+
+## Bạn cần biết (3 điểm chính)
+
+1. **Bạn tham gia đánh giá ứng viên** — Khi TA hoặc HRD cần đánh giá chuyên môn từ bạn
+2. **Bạn xem yêu cầu của phòng mình** — Theo dõi tiến trình qua Bàn làm việc
+3. **Bạn có quyền hạn chế** — Chỉ một số chức năng, không phải tất cả
+
+<Warning>
+  **Lưu ý:** Giao diện HRM đang được tối ưu cho TA và Leader. HM hiện tại chỉ sử dụng Bàn làm việc và chức năng đánh giá. Các tính năng chi tiết hơn đang được phát triển.
+</Warning>
+
+## Hoạt động của bạn
+
+```mermaid
+flowchart LR
+    A[Bàn làm việc] --> B{Xem<br/>yêu cầu<br/>phòng mình}
+    B --> C[Theo dõi<br/>tiến trình]
+    B --> D{Có ứng viên<br/>cần đánh giá?}
+    D -->|Có| E[Mở bài test<br/>của ứng viên]
+    E --> F[Cho điểm<br/>+ Nhận xét]
+    F --> G[Gửi đánh giá]
+    D -->|Không| H[Đợi thông báo]
+
+    style G fill:#d1fae5,stroke:#059669
+```
+
+<Tip>
+  🧑‍💼 **Bạn là người "tham gia đánh giá".** Bạn không tạo yêu cầu, không xử lý tuyển, nhưng khi ứng viên cần đánh giá chuyên môn, bạn sẽ nhận thông báo và đánh giá qua HRM.
+</Tip>

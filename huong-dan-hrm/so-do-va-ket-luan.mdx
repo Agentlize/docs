@@ -1,0 +1,55 @@
+---
+title: "Sơ đồ tổng quan & Kết luận"
+sidebarTitle: "Sơ đồ & Kết luận"
+description: "Sơ đồ tổng quan ai làm gì trong HRM, và những lợi ích chính hệ thống mang lại cho công ty."
+---
+
+## Sơ đồ tổng quan — Ai làm gì?
+
+```mermaid
+graph TB
+    subgraph "Tầng chiến lược"
+        BOD["Ban Giám đốc<br/>Phê duyệt chiến lược"]
+    end
+
+    subgraph "Tầng vận hành"
+        HRD["Giám đốc Nhân sự<br/>Duyệt, Phân công, Ngân sách"]
+    end
+
+    subgraph "Tầng thực thi"
+        Leader["Trưởng phòng<br/>Tạo yêu cầu, Theo dõi"]
+        TA["Chuyên viên Tuyển dụng<br/>Xử lý ứng viên"]
+    end
+
+    subgraph "Tầng hỗ trợ"
+        HM["Hiring Manager<br/>Đánh giá chuyên môn"]
+    end
+
+    BOD -->|Phê duyệt| HRD
+    HRD -->|Phân công| TA
+    Leader -->|Tạo yêu cầu| HRD
+    HRD -->|Duyệt| Leader
+    TA -->|Cần đánh giá| HM
+    HM -->|Gửi đánh giá| TA
+
+    style BOD fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    style HRD fill:#ede9fe,stroke:#7c3aed,stroke-width:2px
+    style Leader fill:#d1fae5,stroke:#059669,stroke-width:2px
+    style TA fill:#dbeafe,stroke:#2563eb,stroke-width:2px
+    style HM fill:#ccfbf1,stroke:#0d9488,stroke-width:2px
+```
+
+---
+
+## Kết luận
+
+HRM giúp công ty:
+
+- ⏱️ **Tiết kiệm thời gian** — Không cần hỏi qua lại, mọi thông tin đều có sẵn
+- 📊 **Ra quyết định dựa trên dữ liệu** — Báo cáo trực quan, cập nhật real-time
+- 🔄 **Quy trình nhất quán** — Mọi người đều đi theo cùng một quy trình
+- 👁️ **Minh bạch** — Mọi người đều biết chuyện gì đang diễn ra
+
+<Tip>
+  🎉 **Cảm ơn bạn đã sử dụng HRM.** Nếu có câu hỏi, liên hệ bộ phận Hỗ trợ Nhân sự.
+</Tip>

@@ -61,6 +61,20 @@
               "help/faq",
               "help/troubleshooting"
             ]
+          },
+          {
+            "group": "Hướng dẫn HRM (Tuyển dụng)",
+            "pages": [
+              "huong-dan-hrm/tong-quan",
+              "huong-dan-hrm/vai-tro-ta",
+              "huong-dan-hrm/vai-tro-hrd",
+              "huong-dan-hrm/vai-tro-leader",
+              "huong-dan-hrm/vai-tro-bod",
+              "huong-dan-hrm/vai-tro-hm",
+              "huong-dan-hrm/tuyen-dung-v1",
+              "huong-dan-hrm/faq-thuat-ngu",
+              "huong-dan-hrm/so-do-va-ket-luan"
+            ]
           }
         ]
       }

@@ -1,0 +1,75 @@
+---
+title: "Bạn là Ban Giám đốc (BOD)"
+sidebarTitle: "BOD — Ban Giám đốc"
+description: "Hướng dẫn dành cho BOD: phê duyệt yêu cầu chiến lược, xem báo cáo tổng quan và phê duyệt chi phí lớn."
+---
+
+<Card>
+  **👤 Bà Hoa** — Phó Tổng Giám đốc
+
+  _"Mình cần nhìn tổng quan và ra quyết định chiến lược — không cần biết chi tiết từng ứng viên."_
+</Card>
+
+## Bạn cần biết (3 điểm chính)
+
+1. **Bạn phê duyệt yêu cầu chiến lược** — Các yêu cầu lớn, vị trí cấp cao, mức lương cao
+2. **Bạn xem báo cáo tổng quan** — Phễu tuyển dụng, ngân sách, hiệu suất toàn công ty
+3. **Bạn phê duyệt chi phí lớn** — Headhunter, sự kiện tuyển dụng lớn
+
+<Note>
+  **Bạn KHÔNG cần biết:** chi tiết từng ứng viên (TA và HRD xử lý), cách hệ thống vận hành, cấu hình chi tiết.
+</Note>
+
+## Hoạt động của bạn
+
+```mermaid
+timeline
+    title Hoạt động của Bà Hoa (BOD)
+    Hàng sáng : Xem bàn làm việc, có yêu cầu nào chờ duyệt không
+    Hàng tuần : Xem báo cáo tổng quan (phễu, SLA, hiệu suất)
+    Hàng tháng : Theo dõi ngân sách và áp lực chi phí
+    Khi cần : Phê duyệt yêu cầu chiến lược, chi phí lớn
+```
+
+### Báo cáo tổng quan bạn thấy
+
+```mermaid
+graph TB
+    subgraph "Báo cáo BOD"
+        A["Tổng yêu cầu<br/>đang xử lý"]
+        B["Số ứng viên<br/>trong pipeline"]
+        C["Tỷ lệ hoàn thành<br/>kế hoạch nhân sự"]
+        D["Phễu tuyển dụng<br/>theo giai đoạn"]
+        E["SLA<br/>Có yêu cầu nào chậm?"]
+        F["So sánh<br/>phòng ban"]
+    end
+
+    A --> G["Quyết định:<br/>Cần đẩy nhanh?"]
+    B --> G
+    C --> G
+    D --> G
+    E --> G
+    F --> G
+
+    G --> H{"Phê duyệt<br/>yêu cầu mới?"}
+    G --> I{"Cần điều chỉnh<br/>ngân sách?"}
+    G --> J{"Cần hỗ trợ<br/>phòng ban nào?"}
+
+    style A fill:#dbeafe,stroke:#2563eb
+    style B fill:#dbeafe,stroke:#2563eb
+    style C fill:#d1fae5,stroke:#059669
+    style D fill:#fef3c7,stroke:#f59e0b
+```
+
+### 4 việc bạn làm thường xuyên
+
+| Việc | Bạn làm gì | Tần suất |
+| --- | --- | --- |
+| ✅ **Phê duyệt chiến lược** | Xem chi tiết yêu cầu lớn, quyết định | Khi có thông báo |
+| 📊 **Xem báo cáo tổng quan** | Phễu, SLA, hiệu suất | Hàng tuần |
+| 💰 **Theo dõi ngân sách** | Áp lực chi tiêu, cảnh báo | Hàng tháng |
+| 💼 **Phê duyệt chi phí lớn** | Headhunter, sự kiện tuyển dụng | Khi cần |
+
+<Tip>
+  🎩 **Bạn là người "nhìn tổng quan và ra quyết định lớn".** Bạn không cần biết chi tiết từng ứng viên, nhưng bạn cần biết công ty đang tuyển được bao nhiêu, chi tiêu bao nhiêu, có vấn đề gì cần can thiệp không.
+</Tip>

@@ -1,0 +1,67 @@
+---
+title: "Bạn là Trưởng phòng (Leader)"
+sidebarTitle: "Leader — Trưởng phòng"
+description: "Hướng dẫn dành cho Trưởng phòng: tạo yêu cầu tuyển dụng, theo dõi tiến trình và đánh giá ứng viên."
+---
+
+<Card>
+  **👤 Anh Tuấn** — Trưởng phòng Kỹ thuật
+
+  _"Mình cần người mới cho phòng, mình tạo yêu cầu, theo dõi tiến trình, và đánh giá ứng viên khi cần."_
+</Card>
+
+## Bạn cần biết (3 điểm chính)
+
+1. **Bạn tạo yêu cầu tuyển dụng cho phòng ban mình** — Nhập thông tin vị trí, mô tả, yêu cầu
+2. **Bạn theo dõi tiến trình** — Xem yêu cầu của bạn đang ở đâu, ứng viên nào đến giai đoạn nào
+3. **Bạn đánh giá chuyên môn** — Khi ứng viên làm bài test, bạn cho điểm
+
+<Note>
+  **Bạn KHÔNG cần biết:** cách phân công TA (HRD lo), pipeline ứng viên chi tiết (TA lo), ngân sách chi tiết (HRD/BOD lo).
+</Note>
+
+## Một tuần của bạn
+
+```mermaid
+timeline
+    title Một tuần của Anh Tuấn (Leader)
+    Thứ 2 : Tạo yêu cầu tuyển dụng mới (dùng AI gợi ý nội dung)
+    Thứ 3 : Theo dõi yêu cầu đang được CEO duyệt
+    Thứ 5 : Yêu cầu được duyệt, chờ phân công TA
+    Thứ 6 : Xem tiến trình ứng viên (12 người nộp, 3 đang PV)
+    Thứ 7 : Đánh giá bài test ứng viên (khi được yêu cầu)
+    CN : Xem phân tích hiệu suất tuyển dụng phòng mình
+```
+
+### Quy trình tạo yêu cầu
+
+```mermaid
+flowchart TD
+    A["Bấm Tạo yêu cầu mới"] --> B["Chọn phòng ban<br/>tự động locked"]
+    B --> C["Điền thông tin:<br/>Vị trí, Mức lương,<br/>Mô tả, Yêu cầu"]
+    C --> D{Cần gợi ý?}
+    D -->|Có| E["AI gợi ý<br/>nội dung"]
+    D -->|Không| F["Tự điền"]
+    E --> G["Chỉnh sửa gợi ý"]
+    F --> G
+    G --> H["Lưu bản nháp"]
+    H --> I{"Gửi duyệt?"}
+    I -->|Có| J["Gửi phê duyệt"]
+    I -->|Chưa| K["Sửa tiếp"]
+
+    style J fill:#d1fae5,stroke:#059669
+```
+
+### 5 việc bạn làm thường xuyên
+
+| Việc | Bạn làm gì | Khi nào |
+| --- | --- | --- |
+| 📝 **Tạo yêu cầu** | Điền form, có thể dùng AI gợi ý | Khi phòng cần người |
+| 👀 **Theo dõi tiến trình** | Xem yêu cầu đang ở giai đoạn nào, ứng viên nào | Hàng ngày |
+| ✍️ **Đánh giá bài test** | Xem bài làm, cho điểm, viết nhận xét | Khi có thông báo |
+| 📊 **Xem phân tích** | Số yêu cầu, thời gian tuyển, hiệu suất | Cuối tháng |
+| 💡 **Bổ sung KPI/OKR** | Thiết lập chỉ tiêu cho vị trí mới | Sau khi yêu cầu duyệt |
+
+<Tip>
+  👔 **Bạn là người "yêu cầu và theo dõi".** Khi phòng bạn cần người, bạn tạo yêu cầu. Sau đó, hệ thống giúp bạn theo dõi toàn bộ quá trình. Bạn chỉ cần can thiệp khi có ứng viên cần đánh giá chuyên môn.
+</Tip>
