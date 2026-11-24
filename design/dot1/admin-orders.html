@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đơn hàng — Quản trị</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.tabs { display: flex; gap: var(--space-2); margin-bottom: var(--space-5); flex-wrap: wrap; }
+.tab { padding: var(--space-2) var(--space-4); border-radius: var(--radius-full); font-size: var(--font-sm); font-weight: var(--font-medium); cursor: pointer; border: 1px solid var(--color-border); background: var(--color-bg); color: var(--color-text-secondary); }
+.tab.active { background: var(--admin-accent); color: #fff; border-color: var(--admin-accent); }
+.tab:hover:not(.active) { background: var(--color-surface); }
+@media (max-width: 768px) { .admin-sidebar { display: none; } .admin-main { margin-left: 0; } }
+</style>
+</head>
+<body>
+<div class="admin-layout">
+  <nav class="admin-sidebar">
+    <div class="admin-sidebar-brand" style="padding-bottom:20px;margin-bottom:16px;">📐 Thầy Thuận Toán</div>
+    <a href="admin-dashboard.html" class="admin-nav-item">📊 Dashboard</a>
+    <a href="admin-brand.html" class="admin-nav-item">🎨 Thương hiệu</a>
+    <a href="admin-courses.html" class="admin-nav-item">📚 Khóa học</a>
+    <a href="admin-exams.html" class="admin-nav-item">📝 Đề thi</a>
+    <a href="admin-docs.html" class="admin-nav-item">📄 Tài liệu</a>
+    <a href="admin-combos.html" class="admin-nav-item">🎁 Combo</a>
+    <a href="admin-orders.html" class="admin-nav-item active">📦 Đơn hàng</a>
+    <a href="admin-codes.html" class="admin-nav-item">🔑 Mã kích hoạt</a>
+    <a href="admin-students.html" class="admin-nav-item">👥 Học sinh</a>
+    <a href="admin-homepage.html" class="admin-nav-item">🏠 Trang chủ web</a>
+  </nav>
+  <div class="admin-main">
+    <header class="admin-header">
+      <div class="admin-page-title">Đơn hàng</div>
+      <div style="display:flex;align-items:center;gap:var(--space-3)">
+        <span class="text-sm text-secondary">thầy Thuận</span>
+        <div style="width:32px;height:32px;border-radius:var(--radius-full);background:var(--admin-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:var(--font-sm);font-weight:var(--font-semibold)">T</div>
+      </div>
+    </header>
+    <div class="admin-content">
+
+      <div class="tabs">
+        <span class="tab active">Tất cả (15)</span>
+        <span class="tab">Chờ xác nhận (5)</span>
+        <span class="tab">Đã xác nhận (8)</span>
+        <span class="tab">Đã từ chối (2)</span>
+      </div>
+
+      <div class="admin-card" style="padding:0;">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Mã</th><th>Học sinh</th><th>Khóa học</th><th>Tổng tiền</th><th>Trạng thái</th><th>Ngày</th><th></th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#DH001</td><td>Nguyễn Văn An</td><td>Luyện đề THPT 2025 — Toán</td><td>299.000₫</td>
+                <td><span class="badge badge-warning">Chờ xác nhận</span></td><td>25/11/2026</td>
+                <td><a href="admin-order-detail.html" class="btn btn-ghost btn-sm">Xem</a></td>
+              </tr>
+              <tr>
+                <td>#DH002</td><td>Trần Thị Bình</td><td>Combo 3 môn Toán Lý Hóa</td><td>699.000₫</td>
+                <td><span class="badge badge-warning">Chờ xác nhận</span></td><td>25/11/2026</td>
+                <td><a href="admin-order-detail.html" class="btn btn-ghost btn-sm">Xem</a></td>
+              </tr>
+              <tr>
+                <td>#DH003</td><td>Lê Hoàng Cường</td><td>Chuyên đề Hình học</td><td>199.000₫</td>
+                <td><span class="badge badge-warning">Chờ xác nhận</span></td><td>25/11/2026</td>
+                <td><a href="admin-order-detail.html" class="btn btn-ghost btn-sm">Xem</a></td>
+              </tr>
+              <tr>
+                <td>#DH004</td><td>Phạm Minh Đức</td><td>Luyện đề THPT 2025 — Toán</td><td>299.000₫</td>
+                <td><span class="badge badge-warning">Chờ xác nhận</span></td><td>24/11/2026</td>
+                <td><a href="admin-order-detail.html" class="btn btn-ghost btn-sm">Xem</a></td>
+              </tr>
+              <tr>
+                <td>#DH005</td><td>Hoàng Thị Em</td><td>Combo 3 môn Toán Lý Hóa</td><td>699.000₫</td>
+                <td><span class="badge badge-warning">Chờ xác nhận</span></td><td>24/11/2026</td>
+                <td><a href="admin-order-detail.html" class="btn btn-ghost btn-sm">Xem</a></td>
+              </tr>
+              <tr>
+                <td>#DH006</td><td>Vũ Thành Giang</td><td>Giải tích 12</td><td>249.000₫</td>
+                <td><span class="badge badge-success">Đã xác nhận</span></td><td>23/11/2026</td>
+                <td><a href="admin-order-detail.html" class="btn btn-ghost btn-sm">Xem</a></td>
+              </tr>
+              <tr>
+                <td>#DH007</td><td>Đỗ Quốc Huy</td><td>Luyện đề THPT 2025 — Toán</td><td>299.000₫</td>
+                <td><span class="badge badge-success">Đã xác nhận</span></td><td>22/11/2026</td>
+                <td><a href="admin-order-detail.html" class="btn btn-ghost btn-sm">Xem</a></td>
+              </tr>
+              <tr>
+                <td>#DH008</td><td>Bùi Thanh Inh</td><td>Chuyên đề Hình học</td><td>199.000₫</td>
+                <td><span class="badge badge-error">Đã từ chối</span></td><td>21/11/2026</td>
+                <td><a href="admin-order-detail.html" class="btn btn-ghost btn-sm">Xem</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

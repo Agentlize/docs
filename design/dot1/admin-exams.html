@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đề thi — Quản trị</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@media (max-width: 768px) { .admin-sidebar { display: none; } .admin-main { margin-left: 0; } }
+</style>
+</head>
+<body>
+<div class="admin-layout">
+  <nav class="admin-sidebar">
+    <div class="admin-sidebar-brand">Thầy Thuận Toán</div>
+    <a href="admin-dashboard.html" class="admin-nav-item">📊 Dashboard</a>
+    <a href="admin-brand.html" class="admin-nav-item">🎨 Thương hiệu</a>
+    <a href="admin-courses.html" class="admin-nav-item">📚 Khóa học</a>
+    <a href="admin-exams.html" class="admin-nav-item active">📝 Đề thi</a>
+    <a href="admin-docs.html" class="admin-nav-item">📄 Tài liệu</a>
+    <a href="admin-combos.html" class="admin-nav-item">🎁 Combo</a>
+    <a href="admin-orders.html" class="admin-nav-item">📦 Đơn hàng</a>
+    <a href="admin-codes.html" class="admin-nav-item">🔑 Mã kích hoạt</a>
+    <a href="admin-students.html" class="admin-nav-item">👥 Học sinh</a>
+    <a href="admin-homepage.html" class="admin-nav-item">🏠 Trang chủ web</a>
+  </nav>
+  <div class="admin-main">
+    <header class="admin-header">
+      <h1 class="admin-page-title">Đề thi</h1>
+      <div class="flex gap-3">
+        <a href="admin-exam-import.html" class="btn btn-outline btn-sm">📄 Nhập từ Word</a>
+        <a href="admin-exam-edit.html" class="btn btn-primary btn-sm">+ Tạo đề mới</a>
+      </div>
+    </header>
+    <div class="admin-content">
+      <div class="admin-card" style="padding:0">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Tên đề</th><th>Số câu</th><th>Dạng</th><th>Thời gian</th><th>Trạng thái</th><th></th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="admin-exam-edit.html">Đề minh họa THPT 2025 — Toán</a></td>
+                <td>50</td>
+                <td><span class="badge badge-primary">Trắc nghiệm</span></td>
+                <td>90 phút</td>
+                <td><span class="badge badge-success">Đang mở</span></td>
+                <td><a href="admin-exam-edit.html" class="text-sm">Sửa</a></td>
+              </tr>
+              <tr>
+                <td><a href="admin-exam-edit.html">Đề thi thử lần 1 — Toán</a></td>
+                <td>50</td>
+                <td><span class="badge badge-warning">Hỗn hợp</span></td>
+                <td>90 phút</td>
+                <td><span class="badge badge-success">Đang mở</span></td>
+                <td><a href="admin-exam-edit.html" class="text-sm">Sửa</a></td>
+              </tr>
+              <tr>
+                <td><a href="admin-exam-edit.html">Kiểm tra chương Hàm số</a></td>
+                <td>25</td>
+                <td><span class="badge badge-primary">Trắc nghiệm</span></td>
+                <td>45 phút</td>
+                <td><span class="badge badge-success">Đang mở</span></td>
+                <td><a href="admin-exam-edit.html" class="text-sm">Sửa</a></td>
+              </tr>
+              <tr>
+                <td><a href="admin-exam-edit.html">Đề thi thử lần 2 — Toán</a></td>
+                <td>50</td>
+                <td><span class="badge badge-primary">Trắc nghiệm</span></td>
+                <td>90 phút</td>
+                <td><span class="badge" style="background:var(--color-surface);color:var(--color-text-secondary)">Chưa mở</span></td>
+                <td><a href="admin-exam-edit.html" class="text-sm">Sửa</a></td>
+              </tr>
+              <tr>
+                <td><a href="admin-exam-edit.html">Ôn tập Đại số tổ hợp</a></td>
+                <td>20</td>
+                <td><span class="badge badge-primary">Trắc nghiệm</span></td>
+                <td>30 phút</td>
+                <td><span class="badge badge-error">Đã khóa</span></td>
+                <td><a href="admin-exam-edit.html" class="text-sm">Sửa</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

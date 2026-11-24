@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hồ sơ — Thầy Thuận Toán</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  .avatar { width: 80px; height: 80px; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: var(--space-4); }
+  .profile-section { margin-bottom: var(--space-6); }
+  .profile-section h2 { font-size: var(--font-lg); margin-bottom: var(--space-4); }
+  .field-group { margin-bottom: var(--space-4); }
+</style>
+</head>
+<body>
+
+<header class="hs-header"><div class="hs-header-inner"><a href="hs-home.html" class="hs-logo">Thầy Thuận Toán</a><nav class="hs-nav"><a href="hs-courses.html">Khóa học</a><a href="hs-my-courses.html">Khóa đã mua</a><a href="hs-orders.html">Đơn hàng</a><a href="hs-profile.html" style="color:var(--brand-primary)">Tài khoản</a></nav></div></header>
+
+<main class="container" style="padding-top:var(--space-6);padding-bottom:var(--space-10);max-width:600px">
+
+  <h1 style="font-size:var(--font-2xl);margin-bottom:var(--space-6)">Hồ sơ cá nhân</h1>
+
+  <div class="profile-section">
+    <div class="avatar placeholder-img">👤</div>
+    <div class="field-group">
+      <label class="label">Họ và tên</label>
+      <input class="input" value="Nguyễn Học Sinh">
+    </div>
+    <div class="field-group">
+      <label class="label">Email</label>
+      <input class="input" value="hocsinh@gmail.com" readonly style="background:var(--color-surface);color:var(--color-text-secondary)">
+      <p class="text-xs text-secondary" style="margin-top:var(--space-1)">Email không thể thay đổi</p>
+    </div>
+    <button class="btn btn-primary">Lưu thay đổi</button>
+  </div>
+
+  <hr class="divider">
+
+  <div class="profile-section">
+    <h2>Đổi mật khẩu</h2>
+    <div class="field-group">
+      <label class="label">Mật khẩu hiện tại</label>
+      <input type="password" class="input" placeholder="Nhập mật khẩu hiện tại">
+    </div>
+    <div class="field-group">
+      <label class="label">Mật khẩu mới</label>
+      <input type="password" class="input" placeholder="Ít nhất 8 ký tự">
+    </div>
+    <div class="field-group">
+      <label class="label">Xác nhận mật khẩu mới</label>
+      <input type="password" class="input" placeholder="Nhập lại mật khẩu mới">
+    </div>
+    <button class="btn btn-outline">Đổi mật khẩu</button>
+  </div>
+
+</main>
+
+<footer class="hs-footer">Thầy Thuận Toán · thuanthoan.vaohoc.vn</footer>
+</body>
+</html>

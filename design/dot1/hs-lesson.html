@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài 1: Khảo sát hàm số bậc ba — Thầy Thuận Toán</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.lesson-layout { max-width: 1200px; margin: 0 auto; padding: var(--space-5) var(--space-4); display: grid; grid-template-columns: 1fr 300px; gap: var(--space-5); }
+@media (max-width: 768px) { .lesson-layout { grid-template-columns: 1fr; } .lesson-sidebar { order: -1; } }
+.video-embed { aspect-ratio: 16/9; background: #1a1a2e; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: #aaa; font-size: var(--font-lg); margin-bottom: var(--space-4); }
+.lesson-title { font-size: var(--font-xl); font-weight: var(--font-bold); margin-bottom: var(--space-1); }
+.lesson-chapter { font-size: var(--font-sm); color: var(--color-text-secondary); margin-bottom: var(--space-5); }
+.tabs { display: flex; border-bottom: 2px solid var(--color-border); margin-bottom: var(--space-4); }
+.tab { padding: var(--space-3) var(--space-5); font-size: var(--font-sm); font-weight: var(--font-medium); color: var(--color-text-secondary); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+.tab.active { color: var(--brand-primary); border-bottom-color: var(--brand-primary); }
+.tab-content { font-size: var(--font-sm); line-height: 1.7; }
+.download-item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-md); margin-bottom: var(--space-3); }
+.download-item:hover { background: var(--color-surface); }
+.download-icon { width: 36px; height: 36px; background: var(--color-error-light); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.download-info { flex: 1; }
+.download-name { font-weight: var(--font-medium); }
+.download-size { font-size: var(--font-xs); color: var(--color-text-secondary); }
+.lesson-sidebar { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; position: sticky; top: 80px; max-height: calc(100vh - 100px); overflow-y: auto; }
+.sidebar-title { padding: var(--space-4); font-weight: var(--font-bold); font-size: var(--font-sm); border-bottom: 1px solid var(--color-border); background: var(--color-surface); }
+.sidebar-chapter { font-size: var(--font-xs); font-weight: var(--font-semibold); color: var(--color-text-secondary); padding: var(--space-3) var(--space-4) var(--space-1); text-transform: uppercase; letter-spacing: 0.5px; }
+.sidebar-lesson { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-4); font-size: var(--font-sm); color: var(--color-text-secondary); cursor: pointer; }
+.sidebar-lesson:hover { background: var(--color-surface); }
+.sidebar-lesson.active { background: var(--brand-primary-light); color: var(--brand-primary-dark); font-weight: var(--font-medium); }
+.sidebar-lesson .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+.sidebar-lesson.active .dot { background: var(--brand-primary); }
+.nav-buttons { display: flex; gap: var(--space-3); margin-top: var(--space-5); }
+</style>
+</head>
+<body>
+
+<header class="hs-header">
+  <div class="hs-header-inner">
+    <a href="hs-home.html" class="hs-logo">📐 Thầy Thuận Toán</a>
+    <nav class="hs-nav">
+      <a href="hs-courses.html">Khóa học</a>
+      <a href="hs-exams.html">Đề thi</a>
+      <a href="hs-docs.html">Tài liệu</a>
+      <a href="hs-my-courses.html">Khóa của tôi</a>
+    </nav>
+  </div>
+</header>
+
+<div class="lesson-layout">
+  <main>
+    <div class="video-embed">▶ YouTube Player — Khảo sát hàm số bậc ba</div>
+
+    <h1 class="lesson-title">Bài 1: Khảo sát hàm số bậc ba</h1>
+    <p class="lesson-chapter">Chương 1: Hàm số và ứng dụng · Luyện đề THPT 2025 — Toán</p>
+
+    <div class="tabs">
+      <span class="tab active">Tài liệu</span>
+      <span class="tab">Lời giải</span>
+    </div>
+
+    <div class="tab-content">
+      <p style="margin-bottom: var(--space-4);">Tải tài liệu bài học để ôn tập ngoại tuyến:</p>
+
+      <div class="download-item">
+        <div class="download-icon">📄</div>
+        <div class="download-info">
+          <div class="download-name">Lý thuyết hàm số bậc ba.pdf</div>
+          <div class="download-size">PDF · 1.2 MB</div>
+        </div>
+        <span class="btn btn-sm btn-outline">Tải về</span>
+      </div>
+
+      <div class="download-item">
+        <div class="download-icon">📄</div>
+        <div class="download-info">
+          <div class="download-name">Bài tập tự luyện — Bài 1.pdf</div>
+          <div class="download-size">PDF · 540 KB</div>
+        </div>
+        <span class="btn btn-sm btn-outline">Tải về</span>
+      </div>
+
+      <div class="download-item">
+        <div class="download-icon">📄</div>
+        <div class="download-info">
+          <div class="download-name">Slide bài giảng.pdf</div>
+          <div class="download-size">PDF · 2.8 MB</div>
+        </div>
+        <span class="btn btn-sm btn-outline">Tải về</span>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <span class="btn btn-ghost btn-sm" style="opacity:0.4;">← Bài trước</span>
+      <a href="#" class="btn btn-outline btn-sm">Bài tiếp → Cực trị hàm số</a>
+    </div>
+  </main>
+
+  <aside class="lesson-sidebar">
+    <div class="sidebar-title">Nội dung khóa học</div>
+    <div class="sidebar-chapter">Chương 1: Hàm số và ứng dụng</div>
+    <div class="sidebar-lesson active"><span class="dot"></span> Bài 1: Khảo sát hàm số bậc ba</div>
+    <div class="sidebar-lesson"><span class="dot"></span> Bài 2: Cực trị hàm số</div>
+    <div class="sidebar-lesson"><span class="dot"></span> Bài 3: Tiệm cận và đồ thị</div>
+    <div class="sidebar-chapter">Chương 2: Mũ — Logarit</div>
+    <div class="sidebar-lesson"><span class="dot"></span> Bài 4: Phương trình mũ cơ bản</div>
+    <div class="sidebar-lesson"><span class="dot"></span> Bài 5: Bất phương trình logarit</div>
+    <div class="sidebar-lesson"><span class="dot"></span> Bài 6: Hàm số mũ và logarit</div>
+    <div class="sidebar-lesson"><span class="dot"></span> Bài 7: Bài tập tổng hợp</div>
+    <div class="sidebar-chapter">Chương 3: Nguyên hàm — Tích phân</div>
+    <div class="sidebar-lesson"><span class="dot"></span> Bài 8: Nguyên hàm cơ bản</div>
+    <div class="sidebar-lesson"><span class="dot"></span> Bài 9: Tích phân</div>
+    <div class="sidebar-lesson"><span class="dot"></span> Bài 10: Ứng dụng tích phân</div>
+  </aside>
+</div>
+
+<footer class="hs-footer">
+  © 2025 Thầy Thuận Toán · Nền tảng Vaohoc.vn
+</footer>
+
+</body>
+</html>

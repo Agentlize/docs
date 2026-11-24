@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Làm bài — Thầy Thuận Toán</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+  .exam-layout { display: flex; min-height: 100vh; }
+  .exam-sidebar { width: 280px; background: var(--color-bg); border-left: 1px solid var(--color-border); padding: var(--space-4); position: fixed; right: 0; top: 0; bottom: 0; overflow-y: auto; }
+  .exam-main { flex: 1; padding: var(--space-6); padding-right: calc(280px + var(--space-6)); }
+  .exam-timer { background: var(--color-error); color: #fff; padding: var(--space-2) var(--space-4); border-radius: var(--radius-md); font-weight: var(--font-bold); font-size: var(--font-lg); font-variant-numeric: tabular-nums; }
+  .exam-header { display: flex; align-items: center; justify-content: space-between; padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--color-border); background: var(--color-bg); position: sticky; top: 0; z-index: 10; }
+  .q-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: var(--space-2); margin-bottom: var(--space-4); }
+  .q-num { width: 100%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); font-size: var(--font-xs); font-weight: var(--font-medium); cursor: pointer; border: 1px solid var(--color-border); background: var(--color-bg); }
+  .q-num.answered { background: var(--brand-primary-light); border-color: var(--brand-primary); color: var(--brand-primary-dark); }
+  .q-num.current { background: var(--brand-primary); color: #fff; border-color: var(--brand-primary); }
+  .q-num.flagged { border-color: var(--color-warning); background: var(--color-warning-light); }
+  .question-block { margin-bottom: var(--space-8); }
+  .question-label { font-weight: var(--font-semibold); margin-bottom: var(--space-3); color: var(--color-text-secondary); font-size: var(--font-sm); }
+  .question-text { font-size: var(--font-base); margin-bottom: var(--space-4); line-height: 1.7; }
+  .option { display: flex; align-items: flex-start; gap: var(--space-3); padding: var(--space-3) var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-md); margin-bottom: var(--space-2); cursor: pointer; }
+  .option:hover { background: var(--color-surface); }
+  .option.selected { border-color: var(--brand-primary); background: var(--brand-primary-light); }
+  .option input[type="radio"] { margin-top: 3px; accent-color: var(--brand-primary); }
+  .ds-table { width: 100%; border-collapse: collapse; }
+  .ds-table th, .ds-table td { padding: var(--space-3) var(--space-4); border: 1px solid var(--color-border); text-align: center; }
+  .ds-table th { background: var(--color-surface); font-weight: var(--font-semibold); font-size: var(--font-sm); }
+  .ds-toggle { display: inline-flex; gap: 0; }
+  .ds-toggle label { padding: var(--space-2) var(--space-3); font-size: var(--font-sm); font-weight: var(--font-medium); cursor: pointer; border: 1px solid var(--color-border); }
+  .ds-toggle label:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+  .ds-toggle label:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; border-left: none; }
+  .ds-toggle input:checked + span { background: var(--brand-primary); color: #fff; }
+  .ds-toggle input { display: none; }
+  .ds-btn { padding: var(--space-2) var(--space-3); font-size: var(--font-sm); font-weight: var(--font-medium); cursor: pointer; border: 1px solid var(--color-border); background: var(--color-bg); border-radius: var(--radius-sm); }
+  .ds-btn.active { background: var(--brand-primary); color: #fff; border-color: var(--brand-primary); }
+  .sidebar-legend { display: flex; gap: var(--space-3); flex-wrap: wrap; font-size: var(--font-xs); color: var(--color-text-secondary); margin-bottom: var(--space-4); }
+  .sidebar-legend span { display: flex; align-items: center; gap: var(--space-1); }
+  .legend-dot { width: 12px; height: 12px; border-radius: var(--radius-sm); border: 1px solid var(--color-border); }
+  .legend-dot.answered { background: var(--brand-primary-light); border-color: var(--brand-primary); }
+  .legend-dot.flagged { background: var(--color-warning-light); border-color: var(--color-warning); }
+  @media (max-width: 768px) {
+    .exam-sidebar { display: none; }
+    .exam-main { padding-right: var(--space-4); }
+    .q-grid-mobile { display: grid; grid-template-columns: repeat(8, 1fr); gap: var(--space-1); margin: var(--space-4) 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="exam-header">
+  <div>
+    <strong>Đề thi thử THPT 2025 — Lần 1</strong>
+    <span class="text-secondary text-sm" style="margin-left:var(--space-2)">40 câu</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:var(--space-3)">
+    <span class="exam-timer">29:45</span>
+    <button class="btn btn-primary">Nộp bài</button>
+  </div>
+</div>
+
+<div class="exam-layout">
+  <div class="exam-main">
+
+    <!-- Câu trắc nghiệm -->
+    <div class="question-block">
+      <div class="question-label">Câu 1 — Trắc nghiệm</div>
+      <div class="question-text">
+        Cho hàm số \(f(x) = x^3 - 3x^2 + 2\). Tìm giá trị cực đại của hàm số.
+      </div>
+      <div class="option selected">
+        <input type="radio" name="q1" checked> <span><strong>A.</strong> \(2\)</span>
+      </div>
+      <div class="option">
+        <input type="radio" name="q1"> <span><strong>B.</strong> \(-2\)</span>
+      </div>
+      <div class="option">
+        <input type="radio" name="q1"> <span><strong>C.</strong> \(0\)</span>
+      </div>
+      <div class="option">
+        <input type="radio" name="q1"> <span><strong>D.</strong> \(4\)</span>
+      </div>
+    </div>
+
+    <!-- Câu đúng-sai THPT 2025 -->
+    <div class="question-block">
+      <div class="question-label">Câu 2 — Đúng hay Sai</div>
+      <div class="question-text">
+        Cho hàm số \(y = \frac{2x+1}{x-1}\). Xét tính đúng/sai của các mệnh đề sau:
+      </div>
+      <table class="ds-table">
+        <thead>
+          <tr><th style="width:60%">Mệnh đề</th><th>Đúng</th><th>Sai</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align:left">a) Đồ thị hàm số có tiệm cận đứng \(x = 1\)</td>
+            <td><button class="ds-btn active">Đ</button></td>
+            <td><button class="ds-btn">S</button></td>
+          </tr>
+          <tr>
+            <td style="text-align:left">b) Đồ thị hàm số có tiệm cận ngang \(y = 2\)</td>
+            <td><button class="ds-btn">Đ</button></td>
+            <td><button class="ds-btn active">S</button></td>
+          </tr>
+          <tr>
+            <td style="text-align:left">c) Hàm số đồng biến trên \((-\infty; 1)\)</td>
+            <td><button class="ds-btn">Đ</button></td>
+            <td><button class="ds-btn">S</button></td>
+          </tr>
+          <tr>
+            <td style="text-align:left">d) Đồ thị hàm số đi qua điểm \(A(0; -1)\)</td>
+            <td><button class="ds-btn">Đ</button></td>
+            <td><button class="ds-btn">S</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="text-xs text-secondary" style="margin-top:var(--space-2)">Chấm: 1 đúng = 0,1đ · 2 đúng = 0,25đ · 3 đúng = 0,5đ · 4 đúng = 1đ</p>
+    </div>
+
+    <!-- Câu 3 trắc nghiệm -->
+    <div class="question-block">
+      <div class="question-label">Câu 3 — Trắc nghiệm</div>
+      <div class="question-text">
+        Tích phân \(\int_0^1 (2x + 1)\,dx\) bằng:
+      </div>
+      <div class="option">
+        <input type="radio" name="q3"> <span><strong>A.</strong> \(1\)</span>
+      </div>
+      <div class="option">
+        <input type="radio" name="q3"> <span><strong>B.</strong> \(2\)</span>
+      </div>
+      <div class="option">
+        <input type="radio" name="q3"> <span><strong>C.</strong> \(3\)</span>
+      </div>
+      <div class="option">
+        <input type="radio" name="q3"> <span><strong>D.</strong> \(4\)</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="exam-sidebar">
+    <h3 style="font-size:var(--font-sm);margin-bottom:var(--space-3)">Danh sách câu hỏi</h3>
+    <div class="sidebar-legend">
+      <span><span class="legend-dot"></span> Chưa làm</span>
+      <span><span class="legend-dot answered"></span> Đã làm</span>
+      <span><span class="legend-dot flagged"></span> Đánh dấu</span>
+    </div>
+    <div class="q-grid">
+      <div class="q-num current">1</div>
+      <div class="q-num answered">2</div>
+      <div class="q-num">3</div>
+      <div class="q-num answered">4</div>
+      <div class="q-num answered">5</div>
+      <div class="q-num flagged">6</div>
+      <div class="q-num answered">7</div>
+      <div class="q-num">8</div>
+      <div class="q-num answered">9</div>
+      <div class="q-num answered">10</div>
+      <div class="q-num">11</div>
+      <div class="q-num answered">12</div>
+      <div class="q-num">13</div>
+      <div class="q-num answered">14</div>
+      <div class="q-num flagged">15</div>
+      <div class="q-num">16</div>
+      <div class="q-num">17</div>
+      <div class="q-num">18</div>
+      <div class="q-num">19</div>
+      <div class="q-num">20</div>
+      <div class="q-num">21</div>
+      <div class="q-num">22</div>
+      <div class="q-num">23</div>
+      <div class="q-num">24</div>
+      <div class="q-num">25</div>
+      <div class="q-num">26</div>
+      <div class="q-num">27</div>
+      <div class="q-num">28</div>
+      <div class="q-num">29</div>
+      <div class="q-num">30</div>
+      <div class="q-num">31</div>
+      <div class="q-num">32</div>
+      <div class="q-num">33</div>
+      <div class="q-num">34</div>
+      <div class="q-num">35</div>
+      <div class="q-num">36</div>
+      <div class="q-num">37</div>
+      <div class="q-num">38</div>
+      <div class="q-num">39</div>
+      <div class="q-num">40</div>
+    </div>
+    <div style="display:flex;gap:var(--space-2)">
+      <button class="btn btn-outline" style="flex:1">Đánh dấu</button>
+      <button class="btn btn-primary" style="flex:1">Nộp bài</button>
+    </div>
+  </div>
+</div>
+
+<script>document.addEventListener("DOMContentLoaded",()=>renderMathInElement(document.body,{delimiters:[{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}]}));</script>
+</body>
+</html>

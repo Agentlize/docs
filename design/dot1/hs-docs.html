@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tài liệu — Thầy Thuận Toán</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  .docs-layout { display: grid; grid-template-columns: 240px 1fr; gap: var(--space-6); }
+  .docs-sidebar { position: sticky; top: calc(var(--space-6) + 52px); align-self: start; }
+  .cat-group { margin-bottom: var(--space-4); }
+  .cat-title { font-weight: var(--font-semibold); font-size: var(--font-sm); padding: var(--space-2) 0; cursor: pointer; }
+  .cat-child { padding: var(--space-1) 0 var(--space-1) var(--space-4); font-size: var(--font-sm); color: var(--color-text-secondary); display: block; }
+  .cat-child:hover { color: var(--brand-primary); text-decoration: none; }
+  .cat-child.active { color: var(--brand-primary); font-weight: var(--font-medium); }
+  .doc-item { display: flex; align-items: center; justify-content: space-between; padding: var(--space-3) var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-md); margin-bottom: var(--space-2); }
+  .doc-item:hover { background: var(--color-surface); }
+  .doc-info { display: flex; align-items: center; gap: var(--space-3); }
+  .doc-icon { font-size: var(--font-xl); }
+  @media (max-width: 768px) { .docs-layout { grid-template-columns: 1fr; } .docs-sidebar { position: static; } }
+</style>
+</head>
+<body>
+
+<header class="hs-header"><div class="hs-header-inner"><a href="hs-home.html" class="hs-logo">Thầy Thuận Toán</a><nav class="hs-nav"><a href="hs-courses.html">Khóa học</a><a href="hs-exams.html">Đề thi</a><a href="hs-docs.html" style="color:var(--brand-primary)">Tài liệu</a><a href="hs-profile.html">Tài khoản</a></nav></div></header>
+
+<main class="container" style="padding-top:var(--space-6);padding-bottom:var(--space-10)">
+
+  <h1 style="font-size:var(--font-2xl);margin-bottom:var(--space-5)">Tài liệu PDF</h1>
+
+  <div style="margin-bottom:var(--space-4)">
+    <input class="input" placeholder="Tìm tài liệu..." style="max-width:400px">
+  </div>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar">
+      <div class="cat-group">
+        <div class="cat-title">📐 Toán</div>
+        <a href="#" class="cat-child active">Đại số</a>
+        <a href="#" class="cat-child">Hình học</a>
+        <a href="#" class="cat-child">Giải tích</a>
+        <a href="#" class="cat-child">Xác suất thống kê</a>
+      </div>
+      <div class="cat-group">
+        <div class="cat-title">⚡ Lý</div>
+        <a href="#" class="cat-child">Cơ học</a>
+        <a href="#" class="cat-child">Điện từ</a>
+      </div>
+      <div class="cat-group">
+        <div class="cat-title">🧪 Hóa</div>
+        <a href="#" class="cat-child">Hữu cơ</a>
+        <a href="#" class="cat-child">Vô cơ</a>
+      </div>
+    </aside>
+
+    <div>
+      <p class="text-sm text-secondary" style="margin-bottom:var(--space-3)">Đại số · 5 tài liệu</p>
+
+      <div class="doc-item">
+        <div class="doc-info">
+          <span class="doc-icon">📄</span>
+          <div>
+            <div style="font-weight:var(--font-medium)">Tóm tắt công thức Đại số</div>
+            <div class="text-xs text-secondary">12 trang · 1.2 MB</div>
+          </div>
+        </div>
+        <a href="hs-doc-viewer.html" class="btn btn-sm btn-outline">Xem</a>
+      </div>
+
+      <div class="doc-item">
+        <div class="doc-info">
+          <span class="doc-icon">📄</span>
+          <div>
+            <div style="font-weight:var(--font-medium)">Bài tập tổng hợp Logarit</div>
+            <div class="text-xs text-secondary">24 trang · 2.5 MB</div>
+          </div>
+        </div>
+        <a href="hs-doc-viewer.html" class="btn btn-sm btn-outline">Xem</a>
+      </div>
+
+      <div class="doc-item">
+        <div class="doc-info">
+          <span class="doc-icon">📄</span>
+          <div>
+            <div style="font-weight:var(--font-medium)">Phương trình & Bất phương trình</div>
+            <div class="text-xs text-secondary">18 trang · 1.8 MB</div>
+          </div>
+        </div>
+        <a href="hs-doc-viewer.html" class="btn btn-sm btn-outline">Xem</a>
+      </div>
+
+      <div class="doc-item">
+        <div class="doc-info">
+          <span class="doc-icon">📄</span>
+          <div>
+            <div style="font-weight:var(--font-medium)">Dãy số và Cấp số</div>
+            <div class="text-xs text-secondary">10 trang · 0.9 MB</div>
+          </div>
+        </div>
+        <a href="hs-doc-viewer.html" class="btn btn-sm btn-outline">Xem</a>
+      </div>
+
+      <div class="doc-item">
+        <div class="doc-info">
+          <span class="doc-icon">📄</span>
+          <div>
+            <div style="font-weight:var(--font-medium)">Tổ hợp — Nhị thức Newton</div>
+            <div class="text-xs text-secondary">8 trang · 0.7 MB</div>
+          </div>
+        </div>
+        <a href="hs-doc-viewer.html" class="btn btn-sm btn-outline">Xem</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="hs-footer">Thầy Thuận Toán · thuanthoan.vaohoc.vn</footer>
+</body>
+</html>

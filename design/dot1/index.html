@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaohoc.vn — Prototype Đợt 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+body { background: var(--color-surface); }
+.page { max-width: 960px; margin: 0 auto; padding: var(--space-8) var(--space-4); }
+h1 { font-size: var(--font-3xl); margin-bottom: var(--space-2); }
+.subtitle { color: var(--color-text-secondary); margin-bottom: var(--space-8); }
+h2 { font-size: var(--font-xl); margin: var(--space-8) 0 var(--space-4); padding-bottom: var(--space-2); border-bottom: 1px solid var(--color-border); }
+.screen-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-4); }
+.screen-card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-4); transition: box-shadow 0.15s, border-color 0.15s; }
+.screen-card:hover { box-shadow: var(--shadow-md); border-color: var(--brand-primary); }
+.screen-card a { display: block; text-decoration: none; color: inherit; }
+.screen-name { font-weight: var(--font-semibold); color: var(--brand-primary); margin-bottom: var(--space-1); }
+.screen-desc { font-size: var(--font-sm); color: var(--color-text-secondary); }
+.docs-links { display: flex; gap: var(--space-4); margin-bottom: var(--space-6); }
+.docs-links a { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-4); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--font-sm); font-weight: var(--font-medium); }
+.docs-links a:hover { border-color: var(--brand-primary); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Vaohoc.vn — Prototype Đợt 1</h1>
+  <p class="subtitle">Web học sinh + Quản trị thầy · 43 màn hình</p>
+
+  <div class="docs-links">
+    <a href="flows.md">📐 Flows</a>
+    <a href="screens.md">📋 Screens</a>
+    <a href="tokens.json">🎨 Tokens</a>
+    <a href="tokens.css">🖌️ CSS</a>
+  </div>
+
+  <h2>🎓 Web học sinh</h2>
+  <div class="screen-grid">
+    <div class="screen-card"><a href="hs-home.html"><div class="screen-name">hs-home</div><div class="screen-desc">Trang chủ — Landing page thầy</div></a></div>
+    <div class="screen-card"><a href="hs-login.html"><div class="screen-name">hs-login</div><div class="screen-desc">Đăng nhập</div></a></div>
+    <div class="screen-card"><a href="hs-register.html"><div class="screen-name">hs-register</div><div class="screen-desc">Đăng ký tài khoản</div></a></div>
+    <div class="screen-card"><a href="hs-verify-email.html"><div class="screen-name">hs-verify-email</div><div class="screen-desc">Xác nhận email</div></a></div>
+    <div class="screen-card"><a href="hs-forgot-pw.html"><div class="screen-name">hs-forgot-pw</div><div class="screen-desc">Quên mật khẩu</div></a></div>
+    <div class="screen-card"><a href="hs-reset-pw.html"><div class="screen-name">hs-reset-pw</div><div class="screen-desc">Đặt lại mật khẩu</div></a></div>
+    <div class="screen-card"><a href="hs-courses.html"><div class="screen-name">hs-courses</div><div class="screen-desc">Danh sách khóa học</div></a></div>
+    <div class="screen-card"><a href="hs-course-detail.html"><div class="screen-name">hs-course-detail</div><div class="screen-desc">Chi tiết khóa học</div></a></div>
+    <div class="screen-card"><a href="hs-lesson.html"><div class="screen-name">hs-lesson</div><div class="screen-desc">Bài học — video + tài liệu</div></a></div>
+    <div class="screen-card"><a href="hs-exams.html"><div class="screen-name">hs-exams</div><div class="screen-desc">Danh sách đề thi</div></a></div>
+    <div class="screen-card"><a href="hs-exam-take.html"><div class="screen-name">hs-exam-take</div><div class="screen-desc">Làm bài thi</div></a></div>
+    <div class="screen-card"><a href="hs-exam-result.html"><div class="screen-name">hs-exam-result</div><div class="screen-desc">Kết quả thi + lời giải</div></a></div>
+    <div class="screen-card"><a href="hs-leaderboard.html"><div class="screen-name">hs-leaderboard</div><div class="screen-desc">Bảng xếp hạng</div></a></div>
+    <div class="screen-card"><a href="hs-docs.html"><div class="screen-name">hs-docs</div><div class="screen-desc">Tài liệu PDF</div></a></div>
+    <div class="screen-card"><a href="hs-doc-viewer.html"><div class="screen-name">hs-doc-viewer</div><div class="screen-desc">Xem PDF trực tuyến</div></a></div>
+    <div class="screen-card"><a href="hs-cart.html"><div class="screen-name">hs-cart</div><div class="screen-desc">Giỏ hàng</div></a></div>
+    <div class="screen-card"><a href="hs-cart-empty.html"><div class="screen-name">hs-cart-empty</div><div class="screen-desc">Giỏ hàng trống</div></a></div>
+    <div class="screen-card"><a href="hs-checkout.html"><div class="screen-name">hs-checkout</div><div class="screen-desc">Thanh toán VietQR</div></a></div>
+    <div class="screen-card"><a href="hs-orders.html"><div class="screen-name">hs-orders</div><div class="screen-desc">Lịch sử đơn hàng</div></a></div>
+    <div class="screen-card"><a href="hs-activate.html"><div class="screen-name">hs-activate</div><div class="screen-desc">Nhập mã kích hoạt</div></a></div>
+    <div class="screen-card"><a href="hs-profile.html"><div class="screen-name">hs-profile</div><div class="screen-desc">Hồ sơ cá nhân</div></a></div>
+    <div class="screen-card"><a href="hs-my-courses.html"><div class="screen-name">hs-my-courses</div><div class="screen-desc">Khóa đã mua</div></a></div>
+  </div>
+
+  <h2>⚙️ Quản trị thầy</h2>
+  <div class="screen-grid">
+    <div class="screen-card"><a href="admin-login.html"><div class="screen-name">admin-login</div><div class="screen-desc">Đăng nhập quản trị</div></a></div>
+    <div class="screen-card"><a href="admin-dashboard.html"><div class="screen-name">admin-dashboard</div><div class="screen-desc">Dashboard tổng quan</div></a></div>
+    <div class="screen-card"><a href="admin-brand.html"><div class="screen-name">admin-brand</div><div class="screen-desc">Cài đặt thương hiệu</div></a></div>
+    <div class="screen-card"><a href="admin-bank.html"><div class="screen-name">admin-bank</div><div class="screen-desc">Tài khoản ngân hàng</div></a></div>
+    <div class="screen-card"><a href="admin-homepage.html"><div class="screen-name">admin-homepage</div><div class="screen-desc">Sắp xếp trang chủ web</div></a></div>
+    <div class="screen-card"><a href="admin-courses.html"><div class="screen-name">admin-courses</div><div class="screen-desc">Danh sách khóa học</div></a></div>
+    <div class="screen-card"><a href="admin-course-edit.html"><div class="screen-name">admin-course-edit</div><div class="screen-desc">Sửa khóa học</div></a></div>
+    <div class="screen-card"><a href="admin-chapter-edit.html"><div class="screen-name">admin-chapter-edit</div><div class="screen-desc">Sửa chương + bài học</div></a></div>
+    <div class="screen-card"><a href="admin-exams.html"><div class="screen-name">admin-exams</div><div class="screen-desc">Danh sách đề thi</div></a></div>
+    <div class="screen-card"><a href="admin-exam-edit.html"><div class="screen-name">admin-exam-edit</div><div class="screen-desc">Cài đặt đề thi</div></a></div>
+    <div class="screen-card"><a href="admin-exam-questions.html"><div class="screen-name">admin-exam-questions</div><div class="screen-desc">Soạn câu hỏi</div></a></div>
+    <div class="screen-card"><a href="admin-exam-import.html"><div class="screen-name">admin-exam-import</div><div class="screen-desc">Nhập đề từ Word</div></a></div>
+    <div class="screen-card"><a href="admin-docs.html"><div class="screen-name">admin-docs</div><div class="screen-desc">Quản lý tài liệu PDF</div></a></div>
+    <div class="screen-card"><a href="admin-combos.html"><div class="screen-name">admin-combos</div><div class="screen-desc">Quản lý combo</div></a></div>
+    <div class="screen-card"><a href="admin-combo-edit.html"><div class="screen-name">admin-combo-edit</div><div class="screen-desc">Sửa combo</div></a></div>
+    <div class="screen-card"><a href="admin-orders.html"><div class="screen-name">admin-orders</div><div class="screen-desc">Đơn hàng</div></a></div>
+    <div class="screen-card"><a href="admin-order-detail.html"><div class="screen-name">admin-order-detail</div><div class="screen-desc">Chi tiết đơn hàng</div></a></div>
+    <div class="screen-card"><a href="admin-codes.html"><div class="screen-name">admin-codes</div><div class="screen-desc">Mã kích hoạt</div></a></div>
+    <div class="screen-card"><a href="admin-codes-generate.html"><div class="screen-name">admin-codes-generate</div><div class="screen-desc">Tạo mã hàng loạt</div></a></div>
+    <div class="screen-card"><a href="admin-students.html"><div class="screen-name">admin-students</div><div class="screen-desc">Danh sách học sinh</div></a></div>
+    <div class="screen-card"><a href="admin-student-detail.html"><div class="screen-name">admin-student-detail</div><div class="screen-desc">Chi tiết học sinh</div></a></div>
+  </div>
+</div>
+</body>
+</html>

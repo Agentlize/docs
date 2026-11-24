@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chi tiết học sinh — Quản trị</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.profile-card { display: flex; gap: var(--space-5); align-items: center; margin-bottom: var(--space-6); }
+.avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--brand-primary-light); display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0; }
+.profile-info h2 { font-size: var(--font-lg); font-weight: var(--font-bold); margin-bottom: var(--space-1); }
+.section-title { font-size: var(--font-base); font-weight: var(--font-semibold); margin-bottom: var(--space-3); margin-top: var(--space-6); }
+.breadcrumb { font-size: var(--font-sm); color: var(--color-text-secondary); margin-bottom: var(--space-5); }
+.breadcrumb a { color: var(--brand-primary); }
+@media (max-width: 768px) { .admin-sidebar { display: none; } .admin-main { margin-left: 0; } }
+</style>
+</head>
+<body>
+<div class="admin-layout">
+  <nav class="admin-sidebar">
+    <div class="admin-sidebar-brand">Thầy Thuận Toán</div>
+    <a href="admin-dashboard.html" class="admin-nav-item">📊 Dashboard</a>
+    <a href="admin-brand.html" class="admin-nav-item">🎨 Thương hiệu</a>
+    <a href="admin-courses.html" class="admin-nav-item">📚 Khóa học</a>
+    <a href="admin-exams.html" class="admin-nav-item">📝 Đề thi</a>
+    <a href="admin-docs.html" class="admin-nav-item">📄 Tài liệu</a>
+    <a href="admin-combos.html" class="admin-nav-item">🎁 Combo</a>
+    <a href="admin-orders.html" class="admin-nav-item">📦 Đơn hàng</a>
+    <a href="admin-codes.html" class="admin-nav-item">🔑 Mã kích hoạt</a>
+    <a href="admin-students.html" class="admin-nav-item active">👥 Học sinh</a>
+    <a href="admin-homepage.html" class="admin-nav-item">🏠 Trang chủ web</a>
+  </nav>
+  <div class="admin-main">
+    <header class="admin-header">
+      <h1 class="admin-page-title">Chi tiết học sinh</h1>
+    </header>
+    <div class="admin-content">
+      <div class="breadcrumb">
+        <a href="admin-students.html">Học sinh</a> › Nguyễn Văn An
+      </div>
+
+      <div class="admin-card">
+        <div class="profile-card">
+          <div class="avatar">👤</div>
+          <div class="profile-info">
+            <h2>Nguyễn Văn An</h2>
+            <div class="text-sm text-secondary">an.nguyen@gmail.com</div>
+            <div class="text-sm text-secondary">Tham gia: 22/11/2025</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">📚 Khóa đã mua</div>
+      <div class="admin-card" style="padding:0">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Khóa học</th><th>Ngày mua</th><th>Hình thức</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Luyện đề THPT 2025 — Toán</td>
+                <td>22/11/2025</td>
+                <td><span class="badge badge-primary">Mã kích hoạt</span></td>
+              </tr>
+              <tr>
+                <td>Chuyên đề Hàm số</td>
+                <td>20/11/2025</td>
+                <td><span class="badge badge-success">Thanh toán</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section-title">📦 Đơn hàng</div>
+      <div class="admin-card" style="padding:0">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Mã đơn</th><th>Ngày</th><th>Tổng tiền</th><th>Trạng thái</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="text-sm" style="font-family:monospace">#DH001025</td>
+                <td>20/11/2025</td>
+                <td class="price">199.000₫</td>
+                <td><span class="badge badge-success">Đã xác nhận</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

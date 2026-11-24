@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kết quả thi — Thầy Thuận Toán</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+  .score-hero { text-align: center; padding: var(--space-10) var(--space-4); background: var(--color-surface); border-radius: var(--radius-lg); margin-bottom: var(--space-6); }
+  .score-big { font-size: 3.5rem; font-weight: var(--font-bold); color: var(--brand-primary); }
+  .score-label { color: var(--color-text-secondary); font-size: var(--font-sm); margin-top: var(--space-1); }
+  .stats-row { display: flex; justify-content: center; gap: var(--space-8); margin-top: var(--space-4); flex-wrap: wrap; }
+  .stat-item { text-align: center; }
+  .stat-value { font-size: var(--font-xl); font-weight: var(--font-bold); }
+  .stat-label { font-size: var(--font-xs); color: var(--color-text-secondary); }
+  .stat-correct .stat-value { color: var(--color-success); }
+  .stat-wrong .stat-value { color: var(--color-error); }
+  .review-item { border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4); margin-bottom: var(--space-3); }
+  .review-item.correct { border-left: 3px solid var(--color-success); }
+  .review-item.wrong { border-left: 3px solid var(--color-error); }
+  .review-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-2); }
+  .review-answer { font-size: var(--font-sm); margin-top: var(--space-2); }
+  .explanation { background: var(--color-surface); padding: var(--space-3); border-radius: var(--radius-sm); margin-top: var(--space-3); font-size: var(--font-sm); color: var(--color-text-secondary); }
+</style>
+</head>
+<body>
+
+<header class="hs-header">
+  <div class="hs-header-inner">
+    <a href="hs-home.html" class="hs-logo">Thầy Thuận Toán</a>
+    <nav class="hs-nav">
+      <a href="hs-courses.html">Khóa học</a>
+      <a href="hs-exams.html">Đề thi</a>
+      <a href="hs-profile.html">Tài khoản</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container" style="padding-top:var(--space-6);padding-bottom:var(--space-10);max-width:800px">
+
+  <div class="score-hero">
+    <div class="score-big">7.5/10</div>
+    <div class="score-label">Đề thi thử THPT 2025 — Lần 1</div>
+    <div class="stats-row">
+      <div class="stat-item stat-correct"><div class="stat-value">30</div><div class="stat-label">Câu đúng</div></div>
+      <div class="stat-item stat-wrong"><div class="stat-value">10</div><div class="stat-label">Câu sai</div></div>
+      <div class="stat-item"><div class="stat-value">25:30</div><div class="stat-label">Thời gian</div></div>
+    </div>
+    <div style="margin-top:var(--space-5);display:flex;justify-content:center;gap:var(--space-3)">
+      <a href="hs-exam-take.html" class="btn btn-outline">Làm lại</a>
+      <a href="hs-leaderboard.html" class="btn btn-primary">Bảng xếp hạng</a>
+    </div>
+  </div>
+
+  <h2 style="font-size:var(--font-lg);margin-bottom:var(--space-4)">Chi tiết bài làm</h2>
+
+  <div class="review-item correct">
+    <div class="review-header">
+      <span><strong>Câu 1</strong> <span class="badge badge-success">Đúng</span></span>
+      <span class="text-sm text-secondary">Trắc nghiệm</span>
+    </div>
+    <div class="question-text" style="font-size:var(--font-sm)">Cho hàm số \(f(x) = x^3 - 3x^2 + 2\). Tìm giá trị cực đại của hàm số.</div>
+    <div class="review-answer">
+      Đáp án của bạn: <strong style="color:var(--color-success)">A. 2</strong> · Đáp án đúng: <strong>A. 2</strong>
+    </div>
+    <div class="explanation">
+      <strong>Lời giải:</strong> \(f'(x) = 3x^2 - 6x = 3x(x-2)\). \(f'(x)=0 \Rightarrow x=0\) hoặc \(x=2\). \(f(0) = 2\) là giá trị cực đại.
+    </div>
+  </div>
+
+  <div class="review-item wrong">
+    <div class="review-header">
+      <span><strong>Câu 2</strong> <span class="badge badge-error">Sai</span></span>
+      <span class="text-sm text-secondary">Đúng/Sai</span>
+    </div>
+    <div class="question-text" style="font-size:var(--font-sm)">Cho hàm số \(y = \frac{2x+1}{x-1}\). Xét tính đúng/sai:</div>
+    <div class="review-answer">
+      a) Đ <span style="color:var(--color-success)">✓</span> ·
+      b) S <span style="color:var(--color-error)">✗</span> (đúng: Đ) ·
+      c) — <span style="color:var(--color-text-secondary)">bỏ qua</span> ·
+      d) Đ <span style="color:var(--color-success)">✓</span>
+      <span class="text-sm text-secondary" style="display:block;margin-top:var(--space-1)">Điểm: 0,25đ (2/4 mệnh đề đúng)</span>
+    </div>
+    <div class="explanation">
+      <strong>Lời giải:</strong> b) Tiệm cận ngang \(y = 2\) → mệnh đề đúng. c) Hàm số nghịch biến trên mỗi khoảng xác định → mệnh đề sai.
+    </div>
+  </div>
+
+  <div class="review-item correct">
+    <div class="review-header">
+      <span><strong>Câu 3</strong> <span class="badge badge-success">Đúng</span></span>
+      <span class="text-sm text-secondary">Trắc nghiệm</span>
+    </div>
+    <div class="question-text" style="font-size:var(--font-sm)">Tích phân \(\int_0^1 (2x + 1)\,dx\) bằng:</div>
+    <div class="review-answer">
+      Đáp án của bạn: <strong style="color:var(--color-success)">B. 2</strong> · Đáp án đúng: <strong>B. 2</strong>
+    </div>
+    <div class="explanation">
+      <strong>Lời giải:</strong> \(\int_0^1 (2x+1)\,dx = [x^2 + x]_0^1 = 1 + 1 = 2\).
+    </div>
+  </div>
+
+  <div class="review-item wrong">
+    <div class="review-header">
+      <span><strong>Câu 4</strong> <span class="badge badge-error">Sai</span></span>
+      <span class="text-sm text-secondary">Trắc nghiệm</span>
+    </div>
+    <div class="question-text" style="font-size:var(--font-sm)">Phương trình \(\log_2(x+3) = 3\) có nghiệm là:</div>
+    <div class="review-answer">
+      Đáp án của bạn: <strong style="color:var(--color-error)">C. 8</strong> · Đáp án đúng: <strong>D. 5</strong>
+    </div>
+    <div class="explanation">
+      <strong>Lời giải:</strong> \(\log_2(x+3) = 3 \Rightarrow x + 3 = 8 \Rightarrow x = 5\).
+    </div>
+  </div>
+
+  <p class="text-center text-secondary" style="margin-top:var(--space-4)">... và 36 câu khác</p>
+
+</main>
+
+<footer class="hs-footer">Thầy Thuận Toán · thuanthoan.vaohoc.vn</footer>
+
+<script>document.addEventListener("DOMContentLoaded",()=>renderMathInElement(document.body,{delimiters:[{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}]}));</script>
+</body>
+</html>

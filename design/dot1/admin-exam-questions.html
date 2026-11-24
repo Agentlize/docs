@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soạn câu hỏi — Quản trị</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.breadcrumb { font-size: var(--font-sm); color: var(--color-text-secondary); margin-bottom: var(--space-5); }
+.breadcrumb a { color: var(--brand-primary); }
+.q-list { display: flex; flex-direction: column; gap: var(--space-4); }
+.q-card { border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-5); background: var(--color-bg); }
+.q-header { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); }
+.q-num { background: var(--brand-primary); color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: var(--font-bold); font-size: var(--font-sm); flex-shrink: 0; }
+.q-content { font-size: var(--font-base); line-height: 1.6; margin-bottom: var(--space-3); }
+.q-formula { background: var(--color-surface); padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-family: monospace; display: inline-block; margin: var(--space-1) 0; }
+.q-answers { display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-3); }
+.q-answer { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); font-size: var(--font-sm); }
+.q-answer.correct { background: var(--color-success-light); color: var(--color-success); font-weight: var(--font-medium); }
+.q-answer .letter { font-weight: var(--font-bold); min-width: 20px; }
+.q-explain { background: var(--color-surface); border-left: 3px solid var(--brand-primary); padding: var(--space-3); border-radius: 0 var(--radius-md) var(--radius-md) 0; font-size: var(--font-sm); color: var(--color-text-secondary); }
+.q-actions { display: flex; gap: var(--space-2); margin-top: var(--space-3); }
+.drag-handle { cursor: grab; color: var(--color-text-secondary); font-size: var(--font-lg); user-select: none; }
+.tf-grid { display: grid; grid-template-columns: auto 1fr 60px 60px; gap: var(--space-2); align-items: center; font-size: var(--font-sm); }
+.tf-grid .header { font-weight: var(--font-semibold); color: var(--color-text-secondary); text-align: center; }
+@media (max-width: 768px) { .admin-sidebar { display: none; } .admin-main { margin-left: 0; } }
+</style>
+</head>
+<body>
+<div class="admin-layout">
+  <nav class="admin-sidebar">
+    <div class="admin-sidebar-brand">Thầy Thuận Toán</div>
+    <a href="admin-dashboard.html" class="admin-nav-item">📊 Dashboard</a>
+    <a href="admin-brand.html" class="admin-nav-item">🎨 Thương hiệu</a>
+    <a href="admin-courses.html" class="admin-nav-item">📚 Khóa học</a>
+    <a href="admin-exams.html" class="admin-nav-item active">📝 Đề thi</a>
+    <a href="admin-docs.html" class="admin-nav-item">📄 Tài liệu</a>
+    <a href="admin-combos.html" class="admin-nav-item">🎁 Combo</a>
+    <a href="admin-orders.html" class="admin-nav-item">📦 Đơn hàng</a>
+    <a href="admin-codes.html" class="admin-nav-item">🔑 Mã kích hoạt</a>
+    <a href="admin-students.html" class="admin-nav-item">👥 Học sinh</a>
+    <a href="admin-homepage.html" class="admin-nav-item">🏠 Trang chủ web</a>
+  </nav>
+  <div class="admin-main">
+    <header class="admin-header">
+      <h1 class="admin-page-title">Soạn câu hỏi</h1>
+      <button class="btn btn-primary btn-sm">+ Thêm câu</button>
+    </header>
+    <div class="admin-content">
+      <div class="breadcrumb">
+        <a href="admin-exams.html">Đề thi</a> › <a href="admin-exam-edit.html">Đề minh họa THPT 2025 — Toán</a> › Câu hỏi
+      </div>
+      <div class="q-list">
+        <!-- Câu trắc nghiệm -->
+        <div class="q-card">
+          <div class="q-header">
+            <span class="drag-handle">⠿</span>
+            <span class="q-num">1</span>
+            <span class="badge badge-primary">Trắc nghiệm</span>
+          </div>
+          <div class="q-content">
+            Cho hàm số <span class="q-formula">y = x³ − 3x + 2</span>. Hàm số đồng biến trên khoảng nào?
+          </div>
+          <div class="q-answers">
+            <div class="q-answer"><span class="letter">A.</span> (−∞; −1)</div>
+            <div class="q-answer correct">✓ <span class="letter">B.</span> (−1; 1)</div>
+            <div class="q-answer"><span class="letter">C.</span> (1; +∞)</div>
+            <div class="q-answer"><span class="letter">D.</span> (−∞; −1) ∪ (1; +∞)</div>
+          </div>
+          <div class="q-explain">
+            💡 Lời giải: y' = 3x² − 3 = 3(x−1)(x+1). y' > 0 khi x ∈ (−1; 1). Vậy hàm số đồng biến trên (−1; 1).
+          </div>
+          <div class="q-actions">
+            <button class="btn btn-ghost btn-sm">✏️ Sửa</button>
+            <button class="btn btn-ghost btn-sm" style="color:var(--color-error)">🗑 Xóa</button>
+          </div>
+        </div>
+
+        <!-- Câu đúng-sai -->
+        <div class="q-card">
+          <div class="q-header">
+            <span class="drag-handle">⠿</span>
+            <span class="q-num">2</span>
+            <span class="badge badge-warning">Đúng-sai</span>
+          </div>
+          <div class="q-content">
+            Cho hàm số <span class="q-formula">f(x) = x⁴ − 2x² + 1</span>. Các mệnh đề sau đúng hay sai?
+          </div>
+          <div class="tf-grid" style="margin-bottom:var(--space-3)">
+            <div></div><div class="header"></div><div class="header">Đ</div><div class="header">S</div>
+            <div class="letter">a)</div><div>Hàm số có 3 cực trị</div><div class="text-center" style="color:var(--color-success);font-weight:bold">●</div><div class="text-center"></div>
+            <div class="letter">b)</div><div>Giá trị nhỏ nhất của f(x) là 0</div><div class="text-center" style="color:var(--color-success);font-weight:bold">●</div><div class="text-center"></div>
+            <div class="letter">c)</div><div>f(x) đồng biến trên (0; +∞)</div><div class="text-center"></div><div class="text-center" style="color:var(--color-error);font-weight:bold">●</div>
+            <div class="letter">d)</div><div>Đồ thị cắt trục Ox tại 2 điểm</div><div class="text-center"></div><div class="text-center" style="color:var(--color-error);font-weight:bold">●</div>
+          </div>
+          <div class="q-explain">
+            💡 Chấm: 1 đúng = 0,1đ; 2 đúng = 0,25đ; 3 đúng = 0,5đ; 4 đúng = 1đ
+          </div>
+          <div class="q-actions">
+            <button class="btn btn-ghost btn-sm">✏️ Sửa</button>
+            <button class="btn btn-ghost btn-sm" style="color:var(--color-error)">🗑 Xóa</button>
+          </div>
+        </div>
+
+        <!-- Câu trắc nghiệm #3 -->
+        <div class="q-card">
+          <div class="q-header">
+            <span class="drag-handle">⠿</span>
+            <span class="q-num">3</span>
+            <span class="badge badge-primary">Trắc nghiệm</span>
+          </div>
+          <div class="q-content">
+            Tính tích phân <span class="q-formula">∫₀¹ x·eˣ dx</span>
+          </div>
+          <div class="q-answers">
+            <div class="q-answer correct">✓ <span class="letter">A.</span> 1</div>
+            <div class="q-answer"><span class="letter">B.</span> e − 1</div>
+            <div class="q-answer"><span class="letter">C.</span> e</div>
+            <div class="q-answer"><span class="letter">D.</span> 2</div>
+          </div>
+          <div class="q-actions">
+            <button class="btn btn-ghost btn-sm">✏️ Sửa</button>
+            <button class="btn btn-ghost btn-sm" style="color:var(--color-error)">🗑 Xóa</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-6);text-align:center">
+        <button class="btn btn-outline btn-lg">+ Thêm câu hỏi</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

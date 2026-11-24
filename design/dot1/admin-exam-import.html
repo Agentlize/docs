@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nhập đề từ Word — Quản trị</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.upload-zone { border: 2px dashed var(--color-border); border-radius: var(--radius-lg); padding: var(--space-12); text-align: center; color: var(--color-text-secondary); cursor: pointer; margin-bottom: var(--space-6); }
+.upload-zone:hover { border-color: var(--brand-primary); background: var(--brand-primary-light); }
+.preview-section { border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; }
+.preview-header { background: var(--color-surface); padding: var(--space-3) var(--space-4); font-weight: var(--font-semibold); display: flex; justify-content: space-between; align-items: center; }
+.preview-q { padding: var(--space-4); border-bottom: 1px solid var(--color-border); }
+.preview-q:last-child { border-bottom: none; }
+.preview-q-num { font-weight: var(--font-bold); color: var(--brand-primary); margin-bottom: var(--space-2); }
+.preview-answers { padding-left: var(--space-5); font-size: var(--font-sm); }
+.preview-answers div { padding: var(--space-1) 0; }
+.preview-answers .correct { color: var(--color-success); font-weight: var(--font-medium); }
+@media (max-width: 768px) { .admin-sidebar { display: none; } .admin-main { margin-left: 0; } }
+</style>
+</head>
+<body>
+<div class="admin-layout">
+  <nav class="admin-sidebar">
+    <div class="admin-sidebar-brand">Thầy Thuận Toán</div>
+    <a href="admin-dashboard.html" class="admin-nav-item">📊 Dashboard</a>
+    <a href="admin-brand.html" class="admin-nav-item">🎨 Thương hiệu</a>
+    <a href="admin-courses.html" class="admin-nav-item">📚 Khóa học</a>
+    <a href="admin-exams.html" class="admin-nav-item active">📝 Đề thi</a>
+    <a href="admin-docs.html" class="admin-nav-item">📄 Tài liệu</a>
+    <a href="admin-combos.html" class="admin-nav-item">🎁 Combo</a>
+    <a href="admin-orders.html" class="admin-nav-item">📦 Đơn hàng</a>
+    <a href="admin-codes.html" class="admin-nav-item">🔑 Mã kích hoạt</a>
+    <a href="admin-students.html" class="admin-nav-item">👥 Học sinh</a>
+    <a href="admin-homepage.html" class="admin-nav-item">🏠 Trang chủ web</a>
+  </nav>
+  <div class="admin-main">
+    <header class="admin-header">
+      <h1 class="admin-page-title">Nhập đề từ Word</h1>
+    </header>
+    <div class="admin-content" style="max-width:720px">
+      <div class="upload-zone">
+        <div style="font-size:2.5rem;margin-bottom:var(--space-3)">📄</div>
+        <div style="font-size:var(--font-lg);font-weight:var(--font-semibold);margin-bottom:var(--space-2)">Kéo thả file Word vào đây</div>
+        <div class="text-sm">hoặc bấm để chọn file (.docx)</div>
+      </div>
+
+      <div class="preview-section">
+        <div class="preview-header">
+          <span>Xem trước — 3 câu được nhận dạng</span>
+          <span class="badge badge-success">✓ Thành công</span>
+        </div>
+        <div class="preview-q">
+          <div class="preview-q-num">Câu 1 — Trắc nghiệm</div>
+          <div>Cho hàm số y = x³ − 3x + 2. Hàm số đồng biến trên khoảng nào?</div>
+          <div class="preview-answers">
+            <div>A. (−∞; −1)</div>
+            <div class="correct">✓ B. (−1; 1)</div>
+            <div>C. (1; +∞)</div>
+            <div>D. (−∞; −1) ∪ (1; +∞)</div>
+          </div>
+        </div>
+        <div class="preview-q">
+          <div class="preview-q-num">Câu 2 — Đúng-sai</div>
+          <div>Cho f(x) = x⁴ − 2x² + 1. Các mệnh đề sau đúng hay sai?</div>
+          <div class="preview-answers">
+            <div class="correct">a) Hàm số có 3 cực trị — Đ</div>
+            <div class="correct">b) Giá trị nhỏ nhất của f(x) là 0 — Đ</div>
+            <div>c) f(x) đồng biến trên (0; +∞) — S</div>
+            <div>d) Đồ thị cắt trục Ox tại 2 điểm — S</div>
+          </div>
+        </div>
+        <div class="preview-q">
+          <div class="preview-q-num">Câu 3 — Trắc nghiệm</div>
+          <div>Tính tích phân ∫₀¹ x·eˣ dx</div>
+          <div class="preview-answers">
+            <div class="correct">✓ A. 1</div>
+            <div>B. e − 1</div>
+            <div>C. e</div>
+            <div>D. 2</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-5);display:flex;gap:var(--space-3);justify-content:flex-end">
+        <a href="admin-exams.html" class="btn btn-ghost">Hủy</a>
+        <button class="btn btn-primary">✓ Xác nhận nhập 3 câu</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

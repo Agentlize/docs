@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nhập mã kích hoạt — Thầy Thuận Toán</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  .result-msg { padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); margin-top: var(--space-3); font-size: var(--font-sm); }
+  .result-success { background: var(--color-success-light); color: var(--color-success); }
+  .result-error { background: var(--color-error-light); color: var(--color-error); }
+</style>
+</head>
+<body>
+
+<header class="hs-header"><div class="hs-header-inner"><a href="hs-home.html" class="hs-logo">Thầy Thuận Toán</a><nav class="hs-nav"><a href="hs-courses.html">Khóa học</a><a href="hs-my-courses.html">Khóa đã mua</a><a href="hs-profile.html">Tài khoản</a></nav></div></header>
+
+<main class="container-narrow" style="padding-top:var(--space-16);padding-bottom:var(--space-16)">
+  <div class="card" style="padding:var(--space-6);text-align:center">
+    <div style="font-size:2.5rem;margin-bottom:var(--space-3)">🔑</div>
+    <h1 style="font-size:var(--font-2xl);margin-bottom:var(--space-1)">Nhập mã kích hoạt</h1>
+    <p class="text-secondary text-sm" style="margin-bottom:var(--space-5)">Nhập mã bạn nhận được từ thầy để mở khóa khóa học.</p>
+    <div style="display:flex;gap:var(--space-2);justify-content:center">
+      <input class="input" style="max-width:240px;text-align:center;letter-spacing:2px;font-weight:var(--font-semibold)" placeholder="ABCD-1234-EFGH">
+      <button class="btn btn-primary">Kích hoạt</button>
+    </div>
+
+    <!-- Success state (hidden by default) -->
+    <div class="result-msg result-success" hidden>
+      ✓ Kích hoạt thành công! Khóa "Luyện đề THPT 2025 — Toán" đã được mở.
+      <a href="hs-my-courses.html" style="display:block;margin-top:var(--space-2)">Vào học ngay →</a>
+    </div>
+
+    <!-- Error state (hidden by default) -->
+    <div class="result-msg result-error" hidden>
+      ✕ Mã không hợp lệ hoặc đã được sử dụng. Vui lòng kiểm tra lại.
+    </div>
+  </div>
+</main>
+
+<footer class="hs-footer">Thầy Thuận Toán · thuanthoan.vaohoc.vn</footer>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Học sinh — Quản trị</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.filter-bar { display: flex; gap: var(--space-3); align-items: center; margin-bottom: var(--space-4); flex-wrap: wrap; }
+select.input { appearance: auto; width: auto; }
+@media (max-width: 768px) { .admin-sidebar { display: none; } .admin-main { margin-left: 0; } }
+</style>
+</head>
+<body>
+<div class="admin-layout">
+  <nav class="admin-sidebar">
+    <div class="admin-sidebar-brand">Thầy Thuận Toán</div>
+    <a href="admin-dashboard.html" class="admin-nav-item">📊 Dashboard</a>
+    <a href="admin-brand.html" class="admin-nav-item">🎨 Thương hiệu</a>
+    <a href="admin-courses.html" class="admin-nav-item">📚 Khóa học</a>
+    <a href="admin-exams.html" class="admin-nav-item">📝 Đề thi</a>
+    <a href="admin-docs.html" class="admin-nav-item">📄 Tài liệu</a>
+    <a href="admin-combos.html" class="admin-nav-item">🎁 Combo</a>
+    <a href="admin-orders.html" class="admin-nav-item">📦 Đơn hàng</a>
+    <a href="admin-codes.html" class="admin-nav-item">🔑 Mã kích hoạt</a>
+    <a href="admin-students.html" class="admin-nav-item active">👥 Học sinh</a>
+    <a href="admin-homepage.html" class="admin-nav-item">🏠 Trang chủ web</a>
+  </nav>
+  <div class="admin-main">
+    <header class="admin-header">
+      <h1 class="admin-page-title">Học sinh</h1>
+      <button class="btn btn-outline btn-sm">📥 Xuất CSV</button>
+    </header>
+    <div class="admin-content">
+      <div class="filter-bar">
+        <span class="text-sm text-secondary">Lọc theo khóa:</span>
+        <select class="input">
+          <option>Tất cả</option>
+          <option>Luyện đề THPT 2025 — Toán</option>
+          <option>Luyện đề THPT 2025 — Lý</option>
+          <option>Luyện đề THPT 2025 — Hóa</option>
+          <option>Chuyên đề Hàm số</option>
+        </select>
+      </div>
+      <div class="admin-card" style="padding:0">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Tên</th><th>Email</th><th>Ngày ĐK</th><th>Khóa đã mua</th><th></th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="admin-student-detail.html" style="font-weight:var(--font-medium)">Nguyễn Văn An</a></td>
+                <td class="text-secondary">an.nguyen@gmail.com</td>
+                <td>22/11/2025</td>
+                <td><span class="badge badge-primary">Luyện đề Toán</span></td>
+                <td><a href="admin-student-detail.html" class="text-sm">Chi tiết</a></td>
+              </tr>
+              <tr>
+                <td><a href="admin-student-detail.html" style="font-weight:var(--font-medium)">Trần Thị Bình</a></td>
+                <td class="text-secondary">binh.tran@gmail.com</td>
+                <td>21/11/2025</td>
+                <td>
+                  <span class="badge badge-primary" style="margin-right:4px">Luyện đề Toán</span>
+                  <span class="badge badge-primary">Luyện đề Lý</span>
+                </td>
+                <td><a href="admin-student-detail.html" class="text-sm">Chi tiết</a></td>
+              </tr>
+              <tr>
+                <td><a href="admin-student-detail.html" style="font-weight:var(--font-medium)">Lê Minh Châu</a></td>
+                <td class="text-secondary">chau.le@gmail.com</td>
+                <td>20/11/2025</td>
+                <td><span class="badge badge-primary">Luyện đề Lý</span></td>
+                <td><a href="admin-student-detail.html" class="text-sm">Chi tiết</a></td>
+              </tr>
+              <tr>
+                <td><a href="admin-student-detail.html" style="font-weight:var(--font-medium)">Phạm Duy</a></td>
+                <td class="text-secondary">duy.pham@gmail.com</td>
+                <td>19/11/2025</td>
+                <td><span class="badge badge-primary">Chuyên đề Hàm số</span></td>
+                <td><a href="admin-student-detail.html" class="text-sm">Chi tiết</a></td>
+              </tr>
+              <tr>
+                <td><a href="admin-student-detail.html" style="font-weight:var(--font-medium)">Hoàng Thu Hà</a></td>
+                <td class="text-secondary">ha.hoang@gmail.com</td>
+                <td>18/11/2025</td>
+                <td>
+                  <span class="badge badge-primary" style="margin-right:4px">Luyện đề Toán</span>
+                  <span class="badge badge-primary" style="margin-right:4px">Luyện đề Lý</span>
+                  <span class="badge badge-primary">Luyện đề Hóa</span>
+                </td>
+                <td><a href="admin-student-detail.html" class="text-sm">Chi tiết</a></td>
+              </tr>
+              <tr>
+                <td><a href="admin-student-detail.html" style="font-weight:var(--font-medium)">Vũ Quang</a></td>
+                <td class="text-secondary">quang.vu@gmail.com</td>
+                <td>17/11/2025</td>
+                <td><span class="badge badge-primary">Luyện đề Toán</span></td>
+                <td><a href="admin-student-detail.html" class="text-sm">Chi tiết</a></td>
+              </tr>
+              <tr>
+                <td><a href="admin-student-detail.html" style="font-weight:var(--font-medium)">Đỗ Thị Lan</a></td>
+                <td class="text-secondary">lan.do@gmail.com</td>
+                <td>15/11/2025</td>
+                <td><span class="badge badge-primary">Luyện đề Hóa</span></td>
+                <td><a href="admin-student-detail.html" class="text-sm">Chi tiết</a></td>
+              </tr>
+              <tr>
+                <td><a href="admin-student-detail.html" style="font-weight:var(--font-medium)">Bùi Hữu Nam</a></td>
+                <td class="text-secondary">nam.bui@gmail.com</td>
+                <td>14/11/2025</td>
+                <td>
+                  <span class="badge badge-primary" style="margin-right:4px">Luyện đề Toán</span>
+                  <span class="badge badge-primary">Chuyên đề Hàm số</span>
+                </td>
+                <td><a href="admin-student-detail.html" class="text-sm">Chi tiết</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

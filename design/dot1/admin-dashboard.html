@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Thầy Thuận Toán</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); margin-bottom: var(--space-6); }
+.stat-card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-5); }
+.stat-label { font-size: var(--font-sm); color: var(--color-text-secondary); margin-bottom: var(--space-2); }
+.stat-value { font-size: var(--font-2xl); font-weight: var(--font-bold); }
+.stat-icon { font-size: var(--font-2xl); margin-bottom: var(--space-2); }
+.section-title { font-size: var(--font-lg); font-weight: var(--font-semibold); margin-bottom: var(--space-4); }
+.quick-actions { display: flex; gap: var(--space-3); margin-bottom: var(--space-6); flex-wrap: wrap; }
+@media (max-width: 1024px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) {
+  .admin-sidebar { display: none; }
+  .admin-main { margin-left: 0; }
+  .stats { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="admin-layout">
+  <nav class="admin-sidebar">
+    <div class="admin-sidebar-brand" style="padding-bottom:20px; margin-bottom:16px;">📐 Thầy Thuận Toán</div>
+    <a href="admin-dashboard.html" class="admin-nav-item active">📊 Dashboard</a>
+    <a href="admin-brand.html" class="admin-nav-item">🎨 Thương hiệu</a>
+    <a href="admin-courses.html" class="admin-nav-item">📚 Khóa học</a>
+    <a href="admin-exams.html" class="admin-nav-item">📝 Đề thi</a>
+    <a href="admin-docs.html" class="admin-nav-item">📄 Tài liệu</a>
+    <a href="admin-combos.html" class="admin-nav-item">🎁 Combo</a>
+    <a href="admin-orders.html" class="admin-nav-item">📦 Đơn hàng</a>
+    <a href="admin-codes.html" class="admin-nav-item">🔑 Mã kích hoạt</a>
+    <a href="admin-students.html" class="admin-nav-item">👥 Học sinh</a>
+    <a href="admin-homepage.html" class="admin-nav-item">🏠 Trang chủ web</a>
+  </nav>
+  <div class="admin-main">
+    <header class="admin-header">
+      <div class="admin-page-title">Dashboard</div>
+      <div style="display:flex;align-items:center;gap:var(--space-3)">
+        <span class="text-sm text-secondary">thầy Thuận</span>
+        <div style="width:32px;height:32px;border-radius:var(--radius-full);background:var(--admin-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:var(--font-sm);font-weight:var(--font-semibold)">T</div>
+      </div>
+    </header>
+    <div class="admin-content">
+
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-icon">📦</div>
+          <div class="stat-label">Đơn chờ xác nhận</div>
+          <div class="stat-value" style="color:var(--color-warning)">5</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-label">Học sinh mới hôm nay</div>
+          <div class="stat-value">12</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💰</div>
+          <div class="stat-label">Doanh thu tháng</div>
+          <div class="stat-value" style="color:var(--color-success)">2.350.000₫</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📚</div>
+          <div class="stat-label">Tổng khóa học</div>
+          <div class="stat-value">8</div>
+        </div>
+      </div>
+
+      <div class="quick-actions">
+        <a href="admin-course-edit.html" class="btn btn-primary">+ Tạo khóa mới</a>
+        <a href="admin-orders.html" class="btn btn-outline">Xem đơn chờ (5)</a>
+        <a href="admin-codes-generate.html" class="btn btn-outline">Tạo mã kích hoạt</a>
+      </div>
+
+      <div class="section-title">Đơn hàng gần đây</div>
+      <div class="admin-card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Mã</th><th>Học sinh</th><th>Khóa học</th><th>Tổng tiền</th><th>Trạng thái</th><th>Ngày</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#DH001</td><td>Nguyễn Văn An</td><td>Luyện đề THPT 2025 — Toán</td><td>299.000₫</td>
+                <td><span class="badge badge-warning">Chờ xác nhận</span></td><td>25/11/2026</td>
+              </tr>
+              <tr>
+                <td>#DH002</td><td>Trần Thị Bình</td><td>Combo 3 môn Toán Lý Hóa</td><td>699.000₫</td>
+                <td><span class="badge badge-warning">Chờ xác nhận</span></td><td>25/11/2026</td>
+              </tr>
+              <tr>
+                <td>#DH003</td><td>Lê Hoàng Cường</td><td>Chuyên đề Hình học</td><td>199.000₫</td>
+                <td><span class="badge badge-success">Đã xác nhận</span></td><td>24/11/2026</td>
+              </tr>
+              <tr>
+                <td>#DH004</td><td>Phạm Minh Đức</td><td>Luyện đề THPT 2025 — Toán</td><td>299.000₫</td>
+                <td><span class="badge badge-success">Đã xác nhận</span></td><td>24/11/2026</td>
+              </tr>
+              <tr>
+                <td>#DH005</td><td>Hoàng Thị Em</td><td>Combo 3 môn Toán Lý Hóa</td><td>699.000₫</td>
+                <td><span class="badge badge-error">Đã từ chối</span></td><td>23/11/2026</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

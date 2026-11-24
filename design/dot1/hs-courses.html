@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khóa học — Thầy Thuận Toán</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.page-hero { background: var(--color-surface); padding: var(--space-8) var(--space-4); text-align: center; }
+.page-hero h1 { font-size: var(--font-2xl); font-weight: var(--font-bold); margin-bottom: var(--space-2); }
+.page-hero p { color: var(--color-text-secondary); }
+.filters { display: flex; gap: var(--space-2); justify-content: center; padding: var(--space-5) var(--space-4); flex-wrap: wrap; }
+.filter-pill { padding: var(--space-2) var(--space-4); border-radius: var(--radius-full); border: 1px solid var(--color-border); background: var(--color-bg); font-size: var(--font-sm); font-weight: var(--font-medium); cursor: pointer; color: var(--color-text-secondary); }
+.filter-pill.active { background: var(--brand-primary); color: var(--color-text-on-primary); border-color: var(--brand-primary); }
+.course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-5); max-width: 1200px; margin: 0 auto; padding: 0 var(--space-4) var(--space-10); }
+.course-card { border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; background: var(--color-bg); transition: box-shadow 0.15s; text-decoration: none; color: inherit; display: block; }
+.course-card:hover { box-shadow: var(--shadow-md); text-decoration: none; }
+.course-card-img { height: 160px; background: var(--color-surface); display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary); font-size: var(--font-sm); border-bottom: 1px solid var(--color-border); }
+.course-card-body { padding: var(--space-4); }
+.course-card-title { font-weight: var(--font-semibold); margin-bottom: var(--space-2); line-height: 1.4; }
+.course-card-category { font-size: var(--font-xs); color: var(--color-text-secondary); margin-bottom: var(--space-2); }
+.course-card-price { display: flex; align-items: center; gap: var(--space-2); }
+.course-card-meta { font-size: var(--font-xs); color: var(--color-text-secondary); margin-top: var(--space-2); }
+</style>
+</head>
+<body>
+
+<header class="hs-header">
+  <div class="hs-header-inner">
+    <a href="hs-home.html" class="hs-logo">📐 Thầy Thuận Toán</a>
+    <nav class="hs-nav">
+      <a href="hs-courses.html" style="color:var(--brand-primary);">Khóa học</a>
+      <a href="hs-exams.html">Đề thi</a>
+      <a href="hs-docs.html">Tài liệu</a>
+      <a href="hs-cart.html">🛒</a>
+      <a href="hs-login.html" class="btn btn-primary btn-sm">Đăng nhập</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <h1>Khóa học</h1>
+  <p>Chọn khóa học phù hợp với bạn</p>
+</div>
+
+<div class="filters">
+  <span class="filter-pill active">Tất cả</span>
+  <span class="filter-pill">Toán</span>
+  <span class="filter-pill">Lý</span>
+  <span class="filter-pill">Hóa</span>
+  <span class="filter-pill">Combo</span>
+</div>
+
+<div class="course-grid">
+  <a href="hs-course-detail.html" class="course-card">
+    <div class="course-card-img">📷 Ảnh khóa học</div>
+    <div class="course-card-body">
+      <div class="course-card-category">Toán</div>
+      <div class="course-card-title">Luyện đề THPT 2025 — Toán</div>
+      <div class="course-card-price">
+        <span class="price">299.000₫</span>
+        <span class="price-original">499.000₫</span>
+      </div>
+      <div class="course-card-meta">40 bài · 120 video</div>
+    </div>
+  </a>
+
+  <a href="hs-course-detail.html" class="course-card">
+    <div class="course-card-img">📷 Ảnh khóa học</div>
+    <div class="course-card-body">
+      <div class="course-card-category">Toán</div>
+      <div class="course-card-title">Hình học không gian</div>
+      <div class="course-card-price">
+        <span class="price">199.000₫</span>
+      </div>
+      <div class="course-card-meta">25 bài · 60 video</div>
+    </div>
+  </a>
+
+  <a href="hs-course-detail.html" class="course-card">
+    <div class="course-card-img">📷 Ảnh khóa học</div>
+    <div class="course-card-body">
+      <div class="course-card-category">Toán</div>
+      <div class="course-card-title">Giải tích 12 — Từ cơ bản đến nâng cao</div>
+      <div class="course-card-price">
+        <span class="price">249.000₫</span>
+        <span class="price-original">399.000₫</span>
+      </div>
+      <div class="course-card-meta">35 bài · 90 video</div>
+    </div>
+  </a>
+
+  <a href="hs-course-detail.html" class="course-card">
+    <div class="course-card-img">📷 Ảnh khóa học</div>
+    <div class="course-card-body">
+      <div class="course-card-category">Lý</div>
+      <div class="course-card-title">Vật lý THPT 2025 — Trọn bộ</div>
+      <div class="course-card-price">
+        <span class="price">349.000₫</span>
+      </div>
+      <div class="course-card-meta">50 bài · 150 video</div>
+    </div>
+  </a>
+
+  <a href="hs-course-detail.html" class="course-card">
+    <div class="course-card-img">📷 Ảnh khóa học</div>
+    <div class="course-card-body">
+      <div class="course-card-category">Hóa</div>
+      <div class="course-card-title">Hóa học hữu cơ — Luyện đề</div>
+      <div class="course-card-price">
+        <span class="price">199.000₫</span>
+        <span class="price-original">299.000₫</span>
+      </div>
+      <div class="course-card-meta">20 bài · 45 video</div>
+    </div>
+  </a>
+
+  <a href="hs-course-detail.html" class="course-card">
+    <div class="course-card-img">📷 Ảnh khóa học</div>
+    <div class="course-card-body">
+      <div class="course-card-category">Combo</div>
+      <div class="course-card-title">Combo 3 môn Toán Lý Hóa</div>
+      <div class="course-card-price">
+        <span class="price">599.000₫</span>
+        <span class="price-original">897.000₫</span>
+      </div>
+      <div class="course-card-meta">3 khóa · 115 bài</div>
+    </div>
+  </a>
+</div>
+
+<footer class="hs-footer">
+  © 2025 Thầy Thuận Toán · Nền tảng Vaohoc.vn
+</footer>
+
+</body>
+</html>

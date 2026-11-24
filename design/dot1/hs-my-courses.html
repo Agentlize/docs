@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khóa đã mua — Thầy Thuận Toán</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  .my-course-card { padding: var(--space-4); }
+  .my-course-img { height: 140px; margin: calc(-1 * var(--space-4)); margin-bottom: var(--space-3); border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+  .my-course-title { font-weight: var(--font-semibold); margin-bottom: var(--space-2); }
+  .progress-bar { height: 6px; background: var(--color-border); border-radius: var(--radius-full); overflow: hidden; margin-bottom: var(--space-1); }
+  .progress-fill { height: 100%; background: var(--brand-primary); border-radius: var(--radius-full); }
+</style>
+</head>
+<body>
+
+<header class="hs-header"><div class="hs-header-inner"><a href="hs-home.html" class="hs-logo">Thầy Thuận Toán</a><nav class="hs-nav"><a href="hs-courses.html">Khóa học</a><a href="hs-my-courses.html" style="color:var(--brand-primary)">Khóa đã mua</a><a href="hs-exams.html">Đề thi</a><a href="hs-profile.html">Tài khoản</a></nav></div></header>
+
+<main class="container" style="padding-top:var(--space-6);padding-bottom:var(--space-10)">
+
+  <h1 style="font-size:var(--font-2xl);margin-bottom:var(--space-5)">Khóa đã mua</h1>
+
+  <div class="grid-3">
+
+    <div class="card my-course-card">
+      <div class="my-course-img placeholder-img">Ảnh khóa Toán</div>
+      <div class="my-course-title">Luyện đề THPT 2025 — Toán</div>
+      <div class="text-xs text-secondary" style="margin-bottom:var(--space-2)">25 bài giảng</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+      <div class="text-xs text-secondary" style="margin-bottom:var(--space-3)">0% hoàn thành</div>
+      <a href="hs-course-detail.html" class="btn btn-primary btn-sm" style="width:100%">Vào học</a>
+    </div>
+
+    <div class="card my-course-card">
+      <div class="my-course-img placeholder-img">Ảnh khóa Lý</div>
+      <div class="my-course-title">Luyện đề THPT 2025 — Lý</div>
+      <div class="text-xs text-secondary" style="margin-bottom:var(--space-2)">20 bài giảng</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+      <div class="text-xs text-secondary" style="margin-bottom:var(--space-3)">0% hoàn thành</div>
+      <a href="hs-course-detail.html" class="btn btn-primary btn-sm" style="width:100%">Vào học</a>
+    </div>
+
+    <div class="card my-course-card">
+      <div class="my-course-img placeholder-img">Ảnh khóa Hóa</div>
+      <div class="my-course-title">Luyện đề THPT 2025 — Hóa</div>
+      <div class="text-xs text-secondary" style="margin-bottom:var(--space-2)">22 bài giảng</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+      <div class="text-xs text-secondary" style="margin-bottom:var(--space-3)">0% hoàn thành</div>
+      <a href="hs-course-detail.html" class="btn btn-primary btn-sm" style="width:100%">Vào học</a>
+    </div>
+
+  </div>
+
+</main>
+
+<footer class="hs-footer">Thầy Thuận Toán · thuanthoan.vaohoc.vn</footer>
+</body>
+</html>

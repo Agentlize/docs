@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giỏ hàng — Thầy Thuận Toán</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  .cart-item { display: flex; gap: var(--space-4); padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-md); margin-bottom: var(--space-3); align-items: center; }
+  .cart-item-img { width: 100px; height: 70px; flex-shrink: 0; }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-weight: var(--font-semibold); margin-bottom: var(--space-1); }
+  .cart-remove { color: var(--color-error); font-size: var(--font-sm); cursor: pointer; background: none; border: none; }
+  .cart-summary { background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--space-5); margin-top: var(--space-4); }
+  .summary-row { display: flex; justify-content: space-between; padding: var(--space-2) 0; font-size: var(--font-sm); }
+  .summary-total { font-weight: var(--font-bold); font-size: var(--font-lg); border-top: 1px solid var(--color-border); padding-top: var(--space-3); margin-top: var(--space-2); }
+  .activate-section { margin-top: var(--space-8); padding: var(--space-5); border: 1px dashed var(--color-border); border-radius: var(--radius-lg); text-align: center; }
+  @media (max-width: 768px) { .cart-item { flex-direction: column; align-items: flex-start; } .cart-item-img { width: 100%; height: 120px; } }
+</style>
+</head>
+<body>
+
+<header class="hs-header">
+  <div class="hs-header-inner">
+    <a href="hs-home.html" class="hs-logo">Thầy Thuận Toán</a>
+    <nav class="hs-nav">
+      <a href="hs-courses.html">Khóa học</a>
+      <a href="hs-exams.html">Đề thi</a>
+      <a href="hs-cart.html">Giỏ hàng (2)</a>
+      <a href="hs-profile.html">Tài khoản</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container" style="padding-top:var(--space-6);padding-bottom:var(--space-10);max-width:700px">
+
+  <h1 style="font-size:var(--font-2xl);margin-bottom:var(--space-5)">Giỏ hàng</h1>
+
+  <div class="cart-item">
+    <div class="cart-item-img placeholder-img" style="border-radius:var(--radius-md)">Ảnh khóa</div>
+    <div class="cart-item-info">
+      <div class="cart-item-name">Luyện đề THPT 2025 — Toán</div>
+      <div class="text-sm text-secondary">Thầy Thuận · 25 bài giảng</div>
+      <div style="margin-top:var(--space-2)">
+        <span class="price">299.000₫</span>
+        <span class="price-original" style="margin-left:var(--space-2)">499.000₫</span>
+      </div>
+    </div>
+    <button class="cart-remove">✕ Xóa</button>
+  </div>
+
+  <div class="cart-item">
+    <div class="cart-item-img placeholder-img" style="border-radius:var(--radius-md)">Ảnh combo</div>
+    <div class="cart-item-info">
+      <div class="cart-item-name">Combo 3 môn Toán Lý Hóa</div>
+      <div class="text-sm text-secondary">3 khóa · Tiết kiệm 40%</div>
+      <div style="margin-top:var(--space-2)">
+        <span class="price">599.000₫</span>
+        <span class="price-original" style="margin-left:var(--space-2)">999.000₫</span>
+      </div>
+    </div>
+    <button class="cart-remove">✕ Xóa</button>
+  </div>
+
+  <div class="cart-summary">
+    <div class="summary-row">
+      <span>Tạm tính (2 mục)</span>
+      <span>898.000₫</span>
+    </div>
+    <div class="summary-row">
+      <span>Mã giảm giá</span>
+      <span>
+        <span style="display:inline-flex;gap:var(--space-2)">
+          <input class="input" style="width:140px;padding:var(--space-2) var(--space-3);font-size:var(--font-sm)" placeholder="Nhập mã">
+          <button class="btn btn-sm btn-outline">Áp dụng</button>
+        </span>
+      </span>
+    </div>
+    <div class="summary-row summary-total">
+      <span>Tổng cộng</span>
+      <span class="price" style="font-size:var(--font-xl)">898.000₫</span>
+    </div>
+    <a href="hs-checkout.html" class="btn btn-primary btn-lg" style="width:100%;margin-top:var(--space-4)">Thanh toán</a>
+  </div>
+
+  <div class="activate-section">
+    <p style="margin-bottom:var(--space-3);color:var(--color-text-secondary)">Có mã kích hoạt? Nhập tại đây để mở khóa ngay.</p>
+    <div style="display:inline-flex;gap:var(--space-2)">
+      <input class="input" style="width:200px" placeholder="VD: ABCD-1234-EFGH">
+      <button class="btn btn-primary">Kích hoạt</button>
+    </div>
+  </div>
+
+</main>
+
+<footer class="hs-footer">Thầy Thuận Toán · thuanthoan.vaohoc.vn</footer>
+</body>
+</html>

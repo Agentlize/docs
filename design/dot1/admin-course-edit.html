@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sửa khóa học — Quản trị</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.form-grid { display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-6); }
+.form-group { margin-bottom: var(--space-5); }
+textarea.input { min-height: 120px; resize: vertical; }
+.upload-zone { border: 2px dashed var(--color-border); border-radius: var(--radius-lg); padding: var(--space-8); text-align: center; color: var(--color-text-secondary); cursor: pointer; }
+.upload-zone:hover { border-color: var(--brand-primary); background: var(--brand-primary-light); }
+.toggle { display: flex; align-items: center; gap: var(--space-3); }
+.toggle-switch { width: 44px; height: 24px; background: var(--color-border); border-radius: var(--radius-full); position: relative; cursor: pointer; }
+.toggle-switch.on { background: var(--color-success); }
+.toggle-switch::after { content: ''; position: absolute; width: 20px; height: 20px; border-radius: 50%; background: #fff; top: 2px; left: 2px; transition: transform 0.15s; }
+.toggle-switch.on::after { transform: translateX(20px); }
+.price-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+.chapter { border: 1px solid var(--color-border); border-radius: var(--radius-md); margin-bottom: var(--space-3); }
+.chapter-header { display: flex; align-items: center; justify-content: space-between; padding: var(--space-3) var(--space-4); background: var(--color-surface); cursor: pointer; font-weight: var(--font-semibold); font-size: var(--font-sm); }
+.chapter-body { padding: var(--space-4); border-top: 1px solid var(--color-border); }
+.lesson-row { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) 0; font-size: var(--font-sm); border-bottom: 1px solid var(--color-surface); }
+.lesson-row:last-child { border-bottom: none; }
+.lesson-num { color: var(--color-text-secondary); min-width: 24px; }
+.page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-5); }
+@media (max-width: 1024px) { .form-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .admin-sidebar { display: none; } .admin-main { margin-left: 0; } .price-row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="admin-layout">
+  <nav class="admin-sidebar">
+    <div class="admin-sidebar-brand" style="padding-bottom:20px;margin-bottom:16px;">📐 Thầy Thuận Toán</div>
+    <a href="admin-dashboard.html" class="admin-nav-item">📊 Dashboard</a>
+    <a href="admin-brand.html" class="admin-nav-item">🎨 Thương hiệu</a>
+    <a href="admin-courses.html" class="admin-nav-item active">📚 Khóa học</a>
+    <a href="admin-exams.html" class="admin-nav-item">📝 Đề thi</a>
+    <a href="admin-docs.html" class="admin-nav-item">📄 Tài liệu</a>
+    <a href="admin-combos.html" class="admin-nav-item">🎁 Combo</a>
+    <a href="admin-orders.html" class="admin-nav-item">📦 Đơn hàng</a>
+    <a href="admin-codes.html" class="admin-nav-item">🔑 Mã kích hoạt</a>
+    <a href="admin-students.html" class="admin-nav-item">👥 Học sinh</a>
+    <a href="admin-homepage.html" class="admin-nav-item">🏠 Trang chủ web</a>
+  </nav>
+  <div class="admin-main">
+    <header class="admin-header">
+      <div class="admin-page-title">Sửa khóa học</div>
+      <div style="display:flex;gap:var(--space-3)">
+        <a href="admin-courses.html" class="btn btn-ghost">Hủy</a>
+        <button class="btn btn-primary">Lưu</button>
+      </div>
+    </header>
+    <div class="admin-content">
+
+      <div class="form-grid">
+        <div>
+          <div class="admin-card">
+            <div class="form-group">
+              <label class="label">Tên khóa học</label>
+              <input class="input" value="Luyện đề THPT 2025 — Toán">
+            </div>
+            <div class="form-group">
+              <label class="label">Mô tả</label>
+              <textarea class="input">Khóa luyện đề Toán THPT Quốc gia 2025. Bao gồm 30 đề thi thử có lời giải chi tiết, video chữa đề từng câu. Phù hợp học sinh lớp 12 ôn thi.</textarea>
+            </div>
+            <div class="form-group">
+              <label class="label">Ảnh bìa</label>
+              <div class="upload-zone">📷 Kéo thả ảnh hoặc bấm để chọn<br><span class="text-xs text-secondary">JPG, PNG — tối đa 2MB</span></div>
+            </div>
+            <div class="form-group">
+              <label class="label">Danh mục</label>
+              <select class="input">
+                <option selected>Toán</option>
+                <option>Lý</option>
+                <option>Hóa</option>
+                <option>Tiếng Anh</option>
+              </select>
+            </div>
+            <div class="price-row">
+              <div class="form-group">
+                <label class="label">Giá bán (₫)</label>
+                <input class="input" type="text" value="299.000">
+              </div>
+              <div class="form-group">
+                <label class="label">Giá gốc (₫)</label>
+                <input class="input" type="text" value="499.000">
+              </div>
+            </div>
+            <div class="toggle">
+              <div class="toggle-switch on" onclick="this.classList.toggle('on')"></div>
+              <span class="text-sm">Đang bán</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="admin-card">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-4)">
+              <div style="font-weight:var(--font-semibold)">Chương trình</div>
+              <button class="btn btn-outline btn-sm">+ Thêm chương</button>
+            </div>
+
+            <div class="chapter">
+              <div class="chapter-header">
+                <span>Chương 1: Hàm số và ứng dụng</span>
+                <span class="text-xs text-secondary">5 bài</span>
+              </div>
+              <div class="chapter-body">
+                <div class="lesson-row"><span class="lesson-num">1</span> Khảo sát hàm số bậc 3 <span style="margin-left:auto" class="badge badge-primary">Học thử</span></div>
+                <div class="lesson-row"><span class="lesson-num">2</span> Cực trị hàm số</div>
+                <div class="lesson-row"><span class="lesson-num">3</span> Tiệm cận</div>
+                <div class="lesson-row"><span class="lesson-num">4</span> Bài tập tổng hợp</div>
+                <div class="lesson-row"><span class="lesson-num">5</span> Đề kiểm tra chương 1</div>
+                <div style="margin-top:var(--space-2)"><button class="btn btn-ghost btn-sm">+ Thêm bài</button></div>
+              </div>
+            </div>
+
+            <div class="chapter">
+              <div class="chapter-header">
+                <span>Chương 2: Mũ — Logarit</span>
+                <span class="text-xs text-secondary">4 bài</span>
+              </div>
+            </div>
+
+            <div class="chapter">
+              <div class="chapter-header">
+                <span>Chương 3: Nguyên hàm — Tích phân</span>
+                <span class="text-xs text-secondary">6 bài</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thanh toán — Thầy Thuận Toán</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  .checkout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+  .qr-box { display: flex; align-items: center; justify-content: center; width: 200px; height: 200px; margin: 0 auto var(--space-4); }
+  .bank-info { font-size: var(--font-sm); }
+  .bank-info dt { color: var(--color-text-secondary); font-size: var(--font-xs); margin-top: var(--space-2); }
+  .bank-info dd { font-weight: var(--font-semibold); }
+  .upload-zone { border: 2px dashed var(--color-border); border-radius: var(--radius-lg); padding: var(--space-8); text-align: center; cursor: pointer; margin-top: var(--space-4); }
+  .upload-zone:hover { border-color: var(--brand-primary); background: var(--brand-primary-light); }
+  .order-summary-item { display: flex; justify-content: space-between; padding: var(--space-2) 0; font-size: var(--font-sm); }
+  .status-badge { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-4); border-radius: var(--radius-full); font-size: var(--font-sm); font-weight: var(--font-medium); }
+  .status-pending { background: var(--color-warning-light); color: var(--color-warning); }
+  @media (max-width: 768px) { .checkout-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="hs-header">
+  <div class="hs-header-inner">
+    <a href="hs-home.html" class="hs-logo">Thầy Thuận Toán</a>
+    <nav class="hs-nav">
+      <a href="hs-courses.html">Khóa học</a>
+      <a href="hs-cart.html">Giỏ hàng</a>
+      <a href="hs-profile.html">Tài khoản</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container" style="padding-top:var(--space-6);padding-bottom:var(--space-10);max-width:900px">
+
+  <h1 style="font-size:var(--font-2xl);margin-bottom:var(--space-5)">Thanh toán</h1>
+
+  <div class="checkout-grid">
+
+    <!-- Left: QR + bank info -->
+    <div>
+      <div class="card" style="padding:var(--space-5);text-align:center">
+        <h3 style="font-size:var(--font-lg);margin-bottom:var(--space-4)">Chuyển khoản VietQR</h3>
+        <div class="qr-box placeholder-img" style="border-radius:var(--radius-md)">Mã QR</div>
+        <dl class="bank-info" style="text-align:left">
+          <dt>Ngân hàng</dt>
+          <dd>Vietcombank (VCB)</dd>
+          <dt>Số tài khoản</dt>
+          <dd>1234567890</dd>
+          <dt>Chủ tài khoản</dt>
+          <dd>NGUYEN VAN THUAN</dd>
+          <dt>Số tiền</dt>
+          <dd class="price" style="font-size:var(--font-lg)">898.000₫</dd>
+          <dt>Nội dung chuyển khoản</dt>
+          <dd style="color:var(--brand-primary)">VH-ORDER-001</dd>
+        </dl>
+        <p class="text-xs text-secondary" style="margin-top:var(--space-3)">Vui lòng chuyển đúng nội dung để thầy xác nhận nhanh hơn.</p>
+      </div>
+    </div>
+
+    <!-- Right: order summary + upload -->
+    <div>
+      <div class="card" style="padding:var(--space-5)">
+        <h3 style="font-size:var(--font-lg);margin-bottom:var(--space-4)">Đơn hàng #VH-ORDER-001</h3>
+        <div class="order-summary-item">
+          <span>Luyện đề THPT 2025 — Toán</span>
+          <span class="price">299.000₫</span>
+        </div>
+        <div class="order-summary-item">
+          <span>Combo 3 môn Toán Lý Hóa</span>
+          <span class="price">599.000₫</span>
+        </div>
+        <hr class="divider" style="margin:var(--space-3) 0">
+        <div class="order-summary-item" style="font-weight:var(--font-bold);font-size:var(--font-base)">
+          <span>Tổng cộng</span>
+          <span class="price" style="font-size:var(--font-lg)">898.000₫</span>
+        </div>
+      </div>
+
+      <div class="upload-zone">
+        <div style="font-size:2rem;margin-bottom:var(--space-2)">📷</div>
+        <p style="font-weight:var(--font-medium)">Tải ảnh chuyển khoản</p>
+        <p class="text-sm text-secondary">Nhấn hoặc kéo thả ảnh vào đây</p>
+      </div>
+
+      <div style="text-align:center;margin-top:var(--space-5)">
+        <div class="status-badge status-pending">⏳ Chờ xác nhận từ thầy</div>
+        <p class="text-xs text-secondary" style="margin-top:var(--space-2)">Thầy sẽ xác nhận trong vòng 24 giờ. Sau khi xác nhận, bạn sẽ được vào học ngay.</p>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer class="hs-footer">Thầy Thuận Toán · thuanthoan.vaohoc.vn</footer>
+</body>
+</html>

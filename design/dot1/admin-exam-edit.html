@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sửa đề thi — Quản trị</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.form-group { margin-bottom: var(--space-5); }
+.toggle-row { display: flex; align-items: center; justify-content: space-between; padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
+.toggle { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle-track { position: absolute; inset: 0; background: var(--color-border); border-radius: var(--radius-full); cursor: pointer; transition: background 0.2s; }
+.toggle-track::after { content: ''; position: absolute; width: 18px; height: 18px; background: #fff; border-radius: 50%; top: 3px; left: 3px; transition: transform 0.2s; }
+.toggle input:checked + .toggle-track { background: var(--brand-primary); }
+.toggle input:checked + .toggle-track::after { transform: translateX(20px); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+@media (max-width: 768px) { .admin-sidebar { display: none; } .admin-main { margin-left: 0; } .form-row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="admin-layout">
+  <nav class="admin-sidebar">
+    <div class="admin-sidebar-brand">Thầy Thuận Toán</div>
+    <a href="admin-dashboard.html" class="admin-nav-item">📊 Dashboard</a>
+    <a href="admin-brand.html" class="admin-nav-item">🎨 Thương hiệu</a>
+    <a href="admin-courses.html" class="admin-nav-item">📚 Khóa học</a>
+    <a href="admin-exams.html" class="admin-nav-item active">📝 Đề thi</a>
+    <a href="admin-docs.html" class="admin-nav-item">📄 Tài liệu</a>
+    <a href="admin-combos.html" class="admin-nav-item">🎁 Combo</a>
+    <a href="admin-orders.html" class="admin-nav-item">📦 Đơn hàng</a>
+    <a href="admin-codes.html" class="admin-nav-item">🔑 Mã kích hoạt</a>
+    <a href="admin-students.html" class="admin-nav-item">👥 Học sinh</a>
+    <a href="admin-homepage.html" class="admin-nav-item">🏠 Trang chủ web</a>
+  </nav>
+  <div class="admin-main">
+    <header class="admin-header">
+      <h1 class="admin-page-title">Sửa đề thi</h1>
+    </header>
+    <div class="admin-content">
+      <div class="admin-card" style="max-width:640px">
+        <div class="form-group">
+          <label class="label">Tên đề</label>
+          <input class="input" type="text" value="Đề minh họa THPT 2025 — Toán">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="label">Thời gian (phút)</label>
+            <input class="input" type="number" value="90">
+          </div>
+          <div class="form-group">
+            <label class="label">Số lượt làm</label>
+            <input class="input" type="number" value="0" min="0">
+            <span class="text-xs text-secondary">0 = không giới hạn</span>
+          </div>
+        </div>
+        <div style="margin-bottom:var(--space-5)">
+          <div class="toggle-row">
+            <div>
+              <div style="font-weight:var(--font-medium)">Hiện lời giải</div>
+              <div class="text-sm text-secondary">Học sinh xem lời giải sau khi nộp bài</div>
+            </div>
+            <label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label>
+          </div>
+          <div class="toggle-row">
+            <div>
+              <div style="font-weight:var(--font-medium)">Bảng xếp hạng</div>
+              <div class="text-sm text-secondary">Hiện bảng xếp hạng công khai</div>
+            </div>
+            <label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="label">Ngày mở</label>
+            <input class="input" type="datetime-local" value="2025-11-25T08:00">
+          </div>
+          <div class="form-group">
+            <label class="label">Ngày khóa</label>
+            <input class="input" type="datetime-local">
+            <span class="text-xs text-secondary">Để trống = không khóa</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <div style="display:flex;gap:var(--space-3)">
+          <button class="btn btn-primary">Lưu cài đặt</button>
+          <a href="admin-exam-questions.html" class="btn btn-outline">📝 Soạn câu hỏi</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

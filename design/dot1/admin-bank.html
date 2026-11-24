@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tài khoản ngân hàng — Quản trị</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.form-group { margin-bottom: var(--space-5); }
+select.input { appearance: auto; }
+.info-box { background: var(--brand-primary-light); border-radius: var(--radius-md); padding: var(--space-4); font-size: var(--font-sm); color: var(--brand-primary-dark); margin-bottom: var(--space-6); }
+@media (max-width: 768px) { .admin-sidebar { display: none; } .admin-main { margin-left: 0; } }
+</style>
+</head>
+<body>
+<div class="admin-layout">
+  <nav class="admin-sidebar">
+    <div class="admin-sidebar-brand">Thầy Thuận Toán</div>
+    <a href="admin-dashboard.html" class="admin-nav-item">📊 Dashboard</a>
+    <a href="admin-brand.html" class="admin-nav-item active">🎨 Thương hiệu</a>
+    <a href="admin-courses.html" class="admin-nav-item">📚 Khóa học</a>
+    <a href="admin-exams.html" class="admin-nav-item">📝 Đề thi</a>
+    <a href="admin-docs.html" class="admin-nav-item">📄 Tài liệu</a>
+    <a href="admin-combos.html" class="admin-nav-item">🎁 Combo</a>
+    <a href="admin-orders.html" class="admin-nav-item">📦 Đơn hàng</a>
+    <a href="admin-codes.html" class="admin-nav-item">🔑 Mã kích hoạt</a>
+    <a href="admin-students.html" class="admin-nav-item">👥 Học sinh</a>
+    <a href="admin-homepage.html" class="admin-nav-item">🏠 Trang chủ web</a>
+  </nav>
+  <div class="admin-main">
+    <header class="admin-header">
+      <h1 class="admin-page-title">Tài khoản ngân hàng</h1>
+    </header>
+    <div class="admin-content">
+      <div class="admin-card" style="max-width:640px">
+        <div class="info-box">💡 Thông tin này hiển thị trên trang thanh toán cho học sinh chuyển khoản.</div>
+        <div class="form-group">
+          <label class="label">Ngân hàng</label>
+          <select class="input">
+            <option>Vietcombank</option>
+            <option selected>MB Bank</option>
+            <option>Techcombank</option>
+            <option>BIDV</option>
+            <option>VietinBank</option>
+            <option>ACB</option>
+            <option>TPBank</option>
+            <option>Sacombank</option>
+            <option>VPBank</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="label">Số tài khoản</label>
+          <input class="input" type="text" value="0123456789">
+        </div>
+        <div class="form-group">
+          <label class="label">Tên chủ tài khoản</label>
+          <input class="input" type="text" value="NGUYEN VAN THUAN">
+        </div>
+        <button class="btn btn-primary btn-lg" style="width:100%">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

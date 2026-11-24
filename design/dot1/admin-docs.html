@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tài liệu PDF — Quản trị</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.docs-layout { display: grid; grid-template-columns: 240px 1fr; gap: var(--space-5); }
+.cat-tree { background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--space-4); }
+.cat-title { font-weight: var(--font-semibold); font-size: var(--font-sm); color: var(--color-text-secondary); margin-bottom: var(--space-3); text-transform: uppercase; letter-spacing: 0.05em; }
+.cat-item { padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); font-size: var(--font-sm); cursor: pointer; display: block; color: var(--color-text); }
+.cat-item:hover { background: var(--color-surface-hover); text-decoration: none; }
+.cat-item.active { background: var(--brand-primary-light); color: var(--brand-primary-dark); font-weight: var(--font-medium); }
+.cat-sub { padding-left: var(--space-5); }
+.upload-zone-sm { border: 2px dashed var(--color-border); border-radius: var(--radius-md); padding: var(--space-4); text-align: center; color: var(--color-text-secondary); cursor: pointer; font-size: var(--font-sm); }
+.upload-zone-sm:hover { border-color: var(--brand-primary); background: var(--brand-primary-light); }
+@media (max-width: 768px) { .admin-sidebar { display: none; } .admin-main { margin-left: 0; } .docs-layout { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="admin-layout">
+  <nav class="admin-sidebar">
+    <div class="admin-sidebar-brand">Thầy Thuận Toán</div>
+    <a href="admin-dashboard.html" class="admin-nav-item">📊 Dashboard</a>
+    <a href="admin-brand.html" class="admin-nav-item">🎨 Thương hiệu</a>
+    <a href="admin-courses.html" class="admin-nav-item">📚 Khóa học</a>
+    <a href="admin-exams.html" class="admin-nav-item">📝 Đề thi</a>
+    <a href="admin-docs.html" class="admin-nav-item active">📄 Tài liệu</a>
+    <a href="admin-combos.html" class="admin-nav-item">🎁 Combo</a>
+    <a href="admin-orders.html" class="admin-nav-item">📦 Đơn hàng</a>
+    <a href="admin-codes.html" class="admin-nav-item">🔑 Mã kích hoạt</a>
+    <a href="admin-students.html" class="admin-nav-item">👥 Học sinh</a>
+    <a href="admin-homepage.html" class="admin-nav-item">🏠 Trang chủ web</a>
+  </nav>
+  <div class="admin-main">
+    <header class="admin-header">
+      <h1 class="admin-page-title">Tài liệu PDF</h1>
+      <div class="flex gap-3">
+        <button class="btn btn-outline btn-sm">+ Tạo danh mục</button>
+        <button class="btn btn-primary btn-sm">📤 Upload PDF</button>
+      </div>
+    </header>
+    <div class="admin-content">
+      <div class="docs-layout">
+        <div class="cat-tree">
+          <div class="cat-title">Danh mục</div>
+          <a class="cat-item active">📁 Toán</a>
+          <div class="cat-sub">
+            <a class="cat-item">Đại số</a>
+            <a class="cat-item">Hình học</a>
+            <a class="cat-item">Giải tích</a>
+          </div>
+          <a class="cat-item">📁 Lý</a>
+          <a class="cat-item">📁 Hóa</a>
+          <a class="cat-item" style="color:var(--brand-primary)">+ Thêm danh mục</a>
+        </div>
+        <div>
+          <div class="admin-card" style="padding:0">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Tên tài liệu</th><th>Danh mục</th><th>Ngày upload</th><th>Kích thước</th><th></th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>📄 Công thức Toán THPT tổng hợp.pdf</td>
+                    <td>Toán</td>
+                    <td>20/11/2025</td>
+                    <td class="text-secondary">2.3 MB</td>
+                    <td><button class="btn btn-ghost btn-sm" style="color:var(--color-error)">Xóa</button></td>
+                  </tr>
+                  <tr>
+                    <td>📄 Bài tập Đại số tổ hợp.pdf</td>
+                    <td>Đại số</td>
+                    <td>18/11/2025</td>
+                    <td class="text-secondary">1.8 MB</td>
+                    <td><button class="btn btn-ghost btn-sm" style="color:var(--color-error)">Xóa</button></td>
+                  </tr>
+                  <tr>
+                    <td>📄 Hình học không gian — Tóm tắt.pdf</td>
+                    <td>Hình học</td>
+                    <td>15/11/2025</td>
+                    <td class="text-secondary">3.1 MB</td>
+                    <td><button class="btn btn-ghost btn-sm" style="color:var(--color-error)">Xóa</button></td>
+                  </tr>
+                  <tr>
+                    <td>📄 50 bài tích phân hay.pdf</td>
+                    <td>Giải tích</td>
+                    <td>10/11/2025</td>
+                    <td class="text-secondary">4.5 MB</td>
+                    <td><button class="btn btn-ghost btn-sm" style="color:var(--color-error)">Xóa</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="upload-zone-sm" style="margin-top:var(--space-4)">
+            📤 Kéo thả file PDF vào đây hoặc bấm để chọn
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

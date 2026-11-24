@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luyện đề THPT 2025 — Toán — Thầy Thuận Toán</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.detail-layout { max-width: 1200px; margin: 0 auto; padding: var(--space-6) var(--space-4); display: grid; grid-template-columns: 1fr 340px; gap: var(--space-6); }
+@media (max-width: 768px) { .detail-layout { grid-template-columns: 1fr; } }
+.video-preview { aspect-ratio: 16/9; background: var(--color-surface); border: 1px dashed var(--color-border); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary); font-size: var(--font-lg); margin-bottom: var(--space-5); }
+.detail-title { font-size: var(--font-2xl); font-weight: var(--font-bold); margin-bottom: var(--space-2); }
+.detail-meta { display: flex; gap: var(--space-4); color: var(--color-text-secondary); font-size: var(--font-sm); margin-bottom: var(--space-4); flex-wrap: wrap; }
+.detail-desc { color: var(--color-text-secondary); line-height: 1.7; margin-bottom: var(--space-6); }
+.curriculum { margin-bottom: var(--space-6); }
+.curriculum h3 { font-size: var(--font-lg); font-weight: var(--font-bold); margin-bottom: var(--space-4); }
+.chapter { border: 1px solid var(--color-border); border-radius: var(--radius-md); margin-bottom: var(--space-3); overflow: hidden; }
+.chapter-header { padding: var(--space-4); background: var(--color-surface); font-weight: var(--font-semibold); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+.chapter-header .count { font-size: var(--font-xs); color: var(--color-text-secondary); font-weight: var(--font-normal); }
+.lesson-list { list-style: none; }
+.lesson-item { padding: var(--space-3) var(--space-4); border-top: 1px solid var(--color-border); display: flex; align-items: center; justify-content: space-between; font-size: var(--font-sm); }
+.lesson-item:hover { background: var(--color-surface); }
+.lesson-name { display: flex; align-items: center; gap: var(--space-2); }
+.lesson-lock { color: var(--color-text-secondary); font-size: var(--font-xs); }
+.trial-badge { font-size: var(--font-xs); background: var(--color-success-light); color: var(--color-success); padding: 2px 8px; border-radius: var(--radius-full); font-weight: var(--font-medium); }
+.sidebar-card { position: sticky; top: 80px; border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; background: var(--color-bg); box-shadow: var(--shadow-md); }
+.sidebar-card-img { height: 180px; background: var(--color-surface); display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary); border-bottom: 1px solid var(--color-border); }
+.sidebar-card-body { padding: var(--space-5); }
+.sidebar-price { display: flex; align-items: baseline; gap: var(--space-3); margin-bottom: var(--space-5); }
+.sidebar-price .price { font-size: var(--font-2xl); }
+.sidebar-actions { display: flex; flex-direction: column; gap: var(--space-3); }
+.sidebar-info { margin-top: var(--space-5); padding-top: var(--space-4); border-top: 1px solid var(--color-border); }
+.sidebar-info-row { display: flex; justify-content: space-between; font-size: var(--font-sm); color: var(--color-text-secondary); padding: var(--space-2) 0; }
+</style>
+</head>
+<body>
+
+<header class="hs-header">
+  <div class="hs-header-inner">
+    <a href="hs-home.html" class="hs-logo">📐 Thầy Thuận Toán</a>
+    <nav class="hs-nav">
+      <a href="hs-courses.html">Khóa học</a>
+      <a href="hs-exams.html">Đề thi</a>
+      <a href="hs-docs.html">Tài liệu</a>
+      <a href="hs-cart.html">🛒</a>
+      <a href="hs-login.html" class="btn btn-primary btn-sm">Đăng nhập</a>
+    </nav>
+  </div>
+</header>
+
+<div class="detail-layout">
+  <main>
+    <div class="video-preview">▶ Video học thử</div>
+
+    <h1 class="detail-title">Luyện đề THPT 2025 — Toán</h1>
+    <div class="detail-meta">
+      <span>📚 40 bài học</span>
+      <span>🎬 120 video</span>
+      <span>📄 15 tài liệu</span>
+      <span>👨‍🏫 Thầy Thuận</span>
+    </div>
+
+    <p class="detail-desc">
+      Khóa luyện đề Toán THPT Quốc gia 2025 giúp học sinh nắm vững phương pháp giải nhanh,
+      rèn kỹ năng làm bài thi thực tế. Mỗi đề đi kèm video chữa chi tiết từ Thầy Thuận.
+      Phù hợp cho học sinh lớp 12 ôn thi đại học.
+    </p>
+
+    <div class="curriculum">
+      <h3>Nội dung khóa học</h3>
+
+      <div class="chapter">
+        <div class="chapter-header">
+          <span>Chương 1: Hàm số và ứng dụng</span>
+          <span class="count">3 bài</span>
+        </div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <span class="lesson-name">▶ Bài 1: Khảo sát hàm số bậc ba <span class="trial-badge">Học thử</span></span>
+            <span class="lesson-lock">12:30</span>
+          </li>
+          <li class="lesson-item">
+            <span class="lesson-name">🔒 Bài 2: Cực trị hàm số</span>
+            <span class="lesson-lock">15:20</span>
+          </li>
+          <li class="lesson-item">
+            <span class="lesson-name">🔒 Bài 3: Tiệm cận và đồ thị</span>
+            <span class="lesson-lock">18:45</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-header">
+          <span>Chương 2: Mũ — Logarit</span>
+          <span class="count">4 bài</span>
+        </div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <span class="lesson-name">🔒 Bài 4: Phương trình mũ cơ bản</span>
+            <span class="lesson-lock">14:10</span>
+          </li>
+          <li class="lesson-item">
+            <span class="lesson-name">🔒 Bài 5: Bất phương trình logarit</span>
+            <span class="lesson-lock">16:55</span>
+          </li>
+          <li class="lesson-item">
+            <span class="lesson-name">🔒 Bài 6: Hàm số mũ và logarit</span>
+            <span class="lesson-lock">13:40</span>
+          </li>
+          <li class="lesson-item">
+            <span class="lesson-name">🔒 Bài 7: Bài tập tổng hợp</span>
+            <span class="lesson-lock">20:15</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-header">
+          <span>Chương 3: Nguyên hàm — Tích phân</span>
+          <span class="count">5 bài</span>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-header">
+          <span>Chương 4: Hình học không gian</span>
+          <span class="count">6 bài</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <aside>
+    <div class="sidebar-card">
+      <div class="sidebar-card-img">📷 Ảnh khóa học</div>
+      <div class="sidebar-card-body">
+        <div class="sidebar-price">
+          <span class="price">299.000₫</span>
+          <span class="price-original">499.000₫</span>
+        </div>
+        <div class="sidebar-actions">
+          <a href="hs-cart.html" class="btn btn-primary" style="width:100%;">Thêm vào giỏ</a>
+          <a href="hs-checkout.html" class="btn btn-outline" style="width:100%;">Mua ngay</a>
+        </div>
+        <div class="sidebar-info">
+          <div class="sidebar-info-row"><span>Số bài</span><span>40 bài</span></div>
+          <div class="sidebar-info-row"><span>Video</span><span>120 video</span></div>
+          <div class="sidebar-info-row"><span>Tài liệu</span><span>15 file PDF</span></div>
+          <div class="sidebar-info-row"><span>Truy cập</span><span>Vĩnh viễn</span></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer class="hs-footer">
+  © 2025 Thầy Thuận Toán · Nền tảng Vaohoc.vn
+</footer>
+
+</body>
+</html>

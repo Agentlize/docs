@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bảng xếp hạng — Thầy Thuận Toán</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  .rank-row { display: flex; align-items: center; padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--color-border); gap: var(--space-4); }
+  .rank-row:hover { background: var(--color-surface); }
+  .rank-num { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-full); font-weight: var(--font-bold); font-size: var(--font-sm); flex-shrink: 0; }
+  .rank-1 { background: #FEF3C7; color: #92400E; }
+  .rank-2 { background: #E5E7EB; color: #374151; }
+  .rank-3 { background: #FED7AA; color: #9A3412; }
+  .rank-name { flex: 1; font-weight: var(--font-medium); }
+  .rank-score { font-weight: var(--font-bold); color: var(--brand-primary); min-width: 50px; text-align: right; }
+  .rank-time { color: var(--color-text-secondary); font-size: var(--font-sm); min-width: 60px; text-align: right; }
+  .rank-me { background: var(--brand-primary-light); }
+</style>
+</head>
+<body>
+
+<header class="hs-header"><div class="hs-header-inner"><a href="hs-home.html" class="hs-logo">Thầy Thuận Toán</a><nav class="hs-nav"><a href="hs-courses.html">Khóa học</a><a href="hs-exams.html">Đề thi</a><a href="hs-profile.html">Tài khoản</a></nav></div></header>
+
+<main class="container" style="padding-top:var(--space-6);padding-bottom:var(--space-10);max-width:700px">
+
+  <div style="margin-bottom:var(--space-5)">
+    <h1 style="font-size:var(--font-2xl)">Bảng xếp hạng</h1>
+    <p class="text-secondary text-sm">Đề thi thử THPT 2025 — Lần 1 · 40 câu · 90 phút</p>
+  </div>
+
+  <div class="card" style="overflow:hidden">
+    <div class="rank-row" style="background:var(--color-surface);font-weight:var(--font-semibold);font-size:var(--font-sm);color:var(--color-text-secondary)">
+      <div style="width:32px;text-align:center">#</div>
+      <div style="flex:1">Tên</div>
+      <div style="min-width:50px;text-align:right">Điểm</div>
+      <div style="min-width:60px;text-align:right">Thời gian</div>
+    </div>
+    <div class="rank-row">
+      <div class="rank-num rank-1">🥇</div>
+      <div class="rank-name">Nguyễn Văn An</div>
+      <div class="rank-score">9.5</div>
+      <div class="rank-time">42:15</div>
+    </div>
+    <div class="rank-row">
+      <div class="rank-num rank-2">🥈</div>
+      <div class="rank-name">Trần Thị Bình</div>
+      <div class="rank-score">9.0</div>
+      <div class="rank-time">55:30</div>
+    </div>
+    <div class="rank-row">
+      <div class="rank-num rank-3">🥉</div>
+      <div class="rank-name">Lê Hoàng Cường</div>
+      <div class="rank-score">8.75</div>
+      <div class="rank-time">48:20</div>
+    </div>
+    <div class="rank-row">
+      <div class="rank-num">4</div>
+      <div class="rank-name">Phạm Minh Đức</div>
+      <div class="rank-score">8.5</div>
+      <div class="rank-time">60:00</div>
+    </div>
+    <div class="rank-row rank-me">
+      <div class="rank-num">5</div>
+      <div class="rank-name">Bạn (Nguyễn Học Sinh)</div>
+      <div class="rank-score">7.5</div>
+      <div class="rank-time">65:30</div>
+    </div>
+    <div class="rank-row">
+      <div class="rank-num">6</div>
+      <div class="rank-name">Vũ Thị Hoa</div>
+      <div class="rank-score">7.25</div>
+      <div class="rank-time">70:15</div>
+    </div>
+    <div class="rank-row">
+      <div class="rank-num">7</div>
+      <div class="rank-name">Đỗ Quang Huy</div>
+      <div class="rank-score">7.0</div>
+      <div class="rank-time">58:45</div>
+    </div>
+    <div class="rank-row">
+      <div class="rank-num">8</div>
+      <div class="rank-name">Hoàng Thu Lan</div>
+      <div class="rank-score">6.75</div>
+      <div class="rank-time">72:30</div>
+    </div>
+    <div class="rank-row">
+      <div class="rank-num">9</div>
+      <div class="rank-name">Bùi Văn Mạnh</div>
+      <div class="rank-score">6.5</div>
+      <div class="rank-time">80:00</div>
+    </div>
+    <div class="rank-row">
+      <div class="rank-num">10</div>
+      <div class="rank-name">Ngô Thị Ngọc</div>
+      <div class="rank-score">6.0</div>
+      <div class="rank-time">85:10</div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="hs-footer">Thầy Thuận Toán · thuanthoan.vaohoc.vn</footer>
+</body>
+</html>

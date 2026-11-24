@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mã kích hoạt — Quản trị</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.code-text { font-family: monospace; font-weight: var(--font-semibold); letter-spacing: 0.05em; }
+@media (max-width: 768px) { .admin-sidebar { display: none; } .admin-main { margin-left: 0; } }
+</style>
+</head>
+<body>
+<div class="admin-layout">
+  <nav class="admin-sidebar">
+    <div class="admin-sidebar-brand">Thầy Thuận Toán</div>
+    <a href="admin-dashboard.html" class="admin-nav-item">📊 Dashboard</a>
+    <a href="admin-brand.html" class="admin-nav-item">🎨 Thương hiệu</a>
+    <a href="admin-courses.html" class="admin-nav-item">📚 Khóa học</a>
+    <a href="admin-exams.html" class="admin-nav-item">📝 Đề thi</a>
+    <a href="admin-docs.html" class="admin-nav-item">📄 Tài liệu</a>
+    <a href="admin-combos.html" class="admin-nav-item">🎁 Combo</a>
+    <a href="admin-orders.html" class="admin-nav-item">📦 Đơn hàng</a>
+    <a href="admin-codes.html" class="admin-nav-item active">🔑 Mã kích hoạt</a>
+    <a href="admin-students.html" class="admin-nav-item">👥 Học sinh</a>
+    <a href="admin-homepage.html" class="admin-nav-item">🏠 Trang chủ web</a>
+  </nav>
+  <div class="admin-main">
+    <header class="admin-header">
+      <h1 class="admin-page-title">Mã kích hoạt</h1>
+      <a href="admin-codes-generate.html" class="btn btn-primary btn-sm">+ Tạo mã</a>
+    </header>
+    <div class="admin-content">
+      <div class="admin-card" style="padding:0">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Mã</th><th>Khóa / Combo</th><th>Trạng thái</th><th>HS dùng</th><th>Ngày dùng</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code-text">VHC-A1B2C3</td>
+                <td>Luyện đề THPT 2025 — Toán</td>
+                <td><span class="badge badge-success">Đã dùng</span></td>
+                <td>Nguyễn Văn An</td>
+                <td>22/11/2025</td>
+              </tr>
+              <tr>
+                <td class="code-text">VHC-D4E5F6</td>
+                <td>Luyện đề THPT 2025 — Toán</td>
+                <td><span class="badge badge-success">Đã dùng</span></td>
+                <td>Trần Thị Bình</td>
+                <td>21/11/2025</td>
+              </tr>
+              <tr>
+                <td class="code-text">VHC-G7H8I9</td>
+                <td>Combo 3 môn Toán Lý Hóa</td>
+                <td><span class="badge" style="background:var(--color-surface);color:var(--color-text-secondary)">Chưa dùng</span></td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td class="code-text">VHC-J0K1L2</td>
+                <td>Combo 3 môn Toán Lý Hóa</td>
+                <td><span class="badge" style="background:var(--color-surface);color:var(--color-text-secondary)">Chưa dùng</span></td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td class="code-text">VHC-M3N4O5</td>
+                <td>Luyện đề THPT 2025 — Lý</td>
+                <td><span class="badge badge-success">Đã dùng</span></td>
+                <td>Lê Minh Châu</td>
+                <td>20/11/2025</td>
+              </tr>
+              <tr>
+                <td class="code-text">VHC-P6Q7R8</td>
+                <td>Luyện đề THPT 2025 — Lý</td>
+                <td><span class="badge" style="background:var(--color-surface);color:var(--color-text-secondary)">Chưa dùng</span></td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td class="code-text">VHC-S9T0U1</td>
+                <td>Chuyên đề Hàm số</td>
+                <td><span class="badge badge-success">Đã dùng</span></td>
+                <td>Phạm Duy</td>
+                <td>19/11/2025</td>
+              </tr>
+              <tr>
+                <td class="code-text">VHC-V2W3X4</td>
+                <td>Chuyên đề Hàm số</td>
+                <td><span class="badge" style="background:var(--color-surface);color:var(--color-text-secondary)">Chưa dùng</span></td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đề thi — Thầy Thuận Toán</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  .exam-card { padding: var(--space-5); }
+  .exam-card-title { font-weight: var(--font-semibold); font-size: var(--font-base); margin-bottom: var(--space-2); }
+  .exam-meta { display: flex; gap: var(--space-4); font-size: var(--font-sm); color: var(--color-text-secondary); margin-bottom: var(--space-3); flex-wrap: wrap; }
+  .exam-card-actions { display: flex; gap: var(--space-2); margin-top: var(--space-3); }
+</style>
+</head>
+<body>
+
+<header class="hs-header">
+  <div class="hs-header-inner">
+    <a href="hs-home.html" class="hs-logo">Thầy Thuận Toán</a>
+    <nav class="hs-nav">
+      <a href="hs-courses.html">Khóa học</a>
+      <a href="hs-exams.html" style="color:var(--brand-primary)">Đề thi</a>
+      <a href="hs-docs.html">Tài liệu</a>
+      <a href="hs-profile.html">Tài khoản</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container" style="padding-top:var(--space-6);padding-bottom:var(--space-10)">
+
+  <h1 style="font-size:var(--font-2xl);margin-bottom:var(--space-5)">Đề thi</h1>
+
+  <div class="grid-2">
+
+    <div class="card exam-card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div class="exam-card-title">Đề thi thử THPT 2025 — Lần 1</div>
+        <span class="badge badge-success">Đã mở</span>
+      </div>
+      <div class="exam-meta">
+        <span>📝 40 câu</span>
+        <span>⏱ 90 phút</span>
+        <span>🔄 3 lượt</span>
+      </div>
+      <p class="text-sm text-secondary">Đề thi tổng hợp bao gồm: Hàm số, Tích phân, Hình học không gian, Xác suất thống kê.</p>
+      <div class="exam-card-actions">
+        <a href="hs-exam-take.html" class="btn btn-primary btn-sm">Vào thi</a>
+        <a href="hs-leaderboard.html" class="btn btn-ghost btn-sm">Bảng xếp hạng</a>
+      </div>
+    </div>
+
+    <div class="card exam-card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div class="exam-card-title">Đề thi thử THPT 2025 — Lần 2</div>
+        <span class="badge badge-warning">Chưa mở</span>
+      </div>
+      <div class="exam-meta">
+        <span>📝 40 câu</span>
+        <span>⏱ 90 phút</span>
+        <span>📅 Mở: 15/12/2025</span>
+      </div>
+      <p class="text-sm text-secondary">Đề thi sẽ được mở vào ngày 15/12/2025. Hãy ôn tập kỹ nhé!</p>
+      <div class="exam-card-actions">
+        <button class="btn btn-ghost btn-sm" disabled style="opacity:0.5">Chưa đến ngày</button>
+      </div>
+    </div>
+
+    <div class="card exam-card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div class="exam-card-title">Đề thi thử THPT 2025 — Lần 3</div>
+        <span class="badge badge-primary">Đã làm</span>
+      </div>
+      <div class="exam-meta">
+        <span>📝 40 câu</span>
+        <span>⏱ 90 phút</span>
+        <span>🏆 Điểm: 8.5</span>
+      </div>
+      <p class="text-sm text-secondary">Bạn đã hoàn thành đề này. Xem lại kết quả hoặc làm lại.</p>
+      <div class="exam-card-actions">
+        <a href="hs-exam-result.html" class="btn btn-outline btn-sm">Xem kết quả</a>
+        <a href="hs-exam-take.html" class="btn btn-ghost btn-sm">Làm lại</a>
+        <a href="hs-leaderboard.html" class="btn btn-ghost btn-sm">Xếp hạng</a>
+      </div>
+    </div>
+
+    <div class="card exam-card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div class="exam-card-title">Kiểm tra chương Hàm số</div>
+        <span class="badge badge-success">Đã mở</span>
+      </div>
+      <div class="exam-meta">
+        <span>📝 20 câu</span>
+        <span>⏱ 45 phút</span>
+        <span>🔄 Không giới hạn</span>
+      </div>
+      <p class="text-sm text-secondary">Đề kiểm tra riêng chương Hàm số và ứng dụng.</p>
+      <div class="exam-card-actions">
+        <a href="hs-exam-take.html" class="btn btn-primary btn-sm">Vào thi</a>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer class="hs-footer">Thầy Thuận Toán · thuanthoan.vaohoc.vn</footer>
+</body>
+</html>

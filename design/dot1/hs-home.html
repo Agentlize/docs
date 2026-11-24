@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thầy Thuận Toán — Trang chủ</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.hero { background: var(--brand-primary-light); padding: var(--space-12) var(--space-4); text-align: center; }
+.hero h1 { font-size: var(--font-3xl); font-weight: var(--font-bold); margin-bottom: var(--space-3); }
+.hero p { color: var(--color-text-secondary); font-size: var(--font-lg); margin-bottom: var(--space-6); }
+.section { padding: var(--space-10) var(--space-4); }
+.section-title { font-size: var(--font-2xl); font-weight: var(--font-bold); margin-bottom: var(--space-6); }
+.course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-5); max-width: 1200px; margin: 0 auto; }
+.course-card { border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; background: var(--color-bg); transition: box-shadow 0.15s; }
+.course-card:hover { box-shadow: var(--shadow-md); }
+.course-card-img { height: 160px; background: var(--color-surface); display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary); font-size: var(--font-sm); border-bottom: 1px solid var(--color-border); }
+.course-card-body { padding: var(--space-4); }
+.course-card-title { font-weight: var(--font-semibold); margin-bottom: var(--space-2); line-height: 1.4; }
+.course-card-category { font-size: var(--font-xs); color: var(--color-text-secondary); margin-bottom: var(--space-2); }
+.course-card-price { display: flex; align-items: center; gap: var(--space-2); }
+.docs-list { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--space-4); }
+.doc-item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+.doc-icon { width: 40px; height: 40px; background: var(--color-error-light); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: var(--font-lg); flex-shrink: 0; }
+.contact-bar { background: var(--brand-primary); color: var(--color-text-on-primary); padding: var(--space-4); text-align: center; font-size: var(--font-sm); display: flex; align-items: center; justify-content: center; gap: var(--space-6); flex-wrap: wrap; }
+.contact-bar a { color: var(--color-text-on-primary); font-weight: var(--font-semibold); }
+</style>
+</head>
+<body>
+
+<header class="hs-header">
+  <div class="hs-header-inner">
+    <a href="hs-home.html" class="hs-logo">📐 Thầy Thuận Toán</a>
+    <nav class="hs-nav">
+      <a href="hs-courses.html">Khóa học</a>
+      <a href="hs-exams.html">Đề thi</a>
+      <a href="hs-docs.html">Tài liệu</a>
+      <a href="hs-cart.html">🛒</a>
+      <a href="hs-login.html" class="btn btn-primary btn-sm">Đăng nhập</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>Học Toán cùng Thầy Thuận</h1>
+    <p>Luyện đề, học video, thi thử — tất cả trong một nền tảng</p>
+    <div style="display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap;">
+      <a href="hs-register.html" class="btn btn-primary btn-lg">Đăng ký miễn phí</a>
+      <a href="hs-courses.html" class="btn btn-outline btn-lg">Xem khóa học</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Khóa học nổi bật</h2>
+  </div>
+  <div class="course-grid" style="padding: 0 var(--space-4);">
+    <a href="hs-course-detail.html" class="course-card" style="text-decoration:none;color:inherit;">
+      <div class="course-card-img">📷 Ảnh khóa học</div>
+      <div class="course-card-body">
+        <div class="course-card-category">Toán</div>
+        <div class="course-card-title">Luyện đề THPT 2025 — Toán</div>
+        <div class="course-card-price">
+          <span class="price">299.000₫</span>
+          <span class="price-original">499.000₫</span>
+        </div>
+      </div>
+    </a>
+    <a href="hs-course-detail.html" class="course-card" style="text-decoration:none;color:inherit;">
+      <div class="course-card-img">📷 Ảnh khóa học</div>
+      <div class="course-card-body">
+        <div class="course-card-category">Toán</div>
+        <div class="course-card-title">Hình học không gian</div>
+        <div class="course-card-price">
+          <span class="price">199.000₫</span>
+        </div>
+      </div>
+    </a>
+    <a href="hs-course-detail.html" class="course-card" style="text-decoration:none;color:inherit;">
+      <div class="course-card-img">📷 Ảnh khóa học</div>
+      <div class="course-card-body">
+        <div class="course-card-category">Combo</div>
+        <div class="course-card-title">Combo 3 môn Toán Lý Hóa</div>
+        <div class="course-card-price">
+          <span class="price">599.000₫</span>
+          <span class="price-original">897.000₫</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="section" style="background: var(--color-surface);">
+  <div class="container">
+    <h2 class="section-title">Tài liệu miễn phí</h2>
+  </div>
+  <div class="docs-list" style="padding: 0 var(--space-4);">
+    <div class="doc-item">
+      <div class="doc-icon">📄</div>
+      <div>
+        <div style="font-weight:var(--font-semibold);font-size:var(--font-sm);">Công thức Toán THPT</div>
+        <div class="text-xs text-secondary">PDF · 24 trang</div>
+      </div>
+    </div>
+    <div class="doc-item">
+      <div class="doc-icon">📄</div>
+      <div>
+        <div style="font-weight:var(--font-semibold);font-size:var(--font-sm);">Đề minh họa 2025</div>
+        <div class="text-xs text-secondary">PDF · 8 trang</div>
+      </div>
+    </div>
+    <div class="doc-item">
+      <div class="doc-icon">📄</div>
+      <div>
+        <div style="font-weight:var(--font-semibold);font-size:var(--font-sm);">Bài tập Hình học</div>
+        <div class="text-xs text-secondary">PDF · 32 trang</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="contact-bar">
+  <span>📞 Hotline: <a href="tel:0901234567">0901 234 567</a></span>
+  <span>💬 Zalo: <a href="#">Thầy Thuận Toán</a></span>
+  <span>📘 Facebook: <a href="#">fb.com/thaytuanthoan</a></span>
+</div>
+
+<footer class="hs-footer">
+  © 2025 Thầy Thuận Toán · Nền tảng Vaohoc.vn
+</footer>
+
+</body>
+</html>

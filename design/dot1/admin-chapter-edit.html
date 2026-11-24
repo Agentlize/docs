@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sửa chương — Quản trị</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.breadcrumb { font-size: var(--font-sm); color: var(--color-text-secondary); margin-bottom: var(--space-5); }
+.breadcrumb a { color: var(--brand-primary); }
+.chapter-title { font-size: var(--font-lg); font-weight: var(--font-bold); margin-bottom: var(--space-4); padding-bottom: var(--space-3); border-bottom: 1px solid var(--color-border); }
+.lesson-list { display: flex; flex-direction: column; gap: var(--space-3); }
+.lesson-row { display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-3); align-items: start; padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-bg); }
+.lesson-fields { display: flex; flex-direction: column; gap: var(--space-3); }
+.lesson-meta { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
+.lesson-meta label { display: flex; align-items: center; gap: var(--space-1); font-size: var(--font-sm); cursor: pointer; }
+.drag-handle { cursor: grab; color: var(--color-text-secondary); font-size: var(--font-lg); padding-top: var(--space-1); user-select: none; }
+.lesson-num { font-size: var(--font-xs); color: var(--color-text-secondary); min-width: 24px; text-align: center; padding-top: var(--space-1); }
+.btn-delete { background: none; border: none; color: var(--color-text-secondary); cursor: pointer; font-size: var(--font-lg); padding: var(--space-1); }
+.btn-delete:hover { color: var(--color-error); }
+@media (max-width: 768px) { .admin-sidebar { display: none; } .admin-main { margin-left: 0; } .lesson-meta { flex-direction: column; align-items: flex-start; } }
+</style>
+</head>
+<body>
+<div class="admin-layout">
+  <nav class="admin-sidebar">
+    <div class="admin-sidebar-brand">Thầy Thuận Toán</div>
+    <a href="admin-dashboard.html" class="admin-nav-item">📊 Dashboard</a>
+    <a href="admin-brand.html" class="admin-nav-item">🎨 Thương hiệu</a>
+    <a href="admin-courses.html" class="admin-nav-item active">📚 Khóa học</a>
+    <a href="admin-exams.html" class="admin-nav-item">📝 Đề thi</a>
+    <a href="admin-docs.html" class="admin-nav-item">📄 Tài liệu</a>
+    <a href="admin-combos.html" class="admin-nav-item">🎁 Combo</a>
+    <a href="admin-orders.html" class="admin-nav-item">📦 Đơn hàng</a>
+    <a href="admin-codes.html" class="admin-nav-item">🔑 Mã kích hoạt</a>
+    <a href="admin-students.html" class="admin-nav-item">👥 Học sinh</a>
+    <a href="admin-homepage.html" class="admin-nav-item">🏠 Trang chủ web</a>
+  </nav>
+  <div class="admin-main">
+    <header class="admin-header">
+      <h1 class="admin-page-title">Sửa chương + bài</h1>
+    </header>
+    <div class="admin-content">
+      <div class="breadcrumb">
+        <a href="admin-courses.html">Khóa học</a> › <a href="admin-course-edit.html">Luyện đề THPT 2025 — Toán</a> › Chương 1
+      </div>
+      <div class="chapter-title">📖 Chương 1: Hàm số</div>
+      <div class="lesson-list">
+        <div class="lesson-row">
+          <div><span class="drag-handle">⠿</span><div class="lesson-num">1</div></div>
+          <div class="lesson-fields">
+            <input class="input" type="text" value="Bài 1: Tính đơn điệu của hàm số">
+            <input class="input" type="url" value="https://youtube.com/watch?v=abc123" placeholder="Link YouTube">
+            <div class="lesson-meta">
+              <label><input type="checkbox" checked> Học thử</label>
+              <label><input type="checkbox" checked> Có tài liệu</label>
+              <label><input type="checkbox"> Có lời giải</label>
+              <label class="text-sm">Ngày mở: <input class="input" type="date" style="width:auto;margin-left:var(--space-1)"></label>
+            </div>
+          </div>
+          <button class="btn-delete">✕</button>
+        </div>
+        <div class="lesson-row">
+          <div><span class="drag-handle">⠿</span><div class="lesson-num">2</div></div>
+          <div class="lesson-fields">
+            <input class="input" type="text" value="Bài 2: Cực trị của hàm số">
+            <input class="input" type="url" value="https://youtube.com/watch?v=def456" placeholder="Link YouTube">
+            <div class="lesson-meta">
+              <label><input type="checkbox"> Học thử</label>
+              <label><input type="checkbox" checked> Có tài liệu</label>
+              <label><input type="checkbox" checked> Có lời giải</label>
+              <label class="text-sm">Ngày mở: <input class="input" type="date" style="width:auto;margin-left:var(--space-1)"></label>
+            </div>
+          </div>
+          <button class="btn-delete">✕</button>
+        </div>
+        <div class="lesson-row">
+          <div><span class="drag-handle">⠿</span><div class="lesson-num">3</div></div>
+          <div class="lesson-fields">
+            <input class="input" type="text" value="Bài 3: Giá trị lớn nhất, nhỏ nhất">
+            <input class="input" type="url" placeholder="Link YouTube">
+            <div class="lesson-meta">
+              <label><input type="checkbox"> Học thử</label>
+              <label><input type="checkbox"> Có tài liệu</label>
+              <label><input type="checkbox"> Có lời giải</label>
+              <label class="text-sm">Ngày mở: <input class="input" type="date" value="2025-12-15" style="width:auto;margin-left:var(--space-1)"></label>
+            </div>
+          </div>
+          <button class="btn-delete">✕</button>
+        </div>
+      </div>
+      <div style="margin-top:var(--space-4);display:flex;gap:var(--space-3)">
+        <button class="btn btn-outline">+ Thêm bài</button>
+        <button class="btn btn-primary">Lưu chương</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trang chủ web — Quản trị</title>
+<link rel="stylesheet" href="tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.block-list { display: flex; flex-direction: column; gap: var(--space-3); }
+.block-item { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+.drag-handle { cursor: grab; color: var(--color-text-secondary); font-size: var(--font-lg); user-select: none; }
+.block-info { flex: 1; }
+.block-name { font-weight: var(--font-semibold); }
+.block-desc { font-size: var(--font-sm); color: var(--color-text-secondary); }
+.toggle { position: relative; width: 44px; height: 24px; }
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle-track { position: absolute; inset: 0; background: var(--color-border); border-radius: var(--radius-full); cursor: pointer; transition: background 0.2s; }
+.toggle-track::after { content: ''; position: absolute; width: 18px; height: 18px; background: #fff; border-radius: 50%; top: 3px; left: 3px; transition: transform 0.2s; }
+.toggle input:checked + .toggle-track { background: var(--brand-primary); }
+.toggle input:checked + .toggle-track::after { transform: translateX(20px); }
+@media (max-width: 768px) { .admin-sidebar { display: none; } .admin-main { margin-left: 0; } }
+</style>
+</head>
+<body>
+<div class="admin-layout">
+  <nav class="admin-sidebar">
+    <div class="admin-sidebar-brand">Thầy Thuận Toán</div>
+    <a href="admin-dashboard.html" class="admin-nav-item">📊 Dashboard</a>
+    <a href="admin-brand.html" class="admin-nav-item">🎨 Thương hiệu</a>
+    <a href="admin-courses.html" class="admin-nav-item">📚 Khóa học</a>
+    <a href="admin-exams.html" class="admin-nav-item">📝 Đề thi</a>
+    <a href="admin-docs.html" class="admin-nav-item">📄 Tài liệu</a>
+    <a href="admin-combos.html" class="admin-nav-item">🎁 Combo</a>
+    <a href="admin-orders.html" class="admin-nav-item">📦 Đơn hàng</a>
+    <a href="admin-codes.html" class="admin-nav-item">🔑 Mã kích hoạt</a>
+    <a href="admin-students.html" class="admin-nav-item">👥 Học sinh</a>
+    <a href="admin-homepage.html" class="admin-nav-item active">🏠 Trang chủ web</a>
+  </nav>
+  <div class="admin-main">
+    <header class="admin-header">
+      <h1 class="admin-page-title">Trang chủ web</h1>
+      <a href="hs-home.html" class="btn btn-outline btn-sm" target="_blank">👁 Xem trước</a>
+    </header>
+    <div class="admin-content">
+      <p class="text-sm text-secondary" style="margin-bottom:var(--space-4)">Kéo thả để sắp xếp các khu vực trên trang chủ. Bật/tắt để hiện/ẩn.</p>
+      <div class="block-list" style="max-width:640px">
+        <div class="block-item">
+          <span class="drag-handle">⠿</span>
+          <div class="block-info">
+            <div class="block-name">Banner</div>
+            <div class="block-desc">Ảnh banner đầu trang — tối đa 5 ảnh trượt</div>
+          </div>
+          <label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label>
+        </div>
+        <div class="block-item">
+          <span class="drag-handle">⠿</span>
+          <div class="block-info">
+            <div class="block-name">Khóa nổi bật</div>
+            <div class="block-desc">Hiện 4 khóa học mới nhất hoặc được chọn</div>
+          </div>
+          <label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label>
+        </div>
+        <div class="block-item">
+          <span class="drag-handle">⠿</span>
+          <div class="block-info">
+            <div class="block-name">Combo</div>
+            <div class="block-desc">Hiện các combo khóa học</div>
+          </div>
+          <label class="toggle"><input type="checkbox"><span class="toggle-track"></span></label>
+        </div>
+        <div class="block-item">
+          <span class="drag-handle">⠿</span>
+          <div class="block-info">
+            <div class="block-name">Tài liệu</div>
+            <div class="block-desc">Hiện tài liệu PDF mới nhất</div>
+          </div>
+          <label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label>
+        </div>
+        <div class="block-item">
+          <span class="drag-handle">⠿</span>
+          <div class="block-info">
+            <div class="block-name">Đề thi</div>
+            <div class="block-desc">Hiện các đề thi công khai</div>
+          </div>
+          <label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
